@@ -1,0 +1,25 @@
+
+<tr class="" id="footer">
+  <% active_scaffold_config.list.columns.each do |column| %>
+    <td>
+      <% if column.name.to_s == "finalResult" %>
+        <% 
+  				finalResult_params = params_for(:action => "check_all_final_results", :page => @page.number )
+  				finalResult_params.delete('finalResult')
+  				finalResult_all_checked = ! @records.any?{|r| ! r.finalResult }
+  			%>
+        <% indicated_div "select_all_finalResult_div" do %>
+          <%= check_box_tag "select_all_finalResult", "true", finalResult_all_checked,
+              :onchange => remote_function(
+                :url => finalResult_params, 
+                :with => "'finalResult=' + $F(this)",
+								:indicate => "select_all_finalResult_div",
+                :update => active_scaffold_content_id
+              )
+          %> Final Result
+        <% end %>
+      <% end %>
+    </td>
+    
+  <% end -%>
+</tr>

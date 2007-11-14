@@ -1,0 +1,2 @@
+module MhcSeqHelper
+end

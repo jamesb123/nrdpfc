@@ -1,0 +1,2 @@
+module MhcsHelper
+end

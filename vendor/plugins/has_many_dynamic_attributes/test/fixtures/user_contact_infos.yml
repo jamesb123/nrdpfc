@@ -1,0 +1,10 @@
+eric_aim:
+  id: 1
+  contact_id: 1
+  name: aim
+  value: MyCoolScreenName
+eric_phone:
+  id: 2
+  contact_id: 1
+  name: phone
+  value: 555-123-4567

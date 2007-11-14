@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: security_settings
+#
+#  id         :integer(11)   not null, primary key
+#  project_id :integer(11)   
+#  user_id    :integer(11)   
+#  level      :integer(11)   default(0)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

@@ -1,0 +1,64 @@
+# == Schema Information
+#
+# Table name: samples
+#
+#  id                   :integer(11)   not null, primary key
+#  project_id           :integer(11)   
+#  organism_id          :integer(11)   
+#  organism_code        :string(255)   
+#  org_sample           :string(255)   
+#  tubebc               :string(255)   
+#  platebc              :string(255)   
+#  plateposition        :string(255)   
+#  field_code           :string(255)   
+#  batch_number         :string(255)   
+#  tissue_type          :string(255)   
+#  storage_medium       :string(255)   
+#  country              :string(255)   
+#  province             :string(255)   
+#  date_collected       :datetime      
+#  collected_on_day     :integer(11)   
+#  collected_on_month   :integer(11)   
+#  collected_on_year    :integer(11)   
+#  collected_by         :string(255)   
+#  date_received        :datetime      
+#  received_by          :string(255)   
+#  receiver_comments    :text          
+#  date_submitted       :datetime      
+#  submitted_by         :string(255)   
+#  submitter_comments   :text          
+#  latitude             :float         
+#  longitude            :float         
+#  UTM_datum            :float         
+#  locality             :string(255)   
+#  locality_type        :string(255)   
+#  locality_comments    :string(255)   
+#  location_accuracy    :string(255)   
+#  storage_building     :string(255)   
+#  storage_room         :string(255)   
+#  storage_fridge       :string(255)   
+#  storage_box          :string(255)   
+#  xy_position          :string(255)   
+#  tissue_remaining     :boolean(1)    
+#  type_lat_long        :string(255)   
+#  locality_type_id     :integer(11)   
+#  shippingmaterial_id  :integer(11)   
+#  tissue_type_id       :integer(11)   
+#  province_id          :integer(11)   
+#  storage_medium_id    :integer(11)   
+#  country_id           :integer(11)   
+#  extraction_method_id :integer(11)   
+#
+
+fin_sample:
+  project: whale_project
+  receiver_comments: "Fin sample"
+  organism_code: Egl00050
+  org_sample: 1
+  organism: whale
+nose_sample:
+  project: whale_project
+  receiver_comments: "Nose sample"
+  org_sample: 1
+  organism_code: Egl00050
+  organism: whale

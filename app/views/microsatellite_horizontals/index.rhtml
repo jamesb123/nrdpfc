@@ -1,0 +1,8 @@
+<h1>Microsatellites Horizontal</h1>
+<% form_tag({:action => "list"}, {:method => :get}) do %>
+  Please select a project: 
+  <%= select_tag "project_id", 
+    options_for_select([["-Select one-", nil]] + Project.find(:all).map{|p| [p.to_label, p.id]}) 
+  %>
+  <%= submit_tag "Go" %>
+<% end %>

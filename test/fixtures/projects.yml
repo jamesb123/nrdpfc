@@ -1,0 +1,16 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id          :integer(11)   not null, primary key
+#  name        :string(255)   
+#  code        :string(255)   
+#  description :string(255)   
+#  user_id     :integer(11)   
+#
+
+whale_project:
+  name: Project
+  code: EGL00093
+  description:
+  user_id: 1

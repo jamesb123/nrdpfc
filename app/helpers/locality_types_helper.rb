@@ -1,0 +1,2 @@
+module LocalityTypesHelper
+end

@@ -1,0 +1,2 @@
+module MicrosatelliteHelper
+end

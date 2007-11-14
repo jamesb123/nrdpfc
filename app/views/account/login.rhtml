@@ -1,0 +1,25 @@
+
+<h1> NRDPFC DNA ANALYSIS SYSTEM </h1>
+<h3> Under Contstruction - Last Updated 07-09-05 </h3>
+<% form_tag do -%>
+
+<p><label for="login">Login</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<! we want to set this value>
+<! #{current_user.current_project>
+<p><label for="project_number">Current Project (not active)</label><br/>
+<%= text_field_tag 'project' %></p>
+
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+
+<p><%= submit_tag 'Log in' %></p>
+
+<% end -%>
+
