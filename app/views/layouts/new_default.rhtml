@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <% bundle do %>
+    <%= javascript_include_tag :defaults, "control.modal.js" %>
+    <%= record_select_includes %>
+    <%= active_scaffold_includes %>
+    <%= stylesheet_link_tag "basic" %>
+  <% end %>
+	<!--[if lt IE 6.]>
+    <%= javascript_include_tag "ie6" %>
+	<![endif]-->
+
+  <%= stylesheet_link_tag "basic_print", :media => "print" %>
+</head>
+
+<body>
+  <div id="header">
+    <div id="header_contents">
+      <div style="background-color:#fff; float:left;" id="header_image_frame">
+        <%= image_tag "mazuma_small.gif" %>
+      </div>
+      
+      <div style="float:right; text-align:right;">
+        <% if current_user%>
+          <%= render :partial => "bookmarks/selector" %>
+          Logged in as: <%= current_user.to_label %>.  
+          <%= link_to "my account", {:controller => "/account", :action => "edit" } %>
+          <%= link_to "logout", :controller => "/account", :action => "logout" %>
+        <% end %>  
+        
+      </div>
+      <h2>
+        Lead Development System <%= "+STAGING+" if ENV["RAILS_ENV"] == "staging" %>
+      </h2>
+      <br clear="both"/>
+    </div>
+      
+  </div>
+  <script>
+    Rico.Corner.round($('header_image_frame'), {bgColor: '#336699'})
+    Rico.Corner.round($('header'));
+  </script>
+  <%= yield :before_content %>
+  <%= yield :tabs %>
+  <div id="page" class="<%=@using_tabs ? 'with_tabs' : '' %>">
+    <br style="line-height:1px;" /><!-- this forces the background color to be rendered all the way to the top if the next element has a margin property set -->
+    <%= yield :sub_tabs %>
+    <%= yield %>
+  </div>
+</body>
+</html>

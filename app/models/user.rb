@@ -101,18 +101,6 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
     save(false)
   end
 
-  protected
-    # before filter 
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-    
-    def password_required?
-      crypted_password.blank? || !password.blank?
-    end
-
   def authorized_for_create?
     true
   end
@@ -128,5 +116,16 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
   def authorized_for_destroy?
     true
   end
-      
+
+protected
+  # before filter 
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+  
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
 end

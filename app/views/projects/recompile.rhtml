@@ -1,0 +1,14 @@
+<p>
+  Done!
+</p>
+
+<%= link_to_function "Close", "Control.Modal.close()"%>
+<script language="JavaScript">
+  if ($('<%= dom_id(@project, "recompile_link") %>')) {
+    <%= update_page do |page| 
+      page.replace_html dom_id(@project, "recompile_link"), :partial => "recompile_modal_link", :locals => {:record => @project }
+    end
+    %>
+  }
+</script>
+ 

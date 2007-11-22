@@ -1,12 +1,13 @@
-require File.dirname(__FILE__) + '/../../test_helper'
+require File.dirname(__FILE__) + '/../../../test_helper'
 
-class MicrosatelliteCompilerTest < Test::Unit::TestCase
+class Compiler::MicrosatelliteCompilerTest < Test::Unit::TestCase
   fixtures :projects, :microsatellites, :samples
   def setup
     @project =  projects(:whale_project)
     @project_id = @project.id
     
-    @compiler = MicrosatelliteCompiler.new(@project_id)
+    @compiler = Compiler::MicrosatelliteCompiler.new(@project)
+    @compiler.create_table
     @table_name = "microsatellite_horizontals_#{@project_id}"
     @model = MicrosatelliteHorizontal.model_for_project(@project)
   end

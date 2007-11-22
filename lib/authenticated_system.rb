@@ -3,13 +3,13 @@ module AuthenticatedSystem
   protected
     # Accesses the current user from the session.
     def current_user
-      @current_user ||= (session[:user] && User.find_by_id(session[:user])) || :false
+      @current_user ||= (session[:user] && User.find_by_id(session[:user])) || false
     end
       
     # Returns true or false if the user is logged in.
     # Preloads @current_user with the user model if they're logged in.
     def logged_in?
-      current_user != :false
+      current_user != false
     end
     
     # Store the given user in the session.
@@ -50,7 +50,7 @@ module AuthenticatedSystem
     #
     def login_required
       username, passwd = get_auth_data
-      self.current_user ||= User.authenticate(username, passwd) || :false if username && passwd
+      self.current_user ||= User.authenticate(username, passwd) || false if username && passwd
       logged_in? && authorized? ? true : access_denied
     end
     
@@ -87,7 +87,7 @@ module AuthenticatedSystem
     # Redirect to the URI stored by the most recent store_location call or
     # to the passed default.
     def redirect_back_or_default(default)
-      session[:return_to] ? redirect_to_url(session[:return_to]) : redirect_to(default)
+      session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(default)
       session[:return_to] = nil
     end
     

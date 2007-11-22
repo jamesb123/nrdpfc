@@ -1,11 +1,12 @@
-class MicrosatelliteCompilerBase
-  def compile
-    create_table
-    compile_data
-  end
+class Compiler::MicrosatelliteCompilerBase
   
   def initialize(project_id)
     @project_id = (Project===project_id) ? project_id.id : project_id
+  end
+  
+  def compile
+    create_table
+    compile_data
   end
 
   def locii

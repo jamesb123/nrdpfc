@@ -12,12 +12,65 @@
     <%= active_scaffold_includes %>
   <% end %>
 </head>
+
 <body>
-  <%= yield :header %>
+  <div id="header">
+    <div id="header_contents">
+      <div style="background-color:#fff; float:left;" id="header_image_frame">
+        <%= image_tag "mooselogo.jpg"%>
+      </div>
+      
+      <div style="float:right; text-align:right;">
+        <% if current_user %>
+          Logged in as: <%= current_user.to_label %>.  
+          <%= link_to "logout", :controller => "/account", :action => "logout" %>
+          <p>
+            <%= indicator "current_project_indicator" %>
+            Current Project: 
+            <%= select_tag "current_project", 
+                  options_for_select(Project.current_users_accessible_projects.map{|p| [p.to_label, p.id]}, 
+                  (current_project && current_project.id)),
+                  :onchange => remote_function(
+                    :url => { 
+                      :controller => "projects", 
+                      :action => "update_current_project",
+                      :redirect_to => request.url},
+                    :with => "'current_project_id=' + $F(this)",
+                    :indicate => "current_project_indicator"
+									)
+              %>
+          </p>
+          <% if current_project && current_project.recompile_required %>
+            <div class="alert">
+              Data needs to be recompiled for this project.  
+              <%= link_to_modal "Recompile", :controller => "projects", :action => "recompile_status", :id => current_project.id %>
+            </div>
+            
+          <% end %>
+        <% end %>  
+          
+      </div>
+      <h2>
+        NRDPFC
+      </h2>
+      <br clear="both"/>
+    </div>
+      
+  </div>
+  <script>
+    Rico.Corner.round($('header_image_frame'), {bgColor: '#962332'})
+    Rico.Corner.round($('header'));
+  </script>
   <p style="color: green"><%= flash[:notice] %></p>
-  
-  <%= yield %>
-  
+  <%= yield :before_content %>
+  <%= yield :header %>
+
+  <%= yield :tabs %>
+  <div id="page" class="<%=@using_tabs ? 'with_tabs' : '' %>">
+    <br style="line-height:1px;" /><!-- this forces the background color to be rendered all the way to the top if the next element has a margin property set -->
+    <%= yield :sub_tabs %>
+    <%= yield %>
+  </div>
   <%= yield :footer %>
 </body>
 </html>

@@ -308,7 +308,7 @@ CREATE TABLE `microsatellite_organism_horizontals_1` (
   `id` int(11) NOT NULL auto_increment,
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
-  `organism_code` int(11) default NULL,
+  `organism_code` varchar(128) default NULL,
   `extraction_number` int(11) default NULL,
   `EV1Pma` int(11) default NULL,
   `EV1Pmb` int(11) default NULL,
@@ -387,7 +387,7 @@ CREATE TABLE `microsatellite_organism_horizontals_2` (
   `id` int(11) NOT NULL auto_increment,
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
-  `organism_code` int(11) default NULL,
+  `organism_code` varchar(128) default NULL,
   `extraction_number` int(11) default NULL,
   `EV1Pma` int(11) default NULL,
   `EV1Pmb` int(11) default NULL,
@@ -596,6 +596,7 @@ CREATE TABLE `projects` (
   `code` varchar(255) default NULL,
   `description` varchar(255) default NULL,
   `user_id` int(11) default NULL,
+  `recompile_required` tinyint(1) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -752,4 +753,4 @@ CREATE TABLE `y_chromosomes` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO schema_info (version) VALUES (27)
+INSERT INTO `schema_info` (version) VALUES (28)

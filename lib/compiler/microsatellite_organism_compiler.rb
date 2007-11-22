@@ -1,4 +1,4 @@
-class MicrosatelliteOrganismCompiler < MicrosatelliteCompilerBase
+class Compiler::MicrosatelliteOrganismCompiler < Compiler::MicrosatelliteCompilerBase
   
   def compile_data
     # psuedo algorithm

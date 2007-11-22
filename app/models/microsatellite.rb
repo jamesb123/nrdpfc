@@ -31,7 +31,11 @@ class Microsatellite < ActiveRecord::Base
   def security_settings
     current_user.authorization_display_for project
   end
-
+  
+  def after_save
+    Project.flag_for_update(self.project_id)
+  end
+  
   def authorized_for_create?
     true
   end

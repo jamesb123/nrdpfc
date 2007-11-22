@@ -1,0 +1,11 @@
+<h1>Recompiling project <%= @project.to_label %></h1>
+
+<%= indicator "recompile" %>
+
+<div id="recompile_status">
+  Please Wait
+</div>
+
+<script language="JavaScript">
+  <%= remote_function :url => {:action => "recompile", :id => @project.id }, :indicate => "recompile", :update => "recompile_status" %>
+</script>

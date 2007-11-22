@@ -1,14 +1,14 @@
-require File.dirname(__FILE__) + '/../../test_helper'
+require File.dirname(__FILE__) + '/../../../test_helper'
 
-class MicrosatelliteOrganismCompilerTest < Test::Unit::TestCase
+class Compiler::MicrosatelliteOrganismTest < Test::Unit::TestCase
   fixtures :projects, :microsatellites, :samples, :organisms
   def setup
     @project =  projects(:whale_project)
     @project_id = @project.id
     
-    @compiler = MicrosatelliteOrganismCompiler.new(@project_id)
+    @compiler = Compiler::MicrosatelliteOrganism.new(@project_id)
+    @compiler.create_table
     @table_name = "microsatellite_organism_horizontals_#{@project_id}"
-#    dbg
     @model = MicrosatelliteOrganismHorizontal.model_for_project(@project)
   end
   
@@ -29,7 +29,7 @@ class MicrosatelliteOrganismCompilerTest < Test::Unit::TestCase
   def test__compile_data
     @compiler.compile
     @results = @model.find(:all)
-    y @results
+#    y @results
     
     @results.each{|result|
       %w[EV1Pma EV1Pmb EV37Mna EV37Mnb].each{|col_name|

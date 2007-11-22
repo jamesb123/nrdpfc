@@ -1,0 +1,6 @@
+<% if record.recompile_required %>
+  <%= link_to_modal "Recompile", :action => :recompile_status, :id => record.id %>
+<% else %>
+  Compiled
+
+<% end %>

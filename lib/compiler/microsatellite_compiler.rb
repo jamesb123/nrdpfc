@@ -1,12 +1,6 @@
-class MicrosatelliteCompiler < MicrosatelliteCompilerBase
-  def compile
-    create_table
-    compile_data
-  end
-  
+class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   def compile_data
     # psuedo algorithm
-    
     all_samples.each{|sample|
       row = model.new
       
