@@ -25,7 +25,7 @@
   - label: "Horizontals"
     controller: "microsatellite_horizontals"
   - label: "Organism Horizontals"
-    controller: "microsatellite_organism_horizontals"
+    controller: "microsatellite_final_horizontals"
 - label: "Genders"
   controller: "genders"
 - label: "Y Chromosomes"

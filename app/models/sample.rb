@@ -59,7 +59,7 @@ class Sample < ActiveRecord::Base
   has_many :mhcs
   has_many :mt_dnas
   has_many :y_chromosomes
-
+  has_many :mhc_seqs
   belongs_to :locality_type
   belongs_to :shippingmaterial
   belongs_to :tissue_type

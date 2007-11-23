@@ -1,4 +1,4 @@
-class Compiler::MicrosatelliteOrganismCompiler < Compiler::MicrosatelliteCompilerBase
+class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBase
   
   def compile_data
     # psuedo algorithm
@@ -27,12 +27,12 @@ class Compiler::MicrosatelliteOrganismCompiler < Compiler::MicrosatelliteCompile
   end
   
   def model
-    @model ||= MicrosatelliteOrganismHorizontal.model_for_project(@project_id)
+    @model ||= MicrosatelliteFinalHorizontal.model_for_project(@project_id)
   end
   
   def create_table
     # generate table scchema
-    ActiveRecord::Base.connection.create_table "microsatellite_organism_horizontals_#{@project_id}", :force => true do |t|
+    ActiveRecord::Base.connection.create_table "microsatellite_final_horizontals_#{@project_id}", :force => true do |t|
       integer :project_id
       integer :organism_id
       string :organism_code, :limit => 128

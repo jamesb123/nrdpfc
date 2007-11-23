@@ -3,7 +3,7 @@ class Compiler
     puts "Compiling VIEW B for #{project.to_label}" if verbose
     Compiler::MicrosatelliteCompiler.new(project).compile
     puts "Compiling VIEW C for #{project.to_label}" if verbose
-    Compiler::MicrosatelliteOrganismCompiler.new(project).compile
+    Compiler::MicrosatelliteFinalCompiler.new(project).compile
     
     project.recompile_required = false
     project.save(false)

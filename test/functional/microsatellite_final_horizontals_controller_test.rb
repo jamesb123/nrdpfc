@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'microsatellite_organism_horizontals_controller'
+require 'microsatellite_final_horizontals_controller'
 
 # Re-raise errors caught by the controller.
-class MicrosatelliteOrganismHorizontalsController; def rescue_action(e) raise e end; end
+class MicrosatelliteFinalHorizontalsController; def rescue_action(e) raise e end; end
 
-class MicrosatelliteOrganismHorizontalsControllerTest < Test::Unit::TestCase
+class MicrosatelliteFinalHorizontalsControllerTest < Test::Unit::TestCase
   def setup
-    @controller = MicrosatelliteOrganismHorizontalsController.new
+    @controller = MicrosatelliteFinalHorizontalsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

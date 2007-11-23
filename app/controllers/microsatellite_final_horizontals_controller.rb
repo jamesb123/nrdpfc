@@ -1,4 +1,4 @@
-class MicrosatelliteOrganismHorizontalsController < ApplicationController
+class MicrosatelliteFinalHorizontalsController < ApplicationController
   layout "tabs"
   before_filter :set_to_project, :except => :not_compiled
   
@@ -20,7 +20,7 @@ class MicrosatelliteOrganismHorizontalsController < ApplicationController
       return false
     end
     
-    as_reconfigure(:microsatellite_organism_horizontals, @model) {|config| 
+    as_reconfigure(:microsatellite_final_horizontals, @model) {|config| 
 #      config.columns = [:project, :sample]
       config.list.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
       @model.dynamic_column_names.each{|column_name|
@@ -35,6 +35,6 @@ class MicrosatelliteOrganismHorizontalsController < ApplicationController
   end
 protected
   def model_for_current_project
-    MicrosatelliteOrganismHorizontal.model_for_project(current_project)
+    MicrosatelliteFinalHorizontal.model_for_project(current_project)
   end
 end
