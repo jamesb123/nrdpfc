@@ -1,12 +1,12 @@
 class CreateMicrosatelliteHorizontals < ActiveRecord::Migration
   def self.up
     create_table :microsatellite_horizontals do |t|
-      integer :project_id
-      integer :sample_id
-      integer :organism_code
-      integer :org_sample
-      integer :allelea
-      integer :alleleb
+      t.integer :project_id
+      t.integer :sample_id
+      t.integer :organism_code
+      t.integer :org_sample
+      t.integer :allelea
+      t.integer :alleleb
     end
   end
 

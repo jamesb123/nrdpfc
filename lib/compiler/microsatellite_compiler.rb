@@ -35,15 +35,15 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   def create_table
     # generate table scchema
     ActiveRecord::Base.connection.create_table "microsatellite_horizontals_#{@project_id}", :force => true do |t|
-      integer :project_id
-      integer :sample_id
-      integer :organism_code
-      integer :org_sample
-      integer :extraction_number
+      t.integer :project_id
+      t.integer :sample_id
+      t.integer :organism_code
+      t.integer :org_sample
+      t.integer :extraction_number
       
-      that.locii.each { |locus|
-        integer "#{locus}a"
-        integer "#{locus}b"
+      self.locii.each { |locus|
+        t.integer "#{locus}a"
+        t.integer "#{locus}b"
       }
     end
     
