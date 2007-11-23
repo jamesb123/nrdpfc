@@ -13,7 +13,7 @@
 class Project < ActiveRecord::Base
 
   has_many :genders
-  has_many :organisms
+  has_many :organisms, :order => "organism_code"
   has_many :samples
   has_many :users
   has_many :sample_non_tissues

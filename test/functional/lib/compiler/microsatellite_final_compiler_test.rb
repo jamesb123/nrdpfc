@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../../../test_helper'
 
-class Compiler::MicrosatelliteFinalTest < Test::Unit::TestCase
+class Compiler::MicrosatelliteFinalCompilerTest < Test::Unit::TestCase
   fixtures :projects, :microsatellites, :samples, :organisms
   def setup
     @project =  projects(:whale_project)
     @project_id = @project.id
     
-    @compiler = Compiler::MicrosatelliteFinal.new(@project_id)
+    @compiler = Compiler::MicrosatelliteFinalCompiler.new(@project_id)
     @compiler.create_table
     @table_name = "microsatellite_final_horizontals_#{@project_id}"
     @model = MicrosatelliteFinalHorizontal.model_for_project(@project)

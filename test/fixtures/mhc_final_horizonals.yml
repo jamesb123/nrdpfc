@@ -2,14 +2,15 @@
 #
 # Table name: mhc_final_horizonals
 #
-#  id            :integer(11)   not null, primary key
-#  project_id    :integer(11)   
-#  organism_id   :integer(11)   
-#  organism_code :integer(11)   
-#  allelea       :integer(11)   
-#  alleleb       :integer(11)   
-#  created_at    :datetime      
-#  updated_at    :datetime      
+#  id                :integer(11)   not null, primary key
+#  project_id        :integer(11)   
+#  organism_id       :integer(11)   
+#  organism_code     :integer(11)   
+#  allelea           :integer(11)   
+#  alleleb           :integer(11)   
+#  extraction_number :integer(11)   
+#  created_at        :datetime      
+#  updated_at        :datetime      
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

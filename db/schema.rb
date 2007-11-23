@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 32) do
     t.integer  "organism_code"
     t.integer  "allelea"
     t.integer  "alleleb"
+    t.integer  "extraction_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -557,6 +558,7 @@ ActiveRecord::Schema.define(:version => 32) do
     t.integer  "organism_id"
     t.integer  "organism_code"
     t.integer  "haplotype"
+    t.integer  "extraction_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -712,6 +714,7 @@ ActiveRecord::Schema.define(:version => 32) do
     t.integer  "organism_id"
     t.integer  "organism_code"
     t.integer  "haplotype"
+    t.integer  "extraction_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

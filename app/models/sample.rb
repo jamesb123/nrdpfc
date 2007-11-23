@@ -54,9 +54,20 @@ class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
   has_many :dna_results
-  has_many :microsatellites
   has_many :genders
+  
+  has_many :microsatellites
+  has_many :final_microsatellites,    
+    :class_name => "Microsatellite", 
+    :conditions => "microsatellites.finalResult",
+    :order => "microsatellites.id" # so we get predictable results
+
   has_many :mhcs
+  has_many :final_mhcs,
+    :class_name => "Mhc", 
+    :conditions => "mhcs.finalResult",
+    :order => "mhcs.id" # so we get predictable results
+
   has_many :mt_dnas
   has_many :y_chromosomes
   has_many :mhc_seqs

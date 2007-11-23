@@ -24,7 +24,7 @@
     controller: "microsatellites"
   - label: "Horizontals"
     controller: "microsatellite_horizontals"
-  - label: "Organism Horizontals"
+  - label: "Final Horizontals"
     controller: "microsatellite_final_horizontals"
 - label: "Genders"
   controller: "genders"

@@ -108,6 +108,7 @@ CREATE TABLE `mhc_final_horizonals` (
   `organism_code` int(11) default NULL,
   `allelea` int(11) default NULL,
   `alleleb` int(11) default NULL,
+  `extraction_number` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
@@ -579,6 +580,7 @@ CREATE TABLE `mt_dna_final_horizontals` (
   `organism_id` int(11) default NULL,
   `organism_code` int(11) default NULL,
   `haplotype` int(11) default NULL,
+  `extraction_number` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
@@ -760,6 +762,7 @@ CREATE TABLE `y_chromosome_final_horizontals` (
   `organism_id` int(11) default NULL,
   `organism_code` int(11) default NULL,
   `haplotype` int(11) default NULL,
+  `extraction_number` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)

@@ -14,12 +14,13 @@ class Organism < ActiveRecord::Base
     
   belongs_to :project
   has_many :samples
-  has_many :microsatellites, :through => :samples
-  has_many :final_microsatellites, 
-    :through => :samples, 
-    :source => :microsatellites, 
-    :conditions => "microsatellites.finalResult",
-    :order => "microsatellites.id" # so we get predictable results
+  
+  has_many :microsatellites,        :through => :samples
+  has_many :final_microsatellites,  :through => :samples
+  
+  has_many :mhcs,                   :through => :samples
+  has_many :final_mhcs,             :through => :samples
+  
   has_many :sample_non_tissues
   
   def to_label

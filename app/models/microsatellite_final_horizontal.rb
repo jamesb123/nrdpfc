@@ -42,7 +42,4 @@ class MicrosatelliteFinalHorizontal < ActiveRecord::Base
   def authorized_for_destroy?
     true
   end
-  
 end
-
-  
