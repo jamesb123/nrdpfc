@@ -1,6 +1,6 @@
-class CreateMhcFinalHorizonals < ActiveRecord::Migration
+class CreateMhcFinalHorizontals < ActiveRecord::Migration
   def self.up
-    create_table :mhc_final_horizonals do |t|
+    create_table :mhc_final_horizontals do |t|
       t.integer :project_id
       t.integer :organism_id
       t.integer :organism_code
@@ -13,6 +13,6 @@ class CreateMhcFinalHorizonals < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :mhc_final_horizonals
+    drop_table :mhc_final_horizontals
   end
 end

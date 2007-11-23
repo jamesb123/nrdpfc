@@ -101,7 +101,7 @@ CREATE TABLE `locality_types` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `mhc_final_horizonals` (
+CREATE TABLE `mhc_final_horizontals` (
   `id` int(11) NOT NULL auto_increment,
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,

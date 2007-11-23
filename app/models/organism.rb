@@ -15,11 +15,10 @@ class Organism < ActiveRecord::Base
   belongs_to :project
   has_many :samples
   
-  has_many :microsatellites,        :through => :samples
-  has_many :final_microsatellites,  :through => :samples
-  
-  has_many :mhcs,                   :through => :samples
-  has_many :final_mhcs,             :through => :samples
+  for table_name in Sample::RESULT_TABLES
+    has_many table_name, :through => :samples 
+    has_many "final_#{table_name}", :through => :samples
+  end
   
   has_many :sample_non_tissues
   

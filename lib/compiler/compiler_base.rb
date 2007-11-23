@@ -6,6 +6,10 @@ class Compiler::CompilerBase
     @connection = ActiveRecord::Base.connection
   end
   
+  def final?
+    raise "Implement me"
+  end
+  
   def compile
     create_table
     compile_data
@@ -19,4 +23,25 @@ class Compiler::CompilerBase
     raise "Implement me"
   end
   
+  def results_table_name
+    raise "Implement me"
+  end
+    
+  def table_name
+    "#{results_table_name.singularize}_#{final? ? 'final_' : ''}horizontals_#{@project_id}"
+  end
+
+  def locii
+    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus")
+  end
+  
+  def model_name
+    [results_table_name.classify, final? ? "Final" : nil, "Horizontal"].compact.join("")
+  end
+  
+  def model
+    @model ||= model_name.constantize.model_for_project(@project_id)
+  end
+    
+
 end

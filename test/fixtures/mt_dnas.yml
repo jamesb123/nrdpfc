@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: y_chromosomes
+# Table name: mt_dnas
 #
 #  id          :integer(11)   not null, primary key
 #  sample_id   :integer(11)   
@@ -12,9 +12,7 @@
 #  finalResult :boolean(1)    
 #
 
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-y_chromosome_measurement_1_fin_sample:
+mt_dna_whale_measurement_1_fin_sample:
   sample: fin_sample
   project: whale_project
   locus: Control Region
@@ -22,7 +20,7 @@ y_chromosome_measurement_1_fin_sample:
   gelNum: MB07WFL0345
   wellNum: A01
   finalResult: true
-y_chromosome_measurement_2_fin_sample:
+mt_dna_whale_measurement_2_fin_sample:
   sample: fin_sample
   project: whale_project
   locus: Cyt-b
@@ -30,7 +28,7 @@ y_chromosome_measurement_2_fin_sample:
   gelNum: MB07WFL0345
   wellNum: A02
   finalResult: true
-y_chromosome_measurement_1_nose_sample:
+mt_dna_whale_measurement_1_nose_sample:
   sample: nose_sample
   project: whale_project
   locus: Control Region
@@ -38,7 +36,7 @@ y_chromosome_measurement_1_nose_sample:
   gelNum: MB07WFL0345
   wellNum: A03
   finalResult: true
-y_chromosome_measurement_2_nose_sample:
+mt_dna_whale_measurement_2_nose_sample:
   sample: nose_sample
   project: whale_project
   locus: Cyt-b

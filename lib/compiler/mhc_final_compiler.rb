@@ -1,12 +1,12 @@
 class Compiler::MhcFinalCompiler < Compiler::CompilerBase
-  def model
-    @model ||= MhcFinalHorizonal.model_for_project(@project_id)
+  def final?
+    true
   end
   
-  def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from mhcs order by locus")
+  def results_table_name
+    "mhcs"
   end
-  
+
   def create_table
     # generate table scchema
     @connection.create_table "mhc_final_horizontals_#{@project_id}", :force => true do |t|

@@ -11,17 +11,16 @@
 #
 
 class Project < ActiveRecord::Base
-
-  has_many :genders
+  for table_name in Sample::RESULT_TABLES
+    has_many table_name.to_sym
+  end
+  
   has_many :organisms, :order => "organism_code"
   has_many :samples
   has_many :users
   has_many :sample_non_tissues
-  has_many :mhcs
   has_many :mt_dna_seqs
-  has_many :microsatellites
   has_many :security_settings
-  has_many :y_chromosomes
   has_many :y_chromosome_seqs
   has_many :security_settings
   

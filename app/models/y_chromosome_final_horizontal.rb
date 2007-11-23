@@ -13,4 +13,36 @@
 #
 
 class YChromosomeFinalHorizontal < ActiveRecord::Base
+  belongs_to :organism
+  belongs_to :project
+  has_many :final_y_chromosomes, :through => :organism
+  
+  class << self
+    def table_name_for_project(project_id)
+      "y_chromosome_final_horizontals_#{project_id.to_i}"
+    end
+    
+    def non_dynamic_columns_names
+      %w[id project_id organism_id organism_code extraction_number]
+    end
+  end
+  
+  extend HorizontalClassCreatorSharedMethods
+  
+  def authorized_for_create?
+    true
+  end
+    
+  def authorized_for_update?
+    true
+  end
+  
+  def authorized_for_read?
+    true
+  end
+
+  def authorized_for_destroy?
+    true
+  end
+  
 end

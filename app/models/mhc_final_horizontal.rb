@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: mhc_final_horizonals
+# Table name: mhc_final_horizontals
 #
 #  id                :integer(11)   not null, primary key
 #  project_id        :integer(11)   
@@ -13,7 +13,7 @@
 #  updated_at        :datetime      
 #
 
-class MhcFinalHorizonal < ActiveRecord::Base
+class MhcFinalHorizontal < ActiveRecord::Base
   belongs_to :organism
   belongs_to :project
   has_many :final_mhcs, :through => :project

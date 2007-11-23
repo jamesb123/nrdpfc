@@ -1,7 +1,15 @@
 class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
+  def final?
+    false
+  end
+  
+  def results_table_name
+    "microsatellites"
+  end
+  
   def compile_data
     # psuedo algorithm
-    all_samples.each{|sample|
+    @project.samples.each{|sample|
       row = model.new
       
       row.project_id = sample.project_id
@@ -15,21 +23,6 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       }
       row.save
     }
-  end
-  
-  def all_samples
-    Sample.find(:all, 
-      :conditions => {:project_id => @project_id},
-      :order => ["organism_code"]
-    )
-  end
-  
-  def locii
-    @locii ||= Microsatellite.connection.select_values("select DISTINCT locus from microsatellites order by locus")
-  end
-  
-  def model
-    @model ||= MicrosatelliteHorizontal.model_for_project(@project_id)
   end
   
   def create_table

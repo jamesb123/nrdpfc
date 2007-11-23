@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 32) do
     t.string "locality_type_desc"
   end
 
-  create_table "mhc_final_horizonals", :force => true do |t|
+  create_table "mhc_final_horizontals", :force => true do |t|
     t.integer  "project_id"
     t.integer  "organism_id"
     t.integer  "organism_code"

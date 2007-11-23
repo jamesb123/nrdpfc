@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: mhc_final_horizonals
+# Table name: mhc_final_horizontals
 #
 #  id                :integer(11)   not null, primary key
 #  project_id        :integer(11)   

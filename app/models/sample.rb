@@ -54,22 +54,17 @@ class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
   has_many :dna_results
-  has_many :genders
   
-  has_many :microsatellites
-  has_many :final_microsatellites,    
-    :class_name => "Microsatellite", 
-    :conditions => "microsatellites.finalResult",
-    :order => "microsatellites.id" # so we get predictable results
-
-  has_many :mhcs
-  has_many :final_mhcs,
-    :class_name => "Mhc", 
-    :conditions => "mhcs.finalResult",
-    :order => "mhcs.id" # so we get predictable results
-
-  has_many :mt_dnas
-  has_many :y_chromosomes
+  RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
+  
+  for table_name in RESULT_TABLES
+    has_many table_name.to_sym
+    has_many "final_#{table_name}".to_sym,
+      :class_name => table_name.classify,
+      :conditions => "#{table_name}.finalResult",
+      :order => "#{table_name}.id"
+  end
+  
   has_many :mhc_seqs
   belongs_to :locality_type
   belongs_to :shippingmaterial

@@ -1,4 +1,11 @@
 class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBase
+  def final?
+    true
+  end
+  
+  def results_table_name
+    "microsatellites"
+  end
   
   def compile_data
     # psuedo algorithm
@@ -17,10 +24,6 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
       }
       row.save
     }
-  end
-  
-  def model
-    @model ||= MicrosatelliteFinalHorizontal.model_for_project(@project_id)
   end
   
   def create_table
