@@ -19,7 +19,7 @@ class CompilerTest < Test::Unit::TestCase
   end
   
   def test__compile__should_generate_all_tables
-    @expected_tables = %w[microsatellite_horizontals microsatellite_final_horizontals].map{|table_name| "#{table_name}_#{@project_id}" }
+    @expected_tables = %w[microsatellite_horizontals microsatellite_final_horizontals mt_dna_final_horizontals y_chromosome_final_horizontals].map{|table_name| "#{table_name}_#{@project_id}" }
     
     @expected_tables.each{|table_name|
       @connection.execute("DROP TABLE IF EXISTS #{table_name}")

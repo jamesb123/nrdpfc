@@ -3,6 +3,10 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
     "mt_dnas"
   end
   
+  def final?
+    true
+  end
+  
   def create_table
     # generate table scchema
     @connection.create_table table_name, :force => true do |t|

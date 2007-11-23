@@ -3,6 +3,10 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
     @model ||= YChromosomeFinalHorizontal.model_for_project(@project_id)
   end
   
+  def final?
+    true
+  end
+  
   def results_table_name
     "y_chromosomes"
   end
