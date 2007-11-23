@@ -1,0 +1,6 @@
+td.sequence-column div {
+  overflow-x: visible;
+  overflow-y: auto;
+  word-break:break-all;
+  height:70px;
+}

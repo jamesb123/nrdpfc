@@ -62,3 +62,7 @@ end
 Dir["#{RAILS_ROOT}/lib/overrides/*"].each {| file | require file }
 
 def dbg; require "ruby-debug"; debugger; end;
+
+if RAILS_ENV=='test'
+  require "#{RAILS_ROOT}/test/rselenese_helpers.rb"
+end

@@ -1,22 +1,22 @@
 class MicrosatelliteOrganismHorizontalsController < ApplicationController
   layout "tabs"
-  before_filter :set_to_project, :except => :index
+  before_filter :set_to_project, :except => :not_compiled
   
   active_scaffold :microsatellite_horizontals do |config|
     # perform basic configuration
   end
   
-  def index
-    
+  def not_compiled
+    @project = current_project
+    redirect_to :action => "index" if model_for_current_project
   end
   
   def set_to_project
     @project_id = params[:project_id]
-    @model = MicrosatelliteOrganismHorizontal.model_for_project(@project_id)
+    @model = model_for_current_project
     
     if @model == nil
-      flash[:notice] = "The specified project has not been compiled."
-      redirect_to(:action => "index")
+      redirect_to(:action => "not_compiled")
       return false
     end
     
@@ -32,5 +32,9 @@ class MicrosatelliteOrganismHorizontalsController < ApplicationController
   
   def list_authorized?
     true
+  end
+protected
+  def model_for_current_project
+    MicrosatelliteOrganismHorizontal.model_for_project(current_project)
   end
 end

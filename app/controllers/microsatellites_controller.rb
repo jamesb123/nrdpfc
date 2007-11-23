@@ -46,6 +46,14 @@ class MicrosatellitesController < ApplicationController
       sb.equal_on("organism_id")
     end
     
+    # filter to the current project
+    if current_project 
+      sb.and("microsatellites.project_id = ?", current_project.id)
+    else
+      # show nothing
+      sb.and("false")
+    end
+    
     sb.to_s
   end
 

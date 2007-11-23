@@ -130,6 +130,12 @@ input.small { width:50px }
 input.medium { width:120px }
 input.large { width:200px }
 
+td.sequence-column div {
+  overflow-x: auto;
+  display: block;
+  width: auto;
+  height: 35px;
+}
 /* --------- /stylesheets/active_scaffold/default/stylesheet.css --------- */ 
 /*
  ActiveScaffold
