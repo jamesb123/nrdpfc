@@ -6,6 +6,7 @@ class CreateMhcFinalHorizonals < ActiveRecord::Migration
       integer :organism_code
       integer :allelea
       integer :alleleb
+      integer :extraction_number
 
       t.timestamps
     end

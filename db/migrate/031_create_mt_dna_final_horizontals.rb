@@ -5,6 +5,7 @@ class CreateMtDnaFinalHorizontals < ActiveRecord::Migration
       integer :organism_id
       integer :organism_code
       integer :haplotype
+      integer :extraction_number
       t.timestamps
     end
   end
