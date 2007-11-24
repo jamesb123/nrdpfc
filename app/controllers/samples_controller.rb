@@ -14,10 +14,10 @@ class SamplesController < ApplicationController
     config.update.columns.exclude :security_settings, :project
     config.list.columns.exclude  :project
     config.columns[:security_settings].label = "Security"
-    config.columns[:extraction_method].ui_type = :select
-    config.columns[:shippingmaterial].ui_type = :select
-    config.columns[:locality_type].ui_type = :select
-    config.columns[:tissue_type].ui_type = :select
+    config.columns[:extraction_method].form_ui = :select
+    config.columns[:shippingmaterial].form_ui = :select
+    config.columns[:locality_type].form_ui = :select
+    config.columns[:tissue_type].form_ui = :select
         
     config.columns[:organism_code].label = "Org. Code"
     config.columns[:org_sample].label = "Organism Sample# "

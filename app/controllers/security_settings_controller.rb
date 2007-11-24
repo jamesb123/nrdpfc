@@ -11,8 +11,8 @@ class SecuritySettingsController < ApplicationController
     config.columns.add :project_id
     config.columns.add :user_id
     
-    config.columns[:project].ui_type = :select
-    config.columns[:user].ui_type = :select
+    config.columns[:project].form_ui = :select
+    config.columns[:user].form_ui = :select
 
     config.list.columns.exclude :level
     config.create.columns.exclude :id, :to_label
