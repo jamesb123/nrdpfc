@@ -94,6 +94,14 @@ CREATE TABLE `gender_final_horizontals` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `gender_final_horizontals_1` (
+  `id` int(11) NOT NULL auto_increment,
+  `project_id` int(11) default NULL,
+  `organism_id` int(11) default NULL,
+  `organism_code` varchar(128) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=latin1;
+
 CREATE TABLE `genders` (
   `id` int(11) NOT NULL auto_increment,
   `sample_id` int(11) default NULL,
@@ -120,8 +128,6 @@ CREATE TABLE `mhc_final_horizontals` (
   `organism_code` int(11) default NULL,
   `allelea` int(11) default NULL,
   `alleleb` int(11) default NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -130,7 +136,6 @@ CREATE TABLE `mhc_final_horizontals_1` (
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
   `organism_code` varchar(128) default NULL,
-  `extraction_number` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=latin1;
 
@@ -171,7 +176,6 @@ CREATE TABLE `microsatellite_final_horizontals_1` (
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
   `organism_code` varchar(128) default NULL,
-  `extraction_number` int(11) default NULL,
   `EV1Pma` int(11) default NULL,
   `EV1Pmb` int(11) default NULL,
   `EV37Mna` int(11) default NULL,
@@ -341,7 +345,6 @@ CREATE TABLE `microsatellite_horizontals_1` (
   `sample_id` int(11) default NULL,
   `organism_code` int(11) default NULL,
   `org_sample` int(11) default NULL,
-  `extraction_number` int(11) default NULL,
   `EV1Pma` int(11) default NULL,
   `EV1Pmb` int(11) default NULL,
   `EV37Mna` int(11) default NULL,
@@ -600,8 +603,6 @@ CREATE TABLE `mt_dna_final_horizontals` (
   `organism_id` int(11) default NULL,
   `organism_code` int(11) default NULL,
   `haplotype` int(11) default NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -610,7 +611,6 @@ CREATE TABLE `mt_dna_final_horizontals_1` (
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
   `organism_code` varchar(128) default NULL,
-  `extraction_number` int(11) default NULL,
   `Control Region` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=latin1;
@@ -791,8 +791,6 @@ CREATE TABLE `y_chromosome_final_horizontals` (
   `organism_id` int(11) default NULL,
   `organism_code` int(11) default NULL,
   `haplotype` int(11) default NULL,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -801,7 +799,6 @@ CREATE TABLE `y_chromosome_final_horizontals_1` (
   `project_id` int(11) default NULL,
   `organism_id` int(11) default NULL,
   `organism_code` varchar(128) default NULL,
-  `extraction_number` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=latin1;
 
@@ -827,4 +824,4 @@ CREATE TABLE `y_chromosomes` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `schema_info` (version) VALUES (35)
+INSERT INTO `schema_info` (version) VALUES (36)

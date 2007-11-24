@@ -8,8 +8,6 @@
 #  organism_code :integer(11)   
 #  allelea       :integer(11)   
 #  alleleb       :integer(11)   
-#  created_at    :datetime      
-#  updated_at    :datetime      
 #
 
 class MhcFinalHorizontal < ActiveRecord::Base
