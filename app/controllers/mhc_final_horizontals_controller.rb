@@ -1,0 +1,2 @@
+class MhcFinalHorizontalsController < ApplicationController
+end

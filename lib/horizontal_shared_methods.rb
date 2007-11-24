@@ -10,7 +10,13 @@ module HorizontalSharedMethods
   def not_compiled
     @project = current_project
     @model = model_for_current_project
-    redirect_to :action => "index" if @model
+    
+    if @model
+      redirect_to :action => "index"
+      return false
+    end
+    
+    render :template => "shared_horizontal/not_compiled"
   end
   
   def set_to_project
@@ -18,7 +24,7 @@ module HorizontalSharedMethods
     @model = model_for_current_project
     
     if @model == nil
-      redirect_to(:action => "shared_horizontal/not_compiled")
+      redirect_to(:action => "not_compiled")
       return false
     end
     

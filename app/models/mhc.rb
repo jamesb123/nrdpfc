@@ -17,6 +17,12 @@ class Mhc < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :sample
+  
+  after_save :flag_project_for_update
+  
+  def flag_project_for_update
+    Project.flag_for_update(self.project_id)
+  end
 
   def to_label 
     "Ex#: #{locus}" 

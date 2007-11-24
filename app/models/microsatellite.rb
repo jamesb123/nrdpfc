@@ -18,7 +18,8 @@ class Microsatellite < ActiveRecord::Base
   belongs_to :project
   
   before_create :assign_project_id
-
+  after_save :flag_project_for_update
+  
   def assign_project_id
     self.project_id = current_user.current_project.id
   end
@@ -32,7 +33,7 @@ class Microsatellite < ActiveRecord::Base
     current_user.authorization_display_for project
   end
   
-  def after_save
+  def flag_project_for_update
     Project.flag_for_update(self.project_id)
   end
   

@@ -36,9 +36,11 @@ class Compiler::YChromosomeFinalCompilerTest < Test::Unit::TestCase
       assert_not_nil(result.project_id)
       assert_not_nil(result.organism_id)
       assert_not_nil(result.organism_code)
+      assert_equal("Egl00050", result.organism_code)
     }
     assert_equal(1, @results.length)
-    
   end
+  
+  
 end
  

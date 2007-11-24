@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(:version => 33) do
     t.datetime "updated_at"
   end
 
+  create_table "mhc_final_horizontals_1", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code",     :limit => 128
+    t.integer "extraction_number"
+  end
+
   create_table "mhc_seqs", :force => true do |t|
     t.integer "project_id"
     t.string  "locus"
@@ -229,6 +236,14 @@ ActiveRecord::Schema.define(:version => 33) do
     t.integer  "extraction_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "mt_dna_final_horizontals_1", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code",     :limit => 128
+    t.integer "extraction_number"
+    t.integer "Control Region"
   end
 
   create_table "mt_dna_seqs", :force => true do |t|
@@ -388,6 +403,13 @@ ActiveRecord::Schema.define(:version => 33) do
     t.integer  "extraction_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "y_chromosome_final_horizontals_1", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code",     :limit => 128
+    t.integer "extraction_number"
   end
 
   create_table "y_chromosome_seqs", :force => true do |t|

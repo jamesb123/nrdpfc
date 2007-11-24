@@ -1,0 +1,2 @@
+module MhcFinalHorizontalsHelper
+end

@@ -13,6 +13,8 @@
   sub_tabs:
   - label: "mtDNA"
     controller: "mt_dnas"
+  - label: "mtDNA Final Horizontals"
+    controller: "mt_dna_final_horizontals"
   - label: "DNA Results"
     controller: "dna_results"
   - label: "MT DNA SEQ"
@@ -30,6 +32,11 @@
   controller: "genders"
 - label: "Y Chromosomes"
   controller: "y_chromosomes"
+  sub_tabs:
+  - label: "Y Chromosomes"
+    controller: "y_chromosomes"
+  - label: "Y Chromosomes Final"
+    controller: "y_chromosome_final_horizontals"
 - label: "Organism Field Definition"
   controller: "dynamic_attributes"
 - label: "Shipping Materials"
