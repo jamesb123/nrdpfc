@@ -6,7 +6,7 @@ class MicrosatelliteHorizontalTypeTest < Test::Unit::TestCase
   def setup
     @project = projects(:whale_project)
     
-    @mc = MicrosatelliteCompiler.new(@project.id)
+    @mc = Compiler::MicrosatelliteCompiler.new(@project.id)
     @mc.create_table
     
     @model = MicrosatelliteHorizontal.model_for_project(@project.id)
