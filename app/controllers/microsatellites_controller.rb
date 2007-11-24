@@ -35,41 +35,14 @@ class MicrosatellitesController < ApplicationController
   end
   
   def conditions_from_params
-    sb=SearchBuilder.new(params)
+    sb = super
+    
     sb.for_table("microsatellites") do
       sb.equal_on("locus")
-      sb.equal_on("sample_id")
-      sb.equal_on("project_id")
-      sb.and("finalResult") if params[:finalResult]=="true"
-    end
-    sb.for_table("samples") do 
-      sb.equal_on("organism_id")
     end
     
-    # filter to the current project
-    if current_project 
-      sb.and("microsatellites.project_id = ?", current_project.id)
-    else
-      # show nothing
-      sb.and("false")
-    end
-    
-    sb.to_s
+    sb
   end
-
-  def check_all_final_results
-    finalResult = params.delete('finalResult')=="true"
-    
-    # find all of the records
-    do_list
-    
-    # update them
-    @records.each{|r|
-      r.finalResult = finalResult
-      r.save(false)
-    }
-    
-    render(:partial => 'list', :layout => false)
-  end
-    
+  
+  include ResultTableSharedMethods
 end

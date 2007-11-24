@@ -135,3 +135,10 @@ td.sequence-column div {
   width: auto;
   height: 35px;
 }
+
+.active-scaffold tr.footer td {
+  font-size: 11px;
+  font-family: Verdana,sans-serif;
+  padding: 5px 4px;
+}
+  

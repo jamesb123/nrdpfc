@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class YChromosomeFinalHorizontalTest < ActiveSupport::TestCase
+class GenderFinalHorizontalTest < ActiveSupport::TestCase
   def test_authorize_all_for_crud
     @gender = Gender.new
     

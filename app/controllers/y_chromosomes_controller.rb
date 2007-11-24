@@ -6,6 +6,7 @@ class YChromosomesController < ApplicationController
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample
     config.list.columns.exclude :security_settings
+    config.columns[:finalResult].form_ui = :checkbox
   end
   
   def list
@@ -40,4 +41,6 @@ class YChromosomesController < ApplicationController
     
     sb.to_s
   end  
+  include ResultTableSharedMethods
+  
 end

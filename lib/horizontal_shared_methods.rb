@@ -16,7 +16,7 @@ module HorizontalSharedMethods
       return false
     end
     
-    render :template => "shared_horizontal/not_compiled"
+    render :template => "shared_horizontal_views/not_compiled"
   end
   
   def set_to_project

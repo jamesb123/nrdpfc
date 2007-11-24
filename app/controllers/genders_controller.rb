@@ -6,8 +6,8 @@ class GendersController < ApplicationController
     config.update.columns.exclude :project, :sample, :security_settings
 
     config.columns[:sample].label = "Sample Info"  
-    # config.columns[:gender].label = "Gender"  
-
-    # config.list.columns.exclude :project
+    config.columns[:finalResult].form_ui = :checkbox
   end
+  
+  include ResultTableSharedMethods
 end

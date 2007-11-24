@@ -11,6 +11,8 @@ class Compiler
     Compiler::MtDnaFinalCompiler.new(project).compile
     puts "MhcFinalCompiler for #{project.to_label}" if verbose
     Compiler::MhcFinalCompiler.new(project).compile
+    puts "GenderFinalCompiler for #{project.to_label}" if verbose
+    Compiler::GenderFinalCompiler.new(project).compile
     
     project.recompile_required = false
     project.save(false)

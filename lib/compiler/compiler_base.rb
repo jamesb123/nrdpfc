@@ -32,7 +32,7 @@ class Compiler::CompilerBase
   end
 
   def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus")
+    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus").select{|l| !l.blank?}
   end
   
   def model_name

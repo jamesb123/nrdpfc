@@ -1,4 +1,5 @@
-- label: "Main Tables"
+- label: "Main"
+  controller: "projects"
   sub_tabs:
   - label: "Projects"
     controller: "projects"
@@ -9,6 +10,7 @@
   - label: "Sample Non-Tissues(D)"
     controller: "sample_non_tissues"
 - label: "Tests"  
+  controller: "mhcs"
   sub_tabs:
   - label: "MHC"
     controller: "mhcs"
@@ -23,6 +25,7 @@
   - label: "MT DNA SEQ"
     controller: "mt_dna_seqs"
 - label: "Microsatellites"
+  controller: "microsatellites"
   sub_tabs:
   - label: "Microsatellites"
     controller: "microsatellites"
@@ -32,6 +35,11 @@
     controller: "microsatellite_final_horizontals"
 - label: "Genders"
   controller: "genders"
+  sub_tabs:
+  - label: "Genders"
+    controller: "genders"
+  - label: "Gender Final Horizontals"
+    controller: "gender_final_horizontals"
 - label: "Y Chromosomes"
   controller: "y_chromosomes"
   sub_tabs:

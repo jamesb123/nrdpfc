@@ -9,6 +9,7 @@
 #  gelNum      :string(255)   
 #  wellNum     :string(255)   
 #  finalResult :boolean(1)    
+#  locus       :string(255)   
 #
 
 class Gender < ActiveRecord::Base

@@ -32,7 +32,6 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       t.integer :sample_id
       t.integer :organism_code
       t.integer :org_sample
-      t.integer :extraction_number
       
       self.locii.each { |locus|
         t.integer "#{locus}a"

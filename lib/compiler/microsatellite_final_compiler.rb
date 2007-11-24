@@ -32,7 +32,6 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
       t.integer :project_id
       t.integer :organism_id
       t.string :organism_code, :limit => 128
-      t.integer :extraction_number
       
       self.locii.each { |locus|
         t.integer "#{locus}a"

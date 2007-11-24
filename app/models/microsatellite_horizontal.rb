@@ -16,38 +16,18 @@ class MicrosatelliteHorizontal < ActiveRecord::Base
   belongs_to :project
   has_many :microsatellites, :through => :sample
   
+  authorize_all_for_crud
+
   class << self
     def table_name_for_project(project_id)
       "microsatellite_horizontals_#{project_id.to_i}"
     end
     
     def non_dynamic_columns_names
-      %w[id project_id sample_id organism_code org_sample extraction_number]
+      %w[id project_id sample_id organism_code org_sample]
     end
     
     include HorizontalClassCreatorSharedMethods
 
   end
-  
-  def authorized_for_create?
-    true
-  end
-    
-  def authorized_for_update?
-    true
-  end
-  
-  def authorized_for_read?
-    true
-  end
-
-  def authorized_for_destroy?
-    true
-  end
-  
-#  def quoted_column_names(attributes = attributes_with_quotes)
-#    attributes.keys.collect do |column_name|
-#      self.class.connection.quote_column_name(column_name)
-#    end
-#  end
 end

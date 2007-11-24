@@ -4,29 +4,27 @@ class SearchBuilder
   attr_accessor :where
   
   def object=(value)
-    value=OpenStruct.new(value) if value.is_a?(Hash)
+    value=OpenStruct.new(value) if Hash===value
     @object = value
   end
   
   def initialize(target_object, options={})
-    self.object = target_object
+    self.object = target_object.is_a?(Hash) ? OpenStruct.new(target_object) : target_object
     self.where = options[:append_to] || Where.new
     @table_prefix = ""
   end
   
-  def and(*params, &block)
-    @where.and(*params, &block)
+  def self.delegate_to(object_name, methods = [])
+    for method_name in methods
+      class_eval <<-EOF
+        def #{method_name}(*params, &block)
+          #{object_name} && #{object_name}.#{method_name}(*params, &block)
+        end
+      EOF
+    end
   end
   
-  def or(*params, &block)
-    @where.or(*params, &block)  
-  end
-  
-  def to_sql(*params)
-    @where.to_sql(*params)
-  end
-  
-  alias to_s :to_sql
+  delegate_to "@where", %w[and or to_sql to_s empty?]
   
   def range_on(field, options={})
     options = options.clone
