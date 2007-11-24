@@ -11,14 +11,17 @@ class MicrosatelliteHorizontalsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
-
-  # Replace this with your real tests.
-  def test__navigate_to_non_exiting_project__should_redirect
-    login_as :quentin
-    
-    get :list, :project_id => -1
-    puts @response.body
-    assert_response :redirect
-    
+  
+  def test__nil_current_project__should_show_nothing
+    assert false, "implement me"
   end
+  # Replace this with your real tests.
+#  def test__navigate_to_non_exiting_project__should_redirect
+#    login_as :quentin
+#    
+#    get :list, :project_id => -1
+#    puts @response.body
+#    assert_response :redirect
+#    
+#  end
 end

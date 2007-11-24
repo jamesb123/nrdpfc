@@ -36,11 +36,10 @@ class Project < ActiveRecord::Base
   # if this is the first project created for this user
   # then make it their current (default) project
   def assign_default_project  
-    return true if current_user.nil?
-#      if current_user.projects.size == 1 || current_user.current_project.nil?
+    if current_user 
       current_user.current_project = self
       current_user.save
-#      end
+    end
   end
 
   #everybody can creat projects

@@ -5,7 +5,7 @@
 #  id            :integer(11)   not null, primary key
 #  project_id    :integer(11)   
 #  sample_id     :integer(11)   
-#  organism_code :integer(11)   
+#  organism_code :string(255)   
 #  org_sample    :integer(11)   
 #  allelea       :integer(11)   
 #  alleleb       :integer(11)   

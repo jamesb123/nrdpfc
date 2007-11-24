@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 36) do
+ActiveRecord::Schema.define(:version => 37) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -87,12 +87,10 @@ ActiveRecord::Schema.define(:version => 36) do
   end
 
   create_table "gender_final_horizontals", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "organism_id"
-    t.integer  "organism_code"
-    t.integer  "gender"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code"
+    t.integer "gender"
   end
 
   create_table "gender_final_horizontals_1", :force => true do |t|
@@ -119,7 +117,7 @@ ActiveRecord::Schema.define(:version => 36) do
   create_table "mhc_final_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.integer "organism_code"
+    t.string  "organism_code"
     t.integer "allelea"
     t.integer "alleleb"
   end
@@ -151,7 +149,7 @@ ActiveRecord::Schema.define(:version => 36) do
   create_table "microsatellite_final_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.integer "organism_code"
+    t.string  "organism_code"
     t.integer "allelea"
     t.integer "alleleb"
   end
@@ -312,7 +310,7 @@ ActiveRecord::Schema.define(:version => 36) do
   create_table "microsatellite_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "sample_id"
-    t.integer "organism_code"
+    t.string  "organism_code"
     t.integer "org_sample"
     t.integer "allelea"
     t.integer "alleleb"
@@ -573,7 +571,7 @@ ActiveRecord::Schema.define(:version => 36) do
   create_table "mt_dna_final_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.integer "organism_code"
+    t.string  "organism_code"
     t.integer "haplotype"
   end
 
@@ -733,7 +731,7 @@ ActiveRecord::Schema.define(:version => 36) do
   create_table "y_chromosome_final_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.integer "organism_code"
+    t.string  "organism_code"
     t.integer "haplotype"
   end
 

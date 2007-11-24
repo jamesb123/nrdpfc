@@ -5,10 +5,8 @@
 #  id            :integer(11)   not null, primary key
 #  project_id    :integer(11)   
 #  organism_id   :integer(11)   
-#  organism_code :integer(11)   
+#  organism_code :string(255)   
 #  gender        :integer(11)   
-#  created_at    :datetime      
-#  updated_at    :datetime      
 #
 
 class GenderFinalHorizontal < ActiveRecord::Base
