@@ -25,34 +25,7 @@
       </div>
       
       <div style="float:right; text-align:right;">
-        <% if current_user %>
-          Logged in as: <%= current_user.to_label %>.  
-          <%= link_to "logout", :controller => "/account", :action => "logout" %>
-          <p>
-            <%= indicator "current_project_indicator" %>
-            Current Project: 
-            <%= select_tag "current_project", 
-                  options_for_select(Project.current_users_accessible_projects.map{|p| [p.to_label, p.id]}, 
-                  (current_project && current_project.id)),
-                  :onchange => remote_function(
-                    :url => { 
-                      :controller => "projects", 
-                      :action => "update_current_project",
-                      :redirect_to => request.url},
-                    :with => "'current_project_id=' + $F(this)",
-                    :indicate => "current_project_indicator"
-									)
-              %>
-          </p>
-          <% if current_project && current_project.recompile_required %>
-            <div class="alert">
-              Data needs to be recompiled for this project.  
-              <%= link_to_modal "Recompile", :controller => "projects", :action => "recompile_status", :id => current_project.id %>
-            </div>
-            
-          <% end %>
-        <% end %>  
-          
+      <%= render :partial => 'logged_in_info' if current_user %>
       </div>
       <h2>
         NRDPFC
