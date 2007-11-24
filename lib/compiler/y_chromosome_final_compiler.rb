@@ -19,7 +19,7 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
       t.string :organism_code, :limit => 128
       
       self.locii.each { |locus|
-        t.integer "#{locus}"
+        t.string "#{locus}"
       }
     end
   end

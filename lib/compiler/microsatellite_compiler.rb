@@ -34,8 +34,8 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       t.integer :org_sample
       
       self.locii.each { |locus|
-        t.integer "#{locus}a"
-        t.integer "#{locus}b"
+        t.string "#{locus}a"
+        t.string "#{locus}b"
       }
     end
     
