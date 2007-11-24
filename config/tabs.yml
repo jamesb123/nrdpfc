@@ -8,7 +8,7 @@
     controller: "samples"
   - label: "Sample Non-Tissues(D)"
     controller: "sample_non_tissues"
-- label "Tests"  
+- label: "Tests"  
   sub_tabs:
   - label: "MHC"
     controller: "mhcs"
@@ -23,7 +23,6 @@
   - label: "MT DNA SEQ"
     controller: "mt_dna_seqs"
 - label: "Microsatellites"
-  controller: "microsatellites"
   sub_tabs:
   - label: "Microsatellites"
     controller: "microsatellites"
