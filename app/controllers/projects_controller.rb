@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 #  before_filter :login_required
 
   active_scaffold :projects do |config|
-    config.columns = [:id, :name, :owner,:code, :description,  :security_setting]  
+    config.columns = [:id, :name, :owner, :code, :description, :security_setting]  
            
     config.create.columns.exclude :id, :to_label, :security_setting, :owner
     config.update.columns.exclude :id, :to_label, :security_setting, :owner
