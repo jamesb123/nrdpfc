@@ -1,7 +1,7 @@
 class GendersController < ApplicationController
   layout "tabs"
   active_scaffold :genders do |config|
-    config.columns = [:project, :sample, :gender, :wellNum, :gelNum, :finalResult, :security_settings]  
+    config.columns = [:project, :sample, :gender, :locus, :wellNum, :gelNum, :finalResult]
     config.create.columns.exclude :project, :sample, :security_settings
     config.update.columns.exclude :project, :sample, :security_settings
 
