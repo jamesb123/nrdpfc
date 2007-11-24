@@ -1,0 +1,4 @@
+open "/account/login"
+type "login", "quentin"
+type "password", "test"
+click_and_wait "commit"

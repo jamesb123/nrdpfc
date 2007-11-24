@@ -20,10 +20,16 @@ class ApplicationController < ActionController::Base
   end
   
   def current_project
-    return @current_project if @current_project 
-    current_project_id = session[:project_id] || (current_user.current_project && current_user.current_project.id)
+    return @current_project if @current_project
+    current_project_id = session[:project_id]
+    if !current_project_id
+      # auto select a default project
+      current_project_id = (current_user.current_project && current_user.current_project.id)
+      current_project_id ||= Project.current_users_accessible_projects.first.id rescue nil
+      self.current_project = current_project_id
+    end
+    
     @current_project = current_project_id && Project.find(current_project_id)
-    @current_project || nil
   end
   helper_method :current_project=, :current_project
 end

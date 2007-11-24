@@ -46,8 +46,6 @@ module ResultTableSharedMethods
       # show nothing
       sb.and("false")
     end
-    
-    sb.and("samples.project_id = ?", self.current_project.id)
 
     sb.for_table(tablename_for_controller) do
       sb.equal_on("sample_id")

@@ -9,3 +9,8 @@
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quentin_has_full_access_to_whale_project:
+  project: whale_project
+  user: quentin
+  level: 1
+  

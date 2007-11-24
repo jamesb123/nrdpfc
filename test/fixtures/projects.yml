@@ -11,7 +11,8 @@
 #
 
 whale_project:
-  name: Project
+  name: Whale Project
   code: EGL00093
-  description:
-  user_id: 1
+  description: Whale Project
+  owner: quentin
+  recompile_required: false
