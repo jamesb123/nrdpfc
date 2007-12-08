@@ -26,7 +26,7 @@ class ExtractionMethod < ActiveRecord::Base
     true
   end
   
-  def authorized_for_read?
+  def authorized_for_read? 
     true
   end
 
