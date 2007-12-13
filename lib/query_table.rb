@@ -27,7 +27,7 @@ class QueryTable
     parent.children[@name] = self if parent
   end
   
-  def add_child_table_via_association(name)
+  def add_child_table(name)
     association = model.reflections[name]
     return nil if association.nil?
     
@@ -35,6 +35,15 @@ class QueryTable
       :class_name => association.class_name,
       :parent => self
     )
+  end
+  
+  def join_sql
+    return nil unless parent
+    table_name = model.table_name
+    parent_table_name = parent.model.table_name
+    table_alias = (table_name != name.to_s) ? " #{name}" : ""
+    
+    
   end
   
   def model

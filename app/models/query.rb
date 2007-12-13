@@ -39,7 +39,7 @@ class Query < ActiveRecord::Base
       if cursor[e].nil? 
         # try and add the node
         return nil if tables[e.pluralize] || tables[e.singularize]
-        added_node = cursor.add_child_table_via_association(e)
+        added_node = cursor.add_child_table(e)
         return nil if added_node.nil?
         tables.clear
       end
