@@ -27,7 +27,7 @@ class QueryTable
     parent.children[@name] = self if parent
   end
   
-  def add(name)
+  def add_child_table_via_association(name)
     association = model.reflections[name]
     return nil if association.nil?
     

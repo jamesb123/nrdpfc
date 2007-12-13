@@ -38,10 +38,10 @@ class Query < ActiveRecord::Base
       e = e.to_sym
       if cursor[e].nil? 
         # try and add the node
-        return nil if all_tables.include?(e.pluralize) || all_tables.include?(e.singularize)
-        added_node = cursor.add(e)
+        return nil if tables[e.pluralize] || tables[e.singularize]
+        added_node = cursor.add_child_table_via_association(e)
         return nil if added_node.nil?
-        @all_tables = nil
+        tables.clear
       end
       cursor = cursor[e]
     }
@@ -49,11 +49,13 @@ class Query < ActiveRecord::Base
   end
   
   def add_fields(table_field_hash)
-    table_field_hash.each_pair{|table, fields|
+    table_field_hash.each_pair{|table, new_fields|
       table = table.to_sym
-      next if table
-      select_fields[table]||=[]
-      select_fields[table]+= select_fields.map(&:to_sym)
+      
+      for field in new_fields
+        tables[table].add_field(field)
+        fields.clear
+      end
     }
   end
   
@@ -63,7 +65,7 @@ class Query < ActiveRecord::Base
   end
   
   def includes
-    data[:includes] ||= QueryIncludeNode.new(:project)
+    data[:includes] ||= QueryTable.new(:project)
   end
   
   def select_fields
@@ -71,20 +73,25 @@ class Query < ActiveRecord::Base
   end
   
   def sort_fields
-    
+    # TODO - return, in order, all of the fields for sorting
   end
   
   def tables(reload = false)
-    @tables = nil if reload
-    @tables ||= includes.flatten
+    @tables = {} if reload
+    @tables = includes.flatten if @tables.blank?
+    @tables
   end
   
   def fields(reload = false)
-    @fields = nil if reload
+    @fields = {} if reload
     
-    @fields ||= tables(reload).map {|key, field|
-      field
-    }.flatten
+    if @fields.blank?
+      @fields = tables(reload).map {|key, table|
+        table.fields
+      }.flatten
+    end
+    @fields.sort!{|a,b| ((a.seq||0) <=> (b.seq||0))}
+    @fields
   end
   
   # remove any defined select/sort fields not included in the table includes
@@ -92,10 +99,40 @@ class Query < ActiveRecord::Base
     
   end
   
-#  def to_sql
-#    [:select, :from, :join, :group].inject({})parts = {
-#      :select => [],
-#      
-#    }
+  def to_sql
+    pieces = sql_pieces
+    sql = <<-EOF
+SELECT
+  #{pieces[:select] * ",\n  "}
+FROM
+  #{pieces[:from] * ",\n  "}
+#{pieces[:join] * "\n"}
+EOF
+
+    sql << ("\nGROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
+    sql << ("\nORDER BY \n  #{pieces[:order] * ',\n  ' }")
+    sql
+  end
+  
+  def sql_pieces
+  
+    h = {
+      :select => [],
+      :from => ["projects"], 
+      :join => [], 
+      :group => [],
+      :order => [] 
+    }
+    
+    fields.each{|f|
+      h[:select] << f.select_sql
+      h[:order] << f.order_sql if f.sort_direction
+    }
+    tables.each{|t|
+      h[:join] << t.join_sql
+    }
+    
+    h[:select] = "*" if h[:select]
+  end
 end
 

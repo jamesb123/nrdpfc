@@ -3,6 +3,8 @@
 - label: "Organisms"
   controller: "organisms"
   sub_tabs:
+  - label: "Organisms"
+    controller: "organisms"
   - label: "Organism Field Definition"
     controller: "dynamic_attributes"
 - label: "Samples"
@@ -66,3 +68,5 @@
     controller: "users"
   - label: "Security Settings"
     controller: "security_settings"
+- label: "Queries"
+  controller: "queries"

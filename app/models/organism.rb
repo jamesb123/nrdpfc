@@ -11,7 +11,7 @@
 class Organism < ActiveRecord::Base
 
   has_many_dynamic_attributes :scoped_by => 'Project'
-    
+  
   belongs_to :project
   has_many :samples
   

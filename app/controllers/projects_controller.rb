@@ -37,7 +37,9 @@ class ProjectsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to(params[:redirect_to]) }
+      format.html { 
+        redirect_to(params[:redirect_to]) if params[:redirect_to]
+      }
       format.js {
         render :update do |page|
           page.redirect_to(params[:redirect_to])

@@ -1,0 +1,2 @@
+module Query::SelectModelsHelper
+end

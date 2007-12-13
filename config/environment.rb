@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
   # See Rails::Configuration for more options
-  config.action_controller.session = { :session_key => "_nrdpfc", :secret => "_nrdpfc!!!!!!!" }
+  config.action_controller.session = { :session_key => "_nrdpfc", :secret => "_nrdpfc!!!!!!!"*10 }
 end
 
 # Add new inflection rules using the following format 
@@ -66,3 +66,5 @@ def dbg; require "ruby-debug"; debugger; end;
 if RAILS_ENV=='test'
   require "#{RAILS_ROOT}/test/rselenese_helpers.rb"
 end
+
+require "current_project_helpers"

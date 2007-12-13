@@ -1,0 +1,2 @@
+module Query::SelectFieldsHelper
+end

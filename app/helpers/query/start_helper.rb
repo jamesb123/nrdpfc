@@ -1,0 +1,2 @@
+module Query::StartHelper
+end

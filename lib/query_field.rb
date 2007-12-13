@@ -1,9 +1,8 @@
 class QueryField
-  attr_accessor :seq, :name, :sort
-  attr_reader :table
+  attr_accessor :seq, :name, :sort_direction, :table
   
   def initialize(name, options = {})
-    self.sort = nil
+    self.sort_direction = nil
     self.name = name
     self.seq = options[:seq]
     self.table = options[:table]
