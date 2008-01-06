@@ -2,6 +2,7 @@ require "config/environment"
 
 MODEL_DIR   = File.join(RAILS_ROOT, "app/models")
 FIXTURE_DIR = File.join(RAILS_ROOT, "test/fixtures")
+SPEC_FIXTURE_DIR = File.join(RAILS_ROOT, "spec/fixtures")
 
 module AnnotateModels
 
@@ -41,12 +42,21 @@ module AnnotateModels
   def self.annotate_one_file(file_name, info_block)
     if File.exist?(file_name)
       content = File.read(file_name)
-
+      
+      # Remove any Windows line endings (these things get in the way)
+      content.gsub!(/(\r\n)|(\r)/, "\n")
+      
+      prefix = '# ' + PREFIX + '.*?\n'
+      schema_version = '# Schema version: .*?\n'
+      table = '# Table name: .+?\n'
+      blank = '#\s*\n'
+      field_line = '#  .+?\n'
+      matcher = /([\s\n]*(#{prefix})(#{schema_version}){0,1}(#{blank})(#{table})(#{blank})(#{field_line}){1,}(#{blank})*)/
       # Remove old schema info
-      content.sub!(/^# #{PREFIX}.*?\n(#.*\n)*\n/, '')
+      content.gsub!(matcher, '')
 
-      # Write it back
-      File.open(file_name, "w") { |f| f.puts info_block + content }
+      # Write it back - use UNIX line endings, thank you.
+      File.open(file_name, "wb") { |f| f.puts info_block + content }
     end
   end
   
@@ -60,9 +70,11 @@ module AnnotateModels
     
     model_file_name = File.join(MODEL_DIR, klass.name.underscore + ".rb")
     annotate_one_file(model_file_name, info)
-
-    fixture_file_name = File.join(FIXTURE_DIR, klass.table_name + ".yml")
-    annotate_one_file(fixture_file_name, info)
+    
+    for dir in [FIXTURE_DIR, SPEC_FIXTURE_DIR].compact
+      fixture_file_name = File.join(dir, klass.table_name + ".yml")
+      annotate_one_file(fixture_file_name, info)
+    end
   end
 
   # Return a list of the model files to annotate. If we have 
@@ -98,12 +110,8 @@ module AnnotateModels
       class_name = m.sub(/\.rb$/,'').camelize
       klass = class_name.split('::').inject(Object){ |klass,part| klass.const_get(part) } rescue nil 
       if klass && klass < ActiveRecord::Base && ! klass.abstract_class?
-        begin
-          puts "Annotating #{class_name}"
-          self.annotate(klass, header)
-        rescue => e
-          puts e.inspect
-        end
+        puts "Annotating #{class_name}"
+        self.annotate(klass, header)
       else
         puts "Skipping #{class_name}"
       end

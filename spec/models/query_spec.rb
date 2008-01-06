@@ -1,22 +1,24 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
+
 require "query.rb"
-class QueryTest < ActiveSupport::TestCase
+
+describe Query do
   fixtures :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples
   
-  def setup
+  before(:each) do
     ActiveRecord::Base.current_project_proc = lambda{projects(:whale_project)}
     @query = Query.new(:name => "My Query")
   end
 
 
-  def test__build_includes__should_build
+  it "should build_includes__should_build" do
     
     assert @query.add_include("", "samples")
     assert @query.add_include("samples", "dna_results")
     assert_equal({:project => {:samples => { :dna_results => {}}}}, @query.data[:includes].to_hash)
   end
   
-  def test__build_includes__should_not_allow_duplicates_on_same_or_diff_level
+  it "should build_includes__should_not_allow_duplicates_on_same_or_diff_level" do
     assert @query.add_include("/", "samples")
     assert @query.add_include("/samples", "dna_results")
     assert @query.add_include("/", "organisms")
@@ -27,7 +29,7 @@ class QueryTest < ActiveSupport::TestCase
     assert_equal({:project => {:samples => {:dna_results => {}}, :organisms => {} } }, @query.data[:includes].to_hash)
   end
   
-  def test__build_includes__shouldnt_allow_recursion
+  it "should build_includes__shouldnt_allow_recursion" do
     assert @query.add_include("/", "samples")
     assert @query.add_include("/samples", "dna_results")
     assert ! @query.add_include("/samples/dna_results", "sample")
@@ -35,7 +37,7 @@ class QueryTest < ActiveSupport::TestCase
     assert_equal({:project => {:samples => {:dna_results => {}}}}, @query.data[:includes].to_hash)
   end
   
-  def test__add_fields__should_add
+  it "should add_fields__should_add" do
     setup_simple_case
     assert_equal(4, @query.fields.length)
     assert_equal(
@@ -45,7 +47,7 @@ class QueryTest < ActiveSupport::TestCase
   end
   
   # Replace this with your real tests.
-  def test__build_sql__should_build_executable_sql
+  it "should build_sql__should_build_executable_sql" do
     setup_simple_case
     puts @query.to_sql
   end
@@ -59,4 +61,5 @@ class QueryTest < ActiveSupport::TestCase
       :dna_results => %w[extraction_methods]
     )
     
+  end
 end

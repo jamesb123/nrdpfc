@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     config.update.columns.exclude :id
     config.list.columns.exclude :security_settings
   end
-
-      
+  
+  
 end
 
