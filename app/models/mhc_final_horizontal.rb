@@ -17,6 +17,8 @@ class MhcFinalHorizontal < ActiveRecord::Base
   
   authorize_all_for_crud
   
+  extend Exportables::HorizontalExportableModel
+  
   class << self
     def table_name_for_project(project_id)
       "mhc_final_horizontals_#{project_id.to_i}"

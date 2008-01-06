@@ -8,7 +8,7 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should return it's table name" do
-    Project.table_name.should == "projects"
+    Project.exportable_table_name.should == "projects"
   end
   
   it "should return a copy of its columns" do

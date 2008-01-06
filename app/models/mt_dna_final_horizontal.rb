@@ -15,6 +15,8 @@ class MtDnaFinalHorizontal < ActiveRecord::Base
   has_many :final_mt_dnas, :through => :organism
   authorize_all_for_crud
 
+  extend Exportables::HorizontalExportableModel
+
   class << self
     def table_name_for_project(project_id)
       "mt_dna_final_horizontals_#{project_id.to_i}"

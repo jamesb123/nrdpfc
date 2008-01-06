@@ -17,9 +17,10 @@ class MicrosatelliteHorizontal < ActiveRecord::Base
   has_many :microsatellites, :through => :sample
   
   authorize_all_for_crud
-
+  extend Exportables::HorizontalExportableModel
   class << self
     def table_name_for_project(project_id)
+      project_id = project_id.id if project_id.is_a?(ActiveRecord::Base)
       "microsatellite_horizontals_#{project_id.to_i}"
     end
     

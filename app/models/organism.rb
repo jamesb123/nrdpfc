@@ -15,6 +15,8 @@ class Organism < ActiveRecord::Base
   belongs_to :project
   has_many :samples
   
+  extend Exportables::DynamicAttributesExportableModel
+  
   for table_name in Sample::RESULT_TABLES
     has_many table_name, :through => :samples 
     has_many "final_#{table_name}", :through => :samples
