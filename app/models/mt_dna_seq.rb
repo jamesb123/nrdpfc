@@ -13,7 +13,9 @@ class MtDnaSeq < ActiveRecord::Base
   belongs_to :project
   
   before_create :assign_project_id
-
+  
+  extend Exportables::ExportableModel
+  
   def assign_project_id
     self.project_id = current_user.current_project.id
   end

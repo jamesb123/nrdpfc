@@ -1,4 +1,4 @@
-module HorizontalExportableModel
+module Exportables::HorizontalExportableModel
   def exportable?
     true
   end

@@ -29,6 +29,8 @@ class DnaResult < ActiveRecord::Base
   belongs_to :sample
   belongs_to :project
   
+  extend Exportables::ExportableModel
+  
   def to_label 
     "Ex#: #{prep_number}" 
   end

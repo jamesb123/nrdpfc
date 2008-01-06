@@ -55,6 +55,8 @@ class Sample < ActiveRecord::Base
   belongs_to :organism
   has_many :dna_results
   
+  extend Exportables::ExportableModel
+  
   RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
   
   for table_name in RESULT_TABLES
