@@ -12,12 +12,17 @@ describe Query do
 
   describe "when building includes" do
     it "should build properly" do
-
       assert @query.add_include("", "samples")
       assert @query.add_include("samples", "dna_results")
       {:project => {:samples => { :dna_results => {}}}}.should == @query.data[:includes].to_hash
     end
-
+    
+    it "should only allow sorting for columns in the select field (since some columns may be computed via crosstab)" do
+      @query.add_include("samples")
+      @query.add_include("samples/dna_results")
+      
+    end
+    
     it "should should not allow duplicate includes on the same or a different level" do
       assert @query.add_include("/", "samples")
       assert @query.add_include("/samples", "dna_results")
@@ -29,7 +34,7 @@ describe Query do
       {:project => {:samples => {:dna_results => {}}, :organisms => {} } }.should == @query.data[:includes].to_hash
     end
 
-    it "should shouldnt_allow_recursion" do
+    it "should shouldnt allow recursion" do
       assert @query.add_include("/", "samples")
       assert @query.add_include("/samples", "dna_results")
       assert ! @query.add_include("/samples/dna_results", "sample")
@@ -47,16 +52,26 @@ describe Query do
         :organisms => %w[comment], 
         :dna_results => %w[extraction_methods]
       )
+      @query.add_sort("samples_organism_code", :desc)
+      @query.add_sort("samples_plateposition", :asc)
     end
     
-    it "should add_fields__should_add" do
+    it "should add fields should add" do
       @query.fields.should have(4).items
-      @query.fields.map{|f| f.name.to_s}.sort.should ==         %w[comment extraction_methods organism_code tubebc]
+      @query.fields.map{|f| f.name.to_s}.sort.should == %w[comment extraction_methods organism_code tubebc]
     end
 
-    # Replace this with your real tests.
-    it "should build_sql__should_build_executable_sql" do
+    # Replace this with your real test s.
+    it "should build sql should build executable sql" do
       puts @query.to_sql
     end
+    
+    it "should return sort fields" do
+      @query.sql_pieces[:order].should == "samples.organism_code DESC, samples.plateposition ASC"
+    end
+    
+    it "should return a list of all fields selected from"
+    
+    
   end
 end

@@ -59,9 +59,9 @@ class Query < ActiveRecord::Base
     }
   end
   
-  # full field name is {table}_{field}
-  def add_sort(full_field_name)
-    sort_fields << full_field_name
+  # full field name is {table}.{field}
+  def add_sort(full_field_name, asc_desc = :asc)
+    sort_fields << [full_field_name, asc_desc]
   end
   
   def includes
@@ -73,6 +73,7 @@ class Query < ActiveRecord::Base
   end
   
   def sort_fields
+    @sort_fields||=[]
     # TODO - return, in order, all of the fields for sorting
   end
   
@@ -81,16 +82,14 @@ class Query < ActiveRecord::Base
     @tables = includes.flatten if @tables.blank?
     @tables
   end
-  
+   
+  # returns all fields from all tables from the query
   def fields(reload = false)
-    @fields = {} if reload
+    @fields = [] if reload
     
-    if @fields.blank?
-      @fields = tables(reload).map {|key, table|
-        table.fields
-      }.flatten
-    end
-    @fields.sort!{|a,b| ((a.seq||0) <=> (b.seq||0))}
+    @fields = tables(reload).map {|key, table| table.fields }.flatten if @fields.blank?
+    
+    # @fields.sort! { |a,b| (a.seq||0) <=> (b.seq||0) }
     @fields
   end
   
@@ -128,6 +127,7 @@ EOF
       h[:select] << f.select_sql
       h[:order] << f.order_sql if f.sort_direction
     }
+    
     tables.each{|t|
       h[:join] << t.join_sql
     }

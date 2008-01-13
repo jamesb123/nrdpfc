@@ -2,9 +2,9 @@ class QueryTable
   attr_reader :parent, :children, :class_name, :name, :fields
   
   def initialize(name, options = {})
-    self.name = name.to_sym
     @children = {}
-    @class_name = options[:class_name] || name.to_s.classify
+    @name = name.to_sym
+    @class_name = options[:class_name] || @name.to_s.classify
     @parent = options[:parent]
     @fields = []
   end
@@ -27,9 +27,9 @@ class QueryTable
     parent.children[@name] = self if parent
   end
   
-  def add_child_table(name)
+  def add_association(name)
     association = model.reflections[name]
-    return nil if association.nil?
+    raise "association #{name} non-existant for #{self.model}" if association.nil?
     
     children[name] = QueryTable.new(name, 
       :class_name => association.class_name,
@@ -42,8 +42,6 @@ class QueryTable
     table_name = model.table_name
     parent_table_name = parent.model.table_name
     table_alias = (table_name != name.to_s) ? " #{name}" : ""
-    
-    
   end
   
   def model

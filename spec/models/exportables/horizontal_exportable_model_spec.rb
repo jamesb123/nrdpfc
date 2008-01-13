@@ -27,7 +27,6 @@ describe Exportables::HorizontalExportableModel, "in MicrosatelliteHorizontal" d
     MicrosatelliteHorizontal.exportable_table_with_alias.should == "microsatellite_horizontals_#{@project.id} microsatellite_horizontals"
   end
   
-  
   it "should return a copy of its columns" do
     Set.new(Project.exportable_columns.map(&:name)).should == Set.new(Project.columns.map(&:name))
   end
