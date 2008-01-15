@@ -55,5 +55,6 @@ describe QueryField do
       @notes_query_field.select_sql.should == "max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
     end
     
+    
   end
 end
