@@ -68,6 +68,7 @@ class Sample < ActiveRecord::Base
   end
   
   has_many :mhc_seqs
+  has_many :microsatellite_horizontals
   belongs_to :locality_type
   belongs_to :shippingmaterial
   belongs_to :tissue_type

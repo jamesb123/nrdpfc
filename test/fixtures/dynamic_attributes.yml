@@ -17,10 +17,11 @@ nea:
   dynamic_class: weight
   scoper_type: Project
   scoper: whale_project
-  owner_type: organism
+  owner_type: Organism
 notes:
-  dynamic_type: text
+  name: notes
+  dynamic_type: text_value
   dynamic_class: 
   scoper_type: Project
   scoper: whale_project
-  owner_type: organism
+  owner_type: Organism

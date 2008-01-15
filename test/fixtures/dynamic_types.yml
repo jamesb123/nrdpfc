@@ -7,17 +7,17 @@
 #  stored_in_field :string(255)   
 #  description     :string(255)   
 #
-
-mysql> select * from dynamic_types;
-+----+-----------+-----------------+-----------------+
-| id | name      | stored_in_field | description     |
-+----+-----------+-----------------+-----------------+
-|  1 | integer   | integer_value   | Integers        | 
-|  2 | decimal   | float_value     | Floating Points | 
-|  3 | text      | text_value      | Text            | 
-|  4 | date      | date_value      | Dates           | 
-|  5 | timestamp | timestamp_value | Timestamps      | 
-+----+-----------+-----------------+-----------------+
+# 
+# mysql> select * from dynamic_types;
+# +----+-----------+-----------------+-----------------+
+# | id | name      | stored_in_field | description     |
+# +----+-----------+-----------------+-----------------+
+# |  1 | integer   | integer_value   | Integers        | 
+# |  2 | decimal   | float_value     | Floating Points | 
+# |  3 | text      | text_value      | Text            | 
+# |  4 | date      | date_value      | Dates           | 
+# |  5 | timestamp | timestamp_value | Timestamps      | 
+# +----+-----------+-----------------+-----------------+
 
 integer:
   name: integer
