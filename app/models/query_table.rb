@@ -29,7 +29,7 @@ class QueryTable
   
   def add_association(name)
     association = model.reflections[name]
-    raise "association #{name} non-existant for #{self.model}" if association.nil?
+    raise ArgumentError, "association #{name} non-existant for #{self.model}" if association.nil?
     
     children[name] = QueryTable.new(name, 
       :class_name => association.class_name,
@@ -37,11 +37,16 @@ class QueryTable
     )
   end
   
-  def join_sql
-    return nil unless parent
-    table_name = model.table_name
-    parent_table_name = parent.model.table_name
-    table_alias = (table_name != name.to_s) ? " #{name}" : ""
+  def joins
+    query_piece = QueryPiece.new
+    
+    # TODO - recurse
+    children.each{|association_name, query_table|
+      query_piece += model.exportable_join(association_name)
+      query_piece += query_table.joins
+    }
+    
+    query_piece
   end
   
   def model

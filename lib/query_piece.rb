@@ -47,14 +47,18 @@ class QueryPiece
   def deep_clone; Marshal.load(Marshal.dump(self)); end
   
   def to_sql
+    select_fields = select.empty? ? ["*"] : select
+    
     q = ""
-    q << "SELECT #{select * ', '}\n"
+    q << "SELECT #{select_fields * ', '}\n"
     q << "FROM #{from}\n"
     q << "#{join * '\n'}\n" unless join.blank?
     q << "WHERE " + (where.map{ |w| "(#{w})" } * " AND ") + "\n" unless where.blank?
     q << "HAVING " + (having.map{ |h| "(#{h})" } * " AND ") + "\n" unless having.blank?
     q << "LIMIT #{limit}\n" if limit
     
+    # sql << ("\nGROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
+    # sql << ("\nORDER BY \n  #{pieces[:order] * ',\n  ' }")
     
   end
 end

@@ -12,24 +12,42 @@ describe QueryTable do
     end
   
     it "should query include node  should get model name from relationship" do
-      new_node = @query_table.add_child_table(:samples)
+      new_node = @query_table.add_association(:samples)
 
       assert_equal("Sample", new_node.class_name)
     end
 
     it "shouldn't allow non-existing relationship" do
-      assert ! @query_table.add_child_table(:sample_non_existing_table_name)
+      lambda {@query_table.add_association(:sample_non_existing_table_name)}.should raise_error(ArgumentError, "association sample_non_existing_table_name non-existant for Project")
     end
 
     it "should return all tables in a flattened array" do
-      @query_table.add_child_table(:samples).add_child_table(:dna_results)
+      @query_table.add_association(:samples).add_association(:dna_results)
       @query_table.flatten.keys.map(&:to_s).sort.should == %w[dna_results project samples]
     end
   end
-  describe "when joining" do
+  
+  describe "when joining from Samples" do
+    before(:each) do
+      @query_table = QueryTable.new(:samples)  
+    end
+    
     it "should return join SQL without using table aliases" do
-      samples_table = @query_table.add_child_table(:samples)
-      @query_table.join_sql.should == "LEFT JOIN samples ON (samples.project_id = project.id)"
+      projects_table = @query_table.add_association(:project)
+      projects_table.model.should == Project
+      @query_table.joins.join.should == ["LEFT JOIN projects ON (projects.id = samples.project_id)"]
+    end
+    
+    it "should recurse joins" do
+      projects_table = @query_table.add_association(:project)
+      projects_table.model.should == Project
+      organisms_table = projects_table.add_association(:organisms)
+      organisms_table.model.should == Organism
+      
+      @query_table.joins.join.should == [
+        "LEFT JOIN projects ON (projects.id = samples.project_id)",
+        "LEFT JOIN organisms ON (projects.id = organisms.project_id)"
+      ]
     end
   
     it "should return join SQL when per_project <- normal (microsatellite_horizontals <- samples)"

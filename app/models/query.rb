@@ -39,7 +39,7 @@ class Query < ActiveRecord::Base
       if cursor[e].nil? 
         # try and add the node
         return nil if tables[e.pluralize] || tables[e.singularize]
-        added_node = cursor.add_child_table(e)
+        added_node = cursor.add_association(e)
         return nil if added_node.nil?
         tables.clear
       end
@@ -99,40 +99,18 @@ class Query < ActiveRecord::Base
   end
   
   def to_sql
-    pieces = sql_pieces
-    sql = <<-EOF
-SELECT
-  #{pieces[:select] * ",\n  "}
-FROM
-  #{pieces[:from] * ",\n  "}
-#{pieces[:join] * "\n"}
-EOF
-
-    sql << ("\nGROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
-    sql << ("\nORDER BY \n  #{pieces[:order] * ',\n  ' }")
-    sql
-  end
-  
-  def sql_pieces
-  
-    h = {
-      :select => [],
-      :from => ["projects"], 
-      :join => [], 
-      :group => [],
-      :order => [] 
-    }
+    query_piece = QueryPiece.new :from => "projects"
     
     fields.each{|f|
-      h[:select] << f.select_sql
-      h[:order] << f.order_sql if f.sort_direction
+      h += f.select_sql
+      # h += f.order_sql if f.sort_direction
     }
     
     tables.each{|t|
       h[:join] << t.join_sql
     }
     
-    h[:select] = "*" if h[:select]
+    query_piece.to_s
   end
 end
 

@@ -66,9 +66,7 @@ describe Query do
       puts @query.to_sql
     end
     
-    it "should return sort fields" do
-      @query.sql_pieces[:order].should == "samples.organism_code DESC, samples.plateposition ASC"
-    end
+    it "should return sort fields"
     
     it "should return a list of all fields selected from"
     
