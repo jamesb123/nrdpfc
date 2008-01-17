@@ -4,7 +4,8 @@ describe QueryField do
   fixtures :projects, :microsatellite_horizontals
   
   before(:each) do
-    ActiveRecord::Base.current_project_proc = lambda { projects(:whale_project) }
+    @project = projects(:whale_project)
+    ActiveRecord::Base.current_project_proc = lambda { @project }
   end
   
   describe "for model Project" do
@@ -14,15 +15,11 @@ describe QueryField do
     end
   
     it "should retrieve valid select_sql using the given model" do
-      @query_field.select_sql.should == "`projects`.`name` as projects_name"
+      @query_field.select_sql.select.should == ["`projects`.`name` as projects_name"]
     end
   
     it "should return sort sql if appropriate" # ???
-  
-    it "should have a sequence" do
-      @query_field.sequence.should == 1
-    end
-  
+    
     it "should have a field_alias" do
       @query_field.field_alias.should == "projects_name"
     end
@@ -35,7 +32,7 @@ describe QueryField do
     end
     
     it "should render select_sql using the model's field renderer" do
-      @query_field.select_sql.should == "`microsatellite_horizontals_#{@project.id}`.`organism_code` as microsatellite_horizontals_organism_code"
+      @query_field.select_sql.select.should == ["`microsatellite_horizontals_#{@project.id}`.`organism_code` as microsatellite_horizontals_organism_code"]
     end
   end
   

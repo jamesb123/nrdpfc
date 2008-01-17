@@ -75,4 +75,8 @@ class QueryTable
     }
     hash
   end
+  
+  def select_sql(name)
+    model.exportable_select(name)
+  end
 end

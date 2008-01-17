@@ -93,7 +93,7 @@ class Query < ActiveRecord::Base
     @fields
   end
   
-  # remove any defined select/sort fields not included in the table includes
+  # TODO - remove any defined select/sort fields not included in the table includes
   def garbage_collect!
     
   end
@@ -102,15 +102,15 @@ class Query < ActiveRecord::Base
     query_piece = QueryPiece.new :from => "projects"
     
     fields.each{|f|
-      h += f.select_sql
+      query_piece += f.select_sql
       # h += f.order_sql if f.sort_direction
     }
+    # t.name  tables.values.map(&:name)   includes  data[:includes].to_hash
+    query_piece += includes.joins
     
-    tables.each{|t|
-      h[:join] << t.join_sql
-    }
+    sort_piece = QueryPiece.new(:order => sort_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
+    query_piece += sort_piece
     
-    query_piece.to_s
+    query_piece.to_sql
   end
 end
-

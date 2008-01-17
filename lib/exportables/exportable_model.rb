@@ -23,7 +23,7 @@ module Exportables::ExportableModel
   end
   
   def exportable_select(column_name)
-    QueryPiece.new :select => "`#{exportable_name}`.`#{column_name}` as `#{self.to_s.underscore}_#{column_name}`"
+    QueryPiece.new :select => "`#{exportable_table_name}`.`#{column_name}` as `#{self.to_s.underscore}_#{column_name}`"
   end
   
   # Organism.exportable_from(:parent => Project, :association => 'organisms').

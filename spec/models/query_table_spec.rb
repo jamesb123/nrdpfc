@@ -10,6 +10,11 @@ describe QueryTable do
     it "should diving the model name" do
       @query_table.model.should == Project
     end
+    
+    it "should return select_sql for a specified field" do
+      @query_table.select_sql("name").select.should == ["`projects`.`name` as `project_name`"]
+      
+    end
   
     it "should query include node  should get model name from relationship" do
       new_node = @query_table.add_association(:samples)

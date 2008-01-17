@@ -5,6 +5,7 @@ class QueryPiece
   attr_accessor *(LIST_ATTRIBUTES + SINGLE_ATTRIBUTES)
   
   def initialize(options = {})
+    options.assert_valid_keys( *(LIST_ATTRIBUTES + SINGLE_ATTRIBUTES) )
     LIST_ATTRIBUTES.each do |k|
       v = options[k] || []
       v = [v] unless v.is_a?(Array)
@@ -19,7 +20,7 @@ class QueryPiece
   
   def +(other)
     other = other.new(other) if other.is_a?(Hash)
-    raise ArgumentError unless other.is_a?(QueryPiece)
+    raise ArgumentError, "Trying to sum up a QueryPiece with a non-QueryPiece object of type #{other.class} - #{other.inspect}" unless other.is_a?(QueryPiece)
     raise ArgumentError, "Both source and other have from attributes: #{self.from}, #{other.from})" if self.from && other.from
     
     source = self.deep_clone
@@ -52,13 +53,16 @@ class QueryPiece
     q = ""
     q << "SELECT #{select_fields * ', '}\n"
     q << "FROM #{from}\n"
-    q << "#{join * '\n'}\n" unless join.blank?
+    q << "#{join * "\n"}\n" unless join.blank?
     q << "WHERE " + (where.map{ |w| "(#{w})" } * " AND ") + "\n" unless where.blank?
     q << "HAVING " + (having.map{ |h| "(#{h})" } * " AND ") + "\n" unless having.blank?
     q << "LIMIT #{limit}\n" if limit
     
-    # sql << ("\nGROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
-    # sql << ("\nORDER BY \n  #{pieces[:order] * ',\n  ' }")
-    
+    # q << "GROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
+    q << "ORDER BY #{order * ', '}\n"
+    q
   end
+  
+  
+  alias to_s to_sql
 end

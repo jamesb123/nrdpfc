@@ -17,6 +17,6 @@ class QueryField
   end
   
   def select_sql
-    "`#{table.name}`.`#{name}` as #{field_alias}"
+    table.select_sql(name)
   end
 end
