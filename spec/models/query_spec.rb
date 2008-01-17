@@ -6,7 +6,8 @@ describe Query do
   fixtures :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples
   
   before(:each) do
-    ActiveRecord::Base.current_project_proc = lambda{projects(:whale_project)}
+    @project = projects(:whale_project)
+    ActiveRecord::Base.current_project_proc = lambda { @project }
     @query = Query.new(:name => "My Query")
   end
 
@@ -88,6 +89,23 @@ describe Query do
       results = Project.connection.select_all(@query.to_sql)
       results.length.should == 1
       results.first.should == {"organisms_nea"=>"15", "organisms_notes"=>"||- these are some far out notes"}
+    end    
+  end
+  
+  describe "when querying over a model with dynamic table attributes" do
+    before(:each) do
+      Compiler::MicrosatelliteCompiler.new(@project).compile
+      
+      @query.add_include("microsatellite_horizontals")
+      @query.add_fields(
+        :microsatellite_horizontals => %w[EV1Pma EV1Pmb]
+      )
+    end
+    
+    it "should build sql should build executable sql" do
+      results = Project.connection.select_all(@query.to_sql)
+      results.length.should == 2
+      results.first.should == {"microsatellite_horizontal_EV1Pma"=>"137", "microsatellite_horizontal_EV1Pmb"=>"137"}
     end    
   end
 end

@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   has_many :security_settings
   has_many :y_chromosome_seqs
   has_many :security_settings
-  
+  has_many :microsatellite_horizontals
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   
   before_create :assign_project_owner
