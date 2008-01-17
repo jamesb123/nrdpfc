@@ -40,7 +40,8 @@ module Exportables::DynamicAttributesExportableModel
   ###
   protected
     def dynamic_attribute_join_statement(name)
-      "LEFT JOIN dynamic_attribute_values as organism_dynamic_attribute_#{name} ON (organism_dynamic_attribute_#{name}.owner_type = 'Organism' and organism_dynamic_attribute_#{name}.owner_id = organisms.id and dynamic_attribute_id = #{dynamic_attributes_hash[name].id})"
+      j_alias = "organism_dynamic_attribute_#{name}"
+      "LEFT JOIN dynamic_attribute_values as #{j_alias} ON (#{j_alias}.owner_type = 'Organism' and #{j_alias}.owner_id = organisms.id and #{j_alias}.dynamic_attribute_id = #{dynamic_attributes_hash[name].id})"
     end
   
     def dynamic_attribute_select_statement(column_name)

@@ -101,13 +101,11 @@ class Query < ActiveRecord::Base
   def to_sql
     query_piece = QueryPiece.new :from => "projects"
     
-    fields.each{|f|
-      query_piece += f.select_sql
-      # h += f.order_sql if f.sort_direction
-    }
-    # t.name  tables.values.map(&:name)   includes  data[:includes].to_hash
+    # joins must come first, because select statements may include joins that depend on the table being joined in already.
     query_piece += includes.joins
     
+    fields.each{|f| query_piece += f.select_sql }
+
     sort_piece = QueryPiece.new(:order => sort_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     

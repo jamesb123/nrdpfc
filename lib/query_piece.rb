@@ -59,7 +59,7 @@ class QueryPiece
     q << "LIMIT #{limit}\n" if limit
     
     # q << "GROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
-    q << "ORDER BY #{order * ', '}\n"
+    q << "ORDER BY #{order * ', '}\n" unless order.blank?
     q
   end
   
