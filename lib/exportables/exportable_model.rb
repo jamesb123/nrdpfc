@@ -1,4 +1,36 @@
 module Exportables::ExportableModel
+  
+  class << self
+    def extended(klass)
+      @models ||= []
+      @models << klass
+    end
+    
+    def models
+      return @models if @loaded 
+      
+      Dir["#{RAILS_ROOT}/app/models/**/*.rb"].each {| file | require file }
+      
+      @loaded = true
+      @models
+    end
+  end
+  
+  def path_to_exportable_model(target_model, breadcrumbs = [])
+    target_model = target_model.to_s
+    
+    possibilities = []
+    exportable_reflections.each_pair do |name, reflection|
+      next if breadcrumbs.include?(reflection.class_name)
+      return [name] if reflection.class_name == target_model
+      
+      possibility = reflection.class_name.constantize.path_to_exportable_model(target_model, breadcrumbs + [self.to_s])
+      possibilities << [name] + possibility if possibility
+    end
+    
+    possibilities.sort{ |a,b| a.length <=> b.length }.first
+  end
+  
   def exportable?
     true
   end

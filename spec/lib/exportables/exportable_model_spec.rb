@@ -1,7 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
+require 'lib/exportables/exportable_model'
 require "sample.rb"
 require "project.rb"
+
 describe Exportables::ExportableModel, "in Project" do
   it "should be exportable" do
     Project.exportable?.should be_true
@@ -16,7 +18,7 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should return a list of all exportable reflections" do
-    Project.exportable_reflections.keys.map(&:to_s).sort.should == %w[mt_dna_seqs organisms samples y_chromosome_seqs]
+    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["microsatellite_horizontals", "mt_dna_seqs", "organisms", "samples", "y_chromosome_seqs"]
   end
   
   it "should return a hash of it's data types" do
@@ -35,6 +37,14 @@ describe Exportables::ExportableModel, "in Project" do
     Sample.exportable_join(:project).join.should == ["LEFT JOIN projects ON (projects.id = samples.project_id)"]
   end
   
-  it "should return select sql"
+  it "should store all exportable models" do
+    
+    Project
+    
+    Exportables::ExportableModel.models.should include(Project)
+  end
   
+  it "should find the shortest path to a table" do
+    Project.path_to_exportable_model(DnaResult).should == [:samples, :dna_results]
+  end
 end

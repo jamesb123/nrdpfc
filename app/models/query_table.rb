@@ -27,8 +27,12 @@ class QueryTable
     parent.children[@name] = self if parent
   end
   
+  def association_names
+    model.exportable_reflections.keys.map(&:to_s).sort
+  end
+  
   def add_association(name)
-    association = model.reflections[name]
+    association = model.reflections[name.to_sym]
     raise ArgumentError, "association #{name} non-existant for #{self.model}" if association.nil?
     
     children[name] = QueryTable.new(name, 

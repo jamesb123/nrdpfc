@@ -43,6 +43,10 @@ describe QueryTable do
       @query_table.joins.join.should == ["LEFT JOIN projects ON (projects.id = samples.project_id)"]
     end
     
+    it "should return exportable associations" do
+      @query_table.association_names.should == ["dna_results", "microsatellite_horizontals", "organism", "project"]
+    end
+    
     it "should recurse joins" do
       projects_table = @query_table.add_association(:project)
       projects_table.model.should == Project
