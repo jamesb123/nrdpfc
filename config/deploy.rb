@@ -1,5 +1,5 @@
 set :application, "nrdpfc"
-set :repository, "https://svn.nrdpfc/repos/nrdpfc/trunk"
+set :repository, "https://svn.nrdpfc.info/repos/nrdpfc/trunk"
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -10,9 +10,9 @@ set :deploy_to, "/var/www/nrdpfc/"
 # your SCM below:
 # set :scm, :subversion
 
-role :app, "nrdpfc@nrdpfc"
-role :web, "nrdpfc@nrdpfc"
-role :db, "nrdpfc@nrdpfc", :primary => true
+role :app, "nrdpfc@nrdpfc.info"
+role :web, "nrdpfc@nrdpfc.info"
+role :db, "nrdpfc@nrdpfc.info", :primary => true
 
 set :use_sudo, false
 

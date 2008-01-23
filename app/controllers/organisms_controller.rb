@@ -1,7 +1,6 @@
 class OrganismsController < ApplicationController
   layout "tabs"
-  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:project, :organism_code,  
-  :comment, :security_settings ]
+  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:project, :organism_code, :comment, :security_settings ]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
 
   before_filter :add_dynamic_columns

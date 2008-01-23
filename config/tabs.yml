@@ -53,14 +53,17 @@
     controller: "y_chromosomes"
   - label: "Y Chromosomes Final"
     controller: "y_chromosome_final_horizontals"
+	
 - label: "Lookup Tables"
   controller: "shippingmaterials"
+  sub_tabs:
   - label: "Shipping Materials"
     controller: "shippingmaterials"
   - label: "Locality Type"
     controller: "locality_types"
   - label: "Extraction Methods"
     controller: "extraction_methods"
+	
 - label: "Admin"
   controller: "users"
   sub_tabs:
@@ -68,5 +71,6 @@
     controller: "users"
   - label: "Security Settings"
     controller: "security_settings"
+	
 - label: "Queries"
   controller: "queries"

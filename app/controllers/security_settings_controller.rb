@@ -3,19 +3,16 @@ class SecuritySettingsController < ApplicationController
   
   active_scaffold :security_settings do |config|
     config.columns = [:project, :user, :to_label, :level]
-    
+    config.columns[:project].form_ui = :select
+    config.columns[:user].form_ui = :select
+    config.columns[:to_label].form_ui = :select
     columns[:to_label].label = "Security Setting"
     columns[:to_label].sort_by :sql => 'level' 
     config.list.sorting = {:to_label => :asc}
-
-    config.columns.add :project_id
-    config.columns.add :user_id
+    columns[:level].label = "Security Setting"
     
-    config.columns[:project].form_ui = :select
-    config.columns[:user].form_ui = :select
-
     config.list.columns.exclude :level
-    config.create.columns.exclude :id, :to_label
+    config.create.columns.exclude :id, :to_label 
     config.update.columns.exclude :id, :to_label
   end
 
