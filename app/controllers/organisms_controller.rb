@@ -21,9 +21,7 @@ class OrganismsController < ApplicationController
       dynamic_columns =  organism.dynamic_attributes.collect {|value| value.name }
       active_scaffold_config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
     
-      active_scaffold_config.list.columns.add dynamic_columns
-      active_scaffold_config.update.columns.add dynamic_columns
-      active_scaffold_config.create.columns.add dynamic_columns
+      active_scaffold_config.columns.add dynamic_columns
     end
   end
   
