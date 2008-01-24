@@ -18,15 +18,22 @@ class OrganismsController < ApplicationController
     organism = Organism.find(:first, :conditions => ["project_id = ?", current_project.id])
 
     if organism
-      dynamic_columns =  organism.dynamic_attributes.collect {|value| value.name }
-      cols = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN + dynamic_columns
-      active_scaffold_config.columns = cols
-    
-      active_scaffold_config.list.columns =  cols
-      active_scaffold_config.update = 
-        active_scaffold_config.create =
-        cols
+      dynamic_columns =  organism.dynamic_attributes.map(&:name)
+      
+      as_reconfigure(:organism, Organism) do | config |
+        
+        config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN + dynamic_columns
+        
+        for action in [:list, :update, :create]
+          c = active_scaffold_config.send(action)
+          c.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
+          c.columns.add dynamic_columns
+        end
+      end
+      
     end
+    
+    true
   end
   
   def before_create_save(record)
