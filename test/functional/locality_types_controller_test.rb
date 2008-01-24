@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'locality_types_controller'
 
 # Re-raise errors caught by the controller.
-class LocalityTypesController; def rescue_action(e) raise e end; end
-
-class LocalityTypesControllerTest < Test::Unit::TestCase
+# class LocalityTypesController; def rescue_action(e) raise e end; end
+# 
+# class LocalityTypesControllerTest < Test::Unit::TestCase
 #  fixtures :locality_types
 #
 #  def setup
@@ -89,4 +89,4 @@ class LocalityTypesControllerTest < Test::Unit::TestCase
 #      LocalityType.find(@first_id)
 #    }
 #  end
-end
+# end

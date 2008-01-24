@@ -1,4 +1,4 @@
-load "app/models/dynamic_attribute.rb"
+load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb"
 
 class DynamicAttributesController < ApplicationController
   layout "tabs"

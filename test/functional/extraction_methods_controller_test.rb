@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'extraction_methods_controller'
 
 # Re-raise errors caught by the controller.
-class ExtractionMethodsController; def rescue_action(e) raise e end; end
-
-class ExtractionMethodsControllerTest < Test::Unit::TestCase
+# class ExtractionMethodsController; def rescue_action(e) raise e end; end
+# 
+# class ExtractionMethodsControllerTest < Test::Unit::TestCase
 #  fixtures :extraction_methods
 #
 #  def setup
@@ -89,4 +89,4 @@ class ExtractionMethodsControllerTest < Test::Unit::TestCase
 #      ExtractionMethod.find(@first_id)
 #    }
 #  end
-end
+# end

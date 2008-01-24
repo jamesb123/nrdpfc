@@ -6,4 +6,7 @@ class UsersController; def rescue_action(e) raise e end; end
 
 class UsersControllerTest < Test::Unit::TestCase
   fixtures :users
+  def test_truth
+    assert true
+  end
 end

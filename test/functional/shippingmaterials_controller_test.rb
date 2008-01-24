@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'shippingmaterials_controller'
 
 # Re-raise errors caught by the controller.
-class ShippingmaterialsController; def rescue_action(e) raise e end; end
-
-class ShippingmaterialsControllerTest < Test::Unit::TestCase
+# class ShippingmaterialsController; def rescue_action(e) raise e end; end
+# 
+# class ShippingmaterialsControllerTest < Test::Unit::TestCase
 #  fixtures :shippingmaterials
 #
 #  def setup
@@ -89,4 +89,4 @@ class ShippingmaterialsControllerTest < Test::Unit::TestCase
 #      Shippingmaterial.find(@first_id)
 #    }
 #  end
-end
+# end

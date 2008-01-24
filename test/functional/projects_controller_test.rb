@@ -4,7 +4,6 @@ class ProjectsControllerTest < ActionController::TestCase
   fixtures :users, :projects, :security_settings
   tests ProjectsController
 
-  # Replace this with your real tests.
   def test_update_current_project__should_reflect_in_active_record
     assert_nil(User.current_project)
     

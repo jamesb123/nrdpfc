@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'tissue_types_controller'
 
 # Re-raise errors caught by the controller.
-class TissueTypesController; def rescue_action(e) raise e end; end
-
-class TissueTypesControllerTest < Test::Unit::TestCase
+# class TissueTypesController; def rescue_action(e) raise e end; end
+# 
+# class TissueTypesControllerTest < Test::Unit::TestCase
 #  fixtures :tissue_types
 #
 #  def setup
@@ -89,4 +89,4 @@ class TissueTypesControllerTest < Test::Unit::TestCase
 #      TissueType.find(@first_id)
 #    }
 #  end
-end
+# end

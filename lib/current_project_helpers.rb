@@ -19,7 +19,7 @@ module CurrentProjectHelper
     current_project_id = session[:project_id]
     if !current_project_id
       # auto select a default project
-      current_project_id = (current_project && current_project.id)
+      current_project_id = (current_user.current_project && current_user.current_project.id)
       current_project_id ||= Project.current_users_accessible_projects.first.id rescue nil
       self.current_project = current_project_id
     end
