@@ -19,9 +19,13 @@ class OrganismsController < ApplicationController
 
     if organism
       dynamic_columns =  organism.dynamic_attributes.collect {|value| value.name }
-      active_scaffold_config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
+      cols = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN + dynamic_columns
+      active_scaffold_config.columns = cols
     
-      active_scaffold_config.columns.add dynamic_columns
+      active_scaffold_config.list.columns =  cols
+      active_scaffold_config.update = 
+        active_scaffold_config.create =
+        cols
     end
   end
   
