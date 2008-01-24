@@ -1,16 +1,14 @@
 class OrganismsController < ApplicationController
   layout "tabs"
-  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:project, :organism_code, :comment, :security_settings ]
+  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:organism_code, :comment]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
 
   before_filter :add_dynamic_columns
-
-  active_scaffold  :organisms do |config|
-    config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
-    config.columns.exclude :project
-    config.create.columns.exclude :security_settings
-    config.update.columns.exclude :security_settings
+  cattr_accessor :action_links
   
+  active_scaffold  :organisms do |config|
+    config.columns.exclude :project
+    config.columns.exclude :security_settings
     config.columns[:comment].label = "Comments"
   end
   
@@ -23,14 +21,19 @@ class OrganismsController < ApplicationController
       as_reconfigure(:organism, Organism) do | config |
         
         config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN + dynamic_columns
-        
+        config.actions = 
         for action in [:list, :update, :create]
           c = active_scaffold_config.send(action)
           c.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
           c.columns.add dynamic_columns
         end
+        
+        config.columns.exclude :project
+        config.columns.exclude :security_settings
+        config.columns[:comment].label = "Comments"
+        
+        config.actions.add :create, :nested, :update, :search
       end
-      
     end
     
     true
@@ -43,7 +46,7 @@ class OrganismsController < ApplicationController
   #this method returns a where clause given to active_scaffold, plugged into the find :all method for returning Organisms
   def conditions_for_collection
     w = Where.new
-    w.and("project_id = ?", current_project.id)
+    w.and("organisms.project_id = ?", current_project.id)
     # if params[:id]
     #   ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND ' + 
     #    'security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
