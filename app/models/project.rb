@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
   # then make it their current (default) project
   def assign_default_project  
     if current_user 
-      current_user.current_project = self
+      current_project = self
       current_user.save
     end
   end

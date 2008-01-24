@@ -20,7 +20,7 @@ class DnaResultsController < ApplicationController
   end
 
   def conditions_for_collection
-    ['samples.project_id = (?)', current_user.current_project]
+    ['samples.project_id = (?)', current_project.id ]
   end
   
 end

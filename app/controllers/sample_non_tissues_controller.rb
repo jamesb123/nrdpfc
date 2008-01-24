@@ -30,7 +30,7 @@ class SampleNonTissuesController < ApplicationController
       if constraint && constraint[:project]
         sample_non_tissue = Project.find(constraint[:project]).sample_non_tissues.first
       else
-        sample_non_tissue = current_user.current_project.sample_non_tissues.first
+        sample_non_tissue = current_project.sample_non_tissues.first
       end
       
     end
@@ -55,7 +55,7 @@ class SampleNonTissuesController < ApplicationController
        'security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
     else
       ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND ' + 
-       'security_settings.user_id = ? AND security_settings.level > 0)) AND (projects.id = ?)', current_user.id, current_user.id, current_user.current_project.id]
+       'security_settings.user_id = ? AND security_settings.level > 0)) AND (projects.id = ?)', current_user.id, current_user.id, current_project.id]
     end
   end
       

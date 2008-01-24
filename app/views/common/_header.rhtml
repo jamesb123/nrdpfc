@@ -5,7 +5,7 @@
   </center>
   <div>
     <b>
-      <%= "<br/>Current Project: #{current_user.current_project.nil? ? 'N/A' : current_user.current_project.name}" %>
+      <%= "<br/>Current Project: #{current_project.nil? ? 'N/A' : current_project.name}" %>
       <%= "<br>#{current_user.login} is logged in #{link_to '  Logout?', '/account/logout'}" if logged_in? %>
     </b>
   </div>

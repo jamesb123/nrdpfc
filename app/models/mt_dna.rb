@@ -20,7 +20,7 @@ class MtDna < ActiveRecord::Base
   after_save :flag_project_for_update
   
   def assign_project_id
-    self.project_id = current_user.current_project.id
+    self.project_id = current_project.id
   end
   
   def to_label

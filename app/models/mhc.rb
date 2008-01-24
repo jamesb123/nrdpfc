@@ -31,7 +31,7 @@ class Mhc < ActiveRecord::Base
   before_create :assign_project_id
 
   def assign_project_id
-    self.project_id = current_user.current_project.id
+    self.project_id = current_project.id
   end
 
   def security_settings

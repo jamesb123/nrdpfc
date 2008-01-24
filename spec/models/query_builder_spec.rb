@@ -55,12 +55,15 @@ describe QueryBuilder do
   end
   
   describe "simple case" do
+    
     before(:each) do
-      @query_builder.add_include("samples/dna_results")
-      @query_builder.add_include("organisms")
+      @query_builder.add_models "Organism", "DnaResult"
+      
+      # @query_builder.add_include("samples/dna_results")
+      # @query_builder.add_include("organisms")
       @query_builder.add_fields(
         :samples => %w[organism_code tubebc], 
-        :organisms => %w[comment], 
+        :organisms => %w[nea], 
         :dna_results => %w[extraction_method]
       )
       @query_builder.add_sort("sample_organism_code", :desc)
@@ -69,7 +72,7 @@ describe QueryBuilder do
     
     it "should add fields should add" do
       @query_builder.fields.should have(4).items
-      @query_builder.fields.map{|f| f.name.to_s}.sort.should == %w[comment extraction_method organism_code tubebc]
+      @query_builder.fields.map{|f| f.name.to_s}.sort.should == ["extraction_method", "nea", "organism_code", "tubebc"]
     end
 
     it "should build sql should build executable sql" do
@@ -89,6 +92,8 @@ describe QueryBuilder do
   
   describe "when querying over a model with dynamic attributes" do
     before(:each) do
+      @query_builder.add_models "Organism"
+      
       @query_builder.add_include("organisms")
       @query_builder.add_fields(
         :organisms => %w[notes nea]

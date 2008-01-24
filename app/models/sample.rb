@@ -84,7 +84,7 @@ class Sample < ActiveRecord::Base
 
 
   def assign_project_id
-    self.project_id = current_user.current_project.id
+    self.project_id = current_project.id
   end
   
   def to_label 
