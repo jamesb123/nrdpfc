@@ -36,8 +36,13 @@ task :create_public_file_links do
   end
 end
 
+task :create_database_yml_symlink do
+  run "rm #{release_path}/config/database.yml && ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
+end
+
 task :after_update_code, :roles => [:app] do
   maintain_sessions
 #  create_public_file_links
   make_public_not_public_writeable
+  create_database_yml_symlink
 end

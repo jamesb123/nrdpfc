@@ -1,8 +1,7 @@
 # Be sure to restart your web server when you modify this file.
 
-# Uncomment below to force Rails into production mode when 
-# you don't control web/app server and can't set it the proper way
-# ENV['RAILS_ENV'] ||= ENV["HTTP_RAILS_ENV"] || 'production'
+# DO NOT REMOVE THIS LINE - It's important for the fcgid deployment we are using.
+ENV['RAILS_ENV'] ||= ENV["HTTP_RAILS_ENV"]
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.0.1' unless defined? RAILS_GEM_VERSION
