@@ -15,19 +15,7 @@ class OrganismsController < ApplicationController
   end
   
   def add_dynamic_columns
-    if params[:id]
-      organism = Organism.find(params[:id])
-    else
-      id = params[:eid] || params[:controller]
-      session_index = "as:#{id}"
-      constraint = session[session_index][:constraints]
-      
-      if constraint && constraint[:project]
-        organism = Project.find(constraint[:project]).organisms.first
-      else
-        organism = current_project.organisms.first
-      end
-    end
+    organism = Organism.find(:first, :conditions => ["project_id = ?", current_project.id]
 
     if organism
       dynamic_columns =  organism.dynamic_attributes.collect {|value| value.name }
