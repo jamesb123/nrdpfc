@@ -15,7 +15,7 @@ class OrganismsController < ApplicationController
   end
   
   def add_dynamic_columns
-    organism = Organism.find(:first, :conditions => ["project_id = ?", current_project.id]
+    organism = Organism.find(:first, :conditions => ["project_id = ?", current_project.id])
 
     if organism
       dynamic_columns =  organism.dynamic_attributes.collect {|value| value.name }
