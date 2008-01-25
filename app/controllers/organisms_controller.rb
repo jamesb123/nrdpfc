@@ -10,29 +10,20 @@ class OrganismsController < ApplicationController
     config.columns.exclude :project
     config.columns.exclude :security_settings
     config.columns[:comment].label = "Comments"
+    config.columns = [:organism_code, :comment]
   end
   
   def add_dynamic_columns
     organism = Organism.find(:first, :conditions => ["project_id = ?", current_project.id])
-
-    if organism
-      dynamic_columns =  organism.dynamic_attributes.map(&:name)
+    c = active_scaffold_config
+    
+    for cp in [c.list, c.update, c.create, c]
+      columns_for_deletion = (cp.columns.map(&:name).map(&:to_sym) - Organism.columns.map(&:name).map(&:to_sym))
+      cp.columns.exclude *columns_for_deletion
       
-      as_reconfigure(:organism, Organism) do | config |
-        
-        config.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN + dynamic_columns
-        config.actions = 
-        for action in [:list, :update, :create]
-          c = active_scaffold_config.send(action)
-          c.columns = OrganismsController::ORGANISM_BASE_ATTRIBUTE_BEGIN
-          c.columns.add dynamic_columns
-        end
-        
-        config.columns.exclude :project
-        config.columns.exclude :security_settings
-        config.columns[:comment].label = "Comments"
-        
-        config.actions.add :create, :nested, :update, :search
+      if organism
+        dynamic_columns ||= organism.dynamic_attributes.map(&:name)
+        cp.columns.add dynamic_columns
       end
     end
     
