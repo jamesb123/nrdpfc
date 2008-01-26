@@ -38,13 +38,12 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should store all exportable models" do
-    
-    Project
-    
-    Exportables::ExportableModel.models.should include(Project)
+    exportable_models = Exportables::ExportableModel.models.map(&:to_s)
+    exportable_models.should include('Project')
+    exportable_models.should include('MicrosatelliteHorizontal')
   end
   
   it "should find the shortest path to a table" do
-    Project.path_to_exportable_model(DnaResult).should == [:samples, :dna_results]
+    Project.path_to_exportable_table('dna_results').should == [:samples, :dna_results]
   end
 end

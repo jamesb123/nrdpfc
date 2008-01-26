@@ -44,7 +44,7 @@ describe QueryBuilder do
   
   describe "when auto-building includes" do
     it "should automatically figure out how to include tables" do
-      @query_builder.add_models "Organism", "MicrosatelliteHorizontal"
+      @query_builder.add_tables "organisms", "microsatellite_horizontals"
       @query_builder.includes.to_hash.should == {
           :project => {
             :organisms => {}, 
@@ -57,7 +57,7 @@ describe QueryBuilder do
   describe "simple case" do
     
     before(:each) do
-      @query_builder.add_models "Organism", "DnaResult"
+      @query_builder.add_tables "organisms", "dna_results"
       
       # @query_builder.add_include("samples/dna_results")
       # @query_builder.add_include("organisms")
@@ -67,7 +67,7 @@ describe QueryBuilder do
         :dna_results => %w[extraction_method]
       )
       @query_builder.add_sort("sample_organism_code", :desc)
-      @query_builder.add_sort("organism_comment", :asc)
+      @query_builder.add_sort("organisms_nea", :asc)
     end
     
     it "should add fields should add" do
@@ -78,21 +78,21 @@ describe QueryBuilder do
     it "should build sql should build executable sql" do
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 2
-      results[0].keys.sort.should == %w[dna_result_extraction_method organism_comment sample_organism_code sample_tubebc]
+      results[0].keys.sort.should == %w[dna_result_extraction_method organisms_nea sample_organism_code sample_tubebc]
     end    
     
     it "should include sort fields in query" do
-      @query_builder.to_sql.should include("ORDER BY sample_organism_code desc, organism_comment asc")
+      @query_builder.to_sql.should include("ORDER BY sample_organism_code desc, organisms_nea asc")
     end
     
     it "should return a list of all fields selected from" do
-      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_result_extraction_method`, `samples`.`organism_code` as `sample_organism_code`, `samples`.`tubebc` as `sample_tubebc`, `organisms`.`comment` as `organism_comment`\n"]
+      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_result_extraction_method`, `samples`.`organism_code` as `sample_organism_code`, `samples`.`tubebc` as `sample_tubebc`, `organism_dynamic_attribute_nea`.`integer_value` as organisms_nea\n"]
     end
   end
   
   describe "when querying over a model with dynamic attributes" do
     before(:each) do
-      @query_builder.add_models "Organism"
+      @query_builder.add_tables "organisms"
       
       @query_builder.add_include("organisms")
       @query_builder.add_fields(

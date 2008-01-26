@@ -29,7 +29,7 @@
 #  submitter_comments   :text          
 #  latitude             :float         
 #  longitude            :float         
-#  UTM_datum            :float         
+#  UTM_datum            :string(255)   
 #  locality             :string(255)   
 #  locality_type        :string(255)   
 #  locality_comments    :string(255)   

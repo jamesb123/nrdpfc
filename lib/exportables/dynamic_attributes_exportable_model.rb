@@ -1,6 +1,10 @@
 module Exportables::DynamicAttributesExportableModel
   include Exportables::ExportableModel
   
+  def self.extended(klass)
+    Exportables::ExportableModel.extended(klass)
+  end
+  
   def exportable_fields
     self.columns.map(&:name) + dynamic_attributes.map(&:name)
   end

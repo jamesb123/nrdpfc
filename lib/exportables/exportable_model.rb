@@ -7,24 +7,32 @@ module Exportables::ExportableModel
     end
     
     def models
-      return @models if @loaded 
+      return @models if @models
       
-      Dir["#{RAILS_ROOT}/app/models/**/*.rb"].each {| file | require file }
-      
-      @loaded = true
+      load_all_models
+      @models.sort! {|a,b| a.exportable_name <=> b.exportable_name }
       @models
+    end
+    
+    def load_all_models
+      @all_models_loaded if @all_models_loaded
+      
+      Dir["#{RAILS_ROOT}/app/models/**/*.rb"].each {| file | require_or_load file }
+      
+      @all_models_loaded = true
     end
   end
   
-  def path_to_exportable_model(target_model, breadcrumbs = [])
-    target_model = target_model.to_s
+  def path_to_exportable_table(target_table_name, breadcrumbs = [])
+    target_table_name = target_table_name.to_s
     
     possibilities = []
     exportable_reflections.each_pair do |name, reflection|
-      next if breadcrumbs.include?(reflection.class_name)
-      return [name] if reflection.class_name == target_model
+      table_name = reflection.class_name.constantize.table_name
+      next if breadcrumbs.include?(table_name)
+      return [name] if table_name == target_table_name
       
-      possibility = reflection.class_name.constantize.path_to_exportable_model(target_model, breadcrumbs + [self.to_s])
+      possibility = reflection.class_name.constantize.path_to_exportable_table(target_table_name, breadcrumbs + [self.exportable_table_name])
       possibilities << [name] + possibility if possibility
     end
     
@@ -39,6 +47,10 @@ module Exportables::ExportableModel
     self.columns.map(&:name)
   end
   
+  def exportable_non_id_fields
+    exportable_fields.select{|f| ! /(^|_)id$/.match(f)}
+  end
+  
   def exportable_table_name
     self.table_name
   end
@@ -48,6 +60,7 @@ module Exportables::ExportableModel
   end
   
   def exportable_reflections
+    Exportables::ExportableModel.load_all_models
     self.reflections.select_hash do |k, v|
       klass = v.class_name.constantize
       klass.respond_to?(:exportable?) && klass.exportable?

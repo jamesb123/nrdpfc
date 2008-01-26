@@ -1,5 +1,8 @@
 module Exportables::HorizontalExportableModel
   include Exportables::ExportableModel
+  def self.extended(klass)
+    Exportables::ExportableModel.extended(klass)
+  end
   
   def exportable_fields
     self.model_for_project(current_project).columns.map(&:name)

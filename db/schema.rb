@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 40) do
+ActiveRecord::Schema.define(:version => 39) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -627,6 +627,7 @@ ActiveRecord::Schema.define(:version => 40) do
     t.boolean  "draft",                     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "data"
   end
 
   create_table "sample_non_tissues", :force => true do |t|

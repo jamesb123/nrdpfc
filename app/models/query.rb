@@ -11,8 +11,8 @@
 #  updated_at :datetime      
 #
 
-require "query_table.rb"
-require "query_field.rb"
+require_or_load "query_table.rb"
+require_or_load "query_field.rb"
 
 class Query < ActiveRecord::Base
   belongs_to :project
@@ -34,9 +34,19 @@ class Query < ActiveRecord::Base
   end
   
   def fields
-    data[:fields]||=[]
+    data[:fields]||= Exportables::ExportableModel.models.inject({}) do | hash, model|
+      hash[model.exportable_name] = []
+      hash
+    end
   end
   
+  def fields=(value)
+    data[:fields] = value
+  end
+  
+  def tables=(value)
+    data[:tables] = value
+  end
   def conditions
     data[:conditions]||=[]
   end

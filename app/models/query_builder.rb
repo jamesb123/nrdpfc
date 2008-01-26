@@ -5,13 +5,13 @@ class QueryBuilder
     @data = {}
   end
   
-  def add_models(*models)
-    models = models.flatten
+  def add_tables(*tables)
+    tables = tables.flatten
     
     # find the shortest path to each table, and add it
-    models.each do |model|
-      path = includes.model.path_to_exportable_model(model.to_s)
-      raise "Sorry, couldn't find include path to model #{model}" if path.nil?
+    tables.each do |table|
+      path = includes.model.path_to_exportable_table(table.to_s)
+      raise "Sorry, couldn't find include path to table #{table}" if path.nil?
       add_include(*path)
     end
   end

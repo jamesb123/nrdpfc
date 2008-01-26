@@ -1,0 +1,36 @@
+<h1>Query</h1>
+
+<ul>
+<% form_for :query do %>
+  <% Exportables::ExportableModel.models.each do |model| 
+    model_name = model.exportable_name
+    checked = @query.tables.include?(model_name)
+    fields_ul_id = "#{model_name}_fields"
+    table_checkbox_id = "query_tables_#{model_name}"
+    %>
+    <li>
+      <%= check_box_tag "query[tables][]", model_name, checked, :id => table_checkbox_id %> <%= model_name %>
+      <ul id="<%= fields_ul_id %>" style="<%= 'display: none' unless checked%>">
+          <li>
+            <%= check_box_tag("", "", false, :onchange => "go_select_all(this);" ) %> - All -
+          </li>
+        <% model.exportable_non_id_fields.each do |field| %>
+          <li>
+            <%= check_box_tag("query[fields][#{model_name}][]", field, @query.fields[model_name].include?(field) ) %> <%= field %>
+          </li>
+        <% end %>
+      </ul>
+    </li>    
+    <script language='javascript'>
+      new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= model_name %>'");
+    </script>
+  <% end %>
+<% end %>
+</ul>
+
+<script language='javascript'>
+  function go_select_all(this_cb)
+  {
+    $(this_cb).up('ul').getElementsBySelector('input[type=checkbox]').each(function(cb) { cb.checked = this_cb.checked });    
+  }
+</script>

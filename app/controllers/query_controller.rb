@@ -1,6 +1,7 @@
 class QueryController < ApplicationController
+  layout "tabs"
   def index
-    session[:query] ||= @query = Query.new
+    @query = Query.new
   end
   
   def add_table
@@ -17,6 +18,7 @@ class QueryController < ApplicationController
   end
   
   def show
-    
+    @query = Query.new(params[:query])
+    @query_builder = QueryBuilder.new
   end
 end

@@ -9,4 +9,12 @@ describe Query do
     @query = Query.new :name => "My Query"
   end
   
+  it "should default data to {}" do
+    @query.data.should == {}
+  end
+  
+  it "should default fields to a hash indexed with each table name" do
+    @query.fields["organisms"].should == []
+  end
+  
 end
