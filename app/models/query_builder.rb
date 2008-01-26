@@ -1,8 +1,5 @@
 class QueryBuilder
-  attr_reader :data
-  
   def initialize(options = {})
-    @data = {}
   end
   
   def add_tables(*tables)
@@ -55,11 +52,11 @@ class QueryBuilder
   end
   
   def includes
-    data[:includes] ||= QueryTable.new(:project)
+    @includes ||= QueryTable.new(:project)
   end
   
   def select_fields
-    data[:select_fields] ||= {}
+    @select_fields ||= {}
   end
   
   def sort_fields

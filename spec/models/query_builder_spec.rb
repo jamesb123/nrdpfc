@@ -13,7 +13,7 @@ describe QueryBuilder do
     it "should build properly" do
       assert @query_builder.add_include("", "samples")
       assert @query_builder.add_include("samples", "dna_results")
-      {:project => {:samples => { :dna_results => {}}}}.should == @query_builder.data[:includes].to_hash
+      {:project => {:samples => { :dna_results => {}}}}.should == @query_builder.includes.to_hash
     end
     
     it "should only allow sorting for columns in the select field (since some columns may be computed via crosstab)" do
@@ -38,7 +38,7 @@ describe QueryBuilder do
       assert @query_builder.add_include("/samples", "dna_results")
       assert ! @query_builder.add_include("/samples/dna_results", "sample")
 
-      {:project => {:samples => {:dna_results => {}}}}.should == @query_builder.data[:includes].to_hash
+      {:project => {:samples => {:dna_results => {}}}}.should == @query_builder.includes.to_hash
     end
   end
   
