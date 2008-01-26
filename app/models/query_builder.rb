@@ -1,5 +1,8 @@
 class QueryBuilder
   def initialize(options = {})
+    add_tables(*options[:tables])       if options[:tables]
+    add_fields(options[:fields])       if options[:fields]
+    add_sort  (*options[:sort_fields])  if options[:sort_fields]
   end
   
   def add_tables(*tables)
@@ -54,11 +57,7 @@ class QueryBuilder
   def includes
     @includes ||= QueryTable.new(:project)
   end
-  
-  def select_fields
-    @select_fields ||= {}
-  end
-  
+    
   def sort_fields
     @sort_fields||=[]
     # TODO - return, in order, all of the fields for sorting

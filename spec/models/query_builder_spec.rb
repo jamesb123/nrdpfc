@@ -123,4 +123,29 @@ describe QueryBuilder do
       results.first.should == {"microsatellite_horizontal_EV1Pma"=>"137", "microsatellite_horizontal_EV1Pmb"=>"137"}
     end    
   end
+  
+  describe "when initializing from a query builder" do
+    before(:each) do
+      @query = Query.new(
+        :tables => %w[microsatellite_horizontals organisms],
+        :fields => {
+          :microsatellite_horizontals => %w[EV1Pma EV1Pmb]
+        }
+      )
+      @query_builder = QueryBuilder.new(@query.data)
+    end
+    
+    it "should initialize form Query#data" do
+      @query_builder.should_not be_nil
+    end
+    
+    it "should receive table parameters" do
+      @query_builder.tables.keys.should == [:microsatellite_horizontals, :organisms, :project]
+    end
+    
+    it "should receive field parameters" do
+      @query_builder.fields.length == 2
+      @query_builder.fields.first.name.should == :EV1Pma
+    end
+  end
 end
