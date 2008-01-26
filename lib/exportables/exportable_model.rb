@@ -7,15 +7,16 @@ module Exportables::ExportableModel
     end
     
     def models
-      return @models if @models
+      return @models if @models_loaded
       
       load_all_models
       @models.sort! {|a,b| a.exportable_name <=> b.exportable_name }
+      @models_loaded = true
       @models
     end
     
     def load_all_models
-      @all_models_loaded if @all_models_loaded
+      return @all_models_loaded if @all_models_loaded
       
       Dir["#{RAILS_ROOT}/app/models/**/*.rb"].each {| file | require_or_load file }
       
@@ -25,6 +26,7 @@ module Exportables::ExportableModel
   
   def path_to_exportable_table(target_table_name, breadcrumbs = [])
     target_table_name = target_table_name.to_s
+    return [] if target_table_name == self.table_name
     
     possibilities = []
     exportable_reflections.each_pair do |name, reflection|
@@ -62,13 +64,18 @@ module Exportables::ExportableModel
   def exportable_reflections
     Exportables::ExportableModel.load_all_models
     self.reflections.select_hash do |k, v|
-      klass = v.class_name.constantize
-      klass.respond_to?(:exportable?) && klass.exportable?
+      next if v.through_reflection
+      begin
+        klass = v.class_name.constantize
+        klass.respond_to?(:exportable?) && klass.exportable?
+      rescue
+        raise "nil reflection on #{self.to_s} for reflection #{k}"
+      end
     end
   end
   
   def exportable_select(column_name)
-    QueryPiece.new :select => "`#{exportable_table_name}`.`#{column_name}` as `#{self.to_s.underscore}_#{column_name}`"
+    QueryPiece.new :select => "`#{exportable_table_name}`.`#{column_name}` as `#{self.table_name}_#{column_name}`"
   end
   
   # Organism.exportable_from(:parent => Project, :association => 'organisms').

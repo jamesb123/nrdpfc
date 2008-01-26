@@ -1,5 +1,6 @@
 module Exportables::HorizontalExportableModel
   include Exportables::ExportableModel
+  
   def self.extended(klass)
     Exportables::ExportableModel.extended(klass)
   end

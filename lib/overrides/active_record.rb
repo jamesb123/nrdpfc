@@ -12,3 +12,9 @@ module ActiveRecord::AttributeMethods::ClassMethods
   
   alias_method_chain :evaluate_attribute_method, :safety
 end
+
+class ActiveRecord::Base
+  def to_i
+    self.id.to_i
+  end
+end

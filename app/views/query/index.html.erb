@@ -1,7 +1,7 @@
 <h1>Query</h1>
 
 <ul>
-<% form_for :query do %>
+<% remote_form_for :query, :url => {:action => "show" }, :update => "results_output" do %>
   <% Exportables::ExportableModel.models.each do |model| 
     model_name = model.exportable_name
     checked = @query.tables.include?(model_name)
@@ -25,6 +25,8 @@
       new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= model_name %>'");
     </script>
   <% end %>
+  
+  <%= submit_tag "Go" %>
 <% end %>
 </ul>
 
@@ -34,3 +36,7 @@
     $(this_cb).up('ul').getElementsBySelector('input[type=checkbox]').each(function(cb) { cb.checked = this_cb.checked });    
   }
 </script>
+
+<div id="results_output">
+  
+</div>
