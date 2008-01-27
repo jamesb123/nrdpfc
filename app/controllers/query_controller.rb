@@ -8,9 +8,17 @@ class QueryController < ApplicationController
     
   end
   
-  def add_field
-    @query_table = QueryTable.new(params[:model])
+  def get_table_field
+    @query_table = QueryTable.new(params[:table])
     @query_field = @query_table.add_field(params[:field])
+  end
+  
+  def add_field
+    get_table_field
+  end
+  
+  def add_filter
+    get_table_field
   end
   
   def new

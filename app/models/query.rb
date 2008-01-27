@@ -60,6 +60,14 @@ class Query < ActiveRecord::Base
       fields.each_pair do |field, options|
         qb.add_fields table => field
         qb.add_order({table => field}, options[:order]) unless options[:order].blank?
+        
+        if options[:filters]
+          filters = options[:filters]
+          filters[:operator].each_with_index do |op, index|
+            value = filters[:value][index]
+            qb.add_filter({table => field}, op, value)
+          end
+        end
       end
     end
     

@@ -4,37 +4,37 @@
 <% remote_form_for :query, :url => {:action => "show" }, :indicate => "query_submit_button", :update => "results_output" do %>
 <ul id='query_field_selector'>
   <% Exportables::ExportableModel.models.each do |model| 
-    model_name = model.exportable_name
+    table_name = model.exportable_name
     # checked = @query.tables.include?(model_name)
-    fields_ul_id = "#{model_name}_fields"
-    table_checkbox_id = "query_tables_#{model_name}"
+    fields_ul_id = "#{table_name}_fields"
+    table_checkbox_id = "query_tables_#{table_name}"
     %>
     <li>
-      <%= link_to_function(model_name.titleize, "toggle_section('#{model_name}')") %>
+      <%= link_to_function(table_name.titleize, "toggle_section('#{table_name}')") %>
       <ul id="<%= fields_ul_id %>" style="display: none">
           <li>
             - All -
           </li>
         <% model.exportable_non_id_fields.each do |field| %>
           <li>
-            <%= link_to_remote(field.titleize, :url => {:action => "add_field", :model => model_name, :field => field}) %>
+            <%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %>
           </li>
         <% end %>
       </ul>
     </li>    
     <script language='javascript'>
-      // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= model_name %>'");
+      // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= table_name %>'");
     </script>
   <% end %>
   
   <table id='selected_fields_entries_table'>
     <thead>
       <tr>
+        <th></th>
         <th>Model Name</th>
         <th>Field Name</th>
         <th>Sort</th>
         <th>Filter</th>
-        <th></th>
       </tr>
     </thead>
     <tbody id="selected_fields_entries">
@@ -52,9 +52,9 @@
     $(this_cb).up('ul').getElementsBySelector('input[type=checkbox]').each(function(cb) { cb.checked = this_cb.checked });    
   }
   
-  function toggle_section(model_name)
+  function toggle_section(table_name)
   {
-    var fields_ul_id = model_name + "_fields";
+    var fields_ul_id = table_name + "_fields";
     
     $$("ul#query_field_selector > li > ul").each(function(ul) {
       if (ul.id == fields_ul_id) { new Effect.BlindDown(ul, { duration: 0.5 }); return false; }
@@ -121,8 +121,6 @@
    }
  }
 
-   s = new Sorter('selected_fields_entries', ['model_name_column', 'field_name_column'])
-   s.do_sort();
 </script>
 
 <div id="results_output">

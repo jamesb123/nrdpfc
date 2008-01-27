@@ -140,6 +140,15 @@ describe QueryBuilder do
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 0
     end
+    
+    it "should ignore filters with not operator" do
+      @query_builder.add_filter({:microsatellite_horizontals  => :EV1Pma}, "", "137")
+      results = Project.connection.select_all(@query_builder.to_sql)
+      results.length.should == 2
+      
+    end
+    
+    it "should prevent sql injection attacks"
   end
   
   # describe "when initializing from a query builder" do

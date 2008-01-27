@@ -1,0 +1,5 @@
+  <div>
+    <%= link_to_function "X", "$(this).up('div').remove();" %>
+    <%= select_tag "data[#{query_table.name}][#{query_field.name}][filters][operator][]", options_for_select([""] + ['<', '<=', '<>', '=', '>', '>='])%> 
+    <%= text_field_tag "data[#{query_table.name}][#{query_field.name}][filters][value][]", "" %>
+  </div>

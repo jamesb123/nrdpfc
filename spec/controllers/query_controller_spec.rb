@@ -15,18 +15,22 @@ describe QueryController do
       get :index
     end
   end
+  
   describe "when posting to show" do
+    
     integrate_views
+    
     before(:each) do
-      post :show, :query => { :data => { 
+      post :show, :data => { 
         :dna_results => {
           :barcode => { :select => "true" }
         },
         :organisms => {
           :comment =>       { :select => "true" },
-          :organism_code => { :select => "true" }
+          :organism_code => { :select => "true", :filters => {:operator => [">", "<"], :value => ["1", "1000"]} }
         }
-      }}
+      }
+      
       @query = assigns[:query]
       @query_builder = assigns[:query_builder]
       @results = assigns[:results]
@@ -51,24 +55,28 @@ describe QueryController do
       [:barcode, :comment, :organism_code].each do |field_name|
         query_field_names.should include(field_name)
       end
+      
+      @query_builder.filterings.should == [
+        ["organisms_organism_code", ">", "1"],
+        ["organisms_organism_code", "<", "1000"],
+      ]
     end
     
     it "should execute the query and return it in results" do
       @results.class.should == Array
     end
-    
   end
   
   describe "when adding a numeric field" do
     integrate_views
     include ERB::Util
     before(:each) do
-      post :add_field, :model => "dna_results", :field => "pico_green_conc"
+      post :add_field, :table => "dna_results", :field => "pico_green_conc"
     end
     
-    it "should add a field with numeric fiters" do
-      response.should have_tag("select[name=?]", "query[dna_results][pico_green_conc][filter][operator]") do |r|
-        ['<', '<=', 'not =', '=', '>', '>=', 'not in', 'in'].each do |operator|
+    it "should add a field with numeric filters" do
+      response.should have_tag("select[name=?]", "data[dna_results][pico_green_conc][filters][operator]") do |r|
+        ['<', '<=', '<>', '=', '>', '>='].each do |operator|
           r.should have_tag("option[value=?]", h(operator))
         end
       end
@@ -76,7 +84,7 @@ describe QueryController do
     
     it "should include a hidden element to the form" do
       response.should have_tag("input[type=hidden]")
-      response.should have_tag("input[type=hidden][name=?][value=?]", "query[dna_results][pico_green_conc][select]", "true")
+      response.should have_tag("input[type=hidden][name=?][value=?]", "data[dna_results][pico_green_conc][select]", "true")
     end
   end
   

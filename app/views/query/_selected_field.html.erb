@@ -1,11 +1,19 @@
-    <tr>
+<% 
+id_prefix = "#{query_table.name}_#{query_field.name}"
+row_id = "#{id_prefix}_tr"
+content_tag :tr, :id => row_id do %>
+      <td>
+        <%= link_to_function "X", "$(this).up('tr').remove();" %>
+      </td>
       <td class="model_name_column"><%= query_table.title %></td>
       <td class="field_name_column"><%= query_field.title %></td>
-      <td><%= select_tag "data[#{query_table.name}][#{query_field.name}][order]", options_for_select([["None", ""], ["Ascending", "ASC"], ["Descending", "DESC"]]) %></td>
-      <td><%= select_tag "data[#{query_table.name}][#{query_field.name}][filter][operator]", options_for_select([""] + ['<', '<=', 'not =', '=', '>', '>=', 'not in', 'in'])%> 
-          <%= text_field_tag "data[#{query_table.name}][#{query_field.name}][filter][value]", "" %></td>
       <td>
-        <%= link_to_function "Remove", "$(this).up('tr').remove();" %>
+        <%= select_tag "data[#{query_table.name}][#{query_field.name}][order]", options_for_select([["None", ""], ["Ascending", "ASC"], ["Descending", "DESC"]]) %>
+      </td>
+      <td class="filter_column">
+        <%= link_to_remote "add filter", {:url => {:action => "add_filter", :table => query_table.name, :field => query_field.name }}, {:id => "#{id_prefix}_add_filter_link" } %>
+      </td>
+      <td>
         <%= hidden_field_tag "data[#{query_table.name}][#{query_field.name}][select]", "true" %>
       </td>
-    </tr>
+<% end %>

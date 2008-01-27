@@ -53,6 +53,7 @@ class QueryBuilder
   end
   
   def add_filter(full_field_name, operation, value)
+    return false if operation.strip.blank?
     full_field_name = translate_table_field_hash(full_field_name) if full_field_name.is_a?(Hash)
     filterings << [full_field_name, operation, value]
   end

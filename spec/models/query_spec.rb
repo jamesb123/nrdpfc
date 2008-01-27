@@ -21,12 +21,11 @@ describe Query do
           :barcode => {
             :select => "true",
             :order => "",
-            :filter => { :operator => "=", :value => "12345" }
+            :filters => { :operator => ["="], :value => ["12345"] }
           },
           :plate => {
             :select => "true",
             :order => "ASC", 
-            :filter => { :operator => "",  :value => "" }
           }
         },
         :organisms => {
@@ -53,6 +52,10 @@ describe Query do
       @query_builder.order_fields.should == [["dna_results_plate", "ASC"]]
     end
     
-    it "should exclude empty filterings" 
+    it "should exclude empty filterings" do
+      @query_builder.filterings.should == [
+        ["dna_results_barcode", "=", "12345"]
+      ]
+    end
   end
 end
