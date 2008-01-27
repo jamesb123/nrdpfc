@@ -1,7 +1,8 @@
 <h1>Query</h1>
 
-
 <% content_tag :div, :id => "query_form" do %>
+<div style="width:400px; display:block; float:left;" />
+  <h2>Tables</h2>
   <ul id='query_field_selector'>
     <% Exportables::ExportableModel.models.each do |model| 
       table_name = model.exportable_name
@@ -13,7 +14,7 @@
         <%= link_to_function(table_name.titleize, "toggle_section('#{table_name}')") %>
         <ul id="<%= fields_ul_id %>" style="display: none">
             <li>
-              - All -
+              <%= link_to_remote("- Add all -", :url => {:action => "add_field", :table => table_name}) %>
             </li>
           <% model.exportable_non_id_fields.each do |field| %>
             <li>
@@ -28,7 +29,8 @@
     <% end %>
   </ul>
   
-  <hr />
+</div>
+<div style="width:600px; display:block; float:left">
   <h2>Selected Fields</h2>
   <table id='selected_fields_entries_table'>
     <thead>
@@ -43,6 +45,8 @@
     <tbody id="selected_fields_entries">
     </tbody>
   </table>
+</div>
+<br clear='both' />
   <% indicated_div "query_submit_button" do %>
     <%= content_tag :button, "Preview", :onclick => 
           remote_function(

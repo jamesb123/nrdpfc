@@ -8,17 +8,18 @@ class QueryController < ApplicationController
     
   end
   
-  def get_table_field
-    @query_table = QueryTable.new(params[:table])
-    @query_field = @query_table.add_field(params[:field])
-  end
-  
   def add_field
-    get_table_field
+    @query_table = QueryTable.new(params[:table])
+    if params[:field]
+      @query_fields = [@query_table.add_field(params[:field])]
+    else
+      @query_fields = @query_table.model.exportable_non_id_fields.map {|f| @query_table.add_field(f) }
+    end
   end
   
   def add_filter
-    get_table_field
+    @query_table = QueryTable.new(params[:table])
+    @query_field = @query_table.add_field(params[:field])
   end
   
   def new

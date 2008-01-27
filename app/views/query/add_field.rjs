@@ -1,2 +1,5 @@
-page.insert_html :bottom, "selected_fields_entries", :partial => "selected_field", :locals => {:query_table => @query_table, :query_field => @query_field} 
+@query_fields.each do |query_field|
+  page.insert_html :bottom, "selected_fields_entries", :partial => "selected_field", :locals => {:query_table => @query_table, :query_field => query_field} 
+end
+
 page << "new Sorter('selected_fields_entries', ['model_name_column', 'field_name_column']).do_sort();"

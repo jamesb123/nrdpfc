@@ -117,4 +117,20 @@ describe QueryController do
     end
   end
   
+  describe "when adding all fields for a model" do
+    integrate_views
+    before(:each) do
+      post :add_field, :table => "projects"
+    end
+      
+    it "should add all non_id fields" do
+      assigns[:query_fields].map(&:name).map(&:to_s).should == Project.exportable_non_id_fields
+    end
+    
+    it "should render all the fields at once" do
+      Project.exportable_non_id_fields.each do |field|
+        response.body.should include(field.titleize)
+      end
+    end
+  end
 end

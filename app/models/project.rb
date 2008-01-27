@@ -31,6 +31,7 @@ class Project < ActiveRecord::Base
   has_many :mhc_final_horizontals
   has_many :gender_final_horizontals
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
+  has_many :mhc_seqs
   
   before_create :assign_project_owner
   after_save :assign_default_project
