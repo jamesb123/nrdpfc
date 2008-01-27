@@ -4,7 +4,7 @@ class QueryBuilder
   def initialize(options = {})
     add_tables(*options[:tables])       if options[:tables]
     add_fields(options[:fields])       if options[:fields]
-    add_sort  (*options[:sort_fields])  if options[:sort_fields]
+    add_order  (*options[:order_fields])  if options[:order_fields]
   end
   
   def add_tables(*table_names)
@@ -44,7 +44,7 @@ class QueryBuilder
   def add_fields(table_field_hash)
     table_field_hash.each_pair{|table_name, new_fields|
       table_name = table_name.to_sym
-      
+      new_fields = [new_fields] unless new_fields.is_a?(Array)
       for field in new_fields
         (t=tables[table_name]) && t.add_field(field)
         fields.clear
@@ -53,8 +53,16 @@ class QueryBuilder
   end
   
   # full field name is {table}.{field}
-  def add_sort(full_field_name, asc_desc = :asc)
-    sort_fields << [full_field_name, asc_desc]
+  def add_order(full_field_name, asc_desc = :asc)
+    if full_field_name.is_a?(Hash)
+      table_name = full_field_name.keys.first
+      field_name = full_field_name[table_name]
+      
+      add_tables table_name
+      field = tables[table_name.to_sym].add_field(field_name)
+      full_field_name = field.field_alias
+    end
+    order_fields << [full_field_name, asc_desc]
   end
   
   def default_parent_table
@@ -65,9 +73,8 @@ class QueryBuilder
     @includes ||= default_parent_table[:projects]
   end
     
-  def sort_fields
-    @sort_fields||=[]
-    # TODO - return, in order, all of the fields for sorting
+  def order_fields
+    @order_fields||=[]
   end
   
   def tables(reload = false)
@@ -97,7 +104,7 @@ class QueryBuilder
     
     fields.each{|f| query_piece += f.select_sql }
 
-    sort_piece = QueryPiece.new(:order => sort_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
+    sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit
     query_piece.to_sql

@@ -24,36 +24,46 @@ class Query < ActiveRecord::Base
     self.data = {}
   end
   
-  # TODO - remove any defined select/sort fields not included in the table includes
-  def garbage_collect!
-    
-  end
-  
-  def tables
-    data[:tables]||=[]
-  end
-  
-  def fields
-    data[:fields]||= Exportables::ExportableModel.models.inject({}) do | hash, model|
-      hash[model.exportable_name] = []
-      hash
-    end
-  end
-  
-  def fields=(value)
-    data[:fields] = value
-  end
-  
-  def tables=(value)
-    data[:tables] = value
-  end
-  def conditions
-    data[:conditions]||=[]
-  end
+  # def tables
+  #   data[:tables]||=[]
+  # end
+  # 
+  # def fields
+  #   data[:fields]||= Exportables::ExportableModel.models.inject({}) do | hash, model|
+  #     hash[model.exportable_name] = []
+  #     hash
+  #   end
+  # end
+  # 
+  # def fields=(value)
+  #   data[:fields] = value
+  # end
+  # 
+  # def tables=(value)
+  #   data[:tables] = value
+  # end
+  # 
+  # def orderings=(value)
+  #   data[:orderings] = value
+  # end
+  # 
+  # def conditions
+  #   data[:conditions]||=[]
+  # end
   
   def query_builder
-    query_builder = QueryBuilder.new
-    # TODO - finish here
+    qb = QueryBuilder.new
+    
+    data.each_pair do |table, fields|
+      qb.add_tables table
+      
+      fields.each_pair do |field, options|
+        qb.add_fields table => field
+        qb.add_order({table => field}, options[:order]) unless options[:order].blank?
+      end
+    end
+    
+    qb
   end
   
   def query

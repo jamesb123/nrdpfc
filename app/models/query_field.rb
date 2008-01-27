@@ -19,4 +19,8 @@ class QueryField
   def select_sql
     table.select_sql(name)
   end
+  
+  def title
+    name.to_s.titleize
+  end
 end

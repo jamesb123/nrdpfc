@@ -1,40 +1,128 @@
 <h1>Query</h1>
 
-<ul>
-<% remote_form_for :query, :url => {:action => "show" }, :update => "results_output" do %>
+
+<% remote_form_for :query, :url => {:action => "show" }, :indicate => "query_submit_button", :update => "results_output" do %>
+<ul id='query_field_selector'>
   <% Exportables::ExportableModel.models.each do |model| 
     model_name = model.exportable_name
-    checked = @query.tables.include?(model_name)
+    # checked = @query.tables.include?(model_name)
     fields_ul_id = "#{model_name}_fields"
     table_checkbox_id = "query_tables_#{model_name}"
     %>
     <li>
-      <%= check_box_tag "query[tables][]", model_name, checked, :id => table_checkbox_id %> <%= model_name %>
-      <ul id="<%= fields_ul_id %>" style="<%= 'display: none' unless checked%>">
+      <%= link_to_function(model_name.titleize, "toggle_section('#{model_name}')") %>
+      <ul id="<%= fields_ul_id %>" style="display: none">
           <li>
-            <%= check_box_tag("", "", false, :onchange => "go_select_all(this);" ) %> - All -
+            - All -
           </li>
         <% model.exportable_non_id_fields.each do |field| %>
           <li>
-            <%= check_box_tag("query[fields][#{model_name}][]", field, @query.fields[model_name].include?(field) ) %> <%= field %>
+            <%= link_to_remote(field.titleize, :url => {:action => "add_field", :model => model_name, :field => field}) %>
           </li>
         <% end %>
       </ul>
     </li>    
     <script language='javascript'>
-      new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= model_name %>'");
+      // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= model_name %>'");
     </script>
   <% end %>
   
-  <%= submit_tag "Go" %>
-<% end %>
+  <table id='selected_fields_entries_table'>
+    <thead>
+      <tr>
+        <th>Model Name</th>
+        <th>Field Name</th>
+        <th>Sort</th>
+        <th>Filter</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="selected_fields_entries">
+    </tbody>
+  </table>
+  <% indicated_div "query_submit_button" do %>
+    <%= submit_tag "Go" %>
+  <% end %>
 </ul>
+<% end %>
 
 <script language='javascript'>
   function go_select_all(this_cb)
   {
     $(this_cb).up('ul').getElementsBySelector('input[type=checkbox]').each(function(cb) { cb.checked = this_cb.checked });    
   }
+  
+  function toggle_section(model_name)
+  {
+    var fields_ul_id = model_name + "_fields";
+    
+    $$("ul#query_field_selector > li > ul").each(function(ul) {
+      if (ul.id == fields_ul_id) { new Effect.BlindDown(ul, { duration: 0.5 }); return false; }
+      if (ul.visible()) new Effect.BlindUp(ul);
+    });
+  }
+
+ Sorter = Class.create();
+ Sorter.prototype = {
+   initialize: function(table, column_classes) {
+     this.table = $(table);
+     this.column_classes = column_classes
+   },
+   get_rows: function() {
+     return this.table.getElementsBySelector('tr');
+   },    
+   do_sort: function() {
+     if(this.get_rows().length <= 1) return true;
+
+     var result;
+     var rows = this.get_rows();
+     do {
+       var sorted = true;
+       for (x=0; x<= rows.length - 2; x++) {
+
+         var row1 = rows[x]
+         var row2 = rows[x+1];
+         if (!row2) continue;
+         result = this.compare_rows(row1, row2);
+         switch(result) {
+           case 0:
+             rows.splice(x+1, 1);
+             row2.remove();
+             sorted = false;
+             break;
+           case 1:
+             rows[x] = row2;
+             rows[x+1] = row1;
+             sorted = false;
+             break;
+         }
+       }
+     } while (! sorted);
+
+     that = this;
+     rows.each(function(r) { r.remove()});
+     rows.each(function(r) { that.table.appendChild(r)});
+   },
+   compare_rows: function(r1, r2) {
+     var result = 0;
+     this.column_classes.each(function(c) {
+       v1 = r1.down("." + c).innerHTML;
+       v2 = r2.down("." + c).innerHTML;
+       if (v1 != v2)
+       {
+         if (v1 > v2) 
+           { result = 1; throw $break; }
+         else
+           { result = -1; throw $break; }        
+         end
+       }
+     });
+     return result;
+   }
+ }
+
+   s = new Sorter('selected_fields_entries', ['model_name_column', 'field_name_column'])
+   s.do_sort();
 </script>
 
 <div id="results_output">

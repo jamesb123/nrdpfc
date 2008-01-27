@@ -11,7 +11,7 @@
       <% @results.each do |result| %>
         <tr>
           <% @query_builder.select_field_aliases.each do |select_field_alias| %>
-            <td><%= result[select_field_alias]%></td>
+            <td><%= result[select_field_alias] %></td>
           <% end %>
         </tr>
       <% end %>

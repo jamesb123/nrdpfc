@@ -56,10 +56,10 @@ class QueryPiece
     q << "#{join * "\n"}\n" unless join.blank?
     q << "WHERE " + (where.map{ |w| "(#{w})" } * " AND ") + "\n" unless where.blank?
     q << "HAVING " + (having.map{ |h| "(#{h})" } * " AND ") + "\n" unless having.blank?
-    q << "LIMIT #{limit}\n" if limit
     
     # q << "GROUP BY " + pieces[:group]*", ") unless pieces[:group].blank?
     q << "ORDER BY #{order * ', '}\n" unless order.blank?
+    q << "LIMIT #{limit}\n" if limit
     q
   end
   

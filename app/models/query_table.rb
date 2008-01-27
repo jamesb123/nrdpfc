@@ -27,6 +27,10 @@ class QueryTable
     parent.children[@name] = self if parent
   end
   
+  def title
+    name.to_s.titleize
+  end
+  
   def association_names
     model.exportable_reflections.keys.map(&:to_s).sort
   end
@@ -58,6 +62,8 @@ class QueryTable
   end
   
   def add_field(name)
+    name = name.to_sym
+    fields.each{ |f| return f if f.name == name }
     # TODO - add check for field to make sure it's valid
     new_field = QueryField.new(name, :table => self)
     fields << new_field

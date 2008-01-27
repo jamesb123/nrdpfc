@@ -8,6 +8,11 @@ class QueryController < ApplicationController
     
   end
   
+  def add_field
+    @query_table = QueryTable.new(params[:model])
+    @query_field = @query_table.add_field(params[:field])
+  end
+  
   def new
   end
   
@@ -18,8 +23,8 @@ class QueryController < ApplicationController
   end
   
   def show
-    @query = Query.new(params[:query])
-    @query_builder = QueryBuilder.new(@query.data)
+    @query = Query.new(:data => params[:data])
+    @query_builder = @query.query_builder
     @limit = 100
     @query_builder.limit = @limit
     @results = Query.connection.select_all(@query_builder.to_sql)

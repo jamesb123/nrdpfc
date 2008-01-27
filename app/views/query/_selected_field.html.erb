@@ -1,0 +1,11 @@
+    <tr>
+      <td class="model_name_column"><%= query_table.title %></td>
+      <td class="field_name_column"><%= query_field.title %></td>
+      <td><%= select_tag "data[#{query_table.name}][#{query_field.name}][order]", options_for_select([["None", ""], ["Ascending", "ASC"], ["Descending", "DESC"]]) %></td>
+      <td><%= select_tag "data[#{query_table.name}][#{query_field.name}][filter][operator]", options_for_select([""] + ['<', '<=', 'not =', '=', '>', '>=', 'not in', 'in'])%> 
+          <%= text_field_tag "data[#{query_table.name}][#{query_field.name}][filter][value]", "" %></td>
+      <td>
+        <%= link_to_function "Remove", "$(this).up('tr').remove();" %>
+        <%= hidden_field_tag "data[#{query_table.name}][#{query_field.name}][select]", "true" %>
+      </td>
+    </tr>

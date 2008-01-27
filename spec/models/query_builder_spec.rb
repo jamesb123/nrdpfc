@@ -66,8 +66,8 @@ describe QueryBuilder do
         :organisms => %w[nea], 
         :dna_results => %w[extraction_method]
       )
-      @query_builder.add_sort("samples_organism_code", :desc)
-      @query_builder.add_sort("organisms_nea", :asc)
+      @query_builder.add_order("samples_organism_code", :desc)
+      @query_builder.add_order("organisms_nea", :asc)
     end
     
     it "should add fields should add" do

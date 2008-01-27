@@ -13,8 +13,46 @@ describe Query do
     @query.data.should == {}
   end
   
-  it "should default fields to a hash indexed with each table name" do
-    @query.fields["organisms"].should == []
-  end
   
+  describe "when building a QueryBuilder" do
+    before(:each) do
+      @query.data = {
+        :dna_results => {
+          :barcode => {
+            :select => "true",
+            :order => "",
+            :filter => { :operator => "=", :value => "12345" }
+          },
+          :plate => {
+            :select => "true",
+            :order => "ASC", 
+            :filter => { :operator => "",  :value => "" }
+          }
+        },
+        :organisms => {
+          :comment => {
+            :select => "true"
+          }
+        }
+      }
+
+      @query_builder = @query.query_builder
+    end
+    
+    it "should include all referenced tables" do
+      included_tables = @query_builder.tables.map{|key, table| key.to_s }
+      included_tables.should include("dna_results")
+      included_tables.should include("organisms")
+    end
+    
+    it "should include all referenced fields" do
+      @query_builder.select_field_aliases.map(&:to_s).sort.should == %w[dna_results_barcode dna_results_plate organisms_comment]
+    end
+    
+    it "should exclude empty orderings" do
+      @query_builder.order_fields.should == [["dna_results_plate", "ASC"]]
+    end
+    
+    it "should exclude empty filterings" 
+  end
 end
