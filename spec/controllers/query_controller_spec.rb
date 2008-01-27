@@ -16,6 +16,35 @@ describe QueryController do
     end
   end
   
+  describe "when posting to download" do
+    before(:each) do
+      post :download_csv, :data => { 
+        :dna_results => {
+          :barcode => { :select => "true" }
+        },
+        :organisms => {
+          :comment =>       { :select => "true" },
+          :organism_code => { :select => "true", :filters => {:operator => [">", "<"], :value => ["1", "1000"]} }
+        }
+      }
+      
+      @query = assigns[:query]
+      @query_builder = assigns[:query_builder]
+      @results = assigns[:results]
+      @abs_filename = assigns[:abs_filename]
+      
+      @data = FasterCSV.parse(File.read(@abs_filename))
+    end
+      
+    after(:each) do
+      FileUtils.rm_f(@abs_filename)
+    end
+    
+    it "should store the titles at the top" do
+      @data[0].should == ["Dna Results Barcode", "Organisms Organism Code", "Organisms Comment"]
+    end
+  end
+  
   describe "when posting to show" do
     
     integrate_views

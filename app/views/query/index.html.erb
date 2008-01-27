@@ -1,32 +1,35 @@
 <h1>Query</h1>
 
 
-<% remote_form_for :query, :url => {:action => "show" }, :indicate => "query_submit_button", :update => "results_output" do %>
-<ul id='query_field_selector'>
-  <% Exportables::ExportableModel.models.each do |model| 
-    table_name = model.exportable_name
-    # checked = @query.tables.include?(model_name)
-    fields_ul_id = "#{table_name}_fields"
-    table_checkbox_id = "query_tables_#{table_name}"
-    %>
-    <li>
-      <%= link_to_function(table_name.titleize, "toggle_section('#{table_name}')") %>
-      <ul id="<%= fields_ul_id %>" style="display: none">
-          <li>
-            - All -
-          </li>
-        <% model.exportable_non_id_fields.each do |field| %>
-          <li>
-            <%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>    
-    <script language='javascript'>
-      // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= table_name %>'");
-    </script>
-  <% end %>
+<% content_tag :div, :id => "query_form" do %>
+  <ul id='query_field_selector'>
+    <% Exportables::ExportableModel.models.each do |model| 
+      table_name = model.exportable_name
+      # checked = @query.tables.include?(model_name)
+      fields_ul_id = "#{table_name}_fields"
+      table_checkbox_id = "query_tables_#{table_name}"
+      %>
+      <li>
+        <%= link_to_function(table_name.titleize, "toggle_section('#{table_name}')") %>
+        <ul id="<%= fields_ul_id %>" style="display: none">
+            <li>
+              - All -
+            </li>
+          <% model.exportable_non_id_fields.each do |field| %>
+            <li>
+              <%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>    
+      <script language='javascript'>
+        // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= table_name %>'");
+      </script>
+    <% end %>
+  </ul>
   
+  <hr />
+  <h2>Selected Fields</h2>
   <table id='selected_fields_entries_table'>
     <thead>
       <tr>
@@ -41,9 +44,19 @@
     </tbody>
   </table>
   <% indicated_div "query_submit_button" do %>
-    <%= submit_tag "Go" %>
+    <%= content_tag :button, "Preview", :onclick => 
+          remote_function(
+            :url => {:action => "show" }, 
+            :submit => "query_form", 
+            :indicate => "query_submit_button", 
+            :update => "results_output", 
+            :html => {:id => "query_form"}) %>
+    <%= content_tag :button, "Download (csv)", :onclick => 
+          remote_function(
+            :url => {:action => "download_csv"}, 
+            :submit => "query_form", 
+            :indicate => "query_submit_button") %>
   <% end %>
-</ul>
 <% end %>
 
 <script language='javascript'>

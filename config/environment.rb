@@ -67,4 +67,5 @@ if RAILS_ENV=='test'
 end
 
 require "current_project_helpers"
+require "fastercsv"
 load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb" # manually require this because we want to inject some more code into the model that comes with the dynamic_attribute plugin.

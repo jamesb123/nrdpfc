@@ -30,6 +30,27 @@ class QueryController < ApplicationController
   def update
   end
   
+  def download_csv
+    @query = Query.new(:data => params[:data])
+    @query_builder = @query.query_builder
+    @results = Query.connection.select_all(@query_builder.to_sql)
+    uniq_id = (rand * 10000000).to_i
+    
+    @filename = "/download/results_#{uniq_id}.csv"
+    @abs_filename = "#{RAILS_ROOT}/public#{@filename}"
+    FasterCSV.open(@abs_filename, "w") do |csv|
+      csv << @query_builder.select_field_aliases.map(&:titleize)
+      
+      @results.each do |result|
+        csv << @query_builder.select_field_aliases.map{ |col| result[col]}
+      end
+    end
+    
+    render :update do |page|
+      page << "window.open('#{@filename}')"
+    end
+  end
+  
   def show
     @query = Query.new(:data => params[:data])
     @query_builder = @query.query_builder
