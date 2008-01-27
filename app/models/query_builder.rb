@@ -52,17 +52,19 @@ class QueryBuilder
     }
   end
   
+  def add_filter(full_field_name, operation, value)
+    full_field_name = translate_table_field_hash(full_field_name) if full_field_name.is_a?(Hash)
+    filterings << [full_field_name, operation, value]
+  end
+  
   # full field name is {table}.{field}
   def add_order(full_field_name, asc_desc = :asc)
-    if full_field_name.is_a?(Hash)
-      table_name = full_field_name.keys.first
-      field_name = full_field_name[table_name]
-      
-      add_tables table_name
-      field = tables[table_name.to_sym].add_field(field_name)
-      full_field_name = field.field_alias
-    end
+    full_field_name = translate_table_field_hash(full_field_name) if full_field_name.is_a?(Hash)
     order_fields << [full_field_name, asc_desc]
+  end
+  
+  def filterings
+    @filterings ||= []
   end
   
   def default_parent_table
@@ -103,10 +105,24 @@ class QueryBuilder
     query_piece += includes.joins
     
     fields.each{|f| query_piece += f.select_sql }
-
+    filtering_piece = QueryPiece.new(:having => filterings.map{|column, operation, value| Where("#{column} #{operation} ?", value) })
+    query_piece += filtering_piece
     sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit
     query_piece.to_sql
   end
+  
+  #
+  ##
+  ###
+  protected
+    def translate_table_field_hash(hash)
+      table_name = hash.keys.first
+      field_name = hash[table_name]
+      
+      add_tables table_name
+      field = tables[table_name.to_sym].add_field(field_name)
+      field.field_alias   
+    end
 end
