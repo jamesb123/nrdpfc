@@ -48,7 +48,7 @@ class QueryController < ApplicationController
     end
     
     render :update do |page|
-      page << "window.open('#{@filename}')"
+      page.replace_html "download_link", :partial => "download_link" 
     end
   end
   
