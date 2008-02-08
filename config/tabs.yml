@@ -13,10 +13,10 @@
   - label: "Sample Non-Tissues(D)"
     controller: "sample_non_tissues"
 - label: "DNA"  
-  controller: "dna_results"
+  	controller: "dna_results"
+- label: "mtDNA"  
+  	controller: "mt_dnas"
   sub_tabs:
-  - label: "mt DNA"
-    controller: "mt_dnas"
   - label: "mtDNA Final Horizontals"
     controller: "mt_dna_final_horizontals"
   - label: "MT DNA SEQ"
