@@ -19,6 +19,7 @@ class Mhc < ActiveRecord::Base
   belongs_to :sample
   
   after_save :flag_project_for_update
+  extend Exportables::ExportableModel
   
   def flag_project_for_update
     Project.flag_for_update(self.project_id)

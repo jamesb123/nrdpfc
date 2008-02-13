@@ -10,6 +10,8 @@
 class ExtractionMethod < ActiveRecord::Base
   has_many :samples
   
+  extend Exportables::ExportableModel
+  
   def to_label 
     "#{extraction_method_name}" 
   end

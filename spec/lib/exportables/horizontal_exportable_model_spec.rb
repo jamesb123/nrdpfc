@@ -36,7 +36,7 @@ describe Exportables::HorizontalExportableModel, "in MicrosatelliteHorizontal" d
   end
   
   it "should generate sql select elements for columns, with the table alias" do
-    MicrosatelliteHorizontal.exportable_select("description").select[0].should == "`microsatellite_horizontals`.`description` as `microsatellite_horizontal_description`"
+    MicrosatelliteHorizontal.exportable_select("description").select[0].should == "`microsatellite_horizontals_492194273`.`description` as `microsatellite_horizontals_description`"
   end
   
   it "should generate a join properly when communicating with this type of model (using the proper table name)" do

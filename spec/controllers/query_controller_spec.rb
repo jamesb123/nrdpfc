@@ -104,7 +104,9 @@ describe QueryController do
     end
     
     it "should add a field with numeric filters" do
-      response.should have_tag("select[name=?]", "data[dna_results][pico_green_conc][filters][operator]") do |r|
+      post :add_filter, :table => "dna_results", :field => "pico_green_conc"
+      
+      response.should have_tag("select[name=?]", "data[dna_results][pico_green_conc][filters][operator][]") do |r|
         ['<', '<=', '<>', '=', '>', '>='].each do |operator|
           r.should have_tag("option[value=?]", h(operator))
         end

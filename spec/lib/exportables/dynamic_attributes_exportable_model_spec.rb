@@ -30,7 +30,7 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   end
   
   it "should return a list of all exportable reflections" do
-    Organism.exportable_reflections.keys.map(&:to_s).sort.should == %w[project samples]
+    Organism.exportable_reflections.keys.map(&:to_s).sort.should == ["project", "sample_non_tissues", "samples"] 
   end
   
   it "should return a hash of it's data types" do
@@ -45,7 +45,7 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   end
   
   it "should generate sql select elements for columns, with the table alias" do
-    Organism.exportable_select("description").select.should == ["`organisms`.`description` as `organism_description`"]
+    Organism.exportable_select("description").select.should == ["`organisms`.`description` as `organisms_description`"]
   end
   
   it "should generate sql select elements for dynamic columns (integer_value), with the table alias" do

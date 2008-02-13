@@ -55,16 +55,15 @@
             :indicate => "query_submit_button", 
             :update => "results_output", 
             :html => {:id => "query_form"}) %>
-    <%= content_tag :button, "Download (csv)", :onclick => 
-          remote_function(
-            :url => {:action => "download_csv"}, 
-            :submit => "query_form", 
-            :indicate => "query_submit_button") %>
-    <span id='download_link'/>
+    <%= content_tag :button, "Download (csv)", :onclick => "download_csv();" %>
   <% end %>
 <% end %>
 
 <script language='javascript'>
+  function download_csv() {
+    window.open("/query/download_csv?" + Form.serialize("query_form"));
+  }
+  
   function go_select_all(this_cb)
   {
     $(this_cb).up('ul').getElementsBySelector('input[type=checkbox]').each(function(cb) { cb.checked = this_cb.checked });    

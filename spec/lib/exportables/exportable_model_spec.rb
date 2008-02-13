@@ -18,7 +18,7 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should return a list of all exportable reflections" do
-    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "mhc_final_horizontals", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "organisms", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs"]
+    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs"]
   end
   
   it "should return a hash of it's data types" do

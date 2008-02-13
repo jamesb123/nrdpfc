@@ -11,7 +11,7 @@
       <% @results.each do |result| %>
         <tr>
           <% @query_builder.select_field_aliases.each do |select_field_alias| %>
-            <td><%= result[select_field_alias] %></td>
+            <td><%= (r = result[select_field_alias]).blank? ? "&nbsp;-&nbsp;" : r %></td>
           <% end %>
         </tr>
       <% end %>

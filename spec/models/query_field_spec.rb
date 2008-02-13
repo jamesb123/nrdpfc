@@ -15,7 +15,7 @@ describe QueryField do
     end
   
     it "should retrieve valid select_sql using the given model" do
-      @query_field.select_sql.select.should == ["`projects`.`name` as projects_name"]
+      @query_field.select_sql.select.should == ["`projects`.`name` as `projects_name`"]
     end
   
     it "should return sort sql if appropriate" # ???
@@ -32,7 +32,7 @@ describe QueryField do
     end
     
     it "should render select_sql using the model's field renderer" do
-      @query_field.select_sql.select.should == ["`microsatellite_horizontals_#{@project.id}`.`organism_code` as microsatellite_horizontals_organism_code"]
+      @query_field.select_sql.select.should == ["`microsatellite_horizontals_#{@project.id}`.`organism_code` as `microsatellite_horizontals_organism_code`"]
     end
   end
   
@@ -45,11 +45,11 @@ describe QueryField do
     end
     
     it "should render select_sql using the model's field renderer" do
-      @nea_query_field.select_sql.should == "max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:nea).id}, integer_value, null) ) as organisms_nea"
+      @nea_query_field.select_sql.select.should == ["`organism_dynamic_attribute_nea`.`integer_value` as organisms_nea"]
     end
     
     it "should render select_sql using the model's field renderer" do
-      @notes_query_field.select_sql.should == "max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
+      @notes_query_field.select_sql.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as organisms_notes"] #{}"max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
     end
     
     

@@ -47,9 +47,7 @@ class QueryController < ApplicationController
       end
     end
     
-    render :update do |page|
-      page.replace_html "download_link", :partial => "download_link" 
-    end
+    redirect_to(@filename)
   end
   
   def show

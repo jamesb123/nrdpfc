@@ -8,7 +8,8 @@
 #
 
 class TissueType < ActiveRecord::Base
-
+  extend Exportables::ExportableModel
+  
   has_many :samples
 
   def to_label

@@ -36,6 +36,6 @@ EOF
   end
   
   it "should thrown an error when passing invalid keys" do
-    lambda { QueryPiece.new(:sort => "") }.should raise_error(ArgumentError, "Invalid key: :sort")
+    lambda { QueryPiece.new(:sort => "") }.should raise_error
   end
 end

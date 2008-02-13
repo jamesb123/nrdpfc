@@ -12,7 +12,7 @@ describe QueryTable do
     end
     
     it "should return select_sql for a specified field" do
-      @query_table.select_sql("name").select.should == ["`projects`.`name` as `project_name`"]
+      @query_table.select_sql("name").select.should == ["`projects`.`name` as `projects_name`"]
       
     end
   
@@ -44,7 +44,7 @@ describe QueryTable do
     end
     
     it "should return exportable associations" do
-      @query_table.association_names.should == ["dna_results", "microsatellite_horizontals", "organism", "project"]
+      @query_table.association_names.should == ["dna_results", "extraction_method", "final_genders", "final_mhcs", "genders", "locality_type", "mhcs", "microsatellite_horizontals", "organism", "project", "shippingmaterial", "tissue_type"]
     end
     
     it "should recurse joins" do

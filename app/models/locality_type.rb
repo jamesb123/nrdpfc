@@ -10,6 +10,7 @@
 class LocalityType < ActiveRecord::Base
   
   has_many :samples
+  extend Exportables::ExportableModel
   
   def to_label
     "#{locality_type_name}"

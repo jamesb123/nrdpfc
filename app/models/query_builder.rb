@@ -4,7 +4,7 @@ class QueryBuilder
   def initialize(options = {})
     add_tables(*options[:tables])       if options[:tables]
     add_fields(options[:fields])       if options[:fields]
-    add_order  (*options[:order_fields])  if options[:order_fields]
+    add_order(*options[:order_fields])  if options[:order_fields]
   end
   
   def add_tables(*table_names)

@@ -9,12 +9,14 @@
 
 class Shippingmaterial < ActiveRecord::Base
 
+  extend Exportables::ExportableModel
+  
   has_many :samples
 
   def to_label
     "#{medium_short_desc}"
   end
-
+  
   # def security_settings
   #  current_user.authorization_display_for self.project
   # end
