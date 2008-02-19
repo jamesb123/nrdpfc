@@ -7,6 +7,7 @@ class OrganismsController < ApplicationController
   cattr_accessor :action_links
   
   active_scaffold  :organisms do |config|
+    list.sorting = {:organism_code => 'ASC'}  
     config.columns.exclude :project
     config.columns.exclude :security_settings
     config.columns[:comment].label = "Comments"

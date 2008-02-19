@@ -87,8 +87,9 @@ class Sample < ActiveRecord::Base
   end
   
   def to_label 
-    "Code:#{organism_code} Sample:#{org_sample}" 
+    "Org.Code:#{organism_code} Org.Sample:#{org_sample}" 
   end
+
   
   def security_settings
     current_user.authorization_display_for self.project

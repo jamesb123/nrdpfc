@@ -1,7 +1,10 @@
 class YChromosomesController < ApplicationController
   layout "tabs"
   active_scaffold :y_chromosomes do |config|
+    config.label = "y Chromosome"
     config.columns = [:project, :sample, :locus, :haplotype, :finalResult]
+    config.list.columns.exclude :project
+    list.sorting = {:sample => 'ASC'}
     
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample

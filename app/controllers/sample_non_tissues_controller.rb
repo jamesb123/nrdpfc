@@ -8,9 +8,10 @@ class SampleNonTissuesController < ApplicationController
   active_scaffold :sample_non_tissues do |config|
   
     config.columns = SampleNonTissuesController::SNT_BASE_ATTRIBUTE
-    
-    config.create.columns.exclude :id, :security_settings
-    config.update.columns.exclude :id, :security_settings
+    list.sorting = {:field_code => 'ASC'}  
+#    config.list.columns.exclude :id, :project, :security_settings
+    config.create.columns.exclude :id, :project, :security_settings
+    config.update.columns.exclude :id, :project, :security_settings
     
     # config.columns[:sample_non_tissue_code].label = "Org."
   end  

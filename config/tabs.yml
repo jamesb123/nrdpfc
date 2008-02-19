@@ -19,7 +19,7 @@
   sub_tabs:
   - label: "mtDNA Final Horizontals"
     controller: "mt_dna_final_horizontals"
-  - label: "MT DNA SEQ"
+  - label: "mtDNA SEQ"
     controller: "mt_dna_seqs"
 - label: "Genders"
   controller: "genders"

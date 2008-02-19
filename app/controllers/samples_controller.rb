@@ -9,7 +9,7 @@ class SamplesController < ApplicationController
     :submitter_comments, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :type_lat_long, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :shippingmaterial, :locality_type, :tissue_type,:security_settings]  
-  
+    list.sorting = {:organism_code => 'ASC'}  
     config.create.columns.exclude :security_settings, :project
     config.update.columns.exclude :security_settings, :project
     config.list.columns.exclude  :project

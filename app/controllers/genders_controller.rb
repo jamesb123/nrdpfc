@@ -4,7 +4,8 @@ class GendersController < ApplicationController
     config.columns = [:project, :sample, :gender, :locus, :wellNum, :gelNum, :finalResult]
     config.create.columns.exclude :project, :sample, :security_settings
     config.update.columns.exclude :project, :sample, :security_settings
-
+    config.list.columns.exclude :project
+    list.sorting = {:sample => 'ASC'}
     config.columns[:sample].label = "Sample Info"  
     config.columns[:finalResult].form_ui = :checkbox
   end

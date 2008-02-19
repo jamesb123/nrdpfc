@@ -5,11 +5,12 @@ class DnaResultsController < ApplicationController
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
       :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
+     config.list.columns.exclude :project
      config.create.columns.exclude :sample, :project
-     config.update.columns.exclude :sample, :project
-    # config.list.columns.exclude :project
-    
-    config.columns[:sample].label = "Sample Info"  
+     config.update.columns.exclude  :project
+
+    list.sorting = {:sample => 'ASC'}
+    config.columns[:sample].label = "Org.Code Org.Sample"  
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
     config.columns[:fluoro_conc].label = "Flouro"
