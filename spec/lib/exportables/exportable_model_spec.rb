@@ -41,6 +41,10 @@ describe Exportables::ExportableModel, "in Project" do
     Sample.exportable_join(:project).join.should == ["LEFT JOIN projects ON (projects.id = samples.project_id)"]
   end
   
+  it "should tie itself to all possible tables" do
+    Project.exportable_join(:samples, [:organisms]).join.should == ["LEFT JOIN samples ON (projects.id = samples.project_id AND organisms.id = samples.organism_id)"]
+  end
+  
   it "should store all exportable models" do
     exportable_models = Exportables::ExportableModel.models.map(&:to_s)
     exportable_models.should include('Project')

@@ -99,18 +99,31 @@ module Exportables::ExportableModel
     end
   end
   
-  def exportable_join(name)
+  def exportable_join(name, *other_tables)
+    other_tables = other_tables.flatten
+    criteria = []
     r = exportable_reflections[name]
-    raise ArgumentError, "Association doesn't exist: #{name}" if r.nil?
-    r.class_name.constantize.exportable_join_from_table(self, r)
+    raise ArgumentError, "Association #{name} doesn't exist on #{self.to_s}" if r.nil?
+    remote_class = r.class_name.constantize
+    criteria << remote_class.exportable_join_criteria(self, r)
+    
+    # check for any other joins that this table can link to - we want to make our queries as tight as possible
+    other_relections = remote_class.exportable_reflections.values
+    other_tables.each do |table|
+      table = table.to_s
+      reflection = other_relections.find{ |r| r.class_name.constantize.table_name == table && r.options[:conditions].nil? }
+      next if reflection.nil?
+      criteria << r.class_name.constantize.exportable_join_criteria(remote_class, reflection)
+    end
+    QueryPiece.new :join => "LEFT JOIN #{remote_class.exportable_table_name} ON (#{criteria.uniq * ' AND '})"
   end
   
-  def exportable_join_from_table(parent_class, association)
+  def exportable_join_criteria(parent_class, association)
     case association.macro
     when :has_many, :has_one
-      QueryPiece.new :join => "LEFT JOIN #{exportable_table_name} ON (#{parent_class.exportable_table_name}.id = #{exportable_table_name}.#{association.primary_key_name})"
+      "#{parent_class.exportable_table_name}.id = #{exportable_table_name}.#{association.primary_key_name}"
     when :belongs_to
-      QueryPiece.new :join => "LEFT JOIN #{exportable_table_name} ON (#{exportable_table_name}.id = #{parent_class.exportable_table_name}.#{association.primary_key_name})"
+      "#{exportable_table_name}.id = #{parent_class.exportable_table_name}.#{association.primary_key_name}"
     end
   end
   

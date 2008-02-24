@@ -45,13 +45,20 @@ class QueryTable
     )
   end
   
-  def joins
+  def root
+    parent.nil? ? self : parent.root
+  end
+  
+  def all_table_names
+    ([self.name.to_s] + children.values.map { |child| child.all_table_names }).flatten
+  end
+  
+  def joins(query_tables_included = [name])
     query_piece = QueryPiece.new
-    
-    # TODO - recurse
     children.each{|association_name, query_table|
-      query_piece += model.exportable_join(association_name)
-      query_piece += query_table.joins
+      query_piece += model.exportable_join(association_name, query_tables_included)
+      query_tables_included << query_table
+      query_piece += query_table.joins(query_tables_included)
     }
     
     query_piece

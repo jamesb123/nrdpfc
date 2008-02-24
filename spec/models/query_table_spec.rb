@@ -29,6 +29,7 @@ describe QueryTable do
     it "should return all tables in a flattened array" do
       @query_table.add_association(:samples).add_association(:dna_results)
       @query_table.flatten.keys.map(&:to_s).sort.should == %w[dna_results project samples]
+      @query_table.all_table_names.should == %w[project samples dna_results]
     end
   end
   
@@ -54,8 +55,8 @@ describe QueryTable do
       organisms_table.model.should == Organism
       
       @query_table.joins.join.should == [
-        "LEFT JOIN projects ON (projects.id = samples.project_id)",
-        "LEFT JOIN organisms ON (projects.id = organisms.project_id)"
+        "LEFT JOIN projects ON (projects.id = samples.project_id)", 
+        "LEFT JOIN organisms ON (projects.id = organisms.project_id AND organisms.id = samples.organism_id)"
       ]
     end
   
