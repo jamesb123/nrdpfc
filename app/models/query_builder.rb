@@ -52,10 +52,9 @@ class QueryBuilder
     }
   end
   
-  def add_filter(full_field_name, operation, value)
+  def add_filter(tablename, field_name, operation, value)
     return false if operation.strip.blank?
-    full_field_name = translate_table_field_hash(full_field_name) if full_field_name.is_a?(Hash)
-    filterings << [full_field_name, operation, value]
+    filterings << [tablename, field_name, operation, value]
   end
   
   # full field name is {table}.{field}
@@ -106,8 +105,9 @@ class QueryBuilder
     query_piece += includes.joins
     
     fields.each{|f| query_piece += f.select_sql }
-    filtering_piece = QueryPiece.new(:having => filterings.map{|column, operation, value| Where("#{column} #{operation} ?", value) })
-    query_piece += filtering_piece
+    # TODO
+    filtering_pieces = filterings.map{|tablename, column, operation, value| tables[tablename.to_sym].model.exportable_filter(column, operation, value)  }
+    query_piece = filtering_pieces.inject(query_piece) {|qp, other| qp + other }
     sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit

@@ -19,6 +19,7 @@ class YChromosome < ActiveRecord::Base
   
   attr_accessor :y_chromosome
   
+  extend Exportables::ExportableModel
   
   def flag_project_for_update
     Project.flag_for_update(self.project_id)

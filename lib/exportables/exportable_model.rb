@@ -61,6 +61,13 @@ module Exportables::ExportableModel
     self.table_name
   end
   
+  def exportable_filter(field, operator, operand)
+    qp = QueryPiece.new
+    return(qp) if operator.strip.blank?
+    qp.where << Where("#{exportable_table_name}.#{field} #{operator} ?", operand).to_s
+    qp
+  end
+  
   def exportable_reflections
     Exportables::ExportableModel.load_all_models
     self.reflections.select_hash do |k, v|

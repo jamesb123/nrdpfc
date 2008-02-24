@@ -65,7 +65,7 @@ class Query < ActiveRecord::Base
           filters = options[:filters]
           filters[:operator].each_with_index do |op, index|
             value = filters[:value][index]
-            qb.add_filter({table => field}, op, value)
+            qb.add_filter(table, field, op, value)
           end
         end
       end

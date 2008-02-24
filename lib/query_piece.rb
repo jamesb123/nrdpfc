@@ -19,7 +19,7 @@ class QueryPiece
   end
   
   def +(other)
-    other = other.new(other) if other.is_a?(Hash)
+    other = new(other) if other.is_a?(Hash)
     raise ArgumentError, "Trying to sum up a QueryPiece with a non-QueryPiece object of type #{other.class} - #{other.inspect}" unless other.is_a?(QueryPiece)
     raise ArgumentError, "Both source and other have from attributes: #{self.from}, #{other.from})" if self.from && other.from
     

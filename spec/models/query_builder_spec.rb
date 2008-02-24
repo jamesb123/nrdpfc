@@ -128,21 +128,28 @@ describe QueryBuilder do
     end
     
     it "should filter on one column" do
-      @query_builder.add_filter({:microsatellite_horizontals  => :EV1Pma}, "=", "137")
+      @query_builder.add_filter("microsatellite_horizontals", "EV1Pma", "=", "137")
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 1
       results.first.should == {"microsatellite_horizontals_EV1Pma"=>"137", "microsatellite_horizontals_EV1Pmb"=>"137"}
     end
 
     it "should filter via and" do
-      @query_builder.add_filter({:microsatellite_horizontals  => :EV1Pma}, "=", "137")
-      @query_builder.add_filter({:microsatellite_horizontals  => :EV1Pma}, "=", "138")
+      @query_builder.add_filter("microsatellite_horizontals", "EV1Pma", "=", "137")
+      @query_builder.add_filter("microsatellite_horizontals", "EV1Pma", "=", "138")
+      results = Project.connection.select_all(@query_builder.to_sql)
+      results.length.should == 0
+    end
+    
+    it "should filter via and with symbols" do
+      @query_builder.add_filter(:microsatellite_horizontals, :EV1Pma, "=", "137")
+      @query_builder.add_filter(:microsatellite_horizontals, :EV1Pma, "=", "138")
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 0
     end
     
     it "should ignore filters with not operator" do
-      @query_builder.add_filter({:microsatellite_horizontals  => :EV1Pma}, "", "137")
+      @query_builder.add_filter("microsatellite_horizontals", "EV1Pma", "", "137")
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 2
       

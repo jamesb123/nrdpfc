@@ -18,7 +18,11 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should return a list of all exportable reflections" do
-    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs"]
+    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "mt_dnas", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs", "y_chromosomes"]
+  end
+  
+  it "should return a valid filter QueryPiece with a where clause" do
+    Project.exportable_filter("name", "=", "Whale Project").where.should == ["(projects.name = 'Whale Project')"]
   end
   
   it "should return a hash of it's data types" do
@@ -44,7 +48,7 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   describe "when finding shortest path" do
-    (Exportables::ExportableModel.models - [Project]).each do |model|        
+    (Exportables::ExportableModel.models - [Project]).each do |model|
       it "should find a path to #{model.table_name}" do
         Project.path_to_exportable_table(model.table_name).should_not be_nil
       end
@@ -53,6 +57,5 @@ describe Exportables::ExportableModel, "in Project" do
     it "should find the shortest path to dna_results" do
       Project.path_to_exportable_table('dna_results').should == [:samples, :dna_results]
     end
-    
   end
 end

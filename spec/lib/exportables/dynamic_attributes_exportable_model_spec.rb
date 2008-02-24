@@ -56,6 +56,14 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
     ]
   end
   
+  it "should generate a having clause for dynamic attributes" do
+    Organism.exportable_filter("nea", "=", "1").having.should == ["(organisms_nea = '1')"]
+  end
+  
+  it "should generate a where clause for non-dynamic attributes" do
+    Organism.exportable_filter("project_id", "=", "1").where.should == ["(organisms.project_id = '1')"]
+  end
+  
   it "should generate sql select elements for dynamic columns (text_value), with the table alias" do
     query_piece = Organism.exportable_select("notes")
     query_piece.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as organisms_notes"]

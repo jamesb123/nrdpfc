@@ -54,7 +54,7 @@ describe Query do
     
     it "should exclude empty filterings" do
       @query_builder.filterings.should == [
-        ["dna_results_barcode", "=", "12345"]
+        [:dna_results, :barcode, "=", "12345"]
       ]
     end
   end

@@ -6,7 +6,15 @@ module Exportables::DynamicAttributesExportableModel
   end
   
   def exportable_fields
-    self.columns.map(&:name) + dynamic_attributes.map(&:name)
+    non_dynamic_fields + dynamic_attribute_fields
+  end
+  
+  def non_dynamic_fields
+    self.columns.map(&:name)
+  end
+  
+  def dynamic_attribute_fields
+    dynamic_attributes.map(&:name)
   end
   
   # returns an array of strings
@@ -15,6 +23,18 @@ module Exportables::DynamicAttributesExportableModel
     @project_id = current_project.id
     @dynamic_attributes ||= DynamicAttribute.find(:all, :conditions => {:scoper_type => "Project", :scoper_id => current_project.id, :owner_type => self.to_s}, :order => "name" )
   end
+  
+  
+  def exportable_filter(field, operator, operand)
+    return super if non_dynamic_fields.include?(field.to_s)
+    
+    qp = QueryPiece.new
+    return(qp) if operator.strip.blank?
+    
+    qp.having << Where("#{table_name}_#{field} #{operator} ?", operand).to_s
+    qp
+  end
+  
   
   alias :exportable_column_types_hash_super :exportable_column_types_hash
   def exportable_column_types_hash
@@ -45,13 +65,18 @@ module Exportables::DynamicAttributesExportableModel
   protected
     def dynamic_attribute_join_statement(name)
       j_alias = "organism_dynamic_attribute_#{name}"
-      "LEFT JOIN dynamic_attribute_values as #{j_alias} ON (#{j_alias}.owner_type = 'Organism' and #{j_alias}.owner_id = organisms.id and #{j_alias}.dynamic_attribute_id = #{dynamic_attributes_hash[name].id})"
+      "LEFT JOIN dynamic_attribute_values as #{j_alias} ON (#{j_alias}.owner_type = '#{self.to_s}' and #{j_alias}.owner_id = organisms.id and #{j_alias}.dynamic_attribute_id = #{dynamic_attributes_hash[name].id})"
+    end
+    
+    def dynamic_attribute_source_field(column_name)
+      da = dynamic_attributes_hash[column_name.to_s]
+      dt = da.dynamic_type
+      dt.stored_in_field
     end
   
     def dynamic_attribute_select_statement(column_name)
-      da = dynamic_attributes_hash[column_name.to_s]
-      dt = da.dynamic_type
-      "`organism_dynamic_attribute_#{column_name}`.`#{dt.stored_in_field}` as organisms_#{column_name}"
+      source_field = dynamic_attribute_source_field(column_name)
+      "`organism_dynamic_attribute_#{column_name}`.`#{source_field}` as organisms_#{column_name}"
     end
   
     # returns an hash of string indexed DynamicAttribute models
