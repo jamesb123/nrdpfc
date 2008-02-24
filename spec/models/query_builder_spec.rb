@@ -54,10 +54,26 @@ describe QueryBuilder do
     end
   end
   
+  describe "case when it should link together" do
+    before(:each) do
+      @query_builder.add_tables "samples", "organisms"
+      @query_builder.add_fields(
+        :samples => ["organism_code"],
+        :organisms => ["organism_code"]
+      )
+    end
+    
+    it "should description" do
+      @query_builder.includes.joins.join.should == [
+        "LEFT JOIN samples ON (projects.id = samples.project_id)", 
+        "LEFT JOIN organisms ON (projects.id = organisms.project_id AND organisms.id = samples.organism_id)"
+      ]
+    end
+  end
   describe "simple case" do
     
     before(:each) do
-      @query_builder.add_tables "organisms", "dna_results"
+      @query_builder.add_tables "samples", "organisms", "dna_results"
       
       # @query_builder.add_include("samples/dna_results")
       # @query_builder.add_include("organisms")
@@ -77,7 +93,7 @@ describe QueryBuilder do
 
     it "should build sql should build executable sql" do
       results = Project.connection.select_all(@query_builder.to_sql)
-      results.length.should == 2
+      results.length.should == 1
       results[0].keys.sort.should == %w[dna_results_extraction_method organisms_nea samples_organism_code samples_tubebc]
     end    
     

@@ -30,6 +30,7 @@ class Project < ActiveRecord::Base
   has_many :y_chromosome_final_horizontals
   has_many :mhc_final_horizontals
   has_many :gender_final_horizontals
+  has_many :dna_results
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   has_many :mhc_seqs
   

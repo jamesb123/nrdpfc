@@ -75,7 +75,7 @@ describe QueryController do
       @query_builder.should_not be_nil
       query_tables_names = @query_builder.tables.keys
       
-      [:dna_results, :organisms, :projects, :samples].each do |table|
+      [:dna_results, :organisms, :projects].each do |table|
         query_tables_names.should include(table)
       end
       
@@ -86,8 +86,8 @@ describe QueryController do
       end
       
       @query_builder.filterings.should == [
-        ["organisms_organism_code", ">", "1"],
-        ["organisms_organism_code", "<", "1000"],
+        ["organisms", "organism_code", ">", "1"], 
+        ["organisms", "organism_code", "<", "1000"]
       ]
     end
     

@@ -12,6 +12,7 @@
 
 class YChromosomeSeq < ActiveRecord::Base
   belongs_to :sample
+  belongs_to :project
   
   extend Exportables::ExportableModel
 end

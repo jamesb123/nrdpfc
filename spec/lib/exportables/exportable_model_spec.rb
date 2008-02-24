@@ -18,7 +18,7 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should return a list of all exportable reflections" do
-    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "mt_dnas", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs", "y_chromosomes"]
+    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["dna_results", "gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "mt_dnas", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs", "y_chromosomes"]
   end
   
   it "should return a valid filter QueryPiece with a where clause" do
@@ -46,10 +46,23 @@ describe Exportables::ExportableModel, "in Project" do
   end
   
   it "should store all exportable models" do
-    exportable_models = Exportables::ExportableModel.models.map(&:to_s)
-    exportable_models.should include('Project')
-    exportable_models.should include('MicrosatelliteHorizontal')
+    exportable_models = Exportables::ExportableModel.models.map(&:to_s).sort.should == ["DnaResult", "ExtractionMethod", "Gender", "GenderFinalHorizontal", "LocalityType", "Mhc", "MhcFinalHorizontal", "MhcSeq", "MicrosatelliteHorizontal", "MtDna", "MtDnaFinalHorizontal", "MtDnaSeq", "Organism", "Project", "Project", "Sample", "Sample", "SampleNonTissue", "Shippingmaterial", "TissueType", "YChromosome", "YChromosomeFinalHorizontal", "YChromosomeSeq"]
   end
+  
+  it "should have reverse associations for all exportable_reflections" do
+    errors = []
+    Exportables::ExportableModel.models.each do |model|
+      model.exportable_reflections.values.each do |reflection|
+        has_reverse = reflection.class_name.constantize.exportable_reflections.values.any? do |reverse_reflection|
+          reverse_reflection.class_name == model.to_s
+        end
+        errors << "#{model.to_s}##{reflection.name} is missing reverse association on #{reflection.class_name}" unless has_reverse
+      end
+    end
+    
+    assert(errors.empty?, errors.uniq * "\n")
+  end
+  
   
   describe "when finding shortest path" do
     (Exportables::ExportableModel.models - [Project]).each do |model|
@@ -59,7 +72,7 @@ describe Exportables::ExportableModel, "in Project" do
     end
     
     it "should find the shortest path to dna_results" do
-      Project.path_to_exportable_table('dna_results').should == [:samples, :dna_results]
+      Project.path_to_exportable_table('dna_results').should == [:dna_results]
     end
   end
 end

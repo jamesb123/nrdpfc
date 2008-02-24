@@ -30,7 +30,7 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   end
   
   it "should return a list of all exportable reflections" do
-    Organism.exportable_reflections.keys.map(&:to_s).sort.should == ["project", "sample_non_tissues", "samples"] 
+    Organism.exportable_reflections.keys.map(&:to_s).sort.should == ["gender_final_horizontals", "mhc_final_horizontals", "mt_dna_final_horizontals", "project", "sample_non_tissues", "samples", "y_chromosome_final_horizontals"] 
   end
   
   it "should return a hash of it's data types" do

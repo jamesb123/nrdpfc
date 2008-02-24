@@ -57,7 +57,7 @@ class QueryTable
     query_piece = QueryPiece.new
     children.each{|association_name, query_table|
       query_piece += model.exportable_join(association_name, query_tables_included)
-      query_tables_included << query_table
+      query_tables_included << query_table.name
       query_piece += query_table.joins(query_tables_included)
     }
     

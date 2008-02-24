@@ -45,7 +45,7 @@ describe QueryTable do
     end
     
     it "should return exportable associations" do
-      @query_table.association_names.should == ["dna_results", "extraction_method", "final_genders", "final_mhcs", "final_mt_dnas", "final_y_chromosomes", "genders", "locality_type", "mhcs", "microsatellite_horizontals", "mt_dnas", "organism", "project", "shippingmaterial", "tissue_type", "y_chromosomes"]
+      @query_table.association_names.should == ["dna_results", "extraction_method", "final_genders", "final_mhcs", "final_mt_dnas", "final_y_chromosomes", "genders", "locality_type", "mhcs", "microsatellite_horizontals", "mt_dnas", "organism", "project", "shippingmaterial", "tissue_type", "y_chromosome_seqs", "y_chromosomes"]
     end
     
     it "should recurse joins" do

@@ -14,6 +14,10 @@ class Organism < ActiveRecord::Base
   
   belongs_to :project
   has_many :samples
+  has_many :gender_final_horizontals
+  has_many :mhc_final_horizontals
+  has_many :mt_dna_final_horizontals
+  has_many :y_chromosome_final_horizontals
   
   extend Exportables::DynamicAttributesExportableModel
   

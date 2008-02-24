@@ -54,6 +54,8 @@ class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
   has_many :dna_results
+  has_many :y_chromosome_seqs
+  
   
   extend Exportables::ExportableModel
   
