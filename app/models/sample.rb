@@ -89,8 +89,9 @@ class Sample < ActiveRecord::Base
   end
   
   def to_label 
-    "Org.Code:#{organism_code} Org.Sample:#{org_sample}" 
+    "OrgCode:#{organism_code} OrgSample:#{org_sample}" 
   end
+
 
   
   def security_settings
