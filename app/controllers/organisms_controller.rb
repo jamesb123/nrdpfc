@@ -1,6 +1,6 @@
 class OrganismsController < ApplicationController
   layout "tabs"
-  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:id, :organism_code, :comment]
+  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:id, :organism_code, :comment, :samples]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
 
   before_filter :add_dynamic_columns
@@ -9,10 +9,10 @@ class OrganismsController < ApplicationController
   active_scaffold  :organisms do |config|
     list.sorting = {:organism_code => 'ASC'}  
     config.columns[:id].label = "ID"
-   # config.columns.exclude :project
-   # config.columns.exclude :security_settings
+    config.create.columns.exclude :id, :project, :security_settings
+    config.update.columns.exclude :id, :project, :security_settings
     config.columns[:comment].label = "Comments"
-    config.columns = [:id, :organism_code, :comment]
+    config.columns = [:id, :organism_code, :comment, :samples]
   end
   
   def add_dynamic_columns
