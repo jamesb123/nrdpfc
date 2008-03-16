@@ -211,14 +211,6 @@ describe QueryBuilder do
     @query_builder.to_sql
   end
   
-  it "should respect wildcards when adding fields" do
-    @query_builder = QueryBuilder.new
-    @query_builder.add_tables("projects")
-    @query_builder.add_fields(:projects => ["*"])
-    @query_builder.fields.map(&:name).should == [:id, :name, :code, :description, :user_id, :recompile_required]
-    @query_builder.to_sql
-  end
-  
   it "should allow setting of a limit" do
     @query_builder = QueryBuilder.new
     @query_builder.add_tables("samples")
