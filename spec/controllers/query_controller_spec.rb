@@ -75,7 +75,7 @@ describe QueryController do
       @query_builder.should_not be_nil
       query_tables_names = @query_builder.tables.keys
       
-      [:dna_results, :organisms, :projects].each do |table|
+      [:samples, :organisms, :dna_results].each do |table|
         query_tables_names.should include(table)
       end
       
@@ -122,15 +122,15 @@ describe QueryController do
   describe "when adding all fields for a model" do
     integrate_views
     before(:each) do
-      post :add_field, :table => "projects"
+      post :add_field, :table => "samples"
     end
       
     it "should add all non_id fields" do
-      assigns[:query_fields].map(&:name).map(&:to_s).should == Project.exportable_non_id_fields
+      assigns[:query_fields].map(&:name).map(&:to_s).should == Sample.exportable_non_id_fields
     end
     
     it "should render all the fields at once" do
-      Project.exportable_non_id_fields.each do |field|
+      Sample.exportable_non_id_fields.each do |field|
         response.body.should include(field.titleize)
       end
     end

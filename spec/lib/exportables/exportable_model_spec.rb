@@ -4,49 +4,50 @@ require 'lib/exportables/exportable_model'
 require "sample.rb"
 require "project.rb"
 
-describe Exportables::ExportableModel, "in Project" do
+describe Exportables::ExportableModel, "in Sample" do
   it "should be exportable" do
-    Project.exportable?.should be_true
+    Sample.exportable?.should be_true
   end
   
   it "should return it's table name" do
-    Project.exportable_table_name.should == "projects"
+    Sample.exportable_table_name.should == "samples"
   end
   
   it "should return a copy of its columns" do
-    Set.new(Project.exportable_fields).should == Set.new(Project.columns.map(&:name))
+    Set.new(Sample.exportable_fields).should == Set.new(Sample.columns.map(&:name))
   end
   
   it "should return a list of all exportable reflections" do
-    Project.exportable_reflections.keys.map(&:to_s).sort.should == ["dna_results", "gender_final_horizontals", "genders", "mhc_final_horizontals", "mhc_seqs", "mhcs", "microsatellite_horizontals", "mt_dna_final_horizontals", "mt_dna_seqs", "mt_dnas", "organisms", "sample_non_tissues", "samples", "y_chromosome_final_horizontals", "y_chromosome_seqs", "y_chromosomes"]
+    Sample.exportable_reflections.keys.map(&:to_s).sort.should == ["dna_results", "extraction_method", "genders", "locality_type", "mhcs", "microsatellite_horizontals", "mt_dnas", "organism", "shippingmaterial", "tissue_type", "y_chromosome_seqs", "y_chromosomes"]
   end
   
   it "should return a valid filter QueryPiece with a where clause" do
-    Project.exportable_filter("name", "=", "Whale Project").where.should == ["(projects.name = 'Whale Project')"]
+    Sample.exportable_filter("receiver_comments", "=", "Fin sample").where.should == ["(samples.receiver_comments = 'Fin sample')"]
   end
   
   it "should return a hash of it's data types" do
-    Project.exportable_column_types_hash.should == {
-      "name" => :string, 
-      "code" => :string, 
-      "id" => :integer, 
-      "description" => :string, 
-      "recompile_required" => :boolean,
-      "user_id" => :integer
+    Gender.exportable_column_types_hash.should == {
+      "project_id"  => :integer,
+      "gelNum"      => :string,
+      "gender"      => :string,
+      "id"          => :integer,
+      "wellNum"     => :string,
+      "locus"       => :string,
+      "finalResult" => :boolean,
+      "sample_id"   => :integer
     }
   end
   
   it "should return a join based off a parent join" do
-    Project.exportable_join(:samples).join.should == ["LEFT JOIN samples ON (projects.id = samples.project_id)"]
-    Sample.exportable_join(:project).join.should == ["LEFT JOIN projects ON (projects.id = samples.project_id)"]
+    Sample.exportable_join(:organism).join.should == ["LEFT JOIN organisms ON (organisms.id = samples.organism_id)"]
   end
-  
-  it "should tie itself to all possible tables" do
-    Project.exportable_join(:samples, [:organisms]).join.should == ["LEFT JOIN samples ON (projects.id = samples.project_id AND organisms.id = samples.organism_id)"]
-  end
+  # not applicable anymore
+  # it "should tie itself to all possible tables" do
+  #   
+  # end
   
   it "should store all exportable models" do
-    exportable_models = Exportables::ExportableModel.models.map(&:to_s).sort.should == ["DnaResult", "ExtractionMethod", "Gender", "GenderFinalHorizontal", "LocalityType", "Mhc", "MhcFinalHorizontal", "MhcSeq", "MicrosatelliteHorizontal", "MtDna", "MtDnaFinalHorizontal", "MtDnaSeq", "Organism", "Project", "Project", "Sample", "Sample", "SampleNonTissue", "Shippingmaterial", "TissueType", "YChromosome", "YChromosomeFinalHorizontal", "YChromosomeSeq"]
+    exportable_models = Exportables::ExportableModel.models.map(&:to_s).sort.should == ["DnaResult", "ExtractionMethod", "Gender", "GenderFinalHorizontal", "LocalityType", "Mhc", "MhcFinalHorizontal", "MicrosatelliteHorizontal", "MtDna", "MtDnaFinalHorizontal", "Organism", "Sample", "Sample", "SampleNonTissue", "Shippingmaterial", "TissueType", "YChromosome", "YChromosomeFinalHorizontal", "YChromosomeSeq"]
   end
   
   it "should have reverse associations for all exportable_reflections" do
@@ -65,14 +66,14 @@ describe Exportables::ExportableModel, "in Project" do
   
   
   describe "when finding shortest path" do
-    (Exportables::ExportableModel.models - [Project]).each do |model|
+    (Exportables::ExportableModel.models - [Sample]).each do |model|
       it "should find a path to #{model.table_name}" do
-        Project.path_to_exportable_table(model.table_name).should_not be_nil
+        Sample.path_to_exportable_table(model.table_name).should_not be_nil
       end
     end
     
     it "should find the shortest path to dna_results" do
-      Project.path_to_exportable_table('dna_results').should == [:dna_results]
+      Sample.path_to_exportable_table('dna_results').should == [:dna_results]
     end
   end
 end

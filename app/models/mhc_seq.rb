@@ -11,6 +11,4 @@
 
 class MhcSeq < ActiveRecord::Base
   belongs_to :project
-  extend Exportables::ExportableModel
-  
 end

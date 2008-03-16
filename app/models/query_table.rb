@@ -39,7 +39,7 @@ class QueryTable
     association = model.reflections[name.to_sym]
     raise ArgumentError, "association #{name} non-existant for #{self.model}" if association.nil?
     
-    children[name] = QueryTable.new(name, 
+    children[name] = QueryTable.new(association.klass.table_name, 
       :class_name => association.class_name,
       :parent => self
     )
@@ -85,10 +85,10 @@ class QueryTable
     tables
   end
   
-  def to_hash
-    hash = { name => {}}
+  def to_hash(my_key = name)
+    hash = { my_key => {}}
     children.each_pair{|key, child|
-      hash[name].merge! child.to_hash
+      hash[my_key].merge! child.to_hash(key)
     }
     hash
   end

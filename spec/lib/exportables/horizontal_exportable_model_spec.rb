@@ -28,7 +28,7 @@ describe Exportables::HorizontalExportableModel, "in MicrosatelliteHorizontal" d
   end
   
   it "should return a list of all exportable reflections" do
-    MicrosatelliteHorizontal.exportable_reflections.keys.map(&:to_s).sort.should == %w[project sample]
+    MicrosatelliteHorizontal.exportable_reflections.keys.map(&:to_s).sort.should == %w[sample]
   end
   
   it "should return a hash of it's data types" do

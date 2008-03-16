@@ -10,18 +10,18 @@ describe QueryField do
   
   describe "for model Project" do
     before(:each) do
-      @query_table = QueryTable.new("projects")
-      @query_field = QueryField.new("name", :table => @query_table)
+      @query_table = QueryTable.new("samples")
+      @query_field = QueryField.new("receiver_comments", :table => @query_table)
     end
   
     it "should retrieve valid select_sql using the given model" do
-      @query_field.select_sql.select.should == ["`projects`.`name` as `projects_name`"]
+      @query_field.select_sql.select.should == ["`samples`.`receiver_comments` as `samples_receiver_comments`"]
     end
   
     it "should return sort sql if appropriate" # ???
     
     it "should have a field_alias" do
-      @query_field.field_alias.should == "projects_name"
+      @query_field.field_alias.should == "samples_receiver_comments"
     end
   end
   

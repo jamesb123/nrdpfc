@@ -96,7 +96,7 @@ describe QueryBuilder do
     end
     
     it "should return a list of select_field_aliases" do
-      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organism_nea", "organism_organism_code", "samples_tubebc", "samples_receiver_comments"]
+      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organisms_nea", "organisms_organism_code", "samples_tubebc", "samples_receiver_comments"]
     end
   end
   
