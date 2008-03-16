@@ -5,8 +5,7 @@
 #  id                   :integer(11)   not null, primary key
 #  project_id           :integer(11)   
 #  organism_id          :integer(11)   
-#  organism_code        :string(255)   
-#  org_sample           :string(255)   
+#  organism_index       :string(255)   
 #  tubebc               :string(255)   
 #  platebc              :string(255)   
 #  plateposition        :string(255)   

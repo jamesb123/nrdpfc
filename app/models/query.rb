@@ -6,9 +6,9 @@
 #  project_id :integer(11)   
 #  name       :string(100)   
 #  draft      :boolean(1)    default(true)
-#  data       :text          
 #  created_at :datetime      
 #  updated_at :datetime      
+#  data       :text          
 #
 
 require_or_load "query_table.rb"

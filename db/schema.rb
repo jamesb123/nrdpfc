@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 39) do
+ActiveRecord::Schema.define(:version => 40) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -657,8 +657,7 @@ ActiveRecord::Schema.define(:version => 39) do
   create_table "samples", :force => true do |t|
     t.integer  "project_id"
     t.integer  "organism_id"
-    t.string   "organism_code"
-    t.string   "org_sample"
+    t.string   "organism_index"
     t.string   "tubebc"
     t.string   "platebc"
     t.string   "plateposition"
@@ -703,7 +702,6 @@ ActiveRecord::Schema.define(:version => 39) do
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
-  add_index "samples", ["organism_code"], :name => "index_samples_on_organism_code"
   add_index "samples", ["project_id"], :name => "index_samples_on_project_id"
 
   create_table "security_settings", :force => true do |t|
