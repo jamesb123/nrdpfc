@@ -44,12 +44,12 @@ class QueryBuilder
   def add_fields(table_field_hash)
     table_field_hash.each_pair{|table_name, new_fields|
       table_name = table_name.to_sym
+      table = tables[table_name]
       new_fields = [new_fields] unless new_fields.is_a?(Array)
-      for field in new_fields
-        (t=tables[table_name]) && t.add_field(field)
-        fields.clear
-      end
+      new_fields = table.model.exportable_fields if new_fields == ["*"]
+      new_fields.each { |field| table.add_field(field) }
     }
+    @fields = nil
   end
   
   def add_filter(tablename, field_name, operation, value)
@@ -85,10 +85,10 @@ class QueryBuilder
    
   # returns all fields from all tables from the query
   def fields(reload = false)
-    @fields = [] if reload
+    @fields = nil if reload
     
     table_keys = tables(reload).keys.map(&:to_s)
-    @fields = table_keys.sort.map {|key| tables[key.to_sym].fields }.flatten if @fields.blank?
+    @fields ||= table_keys.sort.map {|key| tables[key.to_sym].fields }.flatten
     
     # @fields.sort! { |a,b| (a.seq||0) <=> (b.seq||0) }
     @fields
