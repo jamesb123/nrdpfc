@@ -5,13 +5,11 @@ class ProjectsControllerTest < ActionController::TestCase
   tests ProjectsController
 
   def test_update_current_project__should_reflect_in_active_record
+    User.current_user_proc = nil
     assert_nil(User.current_project)
     
     login_as :quentin
-    
     get :update_current_project, :current_project_id => projects(:whale_project)
-    
-    assert_equal projects(:whale_project).to_label, User.current_project.to_label
-    
+    assert_equal projects(:whale_project).to_label, User.current_project.to_label    
   end
 end
