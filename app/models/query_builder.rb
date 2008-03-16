@@ -9,7 +9,6 @@ class QueryBuilder
   
   def add_tables(*table_names)
     table_names = table_names.flatten
-    
     # find the shortest path to each table, and add it
     table_names.each do |table_name|
       next if tables.keys.map(&:to_s).include?(table_name.to_s)
@@ -31,9 +30,9 @@ class QueryBuilder
       e = e.to_sym
       if cursor[e].nil? 
         # try and add the node
-        return nil if tables[e.pluralize] || tables[e.singularize]
+        next nil if tables[e.pluralize] || tables[e.singularize]
         added_node = cursor.add_association(e)
-        return nil if added_node.nil?
+        next nil if added_node.nil?
         tables.clear
       end
       cursor = cursor[e]
@@ -68,11 +67,11 @@ class QueryBuilder
   end
   
   def default_parent_table
-    @default_parent_table ||= {:projects => QueryTable.new(:projects)}
+    @default_parent_table ||= QueryTable.new(:samples)
   end
   
   def includes
-    @includes ||= default_parent_table[:projects]
+    @includes ||= default_parent_table
   end
     
   def order_fields
@@ -80,7 +79,11 @@ class QueryBuilder
   end
   
   def tables(reload = false)
-    @tables = includes.flatten
+    @tables = includes.flatten.inject({}) do |hash, key_pair|
+      table = key_pair.last
+      hash[table.model.table_name.to_sym] = table
+      hash
+    end
   end
    
   # returns all fields from all tables from the query
@@ -99,7 +102,7 @@ class QueryBuilder
   end
   
   def to_sql
-    query_piece = QueryPiece.new :from => "projects"
+    query_piece = QueryPiece.new(:from => default_parent_table.model.table_name)
     
     # joins must come first, because select statements may include joins that depend on the table being joined in already.
     query_piece += includes.joins
@@ -111,7 +114,7 @@ class QueryBuilder
     sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit
-    query_piece += QueryPiece.new(:where => "projects.id = #{ActiveRecord::Base.current_project.id.to_i}")
+    query_piece += QueryPiece.new(:where => "samples.project_id = #{ActiveRecord::Base.current_project.id.to_i}")
     
     query_piece.to_sql
   end

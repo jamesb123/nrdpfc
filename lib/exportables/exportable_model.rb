@@ -71,7 +71,7 @@ module Exportables::ExportableModel
   def exportable_reflections
     Exportables::ExportableModel.load_all_models
     self.reflections.select_hash do |k, v|
-      next if v.through_reflection
+      next if v.through_reflection || v.options[:conditions]
       begin
         klass = v.class_name.constantize
         klass.respond_to?(:exportable?) && klass.exportable?

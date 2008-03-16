@@ -56,7 +56,6 @@ class Sample < ActiveRecord::Base
   has_many :dna_results
   has_many :y_chromosome_seqs
   
-  
   extend Exportables::ExportableModel
   
   RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]

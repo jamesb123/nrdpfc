@@ -22,5 +22,5 @@ whale_notes:
   dynamic_attribute: notes
   owner_type: Organism
   owner: "whale"
-  text_value: ||-
+  text_value: |-
     these are some far out notes

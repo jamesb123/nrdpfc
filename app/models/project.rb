@@ -15,8 +15,6 @@ class Project < ActiveRecord::Base
     has_many table_name.to_sym
   end
   
-  extend Exportables::ExportableModel
-  
   has_many :organisms, :order => "organism_code"
   has_many :samples
   has_many :users
