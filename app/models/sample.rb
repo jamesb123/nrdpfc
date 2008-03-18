@@ -87,7 +87,7 @@ class Sample < ActiveRecord::Base
   end
   
   def to_label 
-    "OrgCode:#{organism_code} OrgSample:#{org_sample}" 
+    "{organism.organism_code}" 
   end
 
 
