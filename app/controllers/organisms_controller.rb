@@ -9,6 +9,7 @@ class OrganismsController < ApplicationController
   active_scaffold  :organisms do |config|
     list.sorting = {:organism_code => 'ASC'}  
     config.columns[:id].label = "ID"
+    config.columns[:organism_code].label = "Organism"
     config.create.columns.exclude :id, :project, :security_settings
     config.update.columns.exclude :id, :project, :security_settings
     config.columns[:comment].label = "Comments"

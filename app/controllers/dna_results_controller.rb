@@ -12,9 +12,9 @@ class DnaResultsController < ApplicationController
     #config.list.columns.exclude :project
     #config.create.columns.exclude :project
     #config.update.columns.exclude  :project
-    # list.sorting = {:sample => 'ASC'}
+    list.sorting = {:sample => 'ASC'}
     # To sort by an SQL expression
-    # config.columns[:sample].label = "Sample Info."  
+    config.columns[:sample].label = "Organism"  
    # config.columns[:sample_id].label = "Sample ID"  
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
