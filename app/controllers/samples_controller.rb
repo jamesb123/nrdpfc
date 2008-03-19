@@ -2,7 +2,7 @@ class SamplesController < ApplicationController
   layout "tabs"
   
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism, :project, :organism_index, :tubebc, :platebc, 
+    config.columns = [:id, :organism, :project, :org_sample, :tubebc, :platebc, 
     :plateposition, :field_code, :batch_number, :storage_medium, :country, :province,
     :date_collected, :collected_on_day, :collected_on_month, :collected_on_year, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
