@@ -1,27 +1,17 @@
-# == Schema Information
-#
-# Table name: dynamic_attributes
-#
-#  id               :integer(11)   not null, primary key
-#  name             :string(255)   
-#  dynamic_type_id  :integer(11)   
-#  dynamic_class_id :integer(11)   
-#  scoper_type      :string(255)   
-#  scoper_id        :integer(11)   
-#  owner_type       :string(255)   
-#
-
-nea:
-  name: nea
-  dynamic_type: integer
-  dynamic_class: weight
+--- 
+dynamic_attributes_001: 
+  name: NEA
+  dynamic_class_id: "0"
+  dynamic_type_id: "3"
   scoper_type: Project
-  scoper: whale_project
-  owner_type: Organism
-notes:
-  name: notes
-  dynamic_type: text_value
-  dynamic_class: 
+  id: "1"
+  scoper_id: "1"
+  owner_type: organism
+dynamic_attributes_002: 
+  name: Age
+  dynamic_class_id: "0"
+  dynamic_type_id: "3"
   scoper_type: Project
-  scoper: whale_project
-  owner_type: Organism
+  id: "2"
+  scoper_id: "2"
+  owner_type: organism

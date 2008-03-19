@@ -1,44 +1,26 @@
-# == Schema Information
-#
-# Table name: dynamic_types
-#
-#  id              :integer(11)   not null, primary key
-#  name            :string(255)   
-#  stored_in_field :string(255)   
-#  description     :string(255)   
-#
-# 
-# mysql> select * from dynamic_types;
-# +----+-----------+-----------------+-----------------+
-# | id | name      | stored_in_field | description     |
-# +----+-----------+-----------------+-----------------+
-# |  1 | integer   | integer_value   | Integers        | 
-# |  2 | decimal   | float_value     | Floating Points | 
-# |  3 | text      | text_value      | Text            | 
-# |  4 | date      | date_value      | Dates           | 
-# |  5 | timestamp | timestamp_value | Timestamps      | 
-# +----+-----------+-----------------+-----------------+
-
-integer:
+--- 
+dynamic_types_001: 
   name: integer
-  stored_in_field: integer_value
+  id: "1"
   description: Integers
-decimal:
+  stored_in_field: integer_value
+dynamic_types_002: 
   name: decimal
-  stored_in_field: float_value
+  id: "2"
   description: Floating Points
-
-text_value:
-  name: text_value
-  stored_in_field: text_value
+  stored_in_field: float_value
+dynamic_types_003: 
+  name: text
+  id: "3"
   description: Text
-
-date:
+  stored_in_field: text_value
+dynamic_types_004: 
   name: date
-  stored_in_field: date_value
+  id: "4"
   description: Dates
-
-timestamp:
+  stored_in_field: date_value
+dynamic_types_005: 
   name: timestamp
-  stored_in_field: timestamp_value
+  id: "5"
   description: Timestamps
+  stored_in_field: timestamp_value

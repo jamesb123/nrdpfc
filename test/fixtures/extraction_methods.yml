@@ -1,10 +1,13 @@
-# == Schema Information
-#
-# Table name: extraction_methods
-#
-#  id                            :integer(11)   not null, primary key
-#  extraction_method_name        :string(255)   
-#  extraction_method_description :string(255)   
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+--- 
+extraction_methods_001: 
+  extraction_method_description: 
+  id: "1"
+  extraction_method_name: Qiagen
+extraction_methods_002: 
+  extraction_method_description: 
+  id: "2"
+  extraction_method_name: Phenol Chloroform
+extraction_methods_003: 
+  extraction_method_description: 
+  id: "3"
+  extraction_method_name: Magnetic Beads

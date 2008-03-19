@@ -1,14 +1,2431 @@
-# == Schema Information
-#
-# Table name: organisms
-#
-#  id            :integer(11)   not null, primary key
-#  project_id    :integer(11)   
-#  organism_code :string(255)   
-#  comment       :string(255)   
-#
-
-whale:
-  project: whale_project
-  organism_code: Egl00050
-  comment: This is a whale
+--- 
+organisms_466: 
+  project_id: "1"
+  id: "466"
+  organism_code: EGL00440
+  comment: " "
+organisms_419: 
+  project_id: "1"
+  id: "419"
+  organism_code: EGL00614
+  comment: " "
+organisms_039: 
+  project_id: "1"
+  id: "39"
+  organism_code: EGL00119
+  comment: " "
+organisms_276: 
+  project_id: "1"
+  id: "276"
+  organism_code: EGL00215
+  comment: " "
+organisms_086: 
+  project_id: "1"
+  id: "86"
+  organism_code: EGL00577
+  comment: " "
+organisms_229: 
+  project_id: "1"
+  id: "229"
+  organism_code: EGL00135
+  comment: " "
+organisms_467: 
+  project_id: "1"
+  id: "467"
+  organism_code: EGL00441
+  comment: " "
+organisms_277: 
+  project_id: "1"
+  id: "277"
+  organism_code: EGL00352
+  comment: " "
+organisms_087: 
+  project_id: "1"
+  id: "87"
+  organism_code: EGL00147
+  comment: " "
+organisms_468: 
+  project_id: "1"
+  id: "468"
+  organism_code: EGL00442
+  comment: " "
+organisms_278: 
+  project_id: "1"
+  id: "278"
+  organism_code: EGL00264
+  comment: " "
+organisms_088: 
+  project_id: "1"
+  id: "88"
+  organism_code: EGL00344
+  comment: " "
+organisms_469: 
+  project_id: "1"
+  id: "469"
+  organism_code: EGL00340
+  comment: " "
+organisms_279: 
+  project_id: "1"
+  id: "279"
+  organism_code: EGL00220
+  comment: " "
+organisms_089: 
+  project_id: "1"
+  id: "89"
+  organism_code: EGL00063
+  comment: " "
+organisms_330: 
+  project_id: "1"
+  id: "330"
+  organism_code: EGL00443
+  comment: " "
+organisms_140: 
+  project_id: "1"
+  id: "140"
+  organism_code: EGL00095
+  comment: " "
+organisms_331: 
+  project_id: "1"
+  id: "331"
+  organism_code: EGL00544
+  comment: " "
+organisms_141: 
+  project_id: "1"
+  id: "141"
+  organism_code: EGL00155
+  comment: " "
+organisms_332: 
+  project_id: "1"
+  id: "332"
+  organism_code: EGL00462
+  comment: " "
+organisms_142: 
+  project_id: "1"
+  id: "142"
+  organism_code: EGL00110
+  comment: " "
+organisms_333: 
+  project_id: "1"
+  id: "333"
+  organism_code: EGL00444
+  comment: " "
+organisms_143: 
+  project_id: "1"
+  id: "143"
+  organism_code: EGL00017
+  comment: " "
+organisms_380: 
+  project_id: "1"
+  id: "380"
+  organism_code: EGL00480
+  comment: " "
+organisms_190: 
+  project_id: "1"
+  id: "190"
+  organism_code: EGL00020
+  comment: " "
+organisms_334: 
+  project_id: "1"
+  id: "334"
+  organism_code: EGL00520
+  comment: " "
+organisms_144: 
+  project_id: "1"
+  id: "144"
+  organism_code: EGL00303
+  comment: " "
+organisms_381: 
+  project_id: "1"
+  id: "381"
+  organism_code: EGL00485
+  comment: " "
+organisms_191: 
+  project_id: "1"
+  id: "191"
+  organism_code: EGL00067
+  comment: " "
+organisms_335: 
+  project_id: "1"
+  id: "335"
+  organism_code: EGL00517
+  comment: " "
+organisms_145: 
+  project_id: "1"
+  id: "145"
+  organism_code: EGL00503
+  comment: " "
+organisms_382: 
+  project_id: "1"
+  id: "382"
+  organism_code: EGL00486
+  comment: " "
+organisms_192: 
+  project_id: "1"
+  id: "192"
+  organism_code: EGL00138
+  comment: " "
+organisms_146: 
+  project_id: "1"
+  id: "146"
+  organism_code: EGL00026
+  comment: " "
+organisms_383: 
+  project_id: "1"
+  id: "383"
+  organism_code: EGL00487
+  comment: " "
+organisms_193: 
+  project_id: "1"
+  id: "193"
+  organism_code: EGL00061
+  comment: " "
+organisms_336: 
+  project_id: "1"
+  id: "336"
+  organism_code: EGL00513
+  comment: " "
+organisms_147: 
+  project_id: "1"
+  id: "147"
+  organism_code: EGL00101
+  comment: " "
+organisms_384: 
+  project_id: "1"
+  id: "384"
+  organism_code: EGL00492
+  comment: " "
+organisms_194: 
+  project_id: "1"
+  id: "194"
+  organism_code: EGL00190
+  comment: " "
+organisms_337: 
+  project_id: "1"
+  id: "337"
+  organism_code: EGL00522
+  comment: " "
+organisms_385: 
+  project_id: "1"
+  id: "385"
+  organism_code: EGL00497
+  comment: " "
+organisms_195: 
+  project_id: "1"
+  id: "195"
+  organism_code: EGL00168
+  comment: " "
+organisms_338: 
+  project_id: "1"
+  id: "338"
+  organism_code: EGL00521
+  comment: " "
+organisms_148: 
+  project_id: "1"
+  id: "148"
+  organism_code: EGL00046
+  comment: " "
+organisms_386: 
+  project_id: "1"
+  id: "386"
+  organism_code: EGL00500
+  comment: " "
+organisms_196: 
+  project_id: "1"
+  id: "196"
+  organism_code: EGL00159
+  comment: " "
+organisms_339: 
+  project_id: "1"
+  id: "339"
+  organism_code: EGL00538
+  comment: " "
+organisms_149: 
+  project_id: "1"
+  id: "149"
+  organism_code: EGL00031
+  comment: " "
+organisms_387: 
+  project_id: "1"
+  id: "387"
+  organism_code: EGL00502
+  comment: " "
+organisms_197: 
+  project_id: "1"
+  id: "197"
+  organism_code: EGL00139
+  comment: " "
+organisms_200: 
+  project_id: "1"
+  id: "200"
+  organism_code: EGL00276
+  comment: " "
+organisms_010: 
+  project_id: "1"
+  id: "10"
+  organism_code: EGL00003
+  comment: " "
+organisms_388: 
+  project_id: "1"
+  id: "388"
+  organism_code: EGL00527
+  comment: " "
+organisms_198: 
+  project_id: "1"
+  id: "198"
+  organism_code: EGL00107
+  comment: " "
+organisms_201: 
+  project_id: "1"
+  id: "201"
+  organism_code: EGL00057
+  comment: " "
+organisms_011: 
+  project_id: "1"
+  id: "11"
+  organism_code: EGL00143
+  comment: " "
+organisms_389: 
+  project_id: "1"
+  id: "389"
+  organism_code: EGL00530
+  comment: " "
+organisms_199: 
+  project_id: "1"
+  id: "199"
+  organism_code: EGL00123
+  comment: " "
+organisms_202: 
+  project_id: "1"
+  id: "202"
+  organism_code: EGL00164
+  comment: " "
+organisms_012: 
+  project_id: "1"
+  id: "12"
+  organism_code: EGL00175
+  comment: " "
+organisms_440: 
+  project_id: "1"
+  id: "440"
+  organism_code: EGL00640
+  comment: " "
+organisms_250: 
+  project_id: "1"
+  id: "250"
+  organism_code: EGL00242
+  comment: " "
+organisms_060: 
+  project_id: "1"
+  id: "60"
+  organism_code: EGL00204
+  comment: " "
+organisms_203: 
+  project_id: "1"
+  id: "203"
+  organism_code: EGL00080
+  comment: " "
+organisms_013: 
+  project_id: "1"
+  id: "13"
+  organism_code: EGL00174
+  comment: " "
+organisms_441: 
+  project_id: "1"
+  id: "441"
+  organism_code: EGL00643
+  comment: " "
+organisms_251: 
+  project_id: "1"
+  id: "251"
+  organism_code: EGL00353
+  comment: " "
+organisms_061: 
+  project_id: "1"
+  id: "61"
+  organism_code: EGL00006
+  comment: " "
+organisms_204: 
+  project_id: "1"
+  id: "204"
+  organism_code: EGL00062
+  comment: " "
+organisms_014: 
+  project_id: "1"
+  id: "14"
+  organism_code: EGL00208
+  comment: " "
+organisms_442: 
+  project_id: "1"
+  id: "442"
+  organism_code: EGL00644
+  comment: " "
+organisms_252: 
+  project_id: "1"
+  id: "252"
+  organism_code: EGL00205
+  comment: " "
+organisms_062: 
+  project_id: "1"
+  id: "62"
+  organism_code: EGL00052
+  comment: " "
+organisms_205: 
+  project_id: "1"
+  id: "205"
+  organism_code: EGL00196
+  comment: " "
+organisms_015: 
+  project_id: "1"
+  id: "15"
+  organism_code: EGL00013
+  comment: " "
+organisms_443: 
+  project_id: "1"
+  id: "443"
+  organism_code: EGL00645
+  comment: " "
+organisms_253: 
+  project_id: "1"
+  id: "253"
+  organism_code: EGL00547
+  comment: " "
+organisms_063: 
+  project_id: "1"
+  id: "63"
+  organism_code: EGL00060
+  comment: " "
+organisms_206: 
+  project_id: "1"
+  id: "206"
+  organism_code: EGL00308
+  comment: " "
+organisms_016: 
+  project_id: "1"
+  id: "16"
+  organism_code: EGL00516
+  comment: " "
+organisms_444: 
+  project_id: "1"
+  id: "444"
+  organism_code: EGL00647
+  comment: " "
+organisms_254: 
+  project_id: "1"
+  id: "254"
+  organism_code: EGL00206
+  comment: " "
+organisms_064: 
+  project_id: "1"
+  id: "64"
+  organism_code: EGL00082
+  comment: " "
+organisms_207: 
+  project_id: "1"
+  id: "207"
+  organism_code: EGL00081
+  comment: " "
+organisms_017: 
+  project_id: "1"
+  id: "17"
+  organism_code: EGL00047
+  comment: " "
+organisms_445: 
+  project_id: "1"
+  id: "445"
+  organism_code: EGL00648
+  comment: " "
+organisms_065: 
+  project_id: "1"
+  id: "65"
+  organism_code: EGL00145
+  comment: " "
+organisms_208: 
+  project_id: "1"
+  id: "208"
+  organism_code: EGL00059
+  comment: " "
+organisms_018: 
+  project_id: "1"
+  id: "18"
+  organism_code: EGL00210
+  comment: " "
+organisms_255: 
+  project_id: "1"
+  id: "255"
+  organism_code: EGL00232
+  comment: " "
+organisms_446: 
+  project_id: "1"
+  id: "446"
+  organism_code: EGL00649
+  comment: " "
+organisms_066: 
+  project_id: "1"
+  id: "66"
+  organism_code: EGL00162
+  comment: " "
+organisms_209: 
+  project_id: "1"
+  id: "209"
+  organism_code: EGL00202
+  comment: " "
+organisms_019: 
+  project_id: "1"
+  id: "19"
+  organism_code: EGL00559
+  comment: " "
+organisms_256: 
+  project_id: "1"
+  id: "256"
+  organism_code: EGL00201
+  comment: " "
+organisms_447: 
+  project_id: "1"
+  id: "447"
+  organism_code: EGL00650
+  comment: " "
+organisms_257: 
+  project_id: "1"
+  id: "257"
+  organism_code: EGL00301
+  comment: " "
+organisms_067: 
+  project_id: "1"
+  id: "67"
+  organism_code: EGL00296
+  comment: " "
+organisms_448: 
+  project_id: "1"
+  id: "448"
+  organism_code: EGL00651
+  comment: " "
+organisms_258: 
+  project_id: "1"
+  id: "258"
+  organism_code: EGL00169
+  comment: " "
+organisms_068: 
+  project_id: "1"
+  id: "68"
+  organism_code: EGL00097
+  comment: " "
+organisms_449: 
+  project_id: "1"
+  id: "449"
+  organism_code: EGL00652
+  comment: " "
+organisms_259: 
+  project_id: "1"
+  id: "259"
+  organism_code: EGL00200
+  comment: " "
+organisms_069: 
+  project_id: "1"
+  id: "69"
+  organism_code: EGL00089
+  comment: " "
+organisms_310: 
+  project_id: "1"
+  id: "310"
+  organism_code: EGL00398
+  comment: " "
+organisms_120: 
+  project_id: "1"
+  id: "120"
+  organism_code: EGL00233
+  comment: " "
+organisms_311: 
+  project_id: "1"
+  id: "311"
+  organism_code: EGL00418
+  comment: " "
+organisms_121: 
+  project_id: "1"
+  id: "121"
+  organism_code: EGL00134
+  comment: " "
+organisms_312: 
+  project_id: "1"
+  id: "312"
+  organism_code: EGL00424
+  comment: " "
+organisms_122: 
+  project_id: "1"
+  id: "122"
+  organism_code: EGL00019
+  comment: " "
+organisms_360: 
+  project_id: "1"
+  id: "360"
+  organism_code: EGL00555
+  comment: " "
+organisms_170: 
+  project_id: "1"
+  id: "170"
+  organism_code: EGL00021
+  comment: " "
+organisms_313: 
+  project_id: "1"
+  id: "313"
+  organism_code: EGL00399
+  comment: " "
+organisms_123: 
+  project_id: "1"
+  id: "123"
+  organism_code: EGL00054
+  comment: " "
+organisms_361: 
+  project_id: "1"
+  id: "361"
+  organism_code: EGL00515
+  comment: " "
+organisms_171: 
+  project_id: "1"
+  id: "171"
+  organism_code: EGL00007
+  comment: " "
+organisms_314: 
+  project_id: "1"
+  id: "314"
+  organism_code: EGL00400
+  comment: " "
+organisms_124: 
+  project_id: "1"
+  id: "124"
+  organism_code: EGL00325
+  comment: " "
+organisms_172: 
+  project_id: "1"
+  id: "172"
+  organism_code: EGL00314
+  comment: " "
+organisms_315: 
+  project_id: "1"
+  id: "315"
+  organism_code: EGL00410
+  comment: " "
+organisms_125: 
+  project_id: "1"
+  id: "125"
+  organism_code: EGL00036
+  comment: " "
+organisms_362: 
+  project_id: "1"
+  id: "362"
+  organism_code: EGL00619
+  comment: " "
+organisms_173: 
+  project_id: "1"
+  id: "173"
+  organism_code: EGL00300
+  comment: " "
+organisms_316: 
+  project_id: "1"
+  id: "316"
+  organism_code: EGL00402
+  comment: " "
+organisms_126: 
+  project_id: "1"
+  id: "126"
+  organism_code: EGL00074
+  comment: " "
+organisms_363: 
+  project_id: "1"
+  id: "363"
+  organism_code: EGL00493
+  comment: " "
+organisms_317: 
+  project_id: "1"
+  id: "317"
+  organism_code: EGL00404
+  comment: " "
+organisms_127: 
+  project_id: "1"
+  id: "127"
+  organism_code: EGL00028
+  comment: " "
+organisms_364: 
+  project_id: "1"
+  id: "364"
+  organism_code: EGL00498
+  comment: " "
+organisms_174: 
+  project_id: "1"
+  id: "174"
+  organism_code: EGL00218
+  comment: " "
+organisms_318: 
+  project_id: "1"
+  id: "318"
+  organism_code: EGL00403
+  comment: " "
+organisms_128: 
+  project_id: "1"
+  id: "128"
+  organism_code: EGL00307
+  comment: " "
+organisms_365: 
+  project_id: "1"
+  id: "365"
+  organism_code: EGL00501
+  comment: " "
+organisms_175: 
+  project_id: "1"
+  id: "175"
+  organism_code: EGL00326
+  comment: " "
+organisms_319: 
+  project_id: "1"
+  id: "319"
+  organism_code: EGL00407
+  comment: " "
+organisms_129: 
+  project_id: "1"
+  id: "129"
+  organism_code: EGL00004
+  comment: " "
+organisms_366: 
+  project_id: "1"
+  id: "366"
+  organism_code: EGL00525
+  comment: " "
+organisms_176: 
+  project_id: "1"
+  id: "176"
+  organism_code: EGL00005
+  comment: " "
+organisms_367: 
+  project_id: "1"
+  id: "367"
+  organism_code: EGL00488
+  comment: " "
+organisms_177: 
+  project_id: "1"
+  id: "177"
+  organism_code: EGL00018
+  comment: " "
+organisms_368: 
+  project_id: "1"
+  id: "368"
+  organism_code: EGL00489
+  comment: " "
+organisms_178: 
+  project_id: "1"
+  id: "178"
+  organism_code: EGL00069
+  comment: " "
+organisms_369: 
+  project_id: "1"
+  id: "369"
+  organism_code: EGL00506
+  comment: " "
+organisms_179: 
+  project_id: "1"
+  id: "179"
+  organism_code: EGL00146
+  comment: " "
+organisms_420: 
+  project_id: "1"
+  id: "420"
+  organism_code: EGL00615
+  comment: " "
+organisms_230: 
+  project_id: "1"
+  id: "230"
+  organism_code: EGL00154
+  comment: " "
+organisms_040: 
+  project_id: "1"
+  id: "40"
+  organism_code: EGL00015
+  comment: " "
+organisms_421: 
+  project_id: "1"
+  id: "421"
+  organism_code: EGL00616
+  comment: " "
+organisms_231: 
+  project_id: "1"
+  id: "231"
+  organism_code: EGL00275
+  comment: " "
+organisms_041: 
+  project_id: "1"
+  id: "41"
+  organism_code: EGL00140
+  comment: " "
+organisms_422: 
+  project_id: "1"
+  id: "422"
+  organism_code: EGL00620
+  comment: " "
+organisms_232: 
+  project_id: "1"
+  id: "232"
+  organism_code: EGL00191
+  comment: " "
+organisms_042: 
+  project_id: "1"
+  id: "42"
+  organism_code: EGL00267
+  comment: " "
+organisms_470: 
+  project_id: "1"
+  id: "470"
+  organism_code: EGL00085
+  comment: " "
+organisms_423: 
+  project_id: "1"
+  id: "423"
+  organism_code: EGL00621
+  comment: " "
+organisms_280: 
+  project_id: "1"
+  id: "280"
+  organism_code: EGL00377
+  comment: " "
+organisms_090: 
+  project_id: "1"
+  id: "90"
+  organism_code: EGL00273
+  comment: " "
+organisms_233: 
+  project_id: "1"
+  id: "233"
+  organism_code: EGL00186
+  comment: " "
+organisms_043: 
+  project_id: "1"
+  id: "43"
+  organism_code: EGL00130
+  comment: " "
+organisms_471: 
+  project_id: "1"
+  id: "471"
+  organism_code: EGL00126
+  comment: " "
+organisms_424: 
+  project_id: "1"
+  id: "424"
+  organism_code: EGL00622
+  comment: " "
+organisms_091: 
+  project_id: "1"
+  id: "91"
+  organism_code: EGL00055
+  comment: " "
+organisms_234: 
+  project_id: "1"
+  id: "234"
+  organism_code: EGL00244
+  comment: " "
+organisms_044: 
+  project_id: "1"
+  id: "44"
+  organism_code: EGL00401
+  comment: " "
+organisms_281: 
+  project_id: "1"
+  id: "281"
+  organism_code: EGL00239
+  comment: " "
+organisms_472: 
+  project_id: "1"
+  id: "472"
+  organism_code: EGL00446
+  comment: " "
+organisms_425: 
+  project_id: "1"
+  id: "425"
+  organism_code: EGL06320
+  comment: " "
+organisms_092: 
+  project_id: "1"
+  id: "92"
+  organism_code: EGL00008
+  comment: " "
+organisms_235: 
+  project_id: "1"
+  id: "235"
+  organism_code: EGL00149
+  comment: " "
+organisms_045: 
+  project_id: "1"
+  id: "45"
+  organism_code: EGL00117
+  comment: " "
+organisms_282: 
+  project_id: "1"
+  id: "282"
+  organism_code: EGL00350
+  comment: " "
+organisms_473: 
+  project_id: "1"
+  id: "473"
+  organism_code: EGL00429
+  comment: " "
+organisms_426: 
+  project_id: "1"
+  id: "426"
+  organism_code: EGL00624
+  comment: " "
+organisms_236: 
+  project_id: "1"
+  id: "236"
+  organism_code: EGL00203
+  comment: " "
+organisms_046: 
+  project_id: "1"
+  id: "46"
+  organism_code: EGL00311
+  comment: " "
+organisms_283: 
+  project_id: "1"
+  id: "283"
+  organism_code: EGL00256
+  comment: " "
+organisms_093: 
+  project_id: "1"
+  id: "93"
+  organism_code: EGL00141
+  comment: " "
+organisms_474: 
+  project_id: "1"
+  id: "474"
+  organism_code: EGL00427
+  comment: " "
+organisms_427: 
+  project_id: "1"
+  id: "427"
+  organism_code: EGL00625
+  comment: " "
+organisms_237: 
+  project_id: "1"
+  id: "237"
+  organism_code: EGL00292
+  comment: " "
+organisms_047: 
+  project_id: "1"
+  id: "47"
+  organism_code: EGL00111
+  comment: " "
+organisms_284: 
+  project_id: "1"
+  id: "284"
+  organism_code: EGL00262
+  comment: " "
+organisms_094: 
+  project_id: "1"
+  id: "94"
+  organism_code: EGL00236
+  comment: " "
+organisms_475: 
+  project_id: "1"
+  id: "475"
+  organism_code: EGL00428
+  comment: " "
+organisms_428: 
+  project_id: "1"
+  id: "428"
+  organism_code: EGL00626
+  comment: " "
+organisms_238: 
+  project_id: "1"
+  id: "238"
+  organism_code: EGL00299
+  comment: " "
+organisms_048: 
+  project_id: "1"
+  id: "48"
+  organism_code: EGL00108
+  comment: " "
+organisms_285: 
+  project_id: "1"
+  id: "285"
+  organism_code: EGL00241
+  comment: " "
+organisms_095: 
+  project_id: "1"
+  id: "95"
+  organism_code: EGL00032
+  comment: " "
+organisms_476: 
+  project_id: "1"
+  id: "476"
+  organism_code: EGL00448
+  comment: " "
+organisms_429: 
+  project_id: "1"
+  id: "429"
+  organism_code: EGL00627
+  comment: " "
+organisms_239: 
+  project_id: "1"
+  id: "239"
+  organism_code: EGL00321
+  comment: " "
+organisms_049: 
+  project_id: "1"
+  id: "49"
+  organism_code: EGL00075
+  comment: " "
+organisms_286: 
+  project_id: "1"
+  id: "286"
+  organism_code: EGL00356
+  comment: " "
+organisms_096: 
+  project_id: "1"
+  id: "96"
+  organism_code: EGL00306
+  comment: " "
+organisms_477: 
+  project_id: "1"
+  id: "477"
+  organism_code: EGL00468
+  comment: " "
+organisms_287: 
+  project_id: "1"
+  id: "287"
+  organism_code: EGL00389
+  comment: " "
+organisms_097: 
+  project_id: "1"
+  id: "97"
+  organism_code: EGL00529
+  comment: " "
+organisms_478: 
+  project_id: "1"
+  id: "478"
+  organism_code: EGL00458
+  comment: " "
+organisms_100: 
+  project_id: "1"
+  id: "100"
+  organism_code: EGL00065
+  comment: " "
+organisms_288: 
+  project_id: "1"
+  id: "288"
+  organism_code: EGL00249
+  comment: " "
+organisms_098: 
+  project_id: "1"
+  id: "98"
+  organism_code: EGL00064
+  comment: " "
+organisms_479: 
+  project_id: "1"
+  id: "479"
+  organism_code: EGL00450
+  comment: " "
+organisms_101: 
+  project_id: "1"
+  id: "101"
+  organism_code: EGL00106
+  comment: " "
+organisms_289: 
+  project_id: "1"
+  id: "289"
+  organism_code: EGL00360
+  comment: " "
+organisms_099: 
+  project_id: "1"
+  id: "99"
+  organism_code: EGL00022
+  comment: " "
+organisms_102: 
+  project_id: "1"
+  id: "102"
+  organism_code: EGL00048
+  comment: " "
+organisms_340: 
+  project_id: "1"
+  id: "340"
+  organism_code: EGL00524
+  comment: " "
+organisms_150: 
+  project_id: "1"
+  id: "150"
+  organism_code: EGL00001
+  comment: " "
+organisms_103: 
+  project_id: "1"
+  id: "103"
+  organism_code: EGL00161
+  comment: " "
+organisms_341: 
+  project_id: "1"
+  id: "341"
+  organism_code: EGL00514
+  comment: " "
+organisms_151: 
+  project_id: "1"
+  id: "151"
+  organism_code: EGL00070
+  comment: " "
+organisms_104: 
+  project_id: "1"
+  id: "104"
+  organism_code: EGL00102
+  comment: " "
+organisms_342: 
+  project_id: "1"
+  id: "342"
+  organism_code: EGL00563
+  comment: " "
+organisms_152: 
+  project_id: "1"
+  id: "152"
+  organism_code: EGL00228
+  comment: " "
+organisms_105: 
+  project_id: "1"
+  id: "105"
+  organism_code: EGL00318
+  comment: " "
+organisms_343: 
+  project_id: "1"
+  id: "343"
+  organism_code: EGL00546
+  comment: " "
+organisms_153: 
+  project_id: "1"
+  id: "153"
+  organism_code: EGL00305
+  comment: " "
+organisms_106: 
+  project_id: "1"
+  id: "106"
+  organism_code: EGL00158
+  comment: " "
+organisms_390: 
+  project_id: "1"
+  id: "390"
+  organism_code: EGL00532
+  comment: " "
+organisms_344: 
+  project_id: "1"
+  id: "344"
+  organism_code: EGL00490
+  comment: " "
+organisms_154: 
+  project_id: "1"
+  id: "154"
+  organism_code: EGL00358
+  comment: " "
+organisms_107: 
+  project_id: "1"
+  id: "107"
+  organism_code: EGL00336
+  comment: " "
+organisms_391: 
+  project_id: "1"
+  id: "391"
+  organism_code: EGL00533
+  comment: " "
+organisms_345: 
+  project_id: "1"
+  id: "345"
+  organism_code: EGL00528
+  comment: " "
+organisms_155: 
+  project_id: "1"
+  id: "155"
+  organism_code: EGL00317
+  comment: " "
+organisms_108: 
+  project_id: "1"
+  id: "108"
+  organism_code: EGL00310
+  comment: " "
+organisms_392: 
+  project_id: "1"
+  id: "392"
+  organism_code: EGL00536
+  comment: " "
+organisms_346: 
+  project_id: "1"
+  id: "346"
+  organism_code: EGL00518
+  comment: " "
+organisms_156: 
+  project_id: "1"
+  id: "156"
+  organism_code: EGL00171
+  comment: " "
+organisms_109: 
+  project_id: "1"
+  id: "109"
+  organism_code: EGL00144
+  comment: " "
+organisms_393: 
+  project_id: "1"
+  id: "393"
+  organism_code: EGL00540
+  comment: " "
+organisms_347: 
+  project_id: "1"
+  id: "347"
+  organism_code: EGL00562
+  comment: " "
+organisms_157: 
+  project_id: "1"
+  id: "157"
+  organism_code: EGL00194
+  comment: " "
+organisms_394: 
+  project_id: "1"
+  id: "394"
+  organism_code: EGL00542
+  comment: " "
+organisms_348: 
+  project_id: "1"
+  id: "348"
+  organism_code: EGL00580
+  comment: " "
+organisms_158: 
+  project_id: "1"
+  id: "158"
+  organism_code: EGL00012
+  comment: " "
+organisms_395: 
+  project_id: "1"
+  id: "395"
+  organism_code: EGL00342
+  comment: " "
+organisms_349: 
+  project_id: "1"
+  id: "349"
+  organism_code: EGL00531
+  comment: " "
+organisms_159: 
+  project_id: "1"
+  id: "159"
+  organism_code: EGL00086
+  comment: " "
+organisms_396: 
+  project_id: "1"
+  id: "396"
+  organism_code: EGL00552
+  comment: " "
+organisms_397: 
+  project_id: "1"
+  id: "397"
+  organism_code: EGL00557
+  comment: " "
+organisms_400: 
+  project_id: "1"
+  id: "400"
+  organism_code: EGL00570
+  comment: " "
+organisms_210: 
+  project_id: "1"
+  id: "210"
+  organism_code: EGL00163
+  comment: " "
+organisms_020: 
+  project_id: "1"
+  id: "20"
+  organism_code: EGL00272
+  comment: " "
+organisms_398: 
+  project_id: "1"
+  id: "398"
+  organism_code: EGL00567
+  comment: " "
+organisms_401: 
+  project_id: "1"
+  id: "401"
+  organism_code: EGL00572
+  comment: " "
+organisms_211: 
+  project_id: "1"
+  id: "211"
+  organism_code: EGL00116
+  comment: " "
+organisms_021: 
+  project_id: "1"
+  id: "21"
+  organism_code: EGL00334
+  comment: " "
+organisms_399: 
+  project_id: "1"
+  id: "399"
+  organism_code: EGL00568
+  comment: " "
+organisms_402: 
+  project_id: "1"
+  id: "402"
+  organism_code: EGL00573
+  comment: " "
+organisms_212: 
+  project_id: "1"
+  id: "212"
+  organism_code: EGL00112
+  comment: " "
+organisms_022: 
+  project_id: "1"
+  id: "22"
+  organism_code: EGL00170
+  comment: " "
+organisms_450: 
+  project_id: "1"
+  id: "450"
+  organism_code: EGL00653
+  comment: " "
+organisms_403: 
+  project_id: "1"
+  id: "403"
+  organism_code: EGL00231
+  comment: " "
+organisms_260: 
+  project_id: "1"
+  id: "260"
+  organism_code: EGL00406
+  comment: " "
+organisms_070: 
+  project_id: "1"
+  id: "70"
+  organism_code: EGL00230
+  comment: " "
+organisms_213: 
+  project_id: "1"
+  id: "213"
+  organism_code: EGL00178
+  comment: " "
+organisms_023: 
+  project_id: "1"
+  id: "23"
+  organism_code: EGL00465
+  comment: " "
+organisms_451: 
+  project_id: "1"
+  id: "451"
+  organism_code: EGL00654
+  comment: " "
+organisms_404: 
+  project_id: "1"
+  id: "404"
+  organism_code: EGL00337
+  comment: " "
+organisms_261: 
+  project_id: "1"
+  id: "261"
+  organism_code: EGL00192
+  comment: " "
+organisms_071: 
+  project_id: "1"
+  id: "71"
+  organism_code: EGL00254
+  comment: " "
+organisms_214: 
+  project_id: "1"
+  id: "214"
+  organism_code: EGL00183
+  comment: " "
+organisms_024: 
+  project_id: "1"
+  id: "24"
+  organism_code: EGL00209
+  comment: " "
+organisms_452: 
+  project_id: "1"
+  id: "452"
+  organism_code: EGL00655
+  comment: " "
+organisms_405: 
+  project_id: "1"
+  id: "405"
+  organism_code: EGL00575
+  comment: " "
+organisms_262: 
+  project_id: "1"
+  id: "262"
+  organism_code: EGL00397
+  comment: " "
+organisms_072: 
+  project_id: "1"
+  id: "72"
+  organism_code: EGL00291
+  comment: " "
+organisms_215: 
+  project_id: "1"
+  id: "215"
+  organism_code: EGL00545
+  comment: " "
+organisms_025: 
+  project_id: "1"
+  id: "25"
+  organism_code: EGL00039
+  comment: " "
+organisms_453: 
+  project_id: "1"
+  id: "453"
+  organism_code: EGL00657
+  comment: " "
+organisms_406: 
+  project_id: "1"
+  id: "406"
+  organism_code: EGL00576
+  comment: " "
+organisms_263: 
+  project_id: "1"
+  id: "263"
+  organism_code: EGL00472
+  comment: " "
+organisms_073: 
+  project_id: "1"
+  id: "73"
+  organism_code: EGL00076
+  comment: " "
+organisms_216: 
+  project_id: "1"
+  id: "216"
+  organism_code: EGL00197
+  comment: " "
+organisms_026: 
+  project_id: "1"
+  id: "26"
+  organism_code: EGL00193
+  comment: " "
+organisms_454: 
+  project_id: "1"
+  id: "454"
+  organism_code: EGL00659
+  comment: " "
+organisms_407: 
+  project_id: "1"
+  id: "407"
+  organism_code: EGL00583
+  comment: " "
+organisms_264: 
+  project_id: "1"
+  id: "264"
+  organism_code: EGL00173
+  comment: " "
+organisms_074: 
+  project_id: "1"
+  id: "74"
+  organism_code: EGL00088
+  comment: " "
+organisms_217: 
+  project_id: "1"
+  id: "217"
+  organism_code: EGL00179
+  comment: " "
+organisms_027: 
+  project_id: "1"
+  id: "27"
+  organism_code: EGL00096
+  comment: " "
+organisms_455: 
+  project_id: "1"
+  id: "455"
+  organism_code: EGL00661
+  comment: " "
+organisms_408: 
+  project_id: "1"
+  id: "408"
+  organism_code: EGL00584
+  comment: " "
+organisms_265: 
+  project_id: "1"
+  id: "265"
+  organism_code: EGL00166
+  comment: " "
+organisms_075: 
+  project_id: "1"
+  id: "75"
+  organism_code: EGL00313
+  comment: " "
+organisms_218: 
+  project_id: "1"
+  id: "218"
+  organism_code: EGL00195
+  comment: " "
+organisms_028: 
+  project_id: "1"
+  id: "28"
+  organism_code: EGL00435
+  comment: " "
+organisms_456: 
+  project_id: "1"
+  id: "456"
+  organism_code: EGL00662
+  comment: " "
+organisms_409: 
+  project_id: "1"
+  id: "409"
+  organism_code: EGL00589
+  comment: " "
+organisms_266: 
+  project_id: "1"
+  id: "266"
+  organism_code: EGL00213
+  comment: " "
+organisms_076: 
+  project_id: "1"
+  id: "76"
+  organism_code: EGL00327
+  comment: " "
+organisms_219: 
+  project_id: "1"
+  id: "219"
+  organism_code: EGL00160
+  comment: " "
+organisms_029: 
+  project_id: "1"
+  id: "29"
+  organism_code: EGL00167
+  comment: " "
+organisms_457: 
+  project_id: "1"
+  id: "457"
+  organism_code: EGL00663
+  comment: " "
+organisms_267: 
+  project_id: "1"
+  id: "267"
+  organism_code: EGL00212
+  comment: " "
+organisms_077: 
+  project_id: "1"
+  id: "77"
+  organism_code: EGL00014
+  comment: " "
+organisms_458: 
+  project_id: "1"
+  id: "458"
+  organism_code: EGL00248
+  comment: " "
+organisms_268: 
+  project_id: "1"
+  id: "268"
+  organism_code: EGL00226
+  comment: " "
+organisms_078: 
+  project_id: "1"
+  id: "78"
+  organism_code: EGL00025
+  comment: " "
+organisms_459: 
+  project_id: "1"
+  id: "459"
+  organism_code: EGL00349
+  comment: " "
+organisms_269: 
+  project_id: "1"
+  id: "269"
+  organism_code: EGL00211
+  comment: " "
+organisms_079: 
+  project_id: "1"
+  id: "79"
+  organism_code: EGL00312
+  comment: " "
+organisms_320: 
+  project_id: "1"
+  id: "320"
+  organism_code: EGL00433
+  comment: " "
+organisms_130: 
+  project_id: "1"
+  id: "130"
+  organism_code: EGL00157
+  comment: " "
+organisms_321: 
+  project_id: "1"
+  id: "321"
+  organism_code: EGL00416
+  comment: " "
+organisms_131: 
+  project_id: "1"
+  id: "131"
+  organism_code: EGL00078
+  comment: " "
+organisms_322: 
+  project_id: "1"
+  id: "322"
+  organism_code: EGL00422
+  comment: " "
+organisms_132: 
+  project_id: "1"
+  id: "132"
+  organism_code: EGL00072
+  comment: " "
+organisms_370: 
+  project_id: "1"
+  id: "370"
+  organism_code: EGL00526
+  comment: " "
+organisms_180: 
+  project_id: "1"
+  id: "180"
+  organism_code: EGL00148
+  comment: " "
+organisms_323: 
+  project_id: "1"
+  id: "323"
+  organism_code: EGL00419
+  comment: " "
+organisms_133: 
+  project_id: "1"
+  id: "133"
+  organism_code: EGL00087
+  comment: " "
+organisms_371: 
+  project_id: "1"
+  id: "371"
+  organism_code: EGL00495
+  comment: " "
+organisms_181: 
+  project_id: "1"
+  id: "181"
+  organism_code: EGL00341
+  comment: " "
+organisms_324: 
+  project_id: "1"
+  id: "324"
+  organism_code: EGL00483
+  comment: " "
+organisms_134: 
+  project_id: "1"
+  id: "134"
+  organism_code: EGL00304
+  comment: " "
+organisms_372: 
+  project_id: "1"
+  id: "372"
+  organism_code: EGL00537
+  comment: " "
+organisms_182: 
+  project_id: "1"
+  id: "182"
+  organism_code: EGL00395
+  comment: " "
+organisms_325: 
+  project_id: "1"
+  id: "325"
+  organism_code: EGL00449
+  comment: " "
+organisms_135: 
+  project_id: "1"
+  id: "135"
+  organism_code: EGL00297
+  comment: " "
+organisms_373: 
+  project_id: "1"
+  id: "373"
+  organism_code: EGL00243
+  comment: " "
+organisms_183: 
+  project_id: "1"
+  id: "183"
+  organism_code: EGL00099
+  comment: " "
+organisms_326: 
+  project_id: "1"
+  id: "326"
+  organism_code: EGL00539
+  comment: " "
+organisms_136: 
+  project_id: "1"
+  id: "136"
+  organism_code: EGL00084
+  comment: " "
+organisms_374: 
+  project_id: "1"
+  id: "374"
+  organism_code: EGL00439
+  comment: " "
+organisms_184: 
+  project_id: "1"
+  id: "184"
+  organism_code: EGL00505
+  comment: " "
+organisms_327: 
+  project_id: "1"
+  id: "327"
+  organism_code: EGL00496
+  comment: " "
+organisms_137: 
+  project_id: "1"
+  id: "137"
+  organism_code: EGL00079
+  comment: " "
+organisms_375: 
+  project_id: "1"
+  id: "375"
+  organism_code: EGL00451
+  comment: " "
+organisms_185: 
+  project_id: "1"
+  id: "185"
+  organism_code: EGL00104
+  comment: " "
+organisms_328: 
+  project_id: "1"
+  id: "328"
+  organism_code: EGL00452
+  comment: " "
+organisms_138: 
+  project_id: "1"
+  id: "138"
+  organism_code: EGL00261
+  comment: " "
+organisms_376: 
+  project_id: "1"
+  id: "376"
+  organism_code: EGL00475
+  comment: " "
+organisms_186: 
+  project_id: "1"
+  id: "186"
+  organism_code: EGL00265
+  comment: " "
+organisms_329: 
+  project_id: "1"
+  id: "329"
+  organism_code: EGL00454
+  comment: " "
+organisms_139: 
+  project_id: "1"
+  id: "139"
+  organism_code: EGL00534
+  comment: " "
+organisms_377: 
+  project_id: "1"
+  id: "377"
+  organism_code: EGL00476
+  comment: " "
+organisms_187: 
+  project_id: "1"
+  id: "187"
+  organism_code: EGL00156
+  comment: " "
+organisms_378: 
+  project_id: "1"
+  id: "378"
+  organism_code: EGL00477
+  comment: " "
+organisms_188: 
+  project_id: "1"
+  id: "188"
+  organism_code: EGL00185
+  comment: " "
+organisms_001: 
+  project_id: "1"
+  id: "1"
+  organism_code: EGL00093
+  comment: " "
+organisms_379: 
+  project_id: "1"
+  id: "379"
+  organism_code: EGL00478
+  comment: " "
+organisms_189: 
+  project_id: "1"
+  id: "189"
+  organism_code: EGL00423
+  comment: " "
+organisms_002: 
+  project_id: "1"
+  id: "2"
+  organism_code: EGL00363
+  comment: " "
+organisms_430: 
+  project_id: "1"
+  id: "430"
+  organism_code: EGL00628
+  comment: " "
+organisms_003: 
+  project_id: "1"
+  id: "3"
+  organism_code: EGL00455
+  comment: " "
+organisms_240: 
+  project_id: "1"
+  id: "240"
+  organism_code: EGL00331
+  comment: " "
+organisms_050: 
+  project_id: "1"
+  id: "50"
+  organism_code: EGL00077
+  comment: " "
+organisms_431: 
+  project_id: "1"
+  id: "431"
+  organism_code: EGL00629
+  comment: " "
+organisms_004: 
+  project_id: "1"
+  id: "4"
+  organism_code: EGL00636
+  comment: " "
+organisms_241: 
+  project_id: "1"
+  id: "241"
+  organism_code: EGL00294
+  comment: " "
+organisms_051: 
+  project_id: "1"
+  id: "51"
+  organism_code: EGL00293
+  comment: " "
+organisms_432: 
+  project_id: "1"
+  id: "432"
+  organism_code: EGL00630
+  comment: " "
+organisms_005: 
+  project_id: "1"
+  id: "5"
+  organism_code: EGL00289
+  comment: " "
+organisms_242: 
+  project_id: "1"
+  id: "242"
+  organism_code: EGL00295
+  comment: " "
+organisms_052: 
+  project_id: "1"
+  id: "52"
+  organism_code: EGL00115
+  comment: " "
+organisms_480: 
+  project_id: "1"
+  id: "480"
+  organism_code: EGL00457
+  comment: " "
+organisms_433: 
+  project_id: "1"
+  id: "433"
+  organism_code: EGL00631
+  comment: " "
+organisms_006: 
+  project_id: "1"
+  id: "6"
+  organism_code: EGL00118
+  comment: " "
+organisms_290: 
+  project_id: "1"
+  id: "290"
+  organism_code: EGL00396
+  comment: " "
+organisms_243: 
+  project_id: "1"
+  id: "243"
+  organism_code: EGL00176
+  comment: " "
+organisms_053: 
+  project_id: "1"
+  id: "53"
+  organism_code: EGL00037
+  comment: " "
+organisms_481: 
+  project_id: "1"
+  id: "481"
+  organism_code: EGL00447
+  comment: " "
+organisms_434: 
+  project_id: "1"
+  id: "434"
+  organism_code: EGL00632
+  comment: " "
+organisms_007: 
+  project_id: "1"
+  id: "7"
+  organism_code: EGL00316
+  comment: " "
+organisms_291: 
+  project_id: "1"
+  id: "291"
+  organism_code: EGL00387
+  comment: " "
+organisms_244: 
+  project_id: "1"
+  id: "244"
+  organism_code: EGL00199
+  comment: " "
+organisms_054: 
+  project_id: "1"
+  id: "54"
+  organism_code: EGL00181
+  comment: " "
+organisms_482: 
+  project_id: "1"
+  id: "482"
+  organism_code: EGL00456
+  comment: " "
+organisms_435: 
+  project_id: "1"
+  id: "435"
+  organism_code: EGL00633
+  comment: " "
+organisms_008: 
+  project_id: "1"
+  id: "8"
+  organism_code: EGL00494
+  comment: " "
+organisms_292: 
+  project_id: "1"
+  id: "292"
+  organism_code: EGL00392
+  comment: " "
+organisms_245: 
+  project_id: "1"
+  id: "245"
+  organism_code: EGL00198
+  comment: " "
+organisms_055: 
+  project_id: "1"
+  id: "55"
+  organism_code: EGL00114
+  comment: " "
+organisms_483: 
+  project_id: "1"
+  id: "483"
+  organism_code: EGL00411
+  comment: " "
+organisms_436: 
+  project_id: "1"
+  id: "436"
+  organism_code: EGL00634
+  comment: " "
+organisms_009: 
+  project_id: "1"
+  id: "9"
+  organism_code: EGL00319
+  comment: " "
+organisms_293: 
+  project_id: "1"
+  id: "293"
+  organism_code: EGL00260
+  comment: " "
+organisms_246: 
+  project_id: "1"
+  id: "246"
+  organism_code: EGL00257
+  comment: " "
+organisms_056: 
+  project_id: "1"
+  id: "56"
+  organism_code: EGL00172
+  comment: " "
+organisms_484: 
+  project_id: "1"
+  id: "484"
+  organism_code: EGL00290
+  comment: " "
+organisms_437: 
+  project_id: "1"
+  id: "437"
+  organism_code: EGL00637
+  comment: " "
+organisms_294: 
+  project_id: "1"
+  id: "294"
+  organism_code: EGL00361
+  comment: " "
+organisms_247: 
+  project_id: "1"
+  id: "247"
+  organism_code: EGL00207
+  comment: " "
+organisms_057: 
+  project_id: "1"
+  id: "57"
+  organism_code: EGL00543
+  comment: " "
+organisms_485: 
+  project_id: "1"
+  id: "485"
+  organism_code: EGL00338
+  comment: " "
+organisms_438: 
+  project_id: "1"
+  id: "438"
+  organism_code: EGL00638
+  comment: " "
+organisms_295: 
+  project_id: "1"
+  id: "295"
+  organism_code: EGL00548
+  comment: " "
+organisms_248: 
+  project_id: "1"
+  id: "248"
+  organism_code: EGL00499
+  comment: " "
+organisms_058: 
+  project_id: "1"
+  id: "58"
+  organism_code: EGL00068
+  comment: " "
+organisms_486: 
+  project_id: "1"
+  id: "486"
+  organism_code: EGL00373
+  comment: " "
+organisms_439: 
+  project_id: "1"
+  id: "439"
+  organism_code: EGL00639
+  comment: " "
+organisms_296: 
+  project_id: "1"
+  id: "296"
+  organism_code: EGL00333
+  comment: " "
+organisms_249: 
+  project_id: "1"
+  id: "249"
+  organism_code: EGL00554
+  comment: " "
+organisms_059: 
+  project_id: "1"
+  id: "59"
+  organism_code: EGL00073
+  comment: " "
+organisms_297: 
+  project_id: "1"
+  id: "297"
+  organism_code: EGL00391
+  comment: " "
+organisms_300: 
+  project_id: "1"
+  id: "300"
+  organism_code: EGL00364
+  comment: " "
+organisms_110: 
+  project_id: "1"
+  id: "110"
+  organism_code: EGL00550
+  comment: " "
+organisms_298: 
+  project_id: "1"
+  id: "298"
+  organism_code: EGL00426
+  comment: " "
+organisms_301: 
+  project_id: "1"
+  id: "301"
+  organism_code: EGL00587
+  comment: " "
+organisms_111: 
+  project_id: "1"
+  id: "111"
+  organism_code: EGL00071
+  comment: " "
+organisms_299: 
+  project_id: "1"
+  id: "299"
+  organism_code: EGL00367
+  comment: " "
+organisms_302: 
+  project_id: "1"
+  id: "302"
+  organism_code: EGL00408
+  comment: " "
+organisms_112: 
+  project_id: "1"
+  id: "112"
+  organism_code: EGL00142
+  comment: " "
+organisms_303: 
+  project_id: "1"
+  id: "303"
+  organism_code: EGL00328
+  comment: " "
+organisms_113: 
+  project_id: "1"
+  id: "113"
+  organism_code: EGL00274
+  comment: " "
+organisms_350: 
+  project_id: "1"
+  id: "350"
+  organism_code: EGL00549
+  comment: " "
+organisms_160: 
+  project_id: "1"
+  id: "160"
+  organism_code: EGL00113
+  comment: " "
+organisms_304: 
+  project_id: "1"
+  id: "304"
+  organism_code: EGL00405
+  comment: " "
+organisms_114: 
+  project_id: "1"
+  id: "114"
+  organism_code: EGL00011
+  comment: " "
+organisms_351: 
+  project_id: "1"
+  id: "351"
+  organism_code: EGL00479
+  comment: " "
+organisms_161: 
+  project_id: "1"
+  id: "161"
+  organism_code: EGL00376
+  comment: " "
+organisms_305: 
+  project_id: "1"
+  id: "305"
+  organism_code: EGL00415
+  comment: " "
+organisms_115: 
+  project_id: "1"
+  id: "115"
+  organism_code: EGL00277
+  comment: " "
+organisms_352: 
+  project_id: "1"
+  id: "352"
+  organism_code: EGL00511
+  comment: " "
+organisms_162: 
+  project_id: "1"
+  id: "162"
+  organism_code: EGL00491
+  comment: " "
+organisms_306: 
+  project_id: "1"
+  id: "306"
+  organism_code: EGL00417
+  comment: " "
+organisms_116: 
+  project_id: "1"
+  id: "116"
+  organism_code: EGL00024
+  comment: " "
+organisms_353: 
+  project_id: "1"
+  id: "353"
+  organism_code: EGL00510
+  comment: " "
+organisms_163: 
+  project_id: "1"
+  id: "163"
+  organism_code: EGL00083
+  comment: " "
+organisms_307: 
+  project_id: "1"
+  id: "307"
+  organism_code: EGL00420
+  comment: " "
+organisms_117: 
+  project_id: "1"
+  id: "117"
+  organism_code: EGL00066
+  comment: " "
+organisms_354: 
+  project_id: "1"
+  id: "354"
+  organism_code: EGL00585
+  comment: " "
+organisms_164: 
+  project_id: "1"
+  id: "164"
+  organism_code: EGL00041
+  comment: " "
+organisms_308: 
+  project_id: "1"
+  id: "308"
+  organism_code: EGL00421
+  comment: " "
+organisms_118: 
+  project_id: "1"
+  id: "118"
+  organism_code: EGL00034
+  comment: " "
+organisms_355: 
+  project_id: "1"
+  id: "355"
+  organism_code: EGL00551
+  comment: " "
+organisms_165: 
+  project_id: "1"
+  id: "165"
+  organism_code: EGL00103
+  comment: " "
+organisms_309: 
+  project_id: "1"
+  id: "309"
+  organism_code: EGL00425
+  comment: " "
+organisms_119: 
+  project_id: "1"
+  id: "119"
+  organism_code: EGL00359
+  comment: " "
+organisms_356: 
+  project_id: "1"
+  id: "356"
+  organism_code: EGL00508
+  comment: " "
+organisms_166: 
+  project_id: "1"
+  id: "166"
+  organism_code: EGL00002
+  comment: " "
+organisms_357: 
+  project_id: "1"
+  id: "357"
+  organism_code: EGL00553
+  comment: " "
+organisms_167: 
+  project_id: "1"
+  id: "167"
+  organism_code: EGL00216
+  comment: " "
+organisms_358: 
+  project_id: "1"
+  id: "358"
+  organism_code: EGL00504
+  comment: " "
+organisms_168: 
+  project_id: "1"
+  id: "168"
+  organism_code: EGL00252
+  comment: " "
+organisms_359: 
+  project_id: "1"
+  id: "359"
+  organism_code: EGL00512
+  comment: " "
+organisms_169: 
+  project_id: "1"
+  id: "169"
+  organism_code: EGL00049
+  comment: " "
+organisms_410: 
+  project_id: "1"
+  id: "410"
+  organism_code: EGL00590
+  comment: " "
+organisms_220: 
+  project_id: "1"
+  id: "220"
+  organism_code: EGL00165
+  comment: " "
+organisms_030: 
+  project_id: "1"
+  id: "30"
+  organism_code: EGL00315
+  comment: " "
+organisms_411: 
+  project_id: "1"
+  id: "411"
+  organism_code: EGL00591
+  comment: " "
+organisms_221: 
+  project_id: "1"
+  id: "221"
+  organism_code: EGL00153
+  comment: " "
+organisms_031: 
+  project_id: "1"
+  id: "31"
+  organism_code: EGL00100
+  comment: " "
+organisms_412: 
+  project_id: "1"
+  id: "412"
+  organism_code: EGL00592
+  comment: " "
+organisms_222: 
+  project_id: "1"
+  id: "222"
+  organism_code: EGL00136
+  comment: " "
+organisms_032: 
+  project_id: "1"
+  id: "32"
+  organism_code: EGL00094
+  comment: " "
+organisms_460: 
+  project_id: "1"
+  id: "460"
+  organism_code: EGL00369
+  comment: " "
+organisms_413: 
+  project_id: "1"
+  id: "413"
+  organism_code: EGL00593
+  comment: " "
+organisms_223: 
+  project_id: "1"
+  id: "223"
+  organism_code: EGL00132
+  comment: " "
+organisms_033: 
+  project_id: "1"
+  id: "33"
+  organism_code: EGL00227
+  comment: " "
+organisms_270: 
+  project_id: "1"
+  id: "270"
+  organism_code: EGL00247
+  comment: " "
+organisms_080: 
+  project_id: "1"
+  id: "80"
+  organism_code: EGL00058
+  comment: " "
+organisms_461: 
+  project_id: "1"
+  id: "461"
+  organism_code: EGL00375
+  comment: " "
+organisms_414: 
+  project_id: "1"
+  id: "414"
+  organism_code: EGL00595
+  comment: " "
+organisms_224: 
+  project_id: "1"
+  id: "224"
+  organism_code: EGL00187
+  comment: " "
+organisms_034: 
+  project_id: "1"
+  id: "34"
+  organism_code: EGL00016
+  comment: " "
+organisms_271: 
+  project_id: "1"
+  id: "271"
+  organism_code: EGL00214
+  comment: " "
+organisms_081: 
+  project_id: "1"
+  id: "81"
+  organism_code: EGL00056
+  comment: " "
+organisms_462: 
+  project_id: "1"
+  id: "462"
+  organism_code: EGL00237
+  comment: " "
+organisms_415: 
+  project_id: "1"
+  id: "415"
+  organism_code: EGL00597
+  comment: " "
+organisms_225: 
+  project_id: "1"
+  id: "225"
+  organism_code: EGL00131
+  comment: " "
+organisms_035: 
+  project_id: "1"
+  id: "35"
+  organism_code: EGL00151
+  comment: " "
+organisms_272: 
+  project_id: "1"
+  id: "272"
+  organism_code: EGL00221
+  comment: " "
+organisms_082: 
+  project_id: "1"
+  id: "82"
+  organism_code: EGL00133
+  comment: " "
+organisms_463: 
+  project_id: "1"
+  id: "463"
+  organism_code: EGL00388
+  comment: " "
+organisms_416: 
+  project_id: "1"
+  id: "416"
+  organism_code: EGL00601
+  comment: " "
+organisms_226: 
+  project_id: "1"
+  id: "226"
+  organism_code: EGL00137
+  comment: " "
+organisms_036: 
+  project_id: "1"
+  id: "36"
+  organism_code: EGL00229
+  comment: " "
+organisms_273: 
+  project_id: "1"
+  id: "273"
+  organism_code: EGL00394
+  comment: " "
+organisms_083: 
+  project_id: "1"
+  id: "83"
+  organism_code: EGL00120
+  comment: " "
+organisms_464: 
+  project_id: "1"
+  id: "464"
+  organism_code: EGL00381
+  comment: " "
+organisms_417: 
+  project_id: "1"
+  id: "417"
+  organism_code: EGL00609
+  comment: " "
+organisms_227: 
+  project_id: "1"
+  id: "227"
+  organism_code: EGL00598
+  comment: " "
+organisms_037: 
+  project_id: "1"
+  id: "37"
+  organism_code: EGL00105
+  comment: " "
+organisms_274: 
+  project_id: "1"
+  id: "274"
+  organism_code: EGL00332
+  comment: " "
+organisms_084: 
+  project_id: "1"
+  id: "84"
+  organism_code: EGL00390
+  comment: " "
+organisms_465: 
+  project_id: "1"
+  id: "465"
+  organism_code: EGL00250
+  comment: " "
+organisms_418: 
+  project_id: "1"
+  id: "418"
+  organism_code: EGL00612
+  comment: " "
+organisms_228: 
+  project_id: "1"
+  id: "228"
+  organism_code: EGL00152
+  comment: " "
+organisms_038: 
+  project_id: "1"
+  id: "38"
+  organism_code: EGL00091
+  comment: " "
+organisms_275: 
+  project_id: "1"
+  id: "275"
+  organism_code: EGL00409
+  comment: " "
+organisms_085: 
+  project_id: "1"
+  id: "85"
+  organism_code: EGL00030
+  comment: " "

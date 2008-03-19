@@ -1,46 +1,5725 @@
-# == Schema Information
-#
-# Table name: genders
-#
-#  id          :integer(11)   not null, primary key
-#  sample_id   :integer(11)   
-#  project_id  :integer(11)   
-#  gender      :string(255)   
-#  gelNum      :string(255)   
-#  wellNum     :string(255)   
-#  finalResult :boolean(1)    
-#  locus       :string(255)   
-#
-
-mt_dna_whale_measurement_1_fin_sample:
-  sample: fin_sample
-  project: whale_project
-  locus: Control Region
+--- 
+genders_596: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB, 03-20-2007 Sexing Gel#5 RB
   gender: f
-  gelNum: MB07WFL0345
-  wellNum: A01
-  finalResult: true
-mt_dna_whale_measurement_2_fin_sample:
-  sample: fin_sample
-  project: whale_project
-  locus: Cyt-b
+  id: "596"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "63"
+genders_549: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "549"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "748"
+genders_359: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "359"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "49"
+genders_169: 
+  project_id: "1"
+  gelNum: 91MB0008, VKSex20, VKSex26
   gender: f
-  gelNum: MB07WFL0345
-  wellNum: A02
-  finalResult: true
-mt_dna_whale_measurement_1_nose_sample:
-  sample: nose_sample
-  project: whale_project
-  locus: Control Region
+  id: "169"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "700"
+genders_597: 
+  project_id: "1"
+  gelNum: 
   gender: f
-  gelNum: MB07WFL0345
-  wellNum: A03
-  finalResult: true
-mt_dna_whale_measurement_2_nose_sample:
-  sample: nose_sample
-  project: whale_project
-  locus: Cyt-b
+  id: "597"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "641"
+genders_600: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: m
+  id: "600"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "824"
+genders_598: 
+  project_id: "1"
+  gelNum: 
   gender: f
-  gelNum: MB07WFL0345
-  wellNum: A04
-  finalResult: true
+  id: "598"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "93"
+genders_410: 
+  project_id: "1"
+  gelNum: VKSex48, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "410"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "171"
+genders_220: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "220"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "197"
+genders_030: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "30"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "17"
+genders_601: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: f
+  id: "601"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "617"
+genders_599: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: m
+  id: "599"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "62"
+genders_411: 
+  project_id: "1"
+  gelNum: VKSex06
+  gender: f
+  id: "411"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "28"
+genders_221: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: m
+  id: "221"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "717"
+genders_031: 
+  project_id: "1"
+  gelNum: 91MB0026,CSSex05
+  gender: m
+  id: "31"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "204"
+genders_602: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB, 03-20-2007 Sexing Gel#5 RB
+  gender: m
+  id: "602"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "615"
+genders_412: 
+  project_id: "1"
+  gelNum: VKSex06, 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "412"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "22"
+genders_222: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "222"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "718"
+genders_032: 
+  project_id: "1"
+  gelNum: CSSex04, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "32"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "196"
+genders_270: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "270"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "216"
+genders_080: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "80"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "348"
+genders_603: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "603"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "642"
+genders_460: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "460"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "516"
+genders_413: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "413"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "746"
+genders_223: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "223"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "103"
+genders_033: 
+  project_id: "1"
+  gelNum: 90MB0021&0028,CSSex04, TFSex07
+  gender: f
+  id: "33"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "538"
+genders_271: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: f
+  id: "271"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "35"
+genders_081: 
+  project_id: "1"
+  gelNum: 90MB0024,91MB0027,VKSex31,VKSex47,VKSex51,VKSex53
+  gender: m
+  id: "81"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "225"
+genders_604: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "604"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "618"
+genders_461: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "461"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "51"
+genders_414: 
+  project_id: "1"
+  gelNum: TFSex01, 23-Mar-00
+  gender: f
+  id: "414"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "172"
+genders_224: 
+  project_id: "1"
+  gelNum: VKSex31
+  gender: f
+  id: "224"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "711"
+genders_034: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "34"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "317"
+genders_082: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "82"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "226"
+genders_605: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "605"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "651"
+genders_462: 
+  project_id: "1"
+  gelNum: VKSex47
+  gender: f
+  id: "462"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "549"
+genders_415: 
+  project_id: "1"
+  gelNum: VKSex15, VKSex04
+  gender: m
+  id: "415"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "521"
+genders_225: 
+  project_id: "1"
+  gelNum: VKSex28, VKSex48
+  gender: m
+  id: "225"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "522"
+genders_035: 
+  project_id: "1"
+  gelNum: 90MB0021&0028, 91MB0009, CSSex04, CSSex05, VKSex05
+  gender: m
+  id: "35"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "661"
+genders_272: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "272"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "671"
+genders_083: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "83"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "227"
+genders_606: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "606"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "635"
+genders_463: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "463"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "603"
+genders_416: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "416"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "523"
+genders_226: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "226"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "498"
+genders_036: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "36"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "662"
+genders_273: 
+  project_id: "1"
+  gelNum: VKSex36
+  gender: m
+  id: "273"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "39"
+genders_084: 
+  project_id: "1"
+  gelNum: 90MB0024 & 91MB0027, VKSex38
+  gender: f
+  id: "84"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "293"
+genders_607: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "607"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "636"
+genders_464: 
+  project_id: "1"
+  gelNum: VKSex47, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "464"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "542"
+genders_417: 
+  project_id: "1"
+  gelNum: CSSex04, VKSex15, VKSex43, VKSex48, VKSex51,03-15-2007 Sexing Gel#6 RB, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "417"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "294"
+genders_227: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "227"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "37"
+genders_037: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "37"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "663"
+genders_274: 
+  project_id: "1"
+  gelNum: 01-Sep-97/SM, VKSex36, VKSex39, 03-15-2007 Sexing Gel#6 RB,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "274"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "713"
+genders_608: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "608"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "637"
+genders_465: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "465"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "552"
+genders_418: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "418"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "295"
+genders_228: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "228"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "315"
+genders_038: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "38"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "480"
+genders_275: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "275"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "714"
+genders_085: 
+  project_id: "1"
+  gelNum: 90MB0024,91MB0020,VKSex31, VKSex47, VKSex53
+  gender: f
+  id: "85"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "259"
+genders_609: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "609"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "638"
+genders_466: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "466"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "470"
+genders_419: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "419"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "296"
+genders_229: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: m
+  id: "229"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "670"
+genders_039: 
+  project_id: "1"
+  gelNum: 90MB0021&0028&0024&91MB0020, TFSex02
+  gender: f
+  id: "39"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "290"
+genders_276: 
+  project_id: "1"
+  gelNum: VKSex23, 03-15-2007 Sexing Gel#1 RB, 03-15-2007 Sexing Gel#3 RB
+  gender: f
+  id: "276"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "677"
+genders_086: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "86"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "258"
+genders_467: 
+  project_id: "1"
+  gelNum: VKSex47
+  gender: m
+  id: "467"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "545"
+genders_277: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "277"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "119"
+genders_087: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "87"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "260"
+genders_468: 
+  project_id: "1"
+  gelNum: VKSex50
+  gender: f
+  id: "468"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "551"
+genders_278: 
+  project_id: "1"
+  gelNum: 01-Sep-97,SM, VKSex36, VKSex50, VKSex51
+  gender: m
+  id: "278"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "38"
+genders_088: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "88"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "504"
+genders_469: 
+  project_id: "1"
+  gelNum: VKSex47
+  gender: f
+  id: "469"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "558"
+genders_279: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "279"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "38"
+genders_089: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "89"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "575"
+genders_520: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "520"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "596"
+genders_330: 
+  project_id: "1"
+  gelNum: VKSex48,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "330"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "476"
+genders_140: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex26, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "140"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "202"
+genders_521: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "521"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "592"
+genders_331: 
+  project_id: "1"
+  gelNum: VKSex13, 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "331"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "423"
+genders_141: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "141"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "1"
+genders_522: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "522"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "165"
+genders_332: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "332"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "424"
+genders_142: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex13,VKSex34,VKSex46
+  gender: m
+  id: "142"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "194"
+genders_380: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "380"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "602"
+genders_190: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "190"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "685"
+genders_570: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "570"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "647"
+genders_523: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "523"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "66"
+genders_333: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "333"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "45"
+genders_143: 
+  project_id: "1"
+  gelNum: 91MB0012, VKSex38, VKSex41
+  gender: m
+  id: "143"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "314"
+genders_381: 
+  project_id: "1"
+  gelNum: VKSex09, VKSex16, VKSex48, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "381"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "414"
+genders_191: 
+  project_id: "1"
+  gelNum: VKSex40
+  gender: m
+  id: "191"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "111"
+genders_571: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB, 03-20-2007 Sexing Gel#5 RB, 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "571"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "626"
+genders_524: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: f
+  id: "524"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "594"
+genders_334: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "334"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "839"
+genders_144: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "144"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "189"
+genders_192: 
+  project_id: "1"
+  gelNum: VKSex21
+  gender: f
+  id: "192"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "207"
+genders_572: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "572"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "743"
+genders_525: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "525"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "593"
+genders_335: 
+  project_id: "1"
+  gelNum: VKSex13
+  gender: f
+  id: "335"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "287"
+genders_145: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "145"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "11"
+genders_382: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "382"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "465"
+genders_193: 
+  project_id: "1"
+  gelNum: VKSex21, VKSex36, VKSex45
+  gender: f
+  id: "193"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "715"
+genders_573: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "573"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "365"
+genders_526: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "526"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "3"
+genders_336: 
+  project_id: "1"
+  gelNum: VKSex16,
+  gender: m
+  id: "336"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "263"
+genders_146: 
+  project_id: "1"
+  gelNum: VKSex26
+  gender: m
+  id: "146"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "233"
+genders_383: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "383"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "161"
+genders_194: 
+  project_id: "1"
+  gelNum: VKSex27
+  gender: m
+  id: "194"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "525"
+genders_574: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "574"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "629"
+genders_527: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "527"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "159"
+genders_337: 
+  project_id: "1"
+  gelNum: 12-Feb-98/CTVKSex46
+  gender: f
+  id: "337"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "443"
+genders_147: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "147"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "234"
+genders_384: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "384"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "121"
+genders_575: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "575"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "643"
+genders_528: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "528"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "732"
+genders_338: 
+  project_id: "1"
+  gelNum: 04-Feb-98/CT,VKSex30
+  gender: m
+  id: "338"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "446"
+genders_148: 
+  project_id: "1"
+  gelNum: VKSex30, VKSex35
+  gender: m
+  id: "148"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "668"
+genders_385: 
+  project_id: "1"
+  gelNum: VKSex09
+  gender: f
+  id: "385"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "232"
+genders_195: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "195"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "631"
+genders_576: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB, 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "576"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "625"
+genders_529: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: f
+  id: "529"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "163"
+genders_339: 
+  project_id: "1"
+  gelNum: 04-Feb-98/CT,VKSex16, VKSex48
+  gender: f
+  id: "339"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "449"
+genders_149: 
+  project_id: "1"
+  gelNum: VKSex35
+  gender: m
+  id: "149"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "193"
+genders_386: 
+  project_id: "1"
+  gelNum: VKSex08, VKSex43
+  gender: m
+  id: "386"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "309"
+genders_196: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "196"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "606"
+genders_577: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "577"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "613"
+genders_387: 
+  project_id: "1"
+  gelNum: VKSex08, VKSex15
+  gender: f
+  id: "387"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "725"
+genders_197: 
+  project_id: "1"
+  gelNum: VKSex27, VKSex29, 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "197"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "288"
+genders_578: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "578"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "632"
+genders_200: 
+  project_id: "1"
+  gelNum: VKSex40, VKSex42, VKSex47
+  gender: m
+  id: "200"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "712"
+genders_010: 
+  project_id: "1"
+  gelNum: 90MB0024,CSSex04
+  gender: f
+  id: "10"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "302"
+genders_388: 
+  project_id: "1"
+  gelNum: VKSex08, VKSex28, VKSex53, 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "388"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "352"
+genders_198: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "198"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "289"
+genders_579: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "579"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "633"
+genders_201: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "201"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "511"
+genders_011: 
+  project_id: "1"
+  gelNum: 91MB0009, CSSex04
+  gender: f
+  id: "11"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "660"
+genders_389: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "389"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "352"
+genders_199: 
+  project_id: "1"
+  gelNum: VKSex21
+  gender: f
+  id: "199"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "719"
+genders_060: 
+  project_id: "1"
+  gelNum: 90MB0021&0028, VKSex25, TFSex06
+  gender: m
+  id: "60"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "27"
+genders_202: 
+  project_id: "1"
+  gelNum: VKSex21, VKSex39, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "202"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "716"
+genders_012: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "12"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "527"
+genders_630: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "630"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "375"
+genders_440: 
+  project_id: "1"
+  gelNum: TFSex01,VKSex03
+  gender: m
+  id: "440"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "463"
+genders_250: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "250"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "481"
+genders_061: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "61"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "27"
+genders_203: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "203"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "675"
+genders_013: 
+  project_id: "1"
+  gelNum: 90MB0021,91MB0026,91MB0028,TFSex02,CSSex04
+  gender: f
+  id: "13"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "224"
+genders_631: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "631"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "88"
+genders_441: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "441"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "543"
+genders_251: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "251"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "33"
+genders_062: 
+  project_id: "1"
+  gelNum: 90MB0021&0028, TFSex06, TFSex08
+  gender: m
+  id: "62"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "19"
+genders_204: 
+  project_id: "1"
+  gelNum: VKSex27, VKSex39
+  gender: m
+  id: "204"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "680"
+genders_014: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "14"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "223"
+genders_632: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#5 RB
+  gender: m
+  id: "632"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "94"
+genders_490: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "490"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "566"
+genders_442: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "442"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "472"
+genders_252: 
+  project_id: "1"
+  gelNum: VKSex23, VKSex28
+  gender: f
+  id: "252"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "429"
+genders_205: 
+  project_id: "1"
+  gelNum: VKSex27
+  gender: m
+  id: "205"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "205"
+genders_015: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "15"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "537"
+genders_633: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#5 RB
+  gender: m
+  id: "633"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "760"
+genders_491: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "491"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "567"
+genders_443: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "443"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "473"
+genders_253: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "253"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "430"
+genders_063: 
+  project_id: "1"
+  gelNum: 90MB0021&0028&0024&91MB0020,TFSex08
+  gender: m
+  id: "63"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "285"
+genders_206: 
+  project_id: "1"
+  gelNum: VKSex30, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "206"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "262"
+genders_016: 
+  project_id: "1"
+  gelNum: 90MB0024, 91MB0026, CSSex04, VKSex51
+  gender: m
+  id: "16"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "349"
+genders_634: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "634"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "841"
+genders_444: 
+  project_id: "1"
+  gelNum: VKSex01,  03-15-2007 Sexing Gel#5 RB
+  gender: m
+  id: "444"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "464"
+genders_254: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: m
+  id: "254"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "186"
+genders_064: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "64"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "286"
+genders_207: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "207"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "157"
+genders_017: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "17"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "350"
+genders_635: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "635"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "739"
+genders_492: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "492"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "59"
+genders_445: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "445"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "561"
+genders_255: 
+  project_id: "1"
+  gelNum: VKSex44, 03-15-2007 Sexing Gel#1 RB, 03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "255"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "330"
+genders_065: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "65"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "284"
+genders_208: 
+  project_id: "1"
+  gelNum: VKSex30
+  gender: m
+  id: "208"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "279"
+genders_018: 
+  project_id: "1"
+  gelNum: "91MB0026, TFSex02, VKSex51 "
+  gender: m
+  id: "18"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "261"
+genders_636: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "636"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "124"
+genders_493: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "493"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "590"
+genders_446: 
+  project_id: "1"
+  gelNum: VKSex01
+  gender: m
+  id: "446"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "466"
+genders_256: 
+  project_id: "1"
+  gelNum: VKSex28, VKSex47
+  gender: f
+  id: "256"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "219"
+genders_066: 
+  project_id: "1"
+  gelNum: TFSex07, TFSex08
+  gender: m
+  id: "66"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "297"
+genders_209: 
+  project_id: "1"
+  gelNum: VKSex30, VKSex14, VKSex24, 03-15-2007 Sexing Gel#3 RB
+  gender: m
+  id: "209"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "175"
+genders_019: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "19"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "453"
+genders_494: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "494"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "52"
+genders_447: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "447"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "475"
+genders_257: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "257"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "555"
+genders_067: 
+  project_id: "1"
+  gelNum: 90MB0024,CSSex06, VKSex32
+  gender: m
+  id: "67"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "215"
+genders_495: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "495"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "57"
+genders_448: 
+  project_id: "1"
+  gelNum: VKSex01, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "448"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "467"
+genders_258: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: m
+  id: "258"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "433"
+genders_068: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "68"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "601"
+genders_496: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "496"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "58"
+genders_449: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "449"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "518"
+genders_259: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "259"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "434"
+genders_069: 
+  project_id: "1"
+  gelNum: 90MB0024,TFSex08,VKSex46
+  gender: m
+  id: "69"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "187"
+genders_497: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "497"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "61"
+genders_500: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "500"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "55"
+genders_498: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "498"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "53"
+genders_310: 
+  project_id: "1"
+  gelNum: VKSex24
+  gender: m
+  id: "310"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "436"
+genders_120: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "120"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "556"
+genders_501: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "501"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "728"
+genders_499: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "499"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "54"
+genders_311: 
+  project_id: "1"
+  gelNum: VKSex24, VKSex47
+  gender: f
+  id: "311"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "435"
+genders_121: 
+  project_id: "1"
+  gelNum: 91MB0011,VKSex33, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "121"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "312"
+genders_502: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "502"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "60"
+genders_170: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "170"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "701"
+genders_312: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "312"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "546"
+genders_122: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "122"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "832"
+genders_550: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "550"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "742"
+genders_503: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "503"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "557"
+genders_360: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11
+  gender: f
+  id: "360"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "444"
+genders_171: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "171"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "702"
+genders_313: 
+  project_id: "1"
+  gelNum: VKSex13, VKSex31, VKSex47
+  gender: f
+  id: "313"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "47"
+genders_123: 
+  project_id: "1"
+  gelNum: 91MB0011,VKSex33, VKSex34, VKSex38
+  gender: f
+  id: "123"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "689"
+genders_551: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "551"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "752"
+genders_504: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "504"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "591"
+genders_361: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11
+  gender: f
+  id: "361"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "456"
+genders_172: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "172"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "703"
+genders_314: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "314"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "548"
+genders_124: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "124"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "690"
+genders_552: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "552"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "762"
+genders_505: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "505"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "570"
+genders_362: 
+  project_id: "1"
+  gelNum: 12-Feb-98/CT,VKSex11
+  gender: m
+  id: "362"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "206"
+genders_315: 
+  project_id: "1"
+  gelNum: VKSex13, VKSex42, 03-20-2007 Sexing Gel#3 RB
+  gender: f
+  id: "315"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "441"
+genders_125: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "125"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "34"
+genders_553: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "553"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "757"
+genders_506: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "506"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "56"
+genders_363: 
+  project_id: "1"
+  gelNum: 12-Feb-98/CT,VKSex10, 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "363"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "185"
+genders_173: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "173"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "507"
+genders_316: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "316"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "442"
+genders_126: 
+  project_id: "1"
+  gelNum: VKSex34, VKSex40, 03-15-2007 Sexing Gel#1 RB, 03-20-2007 Sexing Gel#1 RB, 03-15-2007 Sexing Gel#5 RB
+  gender: f
+  id: "126"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "694"
+genders_554: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "554"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "71"
+genders_507: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "507"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "598"
+genders_364: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "364"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "648"
+genders_174: 
+  project_id: "1"
+  gelNum: 91MB0008, VKSex29
+  gender: f
+  id: "174"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "528"
+genders_317: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "317"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "471"
+genders_127: 
+  project_id: "1"
+  gelNum: 91MB0012,  03-15-2007 Sexing Gel#5 RB
+  gender: m
+  id: "127"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "229"
+genders_555: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "555"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "823"
+genders_508: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "508"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "114"
+genders_365: 
+  project_id: "1"
+  gelNum: 12-Feb-98/CT,VKSex10
+  gender: f
+  id: "365"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "257"
+genders_175: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "175"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "335"
+genders_318: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "318"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "377"
+genders_128: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "128"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "826"
+genders_556: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "556"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "754"
+genders_509: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "509"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "115"
+genders_366: 
+  project_id: "1"
+  gelNum: VKSex10
+  gender: m
+  id: "366"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "280"
+genders_176: 
+  project_id: "1"
+  gelNum: 91MB0008,VKSex41,VKSex29,  03-15-2007 Sexing Gel#5 RB
+  gender: f
+  id: "176"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "217"
+genders_319: 
+  project_id: "1"
+  gelNum: VKSex13, VKSex40,
+  gender: f
+  id: "319"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "341"
+genders_129: 
+  project_id: "1"
+  gelNum: 91MB0027, VKSex42, 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "129"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "336"
+genders_557: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "557"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "755"
+genders_367: 
+  project_id: "1"
+  gelNum: VKSex10
+  gender: m
+  id: "367"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "720"
+genders_177: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "177"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "218"
+genders_558: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "558"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "761"
+genders_368: 
+  project_id: "1"
+  gelNum: VKSex10, VKSex16
+  gender: f
+  id: "368"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "686"
+genders_178: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "178"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "563"
+genders_559: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "559"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "756"
+genders_369: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex10, VKSex48, 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "369"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "281"
+genders_179: 
+  project_id: "1"
+  gelNum: 91MB0008,VKSex27, VKSex29, 03-15-2007 Sexing Gel#5 RB, 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "179"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "214"
+genders_040: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "40"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "292"
+genders_610: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "610"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "639"
+genders_420: 
+  project_id: "1"
+  gelNum: VKSex05, VKSex14, VKSex15
+  gender: m
+  id: "420"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "354"
+genders_230: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "230"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "304"
+genders_611: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "611"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "734"
+genders_421: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "421"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "355"
+genders_231: 
+  project_id: "1"
+  gelNum: VKSex22, VKSex39, VKSex42
+  gender: m
+  id: "231"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "274"
+genders_041: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "41"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "539"
+genders_612: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "612"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "65"
+genders_422: 
+  project_id: "1"
+  gelNum: VKSex05,VKSex14
+  gender: f
+  id: "422"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "242"
+genders_280: 
+  project_id: "1"
+  gelNum: VKSex36, VKSex47, VKSex50
+  gender: f
+  id: "280"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "46"
+genders_090: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17
+  gender: f
+  id: "90"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "249"
+genders_232: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "232"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "275"
+genders_042: 
+  project_id: "1"
+  gelNum: 90MB0021&0028,CSSex04, VKSex51
+  gender: m
+  id: "42"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "672"
+genders_613: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "613"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "733"
+genders_470: 
+  project_id: "1"
+  gelNum: VKSex47, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "470"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "550"
+genders_423: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "423"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "243"
+genders_281: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "281"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "46"
+genders_091: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17, VKSex38
+  gender: f
+  id: "91"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "687"
+genders_233: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: m
+  id: "233"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "679"
+genders_043: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "43"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "673"
+genders_614: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB, 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "614"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "604"
+genders_471: 
+  project_id: "1"
+  gelNum: VKSex47
+  gender: m
+  id: "471"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "517"
+genders_424: 
+  project_id: "1"
+  gelNum: VKSex14
+  gender: m
+  id: "424"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "726"
+genders_282: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "282"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "474"
+genders_092: 
+  project_id: "1"
+  gelNum: 91MB0011,12-Feb-98/CT, CSSex06, VKSex17, VKSex38, VKSex48
+  gender: f
+  id: "92"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "248"
+genders_234: 
+  project_id: "1"
+  gelNum: VKSex39
+  gender: f
+  id: "234"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "708"
+genders_044: 
+  project_id: "1"
+  gelNum: 90MB0021&0028,CSSex04
+  gender: m
+  id: "44"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "31"
+genders_615: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "615"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "372"
+genders_472: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "472"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "554"
+genders_425: 
+  project_id: "1"
+  gelNum: VKSex43
+  gender: m
+  id: "425"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "461"
+genders_093: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "93"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "18"
+genders_235: 
+  project_id: "1"
+  gelNum: VKSex42, 91MB0012,VKSex26, VKSex34
+  gender: m
+  id: "235"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "272"
+genders_045: 
+  project_id: "1"
+  gelNum: 90MB0024, TFSex07
+  gender: m
+  id: "45"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "266"
+genders_616: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB, 03-15-2007 Sexing Gel#8 RB
+  gender: f
+  id: "616"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "607"
+genders_473: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "473"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "568"
+genders_426: 
+  project_id: "1"
+  gelNum: VKSex43
+  gender: m
+  id: "426"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "458"
+genders_283: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "283"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "547"
+genders_094: 
+  project_id: "1"
+  gelNum: 90MB0011&0026&91MB0020,VKSex17, VKSex51
+  gender: m
+  id: "94"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "533"
+genders_236: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "236"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "530"
+genders_046: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "46"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "267"
+genders_617: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "617"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "624"
+genders_474: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "474"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "569"
+genders_427: 
+  project_id: "1"
+  gelNum: VKSex02
+  gender: f
+  id: "427"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "462"
+genders_284: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: m
+  id: "284"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "188"
+genders_095: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex25, VKSex38
+  gender: f
+  id: "95"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "228"
+genders_237: 
+  project_id: "1"
+  gelNum: VKSex39
+  gender: f
+  id: "237"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "231"
+genders_047: 
+  project_id: "1"
+  gelNum: 90MB0021&0028, TFSex02, TFSex06
+  gender: m
+  id: "47"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "282"
+genders_618: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "618"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "362"
+genders_475: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "475"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "571"
+genders_428: 
+  project_id: "1"
+  gelNum: VKSex02
+  gender: f
+  id: "428"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "457"
+genders_285: 
+  project_id: "1"
+  gelNum: VKSex23, 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "285"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "331"
+genders_238: 
+  project_id: "1"
+  gelNum: VKSex28
+  gender: m
+  id: "238"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "697"
+genders_048: 
+  project_id: "1"
+  gelNum: 90MB0021, 91MB0028, TFSex06, TFSex07, 28-Apr-98/CT, VKSex50, VKSex51
+  gender: m
+  id: "48"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "245"
+genders_619: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "619"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "358"
+genders_476: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "476"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "572"
+genders_429: 
+  project_id: "1"
+  gelNum: VKSex02
+  gender: m
+  id: "429"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "460"
+genders_286: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "286"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "620"
+genders_096: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17, VKSex38
+  gender: f
+  id: "96"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "676"
+genders_239: 
+  project_id: "1"
+  gelNum: 12-Feb-98/CT, VKSex48, VKSex50, VKSex51
+  gender: f
+  id: "239"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "688"
+genders_049: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "49"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "246"
+genders_477: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "477"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "573"
+genders_287: 
+  project_id: "1"
+  gelNum: VKSex36
+  gender: m
+  id: "287"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "707"
+genders_097: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17, VKSex38
+  gender: f
+  id: "97"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "691"
+genders_478: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "478"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "576"
+genders_100: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "100"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "20"
+genders_288: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: m
+  id: "288"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "692"
+genders_098: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17, VKSex32
+  gender: f
+  id: "98"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "256"
+genders_479: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "479"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "577"
+genders_101: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17, VKSex38
+  gender: f
+  id: "101"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "268"
+genders_289: 
+  project_id: "1"
+  gelNum: VKSex28, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "289"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "705"
+genders_099: 
+  project_id: "1"
+  gelNum: 90MB0026,VKSex17,  03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "99"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "265"
+genders_102: 
+  project_id: "1"
+  gelNum: 91MB0027,VKSex25, VKSex32
+  gender: m
+  id: "102"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "283"
+genders_150: 
+  project_id: "1"
+  gelNum: 91MB0027, VKSex30
+  gender: f
+  id: "150"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "320"
+genders_530: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "530"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "164"
+genders_103: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex18, VKSex32
+  gender: m
+  id: "103"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "674"
+genders_340: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "340"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "450"
+genders_531: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "531"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "120"
+genders_104: 
+  project_id: "1"
+  gelNum: 91MB0011, VKSex18, VKSex52
+  gender: f
+  id: "104"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "220"
+genders_341: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "341"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "487"
+genders_151: 
+  project_id: "1"
+  gelNum: 91MB0027,VKSex19, VKSex35, 91MB0009,VKSex21
+  gender: f
+  id: "151"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "273"
+genders_532: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#3 RB
+  gender: m
+  id: "532"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "122"
+genders_390: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "390"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "619"
+genders_342: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "342"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "492"
+genders_152: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "152"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "565"
+genders_105: 
+  project_id: "1"
+  gelNum: 91MB0011, VKSex25, VKSex42, VKSex18
+  gender: m
+  id: "105"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "325"
+genders_580: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: f
+  id: "580"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "623"
+genders_533: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "533"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "681"
+genders_391: 
+  project_id: "1"
+  gelNum: VKSex08, VKSex15
+  gender: m
+  id: "391"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "428"
+genders_343: 
+  project_id: "1"
+  gelNum: VKSex16, VKSex25, VKSex31, VKSex44
+  gender: m
+  id: "343"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "44"
+genders_153: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "153"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "21"
+genders_106: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "106"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "326"
+genders_581: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "581"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "829"
+genders_534: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex34
+  gender: m
+  id: "534"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "67"
+genders_392: 
+  project_id: "1"
+  gelNum: VKSex15, VKSex53,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "392"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "318"
+genders_344: 
+  project_id: "1"
+  gelNum: VKSex16, VKSex48
+  gender: m
+  id: "344"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "721"
+genders_154: 
+  project_id: "1"
+  gelNum: 91MB0008, 91MB0027, VKSex19, VKSex26, 03-15-2007 Sexing Gel#4 RB
+  gender: f
+  id: "154"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "338"
+genders_107: 
+  project_id: "1"
+  gelNum: 91MB0011, VKSex18, VKSex32
+  gender: m
+  id: "107"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "278"
+genders_582: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "582"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "609"
+genders_535: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "535"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "68"
+genders_345: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "345"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "40"
+genders_155: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "155"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "339"
+genders_108: 
+  project_id: "1"
+  gelNum: 91MB0009, 91MB0011& 91MB0026, VKSex18, VKSex32, VKSex38, VKSex40, VKSex43
+  gender: m
+  id: "108"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "306"
+genders_583: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "583"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "835"
+genders_536: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "536"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "597"
+genders_393: 
+  project_id: "1"
+  gelNum: VKSex07, VKSex15, VKSex47, VKSex48, VKSex53
+  gender: f
+  id: "393"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "308"
+genders_346: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex16
+  gender: f
+  id: "346"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "439"
+genders_156: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "156"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "564"
+genders_109: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "109"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "307"
+genders_584: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "584"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "828"
+genders_537: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#3 RB
+  gender: f
+  id: "537"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "622"
+genders_394: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "394"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "491"
+genders_347: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "347"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "506"
+genders_157: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "157"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "738"
+genders_585: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "585"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "833"
+genders_538: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "538"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "650"
+genders_395: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "395"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "544"
+genders_348: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "348"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "98"
+genders_158: 
+  project_id: "1"
+  gelNum: 91MB0027,VKSex26, VKSex35, VKSex38, 03-15-2007 Sexing Gel#1 RB, 03-15-2007 Sexing Gel#3 RB
+  gender: f
+  id: "158"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "669"
+genders_586: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "586"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "630"
+genders_539: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "539"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "751"
+genders_396: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "396"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "503"
+genders_349: 
+  project_id: "1"
+  gelNum: 04-Feb-98/CT,VKSex16,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "349"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "451"
+genders_159: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "159"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "123"
+genders_587: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: m
+  id: "587"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "831"
+genders_397: 
+  project_id: "1"
+  gelNum: VKSex07, VKSex15
+  gender: m
+  id: "397"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "328"
+genders_588: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#8 RB
+  gender: f
+  id: "588"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "830"
+genders_210: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "210"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "7"
+genders_020: 
+  project_id: "1"
+  gelNum: CSSex05
+  gender: m
+  id: "20"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "23"
+genders_398: 
+  project_id: "1"
+  gelNum: VKSex07, VKSex15
+  gender: m
+  id: "398"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "264"
+genders_400: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "400"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "582"
+genders_589: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "589"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "834"
+genders_211: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "211"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "158"
+genders_021: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "21"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "23"
+genders_399: 
+  project_id: "1"
+  gelNum: VKSex07
+  gender: f
+  id: "399"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "301"
+genders_401: 
+  project_id: "1"
+  gelNum: VKSex15, VKSex53
+  gender: f
+  id: "401"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "693"
+genders_022: 
+  project_id: "1"
+  gelNum: 91MB0026,CSSex04
+  gender: m
+  id: "22"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "332"
+genders_260: 
+  project_id: "1"
+  gelNum: 01-Sep-97,SM,VKSex28,VKSex48, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "260"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "178"
+genders_070: 
+  project_id: "1"
+  gelNum: 90MB0024, 91MB0009, TFSex04, VKSex17, VKSex46
+  gender: m
+  id: "70"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "337"
+genders_402: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "402"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "795"
+genders_212: 
+  project_id: "1"
+  gelNum: VKSex27
+  gender: m
+  id: "212"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "277"
+genders_450: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: f
+  id: "450"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "468"
+genders_403: 
+  project_id: "1"
+  gelNum: VKSex07
+  gender: m
+  id: "403"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "276"
+genders_023: 
+  project_id: "1"
+  gelNum: 91MB0011,CSSex04,CSSex05,VKSex48,VKSex5,  03-15-2007 Sexing Gel#5 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "23"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "183"
+genders_071: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "71"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "29"
+genders_213: 
+  project_id: "1"
+  gelNum: VKSex21
+  gender: m
+  id: "213"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "230"
+genders_451: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: f
+  id: "451"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "469"
+genders_404: 
+  project_id: "1"
+  gelNum: VKSex15, 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "404"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "209"
+genders_261: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "261"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "179"
+genders_072: 
+  project_id: "1"
+  gelNum: 90MB0021&0028&0024, TFSex04, VKSex17
+  gender: m
+  id: "72"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "322"
+genders_214: 
+  project_id: "1"
+  gelNum: VKSex21
+  gender: m
+  id: "214"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "665"
+genders_024: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "24"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "182"
+genders_452: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "452"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "2"
+genders_405: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "405"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "12"
+genders_262: 
+  project_id: "1"
+  gelNum: VKSex40,01-Sep-97,SM,VKSex36
+  gender: m
+  id: "262"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "176"
+genders_073: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "73"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "321"
+genders_215: 
+  project_id: "1"
+  gelNum: VKSex27
+  gender: m
+  id: "215"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "254"
+genders_025: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "25"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "184"
+genders_453: 
+  project_id: "1"
+  gelNum: VKSex51
+  gender: m
+  id: "453"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "486"
+genders_406: 
+  project_id: "1"
+  gelNum: VKSex15
+  gender: f
+  id: "406"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "247"
+genders_263: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "263"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "177"
+genders_216: 
+  project_id: "1"
+  gelNum: VKSex21, VKSex22
+  gender: f
+  id: "216"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "666"
+genders_026: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "26"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "838"
+genders_454: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "454"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "155"
+genders_407: 
+  project_id: "1"
+  gelNum: VKSex48, 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "407"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "241"
+genders_264: 
+  project_id: "1"
+  gelNum: 01-Sep-97,SM, VKSex23, VKSex36
+  gender: m
+  id: "264"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "415"
+genders_074: 
+  project_id: "1"
+  gelNum: 90MB0024,VKSex17,VKSex47
+  gender: m
+  id: "74"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "8"
+genders_217: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "217"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "667"
+genders_027: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "27"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "836"
+genders_455: 
+  project_id: "1"
+  gelNum: VKSex50
+  gender: m
+  id: "455"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "101"
+genders_408: 
+  project_id: "1"
+  gelNum: VKSex06, VKSex25
+  gender: f
+  id: "408"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "351"
+genders_265: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "265"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "416"
+genders_075: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "75"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "509"
+genders_218: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: f
+  id: "218"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "722"
+genders_028: 
+  project_id: "1"
+  gelNum: 91MB0012, TFSex02, CSSex05
+  gender: m
+  id: "28"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "244"
+genders_456: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: m
+  id: "456"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "513"
+genders_409: 
+  project_id: "1"
+  gelNum: TFSex01, 23-Mar-00
+  gender: m
+  id: "409"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "192"
+genders_266: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "266"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "417"
+genders_076: 
+  project_id: "1"
+  gelNum: 90MB0024,CSSex06, VKSex32, VKSex38
+  gender: m
+  id: "76"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "271"
+genders_219: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "219"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "41"
+genders_029: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "29"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "529"
+genders_457: 
+  project_id: "1"
+  gelNum: VKSex48
+  gender: m
+  id: "457"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "515"
+genders_267: 
+  project_id: "1"
+  gelNum: VKSex23
+  gender: f
+  id: "267"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "704"
+genders_077: 
+  project_id: "1"
+  gelNum: 90MB0021&0028, 91MB0008, 91MB0020,CSSex06, VKSex17, VKSex29, VKSex48, VKSex53
+  gender: f
+  id: "77"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "345"
+genders_458: 
+  project_id: "1"
+  gelNum: VKSex48
+  gender: m
+  id: "458"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "497"
+genders_268: 
+  project_id: "1"
+  gelNum: VKSex23, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "268"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "706"
+genders_078: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "78"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "346"
+genders_459: 
+  project_id: "1"
+  gelNum: VKSex47, VKSex50
+  gender: f
+  id: "459"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "50"
+genders_269: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "269"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "560"
+genders_079: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "79"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "347"
+genders_510: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "510"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "113"
+genders_130: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "130"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "499"
+genders_320: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "320"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "342"
+genders_511: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "511"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "104"
+genders_321: 
+  project_id: "1"
+  gelNum: VKSex13, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "321"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "445"
+genders_131: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "131"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "584"
+genders_512: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "512"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "600"
+genders_370: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "370"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "508"
+genders_180: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "180"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "14"
+genders_322: 
+  project_id: "1"
+  gelNum: VKSex16
+  gender: m
+  id: "322"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "440"
+genders_132: 
+  project_id: "1"
+  gelNum: VKSex34
+  gender: m
+  id: "132"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "310"
+genders_560: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "560"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "758"
+genders_513: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "513"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "599"
+genders_181: 
+  project_id: "1"
+  gelNum: 91MB0008,VKSex27
+  gender: m
+  id: "181"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "699"
+genders_323: 
+  project_id: "1"
+  gelNum: VKSex13
+  gender: f
+  id: "323"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "437"
+genders_133: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "133"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "311"
+genders_561: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "561"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "645"
+genders_514: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "514"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "605"
+genders_371: 
+  project_id: "1"
+  gelNum: VKSex10
+  gender: f
+  id: "371"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "170"
+genders_182: 
+  project_id: "1"
+  gelNum: 91MB0009,VKSex27
+  gender: f
+  id: "182"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "526"
+genders_324: 
+  project_id: "1"
+  gelNum: VKSex13
+  gender: f
+  id: "324"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "195"
+genders_134: 
+  project_id: "1"
+  gelNum: 91MB0027, VKSex26
+  gender: m
+  id: "134"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "110"
+genders_562: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "562"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "649"
+genders_515: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "515"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "107"
+genders_372: 
+  project_id: "1"
+  gelNum: VKSex10
+  gender: m
+  id: "372"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "524"
+genders_183: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "183"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "208"
+genders_325: 
+  project_id: "1"
+  gelNum: VKSex30, 04-Feb-98/CT,VKSex13
+  gender: m
+  id: "325"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "477"
+genders_135: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "135"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "334"
+genders_563: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "563"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "731"
+genders_516: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "516"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "108"
+genders_373: 
+  project_id: "1"
+  gelNum: VKSex15, 03-15-2007 Sexing Gel#1 RB, 03-15-2007 Sexing Gel#2 RB, 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "373"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "238"
+genders_326: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "326"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "327"
+genders_136: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex26, VKSex38, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "136"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "531"
+genders_564: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB, 03-20-2007 Sexing Gel#5 RB
+  gender: f
+  id: "564"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "730"
+genders_517: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "517"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "105"
+genders_374: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "374"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "118"
+genders_184: 
+  project_id: "1"
+  gelNum: 91MB0009,VKSex27,VKSex35,VKSex36,VKSex39
+  gender: f
+  id: "184"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "4"
+genders_327: 
+  project_id: "1"
+  gelNum: VKSex13,VKSex42,  03-20-2007 Sexing Gel#1 RB
+  gender: m
+  id: "327"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "198"
+genders_137: 
+  project_id: "1"
+  gelNum: 91MB0012, VKSex34, VKSex43, VKSex50, VKSex51
+  gender: m
+  id: "137"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "16"
+genders_565: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "565"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "95"
+genders_518: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "518"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "106"
+genders_375: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "375"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "376"
+genders_185: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "185"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "5"
+genders_328: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "328"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "199"
+genders_138: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "138"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "240"
+genders_566: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: f
+  id: "566"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "729"
+genders_519: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "519"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "367"
+genders_376: 
+  project_id: "1"
+  gelNum: VKSex09
+  gender: f
+  id: "376"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "724"
+genders_186: 
+  project_id: "1"
+  gelNum: 91MB0008,VKSex27, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "186"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "203"
+genders_329: 
+  project_id: "1"
+  gelNum: VKSex16
+  gender: f
+  id: "329"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "236"
+genders_139: 
+  project_id: "1"
+  gelNum: 91MB0012,VKSex19, VKSex34
+  gender: m
+  id: "139"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "235"
+genders_567: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "567"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "644"
+genders_377: 
+  project_id: "1"
+  gelNum: VKSex47, VKSex48
+  gender: f
+  id: "377"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "213"
+genders_187: 
+  project_id: "1"
+  gelNum: 91MB0009,VKSex27
+  gender: f
+  id: "187"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "251"
+genders_568: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "568"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "627"
+genders_378: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "378"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "553"
+genders_188: 
+  project_id: "1"
+  gelNum: 91MB0027, VKSex20, VKSex27, VKSex36, VKSex39, 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "188"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "683"
+genders_569: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#7 RB
+  gender: m
+  id: "569"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "646"
+genders_001: 
+  project_id: "1"
+  gelNum: 91MB0026 & CindySex01, 08-May-00, CSSex04, 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "1"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "323"
+genders_379: 
+  project_id: "1"
+  gelNum: TFSex01,VKSex09, 03-15-2007 Sexing Gel#5 RB
+  gender: f
+  id: "379"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "727"
+genders_189: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "189"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "684"
+genders_050: 
+  project_id: "1"
+  gelNum: 90MB0024,TFSex02, TFSex06, VKSex51, 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "50"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "535"
+genders_002: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "2"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "324"
+genders_620: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: f
+  id: "620"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "846"
+genders_430: 
+  project_id: "1"
+  gelNum: VKSex02
+  gender: m
+  id: "430"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "479"
+genders_003: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "3"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "581"
+genders_240: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "240"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "270"
+genders_051: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "51"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "319"
+genders_621: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: f
+  id: "621"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "845"
+genders_431: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "431"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "479"
+genders_004: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "4"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "844"
+genders_241: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: f
+  id: "241"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "709"
+genders_622: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "622"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "374"
+genders_480: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#2 RB
+  gender: f
+  id: "480"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "574"
+genders_432: 
+  project_id: "1"
+  gelNum: VKSex02
+  gender: f
+  id: "432"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "478"
+genders_005: 
+  project_id: "1"
+  gelNum: 91MB0026, CSSex01, CSSex05, 08-May-00, VKSex50,  03-15-2007 Sexing Gel#5 RB
+  gender: f
+  id: "5"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "30"
+genders_290: 
+  project_id: "1"
+  gelNum: 01-Sep-97,SM,VKSex23, VKSex24, 03-15-2007 Sexing Gel#1 RB,  03-15-2007 Sexing Gel#5 RB
+  gender: f
+  id: "290"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "42"
+genders_242: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "242"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "710"
+genders_052: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "52"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "364"
+genders_623: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "623"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "361"
+genders_433: 
+  project_id: "1"
+  gelNum: VKSex50
+  gender: f
+  id: "433"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "459"
+genders_006: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "6"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "340"
+genders_291: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "291"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "43"
+genders_243: 
+  project_id: "1"
+  gelNum: VKSex22
+  gender: f
+  id: "243"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "519"
+genders_053: 
+  project_id: "1"
+  gelNum: 90MB0021&0028&91MB0020, TFSex04, TFSex07, VKSex48, VKSex51,  03-15-2007 Sexing Gel#5 RB
+  gender: m
+  id: "53"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "26"
+genders_624: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#3 RB
+  gender: f
+  id: "624"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "356"
+genders_481: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "481"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "578"
+genders_434: 
+  project_id: "1"
+  gelNum: VKSex02, VKSex03, VKSex14
+  gender: f
+  id: "434"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "78"
+genders_007: 
+  project_id: "1"
+  gelNum: 91MB0026,CindySex01,08-May-00, 03-15-2007 Sexing Gel#1 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "7"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "173"
+genders_292: 
+  project_id: "1"
+  gelNum: VKSex24, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "292"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "418"
+genders_244: 
+  project_id: "1"
+  gelNum: VKSex22,VKSex39, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "244"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "190"
+genders_054: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "54"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "26"
+genders_625: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: f
+  id: "625"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "363"
+genders_482: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "482"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "579"
+genders_435: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "435"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "79"
+genders_008: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "8"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "174"
+genders_293: 
+  project_id: "1"
+  gelNum: VKSex24
+  gender: f
+  id: "293"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "431"
+genders_245: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "245"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "191"
+genders_055: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "55"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "299"
+genders_626: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: f
+  id: "626"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "357"
+genders_483: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "483"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "580"
+genders_436: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "436"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "80"
+genders_009: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "9"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "485"
+genders_246: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "246"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "70"
+genders_056: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "56"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "300"
+genders_627: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: f
+  id: "627"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "366"
+genders_484: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "484"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "586"
+genders_437: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "437"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "81"
+genders_294: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "294"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "432"
+genders_247: 
+  project_id: "1"
+  gelNum: VKSex22, VKSex02
+  gender: f
+  id: "247"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "678"
+genders_057: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "57"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "583"
+genders_628: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "628"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "371"
+genders_485: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "485"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "595"
+genders_438: 
+  project_id: "1"
+  gelNum: VKSex03
+  gender: m
+  id: "438"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "255"
+genders_295: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "295"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "540"
+genders_248: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "248"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "510"
+genders_058: 
+  project_id: "1"
+  gelNum: 90MB0021&0028,91MB0020,TFSex07, CSSex07
+  gender: m
+  id: "58"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "252"
+genders_629: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#4 RB
+  gender: m
+  id: "629"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "360"
+genders_486: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "486"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "585"
+genders_439: 
+  project_id: "1"
+  gelNum: VKSex03, VKSex14
+  gender: f
+  id: "439"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "100"
+genders_296: 
+  project_id: "1"
+  gelNum: VKSex24, VKSex28
+  gender: f
+  id: "296"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "426"
+genders_249: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "249"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "589"
+genders_059: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "59"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "253"
+genders_487: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#2 RB
+  gender: f
+  id: "487"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "587"
+genders_297: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "297"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "427"
+genders_488: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "488"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "588"
+genders_300: 
+  project_id: "1"
+  gelNum: VKSex28, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "300"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "421"
+genders_110: 
+  project_id: "1"
+  gelNum: 91MB0011&91MB0020, VKSex30
+  gender: m
+  id: "110"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "221"
+genders_298: 
+  project_id: "1"
+  gelNum: VKSex30
+  gender: m
+  id: "298"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "696"
+genders_489: 
+  project_id: "1"
+  gelNum: 03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "489"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "169"
+genders_301: 
+  project_id: "1"
+  gelNum: VKSex28, VKSex48, 03-15-2007 Sexing Gel#4 RB
+  gender: f
+  id: "301"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "422"
+genders_111: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "111"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "222"
+genders_299: 
+  project_id: "1"
+  gelNum: VKSex24
+  gender: f
+  id: "299"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "723"
+genders_302: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "302"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "484"
+genders_112: 
+  project_id: "1"
+  gelNum: 91MB0011,VKSex18, VKSex33
+  gender: m
+  id: "112"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "298"
+genders_160: 
+  project_id: "1"
+  gelNum: 91MB0009,VKSex19,VKSex26,VKSex48,  03-20-2007 Sexing Gel#1 RB
+  gender: f
+  id: "160"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "200"
+genders_540: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "540"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "747"
+genders_303: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "303"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "753"
+genders_113: 
+  project_id: "1"
+  gelNum: 91MB0011& 91MB0026,VKSex18, VKSex33, VKSex34
+  gender: m
+  id: "113"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "212"
+genders_350: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "350"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "452"
+genders_161: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "161"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "201"
+genders_541: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "541"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "759"
+genders_304: 
+  project_id: "1"
+  gelNum: VKSex28, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "304"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "420"
+genders_114: 
+  project_id: "1"
+  gelNum: 91MB0011, VKSex33, 070418EGLSEX
+  gender: f
+  id: "114"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "239"
+genders_351: 
+  project_id: "1"
+  gelNum: 04-Feb-98/CT,VKSex11
+  gender: f
+  id: "351"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "343"
+genders_590: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "590"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "640"
+genders_542: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "542"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "745"
+genders_305: 
+  project_id: "1"
+  gelNum: VKSex24,VKSex39
+  gender: m
+  id: "305"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "181"
+genders_115: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "115"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "787"
+genders_352: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "352"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "344"
+genders_162: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "162"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "505"
+genders_543: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB, 03-20-2007 Sexing Gel#2 RB
+  gender: m
+  id: "543"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "741"
+genders_306: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "306"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "180"
+genders_116: 
+  project_id: "1"
+  gelNum: 91MB0011,VKSex18, 03-20-2007 Sexing Gel#3 RB
+  gender: m
+  id: "116"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "13"
+genders_353: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11
+  gender: f
+  id: "353"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "237"
+genders_163: 
+  project_id: "1"
+  gelNum: VKSex35, VKSex43
+  gender: f
+  id: "163"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "269"
+genders_591: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: f
+  id: "591"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "842"
+genders_544: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "544"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "359"
+genders_307: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "307"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "9"
+genders_117: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "117"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "369"
+genders_354: 
+  project_id: "1"
+  gelNum: VKSex16
+  gender: f
+  id: "354"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "447"
+genders_164: 
+  project_id: "1"
+  gelNum: 91MB0027, VKSex19, VKSex35, VKSex38
+  gender: f
+  id: "164"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "682"
+genders_592: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: m
+  id: "592"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "840"
+genders_545: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "545"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "744"
+genders_308: 
+  project_id: "1"
+  gelNum: VKSex24
+  gender: m
+  id: "308"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "329"
+genders_118: 
+  project_id: "1"
+  gelNum: 91MB0011&91MB0020, VKSex18, VKSex33
+  gender: m
+  id: "118"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "305"
+genders_355: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11
+  gender: f
+  id: "355"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "455"
+genders_165: 
+  project_id: "1"
+  gelNum: VKSex30, VKSex35, 03-15-2007 Sexing Gel#1 RB
+  gender: m
+  id: "165"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "211"
+genders_593: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: m
+  id: "593"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "837"
+genders_546: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "546"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "737"
+genders_309: 
+  project_id: "1"
+  gelNum: VKSex24
+  gender: m
+  id: "309"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "438"
+genders_119: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "119"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "532"
+genders_356: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11
+  gender: f
+  id: "356"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "313"
+genders_166: 
+  project_id: "1"
+  gelNum: 91MB0020,VKSex26, VKSex38, 03-15-2007 Sexing Gel#1 RB
+  gender: f
+  id: "166"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "316"
+genders_594: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: f
+  id: "594"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "827"
+genders_547: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: m
+  id: "547"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "750"
+genders_357: 
+  project_id: "1"
+  gelNum: 28-Apr-98/CT,VKSex11, VKSex47, VKSex48
+  gender: m
+  id: "357"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "448"
+genders_167: 
+  project_id: "1"
+  gelNum: 
+  gender: f
+  id: "167"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "664"
+genders_595: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#9 RB
+  gender: m
+  id: "595"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "825"
+genders_548: 
+  project_id: "1"
+  gelNum: 03-15-2007 Sexing Gel#6 RB
+  gender: f
+  id: "548"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "736"
+genders_358: 
+  project_id: "1"
+  gelNum: 
+  gender: m
+  id: "358"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "512"
+genders_168: 
+  project_id: "1"
+  gelNum: 91MB0020,VKSex26,VKSex35, VKSex39
+  gender: f
+  id: "168"
+  wellNum: 
+  locus: 
+  finalResult: 
+  sample_id: "210"

@@ -35,8 +35,13 @@ class Project < ActiveRecord::Base
   before_create :assign_project_owner
   after_save :assign_default_project
 
-  def assign_project_owner  
-    self.user_id = current_user.id
+  def assign_project_owner
+    return true if self.name == "Default"  
+    begin
+      self.user_id ||= current_user.id
+    rescue
+      raise "Must be logged in to create a project"
+    end
   end
 
   # if this is the first project created for this user

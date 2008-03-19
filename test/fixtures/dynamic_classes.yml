@@ -1,14 +1,7 @@
-# == Schema Information
-#
-# Table name: dynamic_classes
-#
-#  id               :integer(11)   not null, primary key
-#  name             :string(255)   
-
-height:
+--- 
+dynamic_classes_001: 
   name: height
-weight:
+  id: "2"
+dynamic_classes_002: 
   name: weight
-date:
-  name: date
-  
+  id: "1"

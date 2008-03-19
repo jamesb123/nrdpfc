@@ -1,51 +1,11 @@
-# == Schema Information
-#
-# Table name: mhcs
-#
-#  id          :integer(11)   not null, primary key
-#  sample_id   :integer(11)   
-#  project_id  :integer(11)   
-#  locus       :string(255)   
-#  allele1     :string(255)   
-#  allele2     :string(255)   
-#  gelNum      :string(255)   
-#  wellNum     :string(255)   
-#  finalResult :boolean(1)    
-#
-
-mhc_whale_measurement_1_fin_sample:
-  sample: fin_sample
-  project: whale_project
-  locus: EV0Pm
-  allele1: 127
-  allele2: 127
-  gelNum: TRF-07-199
-  wellNum: 6
-  finalResult: true
-mhc_whale_measurement_2_fin_sample:
-  sample: fin_sample
-  project: whale_project
-  locus: EV31Mn
-  allele1: 191
-  allele2: 193
-  gelNum: TRF-07-199
-  wellNum: 7
-  finalResult: true
-mhc_whale_measurement_1_nose_sample:
-  sample: nose_sample
-  project: whale_project
-  locus: EV0Pm
-  allele1: 138
-  allele2: 137
-  gelNum: TRF-07-199
-  wellNum: 7
-  finalResult: true
-mhc_whale_measurement_2_nose_sample:
-  sample: nose_sample
-  project: whale_project
-  locus: EV31Mn
-  allele1: 192
-  allele2: 104
-  gelNum: TRF-07-199
-  wellNum: 7
-  finalResult: true
+--- 
+mhcs_001: 
+  project_id: "1"
+  gelNum: "4"
+  allele1: "2"
+  allele2: "3"
+  id: "1"
+  wellNum: "5"
+  finalResult: "0"
+  locus: "1"
+  sample_id: "1"
