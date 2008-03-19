@@ -18,9 +18,9 @@ namespace :db do
       end
       ENV['RAILS_ENV'] = db
       Rake::Task["db:migrate"].dup.invoke
-      Rake::Task["db:fixtures:load"].dup.invoke
-      Rake::Task["db:test:clone_structure"].dup.invoke
-      Rake::Task["annotate_models"].dup.invoke
+      #Rake::Task["db:fixtures:load"].dup.invoke
+      #Rake::Task["db:test:clone_structure"].dup.invoke
+      #Rake::Task["annotate_models"].dup.invoke
       `railroad -o doc/models.dot -M`
     end
   end

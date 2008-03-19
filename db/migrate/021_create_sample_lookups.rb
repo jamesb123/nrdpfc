@@ -12,8 +12,8 @@ class CreateSampleLookups < ActiveRecord::Migration
     remove_column :samples, :locality_type_id
     remove_column :samples, :shippingmaterial_id
     remove_column :samples, :tissue_type_id
-    remove_column :samples, :province_id, :integer
-    remove_column :samples, :storage_medium_id, :integer
-    remove_column :samples, :country_id, :integer
+    remove_column :samples, :province_id
+    remove_column :samples, :storage_medium_id
+    remove_column :samples, :country_id
   end
 end
