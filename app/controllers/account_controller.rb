@@ -10,6 +10,9 @@ class AccountController < ApplicationController
   def index
     redirect_to(:action => 'signup') unless logged_in? || User.count > 0
   end
+  
+  def unassigned_user
+  end
 
   def login
     return unless request.post?
@@ -22,8 +25,17 @@ class AccountController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       
-      redirect_back_or_default(:controller => '/projects')
       flash[:notice] = "Logged in successfully"
+
+      # Send the user to an explanation page 
+      # if they're in limbo, waiting to be 
+      # assigned to a project.
+      if current_user.current_project.name == 'Default'
+        redirect_to(:action => 'unassigned_user')
+      else
+        redirect_back_or_default(:controller => '/projects')
+      end
+      
     end
   end
 
