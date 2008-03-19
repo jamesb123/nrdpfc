@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   belongs_to :current_project, :class_name => 'Project', :foreign_key => "project_id"  
   has_many :security_settings
   has_many :projects
+  
+  before_save :set_project
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -35,6 +37,12 @@ class User < ActiveRecord::Base
   
   def to_label
     "#{login}"
+  end
+  
+  # Requires that a project always be set for a user, 
+  # even if it's a Default project with no data or permissions.
+  def set_project
+    self.project_id ||= Project.find_or_create_by_name('Default')
   end
   
   def authorized_security_for?(project, minimum_security_level)
