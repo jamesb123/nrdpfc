@@ -8,7 +8,7 @@ class MhcsController < ApplicationController
     config.list.columns.exclude :project
     list.sorting = {:sample => 'ASC'}
 
-    config.columns[:sample].label = "Sample Info"
+    config.columns[:sample].label = "Organism"
     config.columns[:allele1].label = "Allele 1"
     config.columns[:allele2].label = "Allele 2"    
     config.columns[:gelNum].label = "Gel Num"

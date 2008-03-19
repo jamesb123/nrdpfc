@@ -21,8 +21,6 @@ class SamplesController < ApplicationController
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
-        
-    
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Day "
