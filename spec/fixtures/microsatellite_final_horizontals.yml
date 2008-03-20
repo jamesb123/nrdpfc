@@ -1,0 +1,13 @@
+# == Schema Information
+#
+# Table name: microsatellite_final_horizontals
+#
+#  id            :integer(11)   not null, primary key
+#  project_id    :integer(11)   
+#  organism_id   :integer(11)   
+#  organism_code :string(255)   
+#  allelea       :integer(11)   
+#  alleleb       :integer(11)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

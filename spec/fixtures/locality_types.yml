@@ -1,0 +1,10 @@
+# == Schema Information
+#
+# Table name: locality_types
+#
+#  id                 :integer(11)   not null, primary key
+#  locality_type_name :string(255)   
+#  locality_type_desc :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

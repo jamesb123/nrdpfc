@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: organisms
+#
+#  id            :integer(11)   not null, primary key
+#  project_id    :integer(11)   
+#  organism_code :string(255)   
+#  comment       :string(255)   
+#
+
+whale:
+  project: whale_project
+  organism_code: Egl00050
+  comment: This is a whale
