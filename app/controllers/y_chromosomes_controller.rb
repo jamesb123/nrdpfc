@@ -10,6 +10,7 @@ class YChromosomesController < ApplicationController
     config.update.columns.exclude :id, :project, :sample
     config.list.columns.exclude :security_settings
     config.columns[:finalResult].form_ui = :checkbox
+    columns[:sample].label = "Organism"
   end
   
   def list
