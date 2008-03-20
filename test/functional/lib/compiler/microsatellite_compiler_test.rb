@@ -37,8 +37,7 @@ class Compiler::MicrosatelliteCompilerTest < Test::Unit::TestCase
       }
       assert_not_nil(result.project_id)
       assert_not_nil(result.sample_id)
-      assert_not_nil(result.org_sample)
-      assert_not_nil(result.organism_code)
+      assert_not_nil(result.organism_index)
     }
     assert_equal(2, @results.length)
     

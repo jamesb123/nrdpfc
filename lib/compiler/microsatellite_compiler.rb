@@ -14,8 +14,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       
       row.project_id = sample.project_id
       row.sample_id = sample.id
-      row.org_sample = sample.org_sample
-      row.organism_code = sample.organism_code
+      row.organism_index = sample.organism_index
       
       sample.microsatellites.each{|microsatellite|
         row["#{microsatellite.locus}a"] = microsatellite.allele1
@@ -30,8 +29,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
     ActiveRecord::Base.connection.create_table "microsatellite_horizontals_#{@project_id}", :force => true do |t|
       t.integer :project_id
       t.integer :sample_id
-      t.integer :organism_code
-      t.integer :org_sample
+      t.integer :organism_index
       
       self.locii.each { |locus|
         t.string "#{locus}a"
