@@ -52,12 +52,10 @@
 fin_sample:
   project: whale_project
   receiver_comments: "Fin sample"
-  organism_code: Egl00050
-  org_sample: 1
+  organism_index: 1
   organism: whale
 nose_sample:
   project: whale_project
   receiver_comments: "Nose sample"
-  org_sample: 1
-  organism_code: Egl00050
+  organism_index: 1
   organism: whale
