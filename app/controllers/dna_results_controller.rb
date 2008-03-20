@@ -9,7 +9,7 @@ class DnaResultsController < ApplicationController
     config.columns[:sample].includes = [:sample]
     config.columns[:sample].sort_by :sql => "samples.organism_code"
   
-    config.list.columns.exclude :id, :project_id
+    config.list.columns.exclude :project_id
     config.create.columns.exclude :id, :project_id
     config.update.columns.exclude  :id, :project_id
    
