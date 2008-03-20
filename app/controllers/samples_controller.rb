@@ -10,10 +10,13 @@ class SamplesController < ApplicationController
     :locality_comments, :location_accuracy, :type_lat_long, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :shippingmaterial, :locality_type, :tissue_type,:security_settings]  
     
+   # config.columns[:organism].includes = [:organisms]
+   # config.columns[:organism].sort_by :sql => "organisms.organism_code"
+      
     list.sorting = {:organism => 'ASC'}  
     config.create.columns.exclude :id, :security_settings, :project
     config.update.columns.exclude :id, :security_settings, :project
-    config.list.columns.exclude  :project
+    config.list.columns.exclude  :id, :project
 
     config.columns[:organism].label = "Organism "
     config.columns[:security_settings].label = "Security"
