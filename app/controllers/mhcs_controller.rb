@@ -6,7 +6,9 @@ class MhcsController < ApplicationController
     config.create.columns.exclude :sample, :project, :security_settings
     config.update.columns.exclude :sample, :project, :security_settings
     config.list.columns.exclude :project
-    list.sorting = {:sample => 'ASC'}
+    #list.sorting = {:sample => 'ASC'}
+    config.columns[:sample].includes = [:sample]
+    config.columns[:sample].sort_by :sql => "samples.organism_code"
 
     config.columns[:sample].label = "Organism"
     config.columns[:allele1].label = "Allele 1"

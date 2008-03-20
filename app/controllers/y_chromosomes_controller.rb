@@ -4,7 +4,10 @@ class YChromosomesController < ApplicationController
     config.label = "y Chromosome"
     config.columns = [:project, :sample, :locus, :haplotype, :finalResult]
     config.list.columns.exclude :project
-    list.sorting = {:sample => 'ASC'}
+    config.columns[:sample].includes = [:sample]
+    config.columns[:sample].sort_by :sql => "samples.organism_code"
+    
+    #list.sorting = {:sample => 'ASC'}
     
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample
