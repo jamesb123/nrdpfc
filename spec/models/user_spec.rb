@@ -15,13 +15,14 @@ describe User do
   end
   
   it "should be assigned to the manager-less project by default" do
-    @user.project.owner.should be_nil
+    @user.current_project.name.should eql('Default')
   end
 
   protected
     def create_user(options = {})
       record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
       # record.register! if record.valid?
+      record.save!
       record
     end
 end
