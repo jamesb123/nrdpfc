@@ -6,6 +6,9 @@ class MicrosatellitesController < ApplicationController
     for uc in [config.update, config.create]
       uc.columns = [:id, :project, :sample, :locus, :allele1, :allele2, :gel, :well, :finalResult]
     end
+
+    config.columns[:sample].sort_by :sql => "organisms.organism_code"
+
     config.list.columns.exclude :id, :project
     columns = config.columns
     columns[:sample].label = "Organism"
@@ -41,6 +44,10 @@ class MicrosatellitesController < ApplicationController
     end
     
     sb
+  end
+  
+  def joins_for_collection
+    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
   end
   
   include ResultTableSharedMethods

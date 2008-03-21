@@ -4,10 +4,8 @@ class YChromosomesController < ApplicationController
     config.label = "y Chromosome"
     config.columns = [:project, :sample, :locus, :haplotype, :finalResult]
     config.list.columns.exclude :project
-    config.columns[:sample].includes = [:sample]
-    config.columns[:sample].sort_by :sql => "samples.organism_code"
-    
-    #list.sorting = {:sample => 'ASC'}
+
+    config.columns[:sample].sort_by :sql => "organisms.organism_code"
     
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample
@@ -49,5 +47,10 @@ class YChromosomesController < ApplicationController
     sb.to_s
   end  
   include ResultTableSharedMethods
+  
+  def joins_for_collection
+    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
+  end
+  
   
 end

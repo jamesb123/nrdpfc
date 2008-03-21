@@ -4,9 +4,8 @@ class MtDnasController < ApplicationController
     config.label = "mtDNA"
     config.columns = [:id, :project,  :sample, :locus, :haplotype, :gelNum, :wellNum, :finalResult]
     config.list.columns.exclude :project
-    # list.sorting = {:sample => 'ASC'}
-    config.columns[:sample].includes = [:sample]
-    config.columns[:sample].sort_by :sql => "samples.organism_code"
+
+    config.columns[:sample].sort_by :sql => "organisms.organism_code"
     
     config.create.columns.exclude :sample, :project
     config.update.columns.exclude :sample, :project
@@ -15,4 +14,9 @@ class MtDnasController < ApplicationController
   end
   
   include ResultTableSharedMethods
+
+  def joins_for_collection
+    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
+  end
+
 end

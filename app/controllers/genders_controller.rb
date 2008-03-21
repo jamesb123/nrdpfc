@@ -5,13 +5,17 @@ class GendersController < ApplicationController
     config.create.columns.exclude :project, :sample, :security_settings
     config.update.columns.exclude :project, :sample, :security_settings
     config.list.columns.exclude :project
-    #list.sorting = {:sample => 'ASC'}
-    config.columns[:sample].includes = [:sample]
-    config.columns[:sample].sort_by :sql => "samples.organism_code"
+
+    config.columns[:sample].sort_by :sql => "organisms.organism_code"
     
     config.columns[:sample].label = "Organism"  
     config.columns[:finalResult].form_ui = :checkbox
   end
   
   include ResultTableSharedMethods
+  
+  def joins_for_collection
+    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
+  end
+  
 end
