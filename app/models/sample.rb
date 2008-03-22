@@ -93,8 +93,6 @@ class Sample < ActiveRecord::Base
   def to_label 
     "#{organism.organism_code}" 
   end
-
-
   
   def security_settings
     current_user.authorization_display_for self.project

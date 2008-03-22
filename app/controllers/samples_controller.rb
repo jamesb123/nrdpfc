@@ -16,7 +16,7 @@ class SamplesController < ApplicationController
     list.sorting = {:organism => 'ASC'}  
     config.create.columns.exclude :id, :security_settings, :project
     config.update.columns.exclude :id, :security_settings, :project
-    config.list.columns.exclude  :id, :project
+    config.list.columns.exclude  :project
 
     config.columns[:organism].label = "Organism "
     config.columns[:security_settings].label = "Security"

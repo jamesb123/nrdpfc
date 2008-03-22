@@ -7,10 +7,9 @@ class DnaResultsController < ApplicationController
       :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
 
     config.columns[:sample].sort_by :sql => 'organisms.organism_code'
-    
     config.list.columns.exclude :project_id
-    config.create.columns.exclude :id, :project_id
-    config.update.columns.exclude  :id, :project_id
+    config.create.columns.exclude :id, :project_id, :sample
+    config.update.columns.exclude  :id, :project_id, :sample
    
     config.columns[:sample].label = "Organism"  
     config.columns[:prep_number].label = "Prep. #"  
