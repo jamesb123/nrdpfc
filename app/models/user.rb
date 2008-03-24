@@ -108,7 +108,11 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
     self.remember_token            = nil
     save(false)
   end
-
+  
+  def current_project_authorized?
+    current_user.is_admin
+  end
+  
   def authorized_for_create?
     true
   end
