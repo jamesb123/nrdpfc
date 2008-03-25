@@ -32,7 +32,7 @@ class DnaResult < ActiveRecord::Base
   extend Exportables::ExportableModel
   
   def to_label 
-    "Ex#: #{prep_number}" 
+    "#{sample_id}" 
   end
 
   before_create :assign_project_id
