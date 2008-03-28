@@ -18,7 +18,7 @@ Logged in as: <%= current_user.to_label %>.
 </p>
 
 
-<% if current_project && current_project.recompile_required %>
+<% if (current_project && current_project.recompile_required) or true %>
   
   <div id="recompile_required_alert" class="alert">
     <! Data needs to be recompiled for this project.  >
