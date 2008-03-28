@@ -7,7 +7,7 @@ class MicrosatelliteHorizontalsController < ApplicationController
   
   def custom_reconfiguration(config)
     config.columns = [:project, :sample]
-    config.list.columns = [:project, :sample, :organism_code, :org_sample, :raw_data] + model_for_current_project.dynamic_column_names
+    config.list.columns = [:sample, :organism_index, :raw_data] + model_for_current_project.dynamic_column_names
     model_for_current_project.dynamic_column_names.each{|column_name|
       config.columns[column_name].form_ui = :ajax_link
     }
