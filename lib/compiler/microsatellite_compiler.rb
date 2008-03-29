@@ -32,8 +32,8 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       t.integer :organism_index
       
       self.locii.each { |locus|
-        t.string "#{locus}a", :float
-        t.string "#{locus}b", :float
+        t.float "#{locus}a"
+        t.float "#{locus}b"
       }
     end
     
