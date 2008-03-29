@@ -5,9 +5,9 @@
 #  id          :integer(11)   not null, primary key
 #  sample_id   :integer(11)   
 #  project_id  :integer(11)   
-#  locus       :string(255)   
-#  allele1     :string(255)   
-#  allele2     :string(255)   
+#  locus       :string(7)     
+#  allele1     :float         
+#  allele2     :float         
 #  gel         :string(255)   
 #  well        :string(255)   
 #  finalResult :boolean(1)    
