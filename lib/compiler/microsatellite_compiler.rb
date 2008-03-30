@@ -16,7 +16,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       row.sample_id = sample.id
       row.organism_index = sample.organism_index
       
-      sample.microsatellites.each{|microsatellite|
+      sample.microsatellites.each { |microsatellite|
         row["#{microsatellite.locus}a"] = microsatellite.allele1
         row["#{microsatellite.locus}b"] = microsatellite.allele2
       }
@@ -32,8 +32,8 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       t.integer :organism_index
       
       self.locii.each { |locus|
-        t.float "#{locus}a"
-        t.float "#{locus}b"
+        t.integer "#{locus}a"
+        t.integer "#{locus}b"
       }
     end
     

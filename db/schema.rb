@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 42) do
+ActiveRecord::Schema.define(:version => 43) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -475,8 +475,8 @@ ActiveRecord::Schema.define(:version => 42) do
     t.integer "sample_id"
     t.integer "project_id"
     t.string  "locus",       :limit => 7
-    t.float   "allele1"
-    t.float   "allele2"
+    t.integer "allele1"
+    t.integer "allele2"
     t.string  "gel"
     t.string  "well"
     t.boolean "finalResult"

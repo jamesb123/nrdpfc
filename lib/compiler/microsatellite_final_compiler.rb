@@ -34,8 +34,8 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
       t.string :organism_code, :limit => 128
       
       self.locii.each { |locus|
-        t.float "#{locus}a"
-        t.float "#{locus}b"
+        t.integer "#{locus}a"
+        t.integer "#{locus}b"
       }
     end
   end
