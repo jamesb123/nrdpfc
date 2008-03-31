@@ -28,20 +28,12 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
       ]
     ).to_sql
     
-    @connection.select_all(organisms_query).each{|organism|
-      # insert in the first final microsatellite for each organism
-      row = {}
-      
-      row[:project_id] = organism["organisms_project_id"]
-      row[:organism_id] = organism["organisms_id"]
-      row[:organism_code] = organism["organisms_organism_code"]
-      
-      @connection.select_all(microsatellites_query % row[:organism_id]).each{|microsatellite|
+    create_row_for_each_organism do |row|
+      @connection.select_all(microsatellites_query % row["organism_id"]).each{|microsatellite|
         row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
         row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
       }
-      model.insert(row)
-    }
+    end
   end
   
   def create_table
