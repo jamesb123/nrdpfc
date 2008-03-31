@@ -2,9 +2,15 @@ class QueryBuilder
   attr_accessor :limit
   
   def initialize(options = {})
+    @default_parent_table = QueryTable.new(options[:parent]) if options[:parent]
     add_tables(*options[:tables])       if options[:tables]
     add_fields(options[:fields])       if options[:fields]
     add_order(*options[:order_fields])  if options[:order_fields]
+    if options[:filterings]
+      options[:filterings].each do |filtering|
+        add_filter(*filtering)
+      end
+    end
   end
   
   def add_tables(*table_names)
@@ -114,7 +120,7 @@ class QueryBuilder
     sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit
-    query_piece += QueryPiece.new(:where => "samples.project_id = #{ActiveRecord::Base.current_project.id.to_i}")
+    query_piece += QueryPiece.new(:where => "samples.project_id = #{ActiveRecord::Base.current_project.id.to_i}") if ActiveRecord::Base.current_project
     
     query_piece.to_sql
   end
