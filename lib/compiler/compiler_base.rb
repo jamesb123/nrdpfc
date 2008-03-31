@@ -47,6 +47,28 @@ class Compiler::CompilerBase
   def model
     @model ||= model_name.constantize.model_for_project(@project_id)
   end
-    
+  
+  def organism_query
+    QueryBuilder.new(
+      :parent => :organism, 
+      :fields => {:organisms => ["id", "project_id", "organism_code"]},
+      :filterings => [
+        ["organisms", "project_id", "=", @project.id]
+      ]
+    ).to_sql
+  end
+  
+  def create_row_for_each_organism
+    @connection.select_all(organism_query).each{|organism|
+      # insert in the first final mt_dna for each organism
+      row = {}
+      
+      row["organism_id"] = organism["organisms_id"]
+      row["project_id"] = organism["organisms_project_id"]
+      row["organism_code"] = organism["organisms_organism_code"]
+      yield row
+      model.insert(row)
+    }
+  end
 
 end

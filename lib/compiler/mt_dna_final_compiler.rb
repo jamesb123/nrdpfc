@@ -21,13 +21,6 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
   end
   
   def compile_data
-    organism_query = QueryBuilder.new(
-      :parent => :organism, 
-      :fields => {:organisms => ["id", "project_id", "organism_code"]},
-      :filterings => [
-        ["organisms", "project_id", "=", @project.id]
-      ]
-    ).to_sql
     mt_dna_query = QueryBuilder.new(
       :parent => :mt_dnas, 
       :tables => ["mt_dnas", "organisms"], 
@@ -38,19 +31,11 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
         ["organisms", "id", "=", "%s"]
       ]).to_sql
     
-    @connection.select_all(organism_query).each{|organism|
-      # insert in the first final mt_dna for each organism
-      row = {}
-      
-      row[:organism_id] = organism["organisms_id"]
-      row[:project_id] = organism["organisms_project_id"]
-      row[:organism_code] = organism["organisms_organism_code"]
-      
-      @connection.select_all( mt_dna_query % row[:organism_id] ).each{|mt_dna|
+    create_row_for_each_organism do |row|
+      @connection.select_all( mt_dna_query % row["organism_id"] ).each{|mt_dna|
         row[mt_dna["mt_dnas_locus"]] ||= mt_dna["mt_dnas_haplotype"]
       }
-      model.insert(row)
-    }
+    end
   end
   
 end
