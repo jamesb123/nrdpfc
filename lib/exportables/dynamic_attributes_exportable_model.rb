@@ -19,10 +19,15 @@ module Exportables::DynamicAttributesExportableModel
   
   # returns an array of strings
   def dynamic_attributes
-    @dynamic_attributes = nil unless @project_id == current_project.id
-    @project_id = current_project.id
-    @dynamic_attributes ||= DynamicAttribute.find(:all, :conditions => {:scoper_type => "Project", :scoper_id => current_project.id, :owner_type => self.to_s}, :order => "name" )
+    if current_project
+      @dynamic_attributes = nil unless @project_id == current_project.id
+      @project_id = current_project.id
+      @dynamic_attributes ||= DynamicAttribute.find(:all, :conditions => {:scoper_type => "Project", :scoper_id => current_project.id, :owner_type => self.to_s}, :order => "name" )
+    else
+      []
+    end
   end
+  
   
   
   def exportable_filter(field, operator, operand)

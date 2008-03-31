@@ -21,16 +21,33 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
   end
   
   def compile_data
-    @project.organisms.each{|organism|
+    organism_query = QueryBuilder.new(
+      :parent => :organism, 
+      :fields => {:organisms => ["id", "project_id", "organism_code"]},
+      :filterings => [
+        ["organisms", "project_id", "=", @project.id]
+      ]
+    ).to_sql
+    mt_dna_query = QueryBuilder.new(
+      :parent => :organism, 
+      :tables => ["mt_dnas"], 
+      :fields => {:mt_dnas => ["locus", "haplotype"]}, 
+      :filterings => [
+        ["mt_dnas", "finalResult", "=", true],
+        ["organisms", "project_id", "=", @project.id],
+        ["organisms", "id", "=", "%s"]
+      ]).to_sql
+    
+    @connection.select_all(organism_query).each{|organism|
       # insert in the first final mt_dna for each organism
       row = {}
       
-      row[:organism_id] = organism.id
-      row[:project_id] = organism.project_id
-      row[:organism_code] = organism.organism_code
+      row[:organism_id] = organism["organisms_id"]
+      row[:project_id] = organism["organisms_project_id"]
+      row[:organism_code] = organism["organisms_organism_code"]
       
-      organism.final_mt_dnas.each{|mt_dna|
-        row["#{mt_dna.locus}"] ||= mt_dna.haplotype
+      @connection.select_all( mt_dna_query % row[:organism_id] ).each{|mt_dna|
+        row[mt_dna["mt_dnas_locus"]] ||= mt_dna["mt_dnas_haplotype"]
       }
       model.insert(row)
     }
