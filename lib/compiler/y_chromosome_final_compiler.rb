@@ -28,16 +28,16 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
   def compile_data
     @project.organisms.each{|organism|
       # insert in the first final y_chromosome for each organism
-      row = model.new
+      row = {}
       
-      row.organism_id = organism.id
-      row.project_id = organism.project_id
-      row.organism_code = organism.organism_code
+      row[:organism_id] = organism.id
+      row[:project_id] = organism.project_id
+      row[:organism_code] = organism.organism_code
       
       organism.final_y_chromosomes.each{|y_chromosome|
         row["#{y_chromosome.locus}"] ||= y_chromosome.haplotype
       }
-      row.save
+      model.insert(row)
     }
   end
   

@@ -15,8 +15,8 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
       t.string :organism_code, :limit => 128
       
       self.locii.each { |locus|
-        t.string "#{locus}a"
-        t.string "#{locus}b"
+        t.column "#{locus}a", Mhc.columns_hash["allele1"].type, :limit => Mhc.columns_hash["allele1"].limit
+        t.column "#{locus}b", Mhc.columns_hash["allele2"].type, :limit => Mhc.columns_hash["allele2"].limit
       }
     end
   end
@@ -25,17 +25,17 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
   def compile_data
     @project.organisms.each{|organism|
       # insert in the first final mhc for each organism
-      row = model.new
+      row = {}
       
-      row.organism_id = organism.id
-      row.project_id = organism.project_id
-      row.organism_code = organism.organism_code
+      row[:organism_id] = organism.id
+      row[:project_id] = organism.project_id
+      row[:organism_code] = organism.organism_code
       
       organism.final_mhcs.each{|mhc|
         row["#{mhc.locus}a"] ||= mhc.allele1
         row["#{mhc.locus}b"] ||= mhc.allele2
       }
-      row.save
+      model.insert(row)
     }
   end
 end
