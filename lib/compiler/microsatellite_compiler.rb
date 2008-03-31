@@ -7,15 +7,18 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
     "microsatellites"
   end
   
-  def compile_data
-    samples_query = QueryBuilder.new(
+  def sample_query_builder
+    QueryBuilder.new(
       :parent => :samples, 
       :fields => {:samples => ["id", "project_id", "organism_index"]},
       :filterings => [
         ["samples", "project_id", "=", @project.id]
       ]
-    ).to_sql
-    microsatellites_query = QueryBuilder.new(
+    )
+  end
+  
+  def microsatellites_query_builder
+    QueryBuilder.new(
       :parent => :samples, 
       :tables => ["microsatellites"], 
       :fields => {:microsatellites => %w[locus allele1 allele2]},
@@ -23,8 +26,12 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
         ["samples", "project_id", "=", @project.id],
         ["samples", "id", "=", "%s"]
       ]
-    ).to_sql
-    
+    )
+  end
+  
+  def compile_data
+    samples_query = sample_query_builder.to_sql
+    microsatellites_query = microsatellites_query_builder.to_sql
     
     # psuedo algorithm
     @connection.select_all(samples_query).each{|sample|
