@@ -29,8 +29,8 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
       ]
     ).to_sql
     mt_dna_query = QueryBuilder.new(
-      :parent => :organism, 
-      :tables => ["mt_dnas"], 
+      :parent => :mt_dnas, 
+      :tables => ["mt_dnas", "organisms"], 
       :fields => {:mt_dnas => ["locus", "haplotype"]}, 
       :filterings => [
         ["mt_dnas", "finalResult", "=", true],

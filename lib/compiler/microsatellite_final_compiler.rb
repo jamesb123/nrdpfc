@@ -18,8 +18,8 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
     ).to_sql
     
     microsatellites_query = QueryBuilder.new(
-      :parent => :organisms, 
-      :tables => ["microsatellites"], 
+      :parent => "microsatellites", 
+      :tables => ["microsatellites", "organisms"], 
       :fields => {:microsatellites => %w[locus allele1 allele2]},
       :filterings => [
         ["microsatellites", "finalResult", "=", true],

@@ -19,8 +19,8 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   
   def microsatellites_query_builder
     QueryBuilder.new(
-      :parent => :samples, 
-      :tables => ["microsatellites"], 
+      :parent => :microsatellites, 
+      :tables => %w[microsatellites samples], 
       :fields => {:microsatellites => %w[locus allele1 allele2]},
       :filterings => [
         ["samples", "project_id", "=", @project.id],
