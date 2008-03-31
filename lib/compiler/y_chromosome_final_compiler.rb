@@ -24,22 +24,21 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
     end
   end
   
-
   def compile_data
-    @project.organisms.each{|organism|
-      # insert in the first final y_chromosome for each organism
-      row = {}
-      
-      row[:organism_id] = organism.id
-      row[:project_id] = organism.project_id
-      row[:organism_code] = organism.organism_code
-      
-      organism.final_y_chromosomes.each{|y_chromosome|
-        row["#{y_chromosome.locus}"] ||= y_chromosome.haplotype
+    final_y_chromosomes_query = QueryBuilder.new(
+      :parent => :y_chromosomes, 
+      :tables => ["y_chromosomes", "organisms"], 
+      :fields => {:y_chromosomes => ["locus", "haplotype"]}, 
+      :filterings => [
+        ["y_chromosomes", "finalResult", "=", true],
+        ["organisms", "project_id", "=", @project.id],
+        ["organisms", "id", "=", "%s"]
+      ]).to_sql
+    
+    create_row_for_each_organism do |row|
+      @connection.select_all( final_y_chromosomes_query % row["organism_id"] ).each{|y_chromosome|
+        row[y_chromosome["y_chromosomes_locus"]] ||= y_chromosome["y_chromosomes_haplotype"]
       }
-      model.insert(row)
-    }
+    end
   end
-  
-  
 end
