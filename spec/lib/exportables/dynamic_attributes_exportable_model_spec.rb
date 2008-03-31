@@ -34,14 +34,14 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   end
   
   it "should return a hash of it's data types" do
-    Organism.exportable_column_types_hash.should == {
-      "id"            => :integer,
-      "project_id"    => :integer,
+    Organism.exportable_column_types_hash.should == { 
+      "project_id" => :integer,
+      "notes" => :text_value,
+      "id" => :integer,
       "organism_code" => :string,
-      "comment"       => :string,
-      "nea"           => :integer,
-      "notes"         => :text_value
-    }
+      "comment" => :string,
+      "nea" => :integer
+   }
   end
   
   it "should generate sql select elements for columns, with the table alias" do

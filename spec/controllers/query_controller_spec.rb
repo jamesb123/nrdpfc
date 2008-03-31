@@ -87,7 +87,8 @@ describe QueryController do
       
       @query_builder.filterings.should == [
         ["organisms", "organism_code", ">", "1"], 
-        ["organisms", "organism_code", "<", "1000"]
+        ["organisms", "organism_code", "<", "1000"],
+        ["samples", "project_id", "=", 492194273]
       ]
     end
     

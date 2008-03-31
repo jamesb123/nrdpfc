@@ -120,7 +120,6 @@ class QueryBuilder
     sort_piece = QueryPiece.new(:order => order_fields.map{ |field_alias, direction| "#{field_alias} #{direction}"})
     query_piece += sort_piece
     query_piece += QueryPiece.new(:limit => limit) if limit
-    query_piece += QueryPiece.new(:where => "samples.project_id = #{ActiveRecord::Base.current_project.id.to_i}") if ActiveRecord::Base.current_project
     
     query_piece.to_sql
   end
