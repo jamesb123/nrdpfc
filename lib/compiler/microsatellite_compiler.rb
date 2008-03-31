@@ -8,17 +8,35 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   end
   
   def compile_data
+    samples_query = QueryBuilder.new(
+      :parent => :samples, 
+      :fields => {:samples => ["id", "project_id", "organism_index"]},
+      :filterings => [
+        ["samples", "project_id", "=", @project.id]
+      ]
+    ).to_sql
+    microsatellites_query = QueryBuilder.new(
+      :parent => :samples, 
+      :tables => ["microsatellites"], 
+      :fields => {:microsatellites => %w[locus allele1 allele2]},
+      :filterings => [
+        ["samples", "project_id", "=", @project.id],
+        ["samples", "id", "=", "%s"]
+      ]
+    ).to_sql
+    
+    
     # psuedo algorithm
-    @project.samples.each{|sample|
+    @connection.select_all(samples_query).each{|sample|
       row = {}
       
-      row[:project_id] = sample.project_id
-      row[:sample_id] = sample.id
-      row[:organism_index] = sample.organism_index
+      row[:project_id] = sample["samples_project_id"]
+      row[:sample_id] = sample["samples_id"]
+      row[:organism_index] = sample["samples_organism_index"]
       
-      sample.microsatellites.each { |microsatellite|
-        row["#{microsatellite.locus}a"] = microsatellite.allele1
-        row["#{microsatellite.locus}b"] = microsatellite.allele2
+      @connection.select_all(microsatellites_query % row[:sample_id]).each { |microsatellite|
+        row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
+        row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
       }
       
       model.insert(row)

@@ -19,6 +19,7 @@ class Microsatellite < ActiveRecord::Base
   
   before_create :assign_project_id
   after_save :flag_project_for_update
+  extend Exportables::ExportableModel
   
   def assign_project_id
     self.project_id = current_project.id
