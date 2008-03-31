@@ -28,16 +28,16 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
   def compile_data
     @project.organisms.each{|organism|
       # insert in the first final gender for each organism
-      row = model.new
+      row = {}
       
-      row.organism_id = organism.id
-      row.project_id = organism.project_id
-      row.organism_code = organism.organism_code
+      row["organism_id"] = organism.id
+      row["project_id"] = organism.project_id
+      row["organism_code"] = organism.organism_code
       
       organism.final_genders.each{|gender|
         row["#{gender.locus}"] ||= gender.gender
       }
-      row.save
+      model.insert(row)
     }
   end
   
