@@ -26,19 +26,23 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
   
 
   def compile_data
-    @project.organisms.each{|organism|
-      # insert in the first final gender for each organism
-      row = {}
-      
-      row["organism_id"] = organism.id
-      row["project_id"] = organism.project_id
-      row["organism_code"] = organism.organism_code
-      
-      organism.final_genders.each{|gender|
-        row["#{gender.locus}"] ||= gender.gender
+    final_genders_query = QueryBuilder.new(
+      :parent => :genders, 
+      :tables => ["genders", "organisms"], 
+      :fields => {:genders => ["locus", "gender"]}, 
+      :filterings => [
+        ["genders", "finalResult", "=", true],
+        ["organisms", "project_id", "=", @project.id],
+        ["organisms", "id", "=", "%s"]
+      ]).to_sql
+    
+    
+    create_row_for_each_organism do |row|
+      @connection.select_all( final_genders_query % row["organism_id"] ).each{|gender|
+        row[gender["genders_locus"]] ||= gender["genders_gender"]
       }
-      model.insert(row)
-    }
+    end
+    
   end
   
   
