@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 43) do
+ActiveRecord::Schema.define(:version => 44) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -593,7 +593,7 @@ ActiveRecord::Schema.define(:version => 43) do
     t.integer "sample_id"
     t.integer "project_id"
     t.string  "locus"
-    t.string  "haplotype"
+    t.string  "haplotype",   :limit => 1
     t.string  "gelNum"
     t.string  "wellNum"
     t.boolean "finalResult"

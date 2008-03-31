@@ -23,16 +23,16 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
   def compile_data
     @project.organisms.each{|organism|
       # insert in the first final mt_dna for each organism
-      row = model.new
+      row = {}
       
-      row.organism_id = organism.id
-      row.project_id = organism.project_id
-      row.organism_code = organism.organism_code
+      row[:organism_id] = organism.id
+      row[:project_id] = organism.project_id
+      row[:organism_code] = organism.organism_code
       
       organism.final_mt_dnas.each{|mt_dna|
         row["#{mt_dna.locus}"] ||= mt_dna.haplotype
       }
-      row.save
+      model.insert(row)
     }
   end
   

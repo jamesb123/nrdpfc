@@ -6,7 +6,7 @@
 #  sample_id   :integer(11)   
 #  project_id  :integer(11)   
 #  locus       :string(255)   
-#  haplotype   :string(255)   
+#  haplotype   :string(1)     
 #  gelNum      :string(255)   
 #  wellNum     :string(255)   
 #  finalResult :boolean(1)    
