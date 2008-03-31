@@ -12,17 +12,17 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
     
     @project.organisms.each{|organism|
       # insert in the first final microsatellite for each organism
-      row = model.new
+      row = {}
       
-      row.organism_id = organism.id
-      row.project_id = organism.project_id
-      row.organism_code = organism.organism_code
+      row[:organism_id] = organism.id
+      row[:project_id] = organism.project_id
+      row[:organism_code] = organism.organism_code
       
       organism.final_microsatellites.each{|microsatellite|
         row["#{microsatellite.locus}a"] ||= microsatellite.allele1
         row["#{microsatellite.locus}b"] ||= microsatellite.allele2
       }
-      row.save
+      model.insert(row)
     }
   end
   

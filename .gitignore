@@ -2,3 +2,4 @@
 /public/stylesheets/cache
 .DS_Store
 /db/development_structure.sql
+/scratchpad.rb

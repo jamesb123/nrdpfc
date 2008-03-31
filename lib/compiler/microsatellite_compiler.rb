@@ -10,17 +10,18 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   def compile_data
     # psuedo algorithm
     @project.samples.each{|sample|
-      row = model.new
+      row = {}
       
-      row.project_id = sample.project_id
-      row.sample_id = sample.id
-      row.organism_index = sample.organism_index
+      row[:project_id] = sample.project_id
+      row[:sample_id] = sample.id
+      row[:organism_index] = sample.organism_index
       
       sample.microsatellites.each { |microsatellite|
         row["#{microsatellite.locus}a"] = microsatellite.allele1
         row["#{microsatellite.locus}b"] = microsatellite.allele2
       }
-      row.save
+      
+      model.insert(row)
     }
   end
   

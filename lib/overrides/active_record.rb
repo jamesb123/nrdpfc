@@ -18,3 +18,16 @@ class ActiveRecord::Base
     self.id.to_i
   end
 end
+
+class ActiveRecord::Base
+  def self.insert_query_for(attributes = {})
+    set_values = attributes.collect do |key, value|
+      "`#{key}` = '#{value.to_s.gsub("'", "''")}'"
+    end
+    "INSERT INTO #{table_name} set #{set_values.join(", ")}"
+  end
+  
+  def self.insert(attributes = {})
+    connection.execute(insert_query_for(attributes))
+  end
+end
