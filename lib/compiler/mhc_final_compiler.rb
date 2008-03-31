@@ -23,19 +23,24 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
   
 
   def compile_data
-    @project.organisms.each{|organism|
-      # insert in the first final mhc for each organism
-      row = {}
+    final_mhcs_query = QueryBuilder.new(
+      :parent => :mhcs, 
+      :tables => ["mhcs", "organisms"], 
+      :fields => {:mhcs => ["locus", "allele1", "allele2"]}, 
+      :filterings => [
+        ["mhcs", "finalResult", "=", true],
+        ["organisms", "project_id", "=", @project.id],
+        ["organisms", "id", "=", "%s"]
+      ]).to_sql
+    
+    create_row_for_each_organism do |row|
       
-      row[:organism_id] = organism.id
-      row[:project_id] = organism.project_id
-      row[:organism_code] = organism.organism_code
-      
-      organism.final_mhcs.each{|mhc|
-        row["#{mhc.locus}a"] ||= mhc.allele1
-        row["#{mhc.locus}b"] ||= mhc.allele2
+      @connection.select_all( final_mhcs_query % row["organism_id"] ).each{|mhc|
+        row["#{mhc["mhcs_locus"]}b"] ||= mhc["mhcs_allele1"]
+        row["#{mhc["mhcs_locus"]}a"] ||= mhc["mhcs_allele2"]
       }
-      model.insert(row)
-    }
+      
+    end
+    
   end
 end
