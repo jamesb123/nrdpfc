@@ -14,6 +14,11 @@ class Compiler::CompilerBase
     create_table
     compile_data
   end
+  
+  def column_args(model, field_name)
+    col = model.columns_hash[field_name.to_s]
+    [col.type, {:limit => col.limit}]
+  end
 
   def create_table
     raise "Implement me"

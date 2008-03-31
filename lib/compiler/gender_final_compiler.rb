@@ -19,7 +19,7 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
       t.string :organism_code, :limit => 128
       
       self.locii.each { |locus|
-        t.string "#{locus}", :limit => 20
+        t.column "#{locus}", *column_args(Gender, "gender")
       }
     end
   end

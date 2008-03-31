@@ -15,8 +15,8 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
       t.string :organism_code, :limit => 128
       
       self.locii.each { |locus|
-        t.column "#{locus}a", Mhc.columns_hash["allele1"].type, :limit => Mhc.columns_hash["allele1"].limit
-        t.column "#{locus}b", Mhc.columns_hash["allele2"].type, :limit => Mhc.columns_hash["allele2"].limit
+        t.column "#{locus}a", *column_args(Mhc, "allele1")
+        t.column "#{locus}b", *column_args(Mhc, "allele2")
       }
     end
   end

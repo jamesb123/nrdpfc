@@ -33,8 +33,8 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       t.integer :organism_index
       
       self.locii.each { |locus|
-        t.integer "#{locus}a"
-        t.integer "#{locus}b"
+        t.column "#{locus}a", *column_args(Microsatellite, "allele1")
+        t.column "#{locus}b", *column_args(Microsatellite, "allele2")
       }
     end
     
