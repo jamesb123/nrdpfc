@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :security_settings
   has_many :projects
   
-  before_save :set_project
+  before_save :set_project, :check_for_duplicate_admins
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
     "#{login}"
   end
   
+  
+  def check_for_duplicate_admins
+    return true if ! self.is_admin
+    ! User.find(:first, :conditions => {:is_admin => true})
+  end
+  
   # Requires that a project always be set for a user, 
   # even if it's a Default project with no data or permissions.
   def set_project
@@ -47,6 +53,7 @@ class User < ActiveRecord::Base
   end
   
   def authorized_security_for?(project, minimum_security_level)
+   return true if current_user.is_admin
    return false if !project
     
    current_user == project.owner || current_user.security_settings.detect {|setting| setting.project == project && setting.level >= minimum_security_level}

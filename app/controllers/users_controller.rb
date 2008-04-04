@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     config.columns = [:login, :email]
     config.actions.exclude :create, :delete
   end
+  
 end
 
   #  config.actions = [:create, :update, :show]  

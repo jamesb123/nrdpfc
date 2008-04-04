@@ -73,6 +73,9 @@
     controller: "security_settings"
   - label: "Project Managers"
     controller: "project_managers"
+  - label: "Register a User to a Project"
+    controller: "account"
+    action: "register_to_project"
 	
 - label: "Queries"
   controller: "query"

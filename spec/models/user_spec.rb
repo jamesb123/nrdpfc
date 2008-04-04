@@ -17,6 +17,11 @@ describe User do
   it "should be assigned to the manager-less project by default" do
     @user.current_project.name.should eql('Default')
   end
+  
+  it "should have only one admin user" do
+    create_user(:is_admin => true, :login => 'other_1', :email => 'other_1@example.com')
+    lambda{create_user(:is_admin => true, :login => 'other_2', :email => 'other_2@example.com')}.should raise_error
+  end
 
   protected
     def create_user(options = {})
