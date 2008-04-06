@@ -20,9 +20,29 @@ class ActiveRecord::Base
 end
 
 class ActiveRecord::Base
+  def self.safe_quote_value(value, column)
+    col = columns_hash[column.to_s]
+    
+    safe_value = 
+      case col.type
+      when :integer
+        case value
+        when ""
+          nil
+        else
+          value.to_i
+        end
+      else
+        value
+      end
+    
+    quote_value(safe_value)
+  end
+  
   def self.insert_query_for(attributes = {})
+    
     set_values = attributes.collect do |key, value|
-      "`#{key}` = '#{value.to_s.gsub("'", "''")}'"
+      "`#{key}` = #{safe_quote_value(value, key.to_s)}"
     end
     "INSERT INTO #{table_name} set #{set_values.join(", ")}"
   end
