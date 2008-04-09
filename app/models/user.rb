@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   end
   
   def authorized_security_for?(project, minimum_security_level)
+   # TODO: Test this
    return true if current_user.is_admin
    return false if !project
     
@@ -118,7 +119,8 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
   end
   
   def current_project_authorized?
-    current_user.is_admin
+    true
+    #current_user.is_admin
   end
   
   def authorized_for_create?

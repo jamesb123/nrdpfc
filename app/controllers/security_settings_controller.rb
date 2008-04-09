@@ -17,12 +17,14 @@ class SecuritySettingsController < ApplicationController
   end
 
   def conditions_for_collection
-    if current_user.is_admin
-      # No limits for the admin
-      []
-    else
-      ['projects.user_id = (?)', current_user.id]
-    end
+    ['projects.user_id = (?)', current_user.id]
+# TODO: test this
+#    if current_user.is_admin
+#      # No limits for the admin
+#      []
+#    else
+#      ['projects.user_id = (?)', current_user.id]
+#    end
   end
 
 end

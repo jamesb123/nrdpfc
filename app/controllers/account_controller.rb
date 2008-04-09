@@ -9,7 +9,8 @@ class AccountController < ApplicationController
   def authorized?
     return true unless params[:action] == 'register_to_project'
     return false if !current_user
-    current_user.is_admin
+    # TODO: test this
+    #current_user.is_admin
   end
     
   # say something nice, you goof!  something sweet.
