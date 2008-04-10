@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   active_scaffold :users do |config|
     config.columns = [:login, :email]
     config.create.columns = [:login, :email, :password, :password_confirmation]
+    config.update.columns = [:login, :email, :password, :password_confirmation]
   end
   
   # These go somewhere else...
