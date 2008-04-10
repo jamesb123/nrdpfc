@@ -10,6 +10,8 @@ class GendersController < ApplicationController
     
     config.columns[:sample].label = "Organism"  
     config.columns[:finalResult].form_ui = :checkbox
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
   
   include ResultTableSharedMethods

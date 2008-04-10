@@ -10,14 +10,4 @@ class ProjectManagersController < ApplicationController
     
   end
   
-  ActiveScaffold.set_defaults do |config|
-    config.security.current_user_method = :current_login
-  end
-
-  protected
-
-  def current_login
-    current_user
-  end
-
 end

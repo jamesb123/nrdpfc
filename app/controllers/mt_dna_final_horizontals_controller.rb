@@ -8,6 +8,8 @@ class MtDnaFinalHorizontalsController < ApplicationController
   def custom_reconfiguration(config)
     config.columns = [:project, :sample]
     config.list.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
   
 public

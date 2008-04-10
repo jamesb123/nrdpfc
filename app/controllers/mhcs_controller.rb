@@ -14,6 +14,8 @@ class MhcsController < ApplicationController
     config.columns[:allele2].label = "Allele 2"    
     config.columns[:gelNum].label = "Gel Num"
     config.columns[:finalResult].form_ui = :checkbox
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
 
   include ResultTableSharedMethods

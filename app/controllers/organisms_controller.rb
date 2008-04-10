@@ -14,6 +14,8 @@ class OrganismsController < ApplicationController
     config.update.columns.exclude :id, :project, :security_settings
     config.columns[:comment].label = "Comments"
     config.columns = [:id, :organism_code, :comment, :samples]
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
   
   def add_dynamic_columns

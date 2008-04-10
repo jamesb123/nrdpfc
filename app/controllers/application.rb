@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   prepend_before_filter :login_required  
-
+  
   ActiveScaffold.set_defaults do |config|
     config.security.current_user_method = :current_user
     config.security.default_permission = false
+  end
+  
+  def go_to
+    render :text => "Not yet implemented...", :layout => false
   end
 end

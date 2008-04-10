@@ -17,6 +17,8 @@ class MicrosatellitesController < ApplicationController
     
     [:project, :sample, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
   
   def list

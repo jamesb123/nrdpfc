@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   
   def authorized_security_for?(project, minimum_security_level)
    # TODO: Test this
-   return true if current_user.is_admin
+   #return true if current_user.is_admin
    return false if !project
     
    current_user == project.owner || current_user.security_settings.detect {|setting| setting.project == project && setting.level >= minimum_security_level}

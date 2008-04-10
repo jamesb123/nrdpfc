@@ -60,6 +60,8 @@ class SamplesController < ApplicationController
     config.columns[:storage_box].label = "Box"
     config.columns[:xy_position].label = "xy pos"
     config.columns[:tissue_remaining].label = "tissue remaining"
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
 
   def conditions_for_collection

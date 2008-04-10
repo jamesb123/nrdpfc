@@ -19,6 +19,7 @@ class DnaResultsController < ApplicationController
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
   end
 
   def conditions_for_collection
@@ -28,6 +29,5 @@ class DnaResultsController < ApplicationController
   def joins_for_collection
     'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
   end
-  
-  
+
 end

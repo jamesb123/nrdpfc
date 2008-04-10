@@ -12,6 +12,8 @@ class YChromosomesController < ApplicationController
     config.list.columns.exclude :security_settings
     config.columns[:finalResult].form_ui = :checkbox
     columns[:sample].label = "Organism"
+    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    
   end
   
   def list
