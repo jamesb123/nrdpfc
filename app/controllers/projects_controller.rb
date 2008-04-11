@@ -1,12 +1,14 @@
 class ProjectsController < ApplicationController
   layout "tabs", :except => [:recompile_status, :recompile]
-#  before_filter :login_required
 
   active_scaffold :projects do |config|
     config.columns = [:name, :owner, :code, :description, :security_setting]  
+
+    # Only project managers can edit their own project...
+    config.create.columns.exclude :id, :to_label, :security_setting
+    config.update.columns.exclude :id, :to_label, :security_setting
+    config.columns[:owner].ui_type = :select
            
-    config.create.columns.exclude :id, :to_label, :security_setting, :owner
-    config.update.columns.exclude :id, :to_label, :security_setting, :owner
 
     columns[:security_setting].sort_by :method => 'security_setting'
     config.list.sorting = {:security_setting => :asc}

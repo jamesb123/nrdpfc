@@ -37,13 +37,16 @@ class AccountController < ApplicationController
       # Send the user to an explanation page 
       # if they're in limbo, waiting to be 
       # assigned to a project.
-      if current_user.current_project.name == 'Default'
+      if !current_user.has_access_to_active_projects?
         redirect_to(:action => 'unassigned_user')
       else
         redirect_back_or_default(:controller => '/projects')
       end
       
+    else
+      flash[:notice] = "Incorrect login, please try again."
     end
+  
   end
 
   def signup

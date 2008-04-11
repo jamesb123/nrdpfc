@@ -12,10 +12,11 @@
           tab = tab.clone
           controller, label, sub_tabs, role = tab["controller"], tab.delete("label"), tab.delete("sub_tabs"), tab.delete("role")
           
-#          if role
-#            next unless current_user
-#            next unless current_user.has_role?(role)
-#          end
+          # We've elevated project manager to be an admin for now...
+          if label == 'Admin'
+            next unless current_user && current_user.is_project_manager?
+          end
+          
           controllers = [controller]
           controllers+= sub_tabs.collect{|s| s['controller']} if sub_tabs
           

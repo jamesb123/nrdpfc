@@ -1,20 +1,16 @@
 class UsersController < ApplicationController
   layout "tabs"
+  
+  require 'project_manager_access_only'
+  # include ProjectManagerAccessOnly
+  
   active_scaffold :users do |config|
     config.columns = [:login, :email]
     config.create.columns = [:login, :email, :password, :password_confirmation]
     config.update.columns = [:login, :email, :password, :password_confirmation]
+    config.subform.columns = [:login]
   end
   
-  # These go somewhere else...
-  def password_form_column(record, field_name)
-    password_field_tag field_name, record.password
-  end
-  
-  def password_confirmation_form_column(record, field_name)
-    password_field_tag field_name, record.password_confirmation
-  end
-
 end
 
   #  config.actions = [:create, :update, :show]  

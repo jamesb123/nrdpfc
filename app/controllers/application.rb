@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 # test new respository - jim
 class ApplicationController < ActionController::Base
+
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_nrdpfc_session_id'
   
@@ -13,7 +14,21 @@ class ApplicationController < ActionController::Base
     config.security.default_permission = false
   end
   
+  # This should implement the Go to functionality
   def go_to
     render :text => "Not yet implemented...", :layout => false
   end
+  
+  # This isn't working, I'm not quite sure why...
+  # something isn't scoped right...
+  def self.is_project_manager
+    user = current_user
+    return false if ! user
+    return false if ! session[:project_id]
+    project = Project.find_by_id(session[:project_id])
+    return false if ! project
+    @project_manager = (project.user_id == user.id)
+  end
+  
+  
 end

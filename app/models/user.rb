@@ -42,8 +42,10 @@ class User < ActiveRecord::Base
   
   
   def check_for_duplicate_admins
-    return true if ! self.is_admin
-    ! User.find(:first, :conditions => {:is_admin => true})
+    return true # DLR: Now, allowing multiple admins, as per 4/10/8 conversation
+    # DLR: No longer using is_admin
+    # return true if ! self.is_admin
+    #! User.find(:first, :conditions => {:is_admin => true})
   end
   
   # Requires that a project always be set for a user, 
@@ -52,12 +54,28 @@ class User < ActiveRecord::Base
     self.project_id ||= Project.find_or_create_by_name('Default')
   end
   
+  # We're experimenting with a simpler idea: all project managers are admins
+  def is_project_manager?
+    project_owners = Project.find(:all).map{|project| project.owner}.uniq
+    project_owners.include?(current_user)
+  end
+  
+  # Count all projects with access level above 0 (0 is NO ACCESS)
+  # If there is one, then you do.
+  def has_access_to_active_projects?
+    self.security_settings.inject(0){|sum, ss| sum += 1 if ss.level > 0} > 0
+  end
+  
   def authorized_security_for?(project, minimum_security_level)
-   # TODO: Test this
+   # DLR: No longer using is_admin
    #return true if current_user.is_admin
    return false if !project
     
    current_user == project.owner || current_user.security_settings.detect {|setting| setting.project == project && setting.level >= minimum_security_level}
+  end
+
+  def authorized_as_project_manager?
+    self.is_project_manager?
   end
 
   def authorization_display_for(project)
@@ -120,7 +138,6 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
   
   def current_project_authorized?
     true
-    #current_user.is_admin
   end
   
   def authorized_for_create?
