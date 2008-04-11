@@ -5,10 +5,12 @@ class UsersController < ApplicationController
   # include ProjectManagerAccessOnly
   
   active_scaffold :users do |config|
-    config.columns = [:login, :email]
-    config.create.columns = [:login, :email, :password, :password_confirmation]
-    config.update.columns = [:login, :email, :password, :password_confirmation]
+    config.columns = [:login, :email, :is_admin]
+    config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation]
+    config.update.columns = [:login, :email, :is_admin, :password, :password_confirmation]
     config.subform.columns = [:login]
+    config.columns[:is_admin].label = "Administrator"
+    config.columns[:is_admin].form_ui = :checkbox
   end
   
 end
