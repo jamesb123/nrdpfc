@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   layout "tabs"
   
-  require 'project_manager_access_only'
-  # include ProjectManagerAccessOnly
   
   active_scaffold :users do |config|
     config.columns = [:login, :email, :is_admin]
@@ -13,6 +11,22 @@ class UsersController < ApplicationController
     config.columns[:is_admin].form_ui = :checkbox
   end
   
+  def create_authorized?
+    current_user && current_user.is_admin
+  end
+
+  def read_authorized?
+    current_user && current_user.is_admin
+  end
+
+  def update_authorized?
+    current_user && current_user.is_admin
+  end
+
+  def delete_authorized?
+    current_user && current_user.is_admin
+  end
+
 end
 
   #  config.actions = [:create, :update, :show]  
