@@ -71,8 +71,6 @@
     controller: "users"
   - label: "Security Settings"
     controller: "security_settings"
-  - label: "Project Managers"
-    controller: "project_managers"
 	
 - label: "Queries"
   controller: "query"

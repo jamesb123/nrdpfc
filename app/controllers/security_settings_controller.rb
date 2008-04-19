@@ -18,13 +18,21 @@ class SecuritySettingsController < ApplicationController
 
   def conditions_for_collection
     ['projects.user_id = (?)', current_user.id]
-# TODO: test this
-#    if current_user.is_admin
-#      # No limits for the admin
-#      []
-#    else
-#      ['projects.user_id = (?)', current_user.id]
-#    end
+  end
+  
+  def create_authorized?
+    current_user.is_admin
   end
 
+  def read_authorized?
+    current_user.is_admin
+  end
+
+  def update_authorized?
+    current_user.is_admin
+  end
+
+  def delete_authorized?
+    current_user.is_admin
+  end
 end

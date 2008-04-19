@@ -55,24 +55,27 @@ class Project < ActiveRecord::Base
 
   #everybody can creat projects
   def authorized_for_create?
-    true
+    #true
+    current_user.is_admin
   end
 
   def authorized_for_update?
+    current_user.is_admin
     # this method gets called for rows and for Class level questions, so this check returns true at the class level
-    return true unless existing_record_check?
-    current_user.authorized_security_for?(self, SecuritySetting::READ_WRITE)
+    #    return true unless existing_record_check?
+    #    current_user.authorized_security_for?(self, SecuritySetting::READ_WRITE)
   end
   
   def authorized_for_read?
     return true unless existing_record_check?
     # return true if current_user.authorized_as_project_manager?
-    current_user.authorized_security_for?(self, SecuritySetting::READ_ONLY)
+    #    current_user.authorized_security_for?(self, SecuritySetting::READ_ONLY)
   end
 
   def authorized_for_destroy?
-    return true unless existing_record_check?
-    current_user.authorized_security_for?(self, SecuritySetting::READ_WRITE_DELETE)
+    current_user.is_admin
+    #    return true unless existing_record_check?
+    #    current_user.authorized_security_for?(self, SecuritySetting::READ_WRITE_DELETE)
   end
   
   def security_setting

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   layout "tabs"
   
-  
   active_scaffold :users do |config|
     config.columns = [:login, :email, :is_admin]
     config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation]

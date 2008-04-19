@@ -1,19 +1,19 @@
 class OrganismsController < ApplicationController
   layout "tabs"
-  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:id, :organism_code, :comment, :samples]
+  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:organism_code, :comment, :samples]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
 
   before_filter :add_dynamic_columns
   cattr_accessor :action_links
   
   active_scaffold  :organisms do |config|
-    list.sorting = {:organism_code => 'ASC'}  
-    config.columns[:id].label = "ID"
+    config.columns = [:organism_code, :comment, :samples]
+    config.create.columns.exclude :project, :security_settings
+    config.update.columns.exclude :project, :security_settings
     config.columns[:organism_code].label = "Organism"
-    config.create.columns.exclude :id, :project, :security_settings
-    config.update.columns.exclude :id, :project, :security_settings
     config.columns[:comment].label = "Comments"
-    config.columns = [:id, :organism_code, :comment, :samples]
+    # list.sorting = {:organism_code => 'ASC'}  
+    config.columns[:organism_code].sort_by :sql => 'organisms.organism_code'
     #config.action_links.add('go_to', :label => "Go To...", :page => true) 
     
   end
