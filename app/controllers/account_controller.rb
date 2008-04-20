@@ -8,8 +8,7 @@ class AccountController < ApplicationController
   skip_before_filter :project_required
   
   def authorized?
-    return false if !current_user
-    return true
+    current_user ? true : false
   end
     
   # say something nice, you goof!  something sweet.
