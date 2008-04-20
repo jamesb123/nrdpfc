@@ -6,7 +6,8 @@ class MtDnasController < ApplicationController
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
-    
+    config.columns[:sample].includes << {:sample => :organism}
+
     config.create.columns.exclude :sample, :project
     config.update.columns.exclude :sample, :project
     config.columns[:sample].label = "Organism"  
@@ -16,9 +17,4 @@ class MtDnasController < ApplicationController
   end
   
   include ResultTableSharedMethods
-
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
-  end
-
 end

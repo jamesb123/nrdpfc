@@ -8,6 +8,7 @@ class MicrosatellitesController < ApplicationController
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
+    config.columns[:sample].includes << {:sample => :organism}
 
     config.list.columns.exclude :id, :project
     columns = config.columns
@@ -46,10 +47,6 @@ class MicrosatellitesController < ApplicationController
     end
     
     sb
-  end
-  
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
   end
   
   include ResultTableSharedMethods

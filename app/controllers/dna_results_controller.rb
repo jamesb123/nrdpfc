@@ -7,6 +7,8 @@ class DnaResultsController < ApplicationController
       :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
 
     config.columns[:sample].sort_by :sql => 'organisms.organism_code'
+    config.columns[:sample].includes << {:sample => :organism}
+    
     config.list.columns.exclude :id, :project_id
     config.create.columns.exclude :id, :project_id, :sample
     config.update.columns.exclude  :id, :project_id, :sample
@@ -25,9 +27,4 @@ class DnaResultsController < ApplicationController
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
-  
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
-  end
-
 end

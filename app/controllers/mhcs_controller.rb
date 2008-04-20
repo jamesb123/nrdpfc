@@ -8,6 +8,7 @@ class MhcsController < ApplicationController
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
+    config.columns[:sample].includes << {:sample => :organism}
 
     config.columns[:sample].label = "Organism"
     config.columns[:allele1].label = "Allele 1"
@@ -19,9 +20,4 @@ class MhcsController < ApplicationController
   end
 
   include ResultTableSharedMethods
-  
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
-  end
-  
 end

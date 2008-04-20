@@ -6,6 +6,7 @@ class YChromosomesController < ApplicationController
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
+    config.columns[:sample].includes << {:sample => :organism}
     
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample
@@ -49,10 +50,4 @@ class YChromosomesController < ApplicationController
     sb.to_s
   end  
   include ResultTableSharedMethods
-  
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
-  end
-  
-  
 end

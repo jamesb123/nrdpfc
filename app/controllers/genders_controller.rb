@@ -7,6 +7,7 @@ class GendersController < ApplicationController
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
+    config.columns[:sample].includes << {:sample => :organism}
     
     config.columns[:sample].label = "Organism"  
     config.columns[:finalResult].form_ui = :checkbox
@@ -14,10 +15,5 @@ class GendersController < ApplicationController
     
   end
   
-  include ResultTableSharedMethods
-  
-  def joins_for_collection
-    'LEFT OUTER JOIN `organisms` ON `organisms`.id = `samples`.organism_id'
-  end
-  
+  include ResultTableSharedMethods  
 end
