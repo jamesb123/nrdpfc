@@ -60,6 +60,7 @@ class Sample < ActiveRecord::Base
   end
   
   extend Exportables::ExportableModel
+  extend GoToOrganismCode::Model
   
   RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
   
@@ -117,5 +118,9 @@ class Sample < ActiveRecord::Base
     return true unless existing_record_check?
     current_user.authorized_security_for?(self.project, SecuritySetting::READ_WRITE_DELETE)
   end
-      
+  
+  protected
+    def self.organism_path
+      [:organism]
+    end
 end

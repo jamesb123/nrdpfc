@@ -1,6 +1,8 @@
 class SamplesController < ApplicationController
   layout "tabs"
   
+  include GoToOrganismCode::Controller
+  
   active_scaffold :samples do |config|
     config.columns = [:organism, :organism_index, :project, :tubebc, :platebc, 
     :plateposition, :field_code, :batch_number, :storage_medium, :country, :province,
@@ -68,4 +70,8 @@ class SamplesController < ApplicationController
     ['samples.project_id = (?)', current_project]
   end
 
+  protected
+    def organism_code_column
+      "organism"
+    end
 end
