@@ -2,6 +2,7 @@ class OrganismsController < ApplicationController
   layout "tabs"
   ORGANISM_BASE_ATTRIBUTE_BEGIN = [:organism_code, :comment, :samples]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
+  include GoToOrganismCode::Controller
 
   before_filter :add_dynamic_columns
   cattr_accessor :action_links
@@ -52,4 +53,9 @@ class OrganismsController < ApplicationController
     # end
     w.to_s
   end
+
+  protected
+    def organism_code_column
+      "organism_code"
+    end
 end

@@ -20,6 +20,7 @@ class Organism < ActiveRecord::Base
   has_many :y_chromosome_final_horizontals
   
   extend Exportables::DynamicAttributesExportableModel
+  extend GoToOrganismCode::Model
   
   for table_name in Sample::RESULT_TABLES
     has_many table_name, :through => :samples 
@@ -59,4 +60,8 @@ class Organism < ActiveRecord::Base
     current_user.authorized_security_for?(project, SecuritySetting::READ_WRITE_DELETE)
   end
 
+  protected
+    def self.organism_path
+      []
+    end
 end
