@@ -25,7 +25,11 @@
       </div>
       
       <div style="float:right; text-align:right;">
-      <%= render :partial => 'layouts/logged_in_info' if current_user %>
+      <% if current_user %>
+        <%= render :partial => 'layouts/logged_in_info' %>
+        <%= render :partial => 'layouts/project_selector' if current_project %>
+      <% end %>
+      
       </div>
       <h2>
         NRDPFC

@@ -89,6 +89,6 @@ class Project < ActiveRecord::Base
   end
   
   def self.current_users_accessible_projects
-    find(:all).select{|p| p.authorized_for_read?}
+    current_user && current_user.accessible_projects
   end
 end

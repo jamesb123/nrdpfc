@@ -71,7 +71,7 @@ class Query < ActiveRecord::Base
       end
     end
     
-    qb.add_filter("samples", "project_id", "=", ActiveRecord::Base.current_project.id.to_i) if ActiveRecord::Base.current_project
+    qb.add_filter("samples", "project_id", "=", ActiveRecord::Base.current_project_id.to_i) if ActiveRecord::Base.current_project
     
     qb
   end

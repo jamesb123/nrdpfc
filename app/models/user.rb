@@ -155,6 +155,10 @@ logger.debug("!!!!!!!!!! user  == #{u.inspect}")
   def authorized_for_destroy?
     true
   end
+  
+  def accessible_projects
+    Project.find(:all).select{ |p| p.authorized_for_read? }
+  end
 
 protected
   # before filter 

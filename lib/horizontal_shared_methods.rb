@@ -8,6 +8,8 @@ module HorizontalSharedMethods
   
   
   def not_compiled
+    return redirect_to(:controller => "message", :action => "no_current_project") unless current_project
+    
     @project = current_project
     @model = model_for_current_project
     
@@ -20,7 +22,7 @@ module HorizontalSharedMethods
   end
   
   def set_to_project
-    @project_id = current_project.id
+    @project_id = current_project_id
     @model = model_for_current_project
     
     if @model == nil

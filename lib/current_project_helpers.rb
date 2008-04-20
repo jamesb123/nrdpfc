@@ -17,14 +17,17 @@ module CurrentProjectHelper
   def current_project
     return @current_project if @current_project
     current_project_id = session[:project_id]
-    if !current_project_id
-      # auto select a default project
-      current_project_id = (current_user.current_project && current_user.current_project.id)
-      current_project_id ||= Project.current_users_accessible_projects.first.id rescue nil
-      self.current_project = current_project_id
+    if current_project_id
+      @current_project = Project.find(current_project_id)
+    else
+      @current_project = 
+        (current_user.current_project_id) ||
+        (Project.current_users_accessible_projects.first.id rescue nil)
     end
-    
-    @current_project = current_project_id && Project.find(current_project_id)
+  end
+  
+  def current_project_id
+    current_project && current_project.id
   end
   
   module ActiveRecordHelpers

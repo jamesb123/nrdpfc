@@ -38,7 +38,7 @@ class SampleNonTissue < ActiveRecord::Base
   extend Exportables::ExportableModel
 
   def assign_project_id
-    self.project_id = current_project.id
+    self.project_id = current_project_id
   end
   
   def to_label 

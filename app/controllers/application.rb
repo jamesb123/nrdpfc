@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   prepend_before_filter :login_required  
+  # prepend_before_filter :project_required
   
   ActiveScaffold.set_defaults do |config|
     config.security.current_user_method = :current_user
@@ -30,5 +31,10 @@ class ApplicationController < ActionController::Base
     @project_manager = (project.user_id == user.id)
   end
   
-  
+  def project_required
+    if current_user && current_project.nil?
+      redirect_to :controller => "message", :action => "no_current_project"
+      return false
+    end
+  end
 end

@@ -43,7 +43,7 @@ class DefaultProjectTest < ActionController::IntegrationTest
   def test__should_auto_select_first_available_project
     quentin = regular_user_logged_in_as_quentin
     quentin.clicks_microsatellites_tab
-    assert_equal(projects(:whale_project).id, quentin.current_project.id)
+    assert_equal(projects(:whale_project).id, quentin.current_project_id)
   end
 protected
   def regular_user_logged_in_as_quentin

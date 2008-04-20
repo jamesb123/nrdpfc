@@ -3,8 +3,9 @@ class AccountController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   # If you want "remember me" functionality, add this before_filter to Application Controller
-#  before_filter :login_from_cookie
+  #  before_filter :login_from_cookie
   skip_before_filter :login_required, :except => :register_to_project
+  skip_before_filter :project_required
   
   def authorized?
     return false if !current_user

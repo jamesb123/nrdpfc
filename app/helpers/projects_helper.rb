@@ -1,7 +1,7 @@
 module ProjectsHelper
   def name_column(record)
     output = "#{record.name}"
-    output << " <b>(current)</b>" if record.id == current_project.id
+    output << " <b>(current)</b>" if record == current_project
     output
   end
   

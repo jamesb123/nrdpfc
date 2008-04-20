@@ -41,7 +41,7 @@ module ResultTableSharedMethods
     
     # filter to the current project
     if current_project 
-      sb.and("#{tablename_for_controller}.project_id = ?", current_project.id)
+      sb.and("#{tablename_for_controller}.project_id = ?", current_project_id)
     else
       # show nothing
       sb.and("false")

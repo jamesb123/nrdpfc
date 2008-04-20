@@ -56,7 +56,7 @@ class SampleNonTissuesController < ApplicationController
        'security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
     else
       ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND ' + 
-       'security_settings.user_id = ? AND security_settings.level > 0)) AND (projects.id = ?)', current_user.id, current_user.id, current_project.id]
+       'security_settings.user_id = ? AND security_settings.level > 0)) AND (projects.id = ?)', current_user.id, current_user.id, current_project_id]
     end
   end
       

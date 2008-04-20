@@ -23,7 +23,7 @@ class DnaResultsController < ApplicationController
   end 
 
   def conditions_for_collection
-    ['samples.project_id = (?)', current_project.id ]
+    ['samples.project_id = (?)', current_project_id ]
   end
   
   def joins_for_collection

@@ -24,7 +24,7 @@ class DynamicAttributesController < ApplicationController
   
   def conditions_from_params
     w = Where.new
-    w.and( "scoper_id = ? and scoper_type = ?", current_project.id, "Project" )
+    w.and( "scoper_id = ? and scoper_type = ?", current_project_id, "Project" )
     w.to_sql
   end
 
