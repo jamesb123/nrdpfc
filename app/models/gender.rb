@@ -20,6 +20,7 @@ class Gender < ActiveRecord::Base
   after_save :flag_project_for_update
   
   extend Exportables::ExportableModel
+  extend GoToOrganismCode::Model
   
   def flag_project_for_update
     Project.flag_for_update(self.project_id)

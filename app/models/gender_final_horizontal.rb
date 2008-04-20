@@ -29,6 +29,5 @@ class GenderFinalHorizontal < ActiveRecord::Base
   end
   
   extend HorizontalClassCreatorSharedMethods
-  
-
+  extend GoToOrganismCode::Model
 end

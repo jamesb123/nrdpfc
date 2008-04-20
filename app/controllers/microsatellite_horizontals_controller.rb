@@ -17,4 +17,6 @@ class MicrosatelliteHorizontalsController < ApplicationController
   
 public
   include HorizontalSharedMethods
+  include GoToOrganismCode::Controller
+  
 end

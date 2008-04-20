@@ -15,5 +15,6 @@ class MhcFinalHorizontalsController < ApplicationController
   
 public
   include HorizontalSharedMethods
+  include GoToOrganismCode::Controller
   
 end

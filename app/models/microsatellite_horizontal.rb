@@ -18,6 +18,7 @@ class MicrosatelliteHorizontal < ActiveRecord::Base
   
   authorize_all_for_crud
   extend Exportables::HorizontalExportableModel
+  extend GoToOrganismCode::Model
   class << self
     def table_name_for_project(project_id)
       project_id = project_id.id if project_id.is_a?(ActiveRecord::Base)

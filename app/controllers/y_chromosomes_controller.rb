@@ -50,4 +50,6 @@ class YChromosomesController < ApplicationController
     sb.to_s
   end  
   include ResultTableSharedMethods
+  include GoToOrganismCode::Controller
+  
 end

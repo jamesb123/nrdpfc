@@ -28,5 +28,6 @@ class MicrosatelliteFinalHorizontal < ActiveRecord::Base
     
   end
   extend HorizontalClassCreatorSharedMethods
+  extend GoToOrganismCode::Model
   
 end

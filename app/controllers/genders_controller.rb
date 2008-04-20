@@ -16,4 +16,6 @@ class GendersController < ApplicationController
   end
   
   include ResultTableSharedMethods  
+  include GoToOrganismCode::Controller
+  
 end

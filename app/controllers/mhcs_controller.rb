@@ -20,4 +20,6 @@ class MhcsController < ApplicationController
   end
 
   include ResultTableSharedMethods
+  include GoToOrganismCode::Controller
+  
 end
