@@ -59,9 +59,4 @@ class Organism < ActiveRecord::Base
 
     current_user.authorized_security_for?(project, SecuritySetting::READ_WRITE_DELETE)
   end
-
-  protected
-    def self.organism_path
-      []
-    end
 end

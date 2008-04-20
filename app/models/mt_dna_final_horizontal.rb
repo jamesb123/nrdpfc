@@ -16,6 +16,7 @@ class MtDnaFinalHorizontal < ActiveRecord::Base
   authorize_all_for_crud
 
   extend Exportables::HorizontalExportableModel
+  extend GoToOrganismCode::Model
 
   class << self
     def table_name_for_project(project_id)

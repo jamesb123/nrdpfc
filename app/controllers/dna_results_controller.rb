@@ -29,9 +29,4 @@ class DnaResultsController < ApplicationController
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
-  
-  protected
-    def organism_code_column
-      "sample"
-    end
 end

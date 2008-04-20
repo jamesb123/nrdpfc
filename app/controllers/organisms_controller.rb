@@ -53,9 +53,4 @@ class OrganismsController < ApplicationController
     # end
     w.to_s
   end
-
-  protected
-    def organism_code_column
-      "organism_code"
-    end
 end

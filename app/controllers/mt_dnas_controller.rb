@@ -1,5 +1,6 @@
 class MtDnasController < ApplicationController
   layout "tabs"
+  include GoToOrganismCode::Controller
   active_scaffold :mt_dnas do |config|
     config.label = "mtDNA"
     config.columns = [:project,  :sample, :locus, :haplotype, :gelNum, :wellNum, :finalResult]

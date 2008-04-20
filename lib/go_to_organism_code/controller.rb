@@ -14,4 +14,9 @@ module GoToOrganismCode::Controller
     end
     true
   end
+  
+  protected
+    def organism_code_column
+      (active_scaffold_config.columns.map{ |c| c.name } & [:organism_code, :organism, :sample]).first
+    end
 end

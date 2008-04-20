@@ -69,9 +69,4 @@ class SamplesController < ApplicationController
   def conditions_for_collection
     ['samples.project_id = (?)', current_project]
   end
-
-  protected
-    def organism_code_column
-      "organism"
-    end
 end
