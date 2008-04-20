@@ -17,7 +17,7 @@
 
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  belongs_to :current_project, :class_name => 'Project', :foreign_key => "project_id"  
+  belongs_to :default_project, :class_name => 'Project', :foreign_key => "project_id"  
   has_many :security_settings
   has_many :projects
   
