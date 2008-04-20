@@ -1,5 +1,7 @@
 class DnaResultsController < ApplicationController
   layout "tabs"
+  
+  include GoToOrganismCode::Controller
   active_scaffold :dna_results do |config|
     config.columns = [:sample, :project_id,  :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
@@ -27,4 +29,9 @@ class DnaResultsController < ApplicationController
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
+  
+  protected
+    def organism_code_column
+      "sample"
+    end
 end

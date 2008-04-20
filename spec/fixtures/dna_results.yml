@@ -25,3 +25,9 @@
 #  dna_remaining      :boolean(1)    
 #
 
+fin_sample_dna_result:
+  sample: fin_sample
+  project: whale_project
+nose_sample_dna_result:
+  sample: nose_sample
+  project: whale_project

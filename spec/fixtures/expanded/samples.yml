@@ -1,0 +1,10 @@
+alt_fin_sample:
+  project: whale_project
+  receiver_comments: "Alternative Fin sample"
+  organism_index: 2
+  organism: alt_whale
+alt_nose_sample:
+  project: whale_project
+  receiver_comments: "Alternative Nose sample"
+  organism_index: 2
+  organism: alt_whale

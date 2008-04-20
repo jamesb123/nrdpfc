@@ -67,7 +67,7 @@ class Project < ActiveRecord::Base
   end
   
   def authorized_for_read?
-    return true unless existing_record_check?
+    return true # unless existing_record_check?
     # return true if current_user.authorized_as_project_manager?
     #    current_user.authorized_security_for?(self, SecuritySetting::READ_ONLY)
   end
