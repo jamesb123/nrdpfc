@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   active_scaffold :projects do |config|
     config.columns = [:name, :owner, :code, :description, :security_setting]  
 
-    # Only project managers can edit their own project...
+    # Only project managers can edit projects
     config.create.columns.exclude :id, :to_label, :security_setting
     config.update.columns.exclude :id, :to_label, :security_setting
     config.columns[:owner].ui_type = :select
@@ -13,8 +13,6 @@ class ProjectsController < ApplicationController
     columns[:security_setting].sort_by :method => 'security_setting'
     config.list.sorting = {:security_setting => :asc}
     
-     # config.nested.add_link "Samp.", [:samples]
-     # config.nested.add_link "Org.", [:organisms]
   end
   
   def conditions_for_collection
