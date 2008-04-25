@@ -37,7 +37,7 @@ task :create_public_file_links do
 end
 
 task :create_database_yml_symlink do
-  run "rm #{release_path}/config/database.yml && ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
+  run "ln -nfs {#{shared_path},#{release_path}/config}/database.yml"
 end
 
 task :after_update_code, :roles => [:app] do
