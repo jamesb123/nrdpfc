@@ -22,6 +22,8 @@ class Gender < ActiveRecord::Base
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   
+  validates_presence_of :locus
+  
   def flag_project_for_update
     Project.flag_for_update(self.project_id)
   end
