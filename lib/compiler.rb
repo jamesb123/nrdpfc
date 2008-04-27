@@ -1,17 +1,21 @@
 class Compiler
+  def self.logger(output = nil)
+    @logger ||= Logger.new(output || "#{RAILS_ROOT}/log/compile_warnings.log")
+  end
+  
   def self.compile_project(project, verbose = false)
-    puts "Compiling VIEW B for #{project.to_label}" if verbose
+    logger.info("Compiling VIEW B for #{project.to_label}")
     Compiler::MicrosatelliteCompiler.new(project).compile
-    puts "Compiling VIEW C for #{project.to_label}" if verbose
+    logger.info("Compiling VIEW C for #{project.to_label}")
     Compiler::MicrosatelliteFinalCompiler.new(project).compile
     
-    puts "YChromosomeFinalCompiler for #{project.to_label}" if verbose
+    logger.info("YChromosomeFinalCompiler for #{project.to_label}")
     Compiler::YChromosomeFinalCompiler.new(project).compile
-    puts "MtDnaFinalCompiler for #{project.to_label}" if verbose
+    logger.info("MtDnaFinalCompiler for #{project.to_label}")
     Compiler::MtDnaFinalCompiler.new(project).compile
-    puts "MhcFinalCompiler for #{project.to_label}" if verbose
+    logger.info("MhcFinalCompiler for #{project.to_label}")
     Compiler::MhcFinalCompiler.new(project).compile
-    puts "GenderFinalCompiler for #{project.to_label}" if verbose
+    logger.info("GenderFinalCompiler for #{project.to_label}")
     Compiler::GenderFinalCompiler.new(project).compile
     
     project.recompile_required = false

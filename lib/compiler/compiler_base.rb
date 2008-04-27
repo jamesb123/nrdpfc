@@ -37,7 +37,13 @@ class Compiler::CompilerBase
   end
 
   def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus").select{|l| !l.blank?}
+    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus").select do |l|
+      if l.blank?
+        Compiler.logger.warn("Warning: blank 'locus' found in #{results_table_name} (#{self.class}).  This will cause compiler issues.")
+        next false
+      end
+      true
+    end
   end
   
   def model_name
