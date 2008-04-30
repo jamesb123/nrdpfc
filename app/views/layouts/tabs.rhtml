@@ -15,7 +15,7 @@
           # We've elevated project manager to be an admin for now...
           if label == 'Admin'
             #next unless current_user && current_user.is_project_manager?
-            next unless current_user && current_user.is_admin
+            #next unless current_user && current_user.is_admin
           end
           
           controllers = [controller]
