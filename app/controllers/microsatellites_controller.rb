@@ -16,7 +16,7 @@ class MicrosatellitesController < ApplicationController
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox
     
-    [:project, :sample, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
+    [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
     #config.action_links.add('go_to', :label => "Go To...", :page => true) 
     
