@@ -1,11 +1,9 @@
 eric_project_search:
-  id: 1
-  user_id: 1
+  user: eric
   key: project_search
   value: project.owner LIKE '%anderson%'
 eric_project_order:
-  id: 2
-  user_id: 1
+  user: eric
   key: project_order
   value: name
 

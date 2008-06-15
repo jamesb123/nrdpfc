@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: dynamic_attributes
+#
+#  id               :integer(11)   not null, primary key
+#  name             :string(255)   
+#  dynamic_type_id  :integer(11)   
+#  dynamic_class_id :integer(11)   
+#  scoper_type      :string(255)   
+#  scoper_id        :integer(11)   
+#  owner_type       :string(255)   
+#
+
+comment:
+  name: comment
+  dynamic_type: text_value
+  owner_type: Page
+intro:
+  name: intro
+  dynamic_type: text_value
+  owner_type: Page
+teaser:
+  name: teaser
+  dynamic_type: text_value
+  owner_type: Page

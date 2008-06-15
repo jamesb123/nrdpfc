@@ -73,46 +73,49 @@ module ActiveRecord # :nodoc:
       #list of all dynamic_attributes scoped by this Model Scoper
       #attributes may not be currently stored for this instance, but available (defined) by the Scoper
       def dynamic_attributes
-        scopper = send scope_relationship
+        scoper = send scope_relationship
         attributes = DynamicAttribute.find(:all, 
                     :conditions => ["dynamic_attributes.scoper_type = ? and dynamic_attributes.scoper_id = ? and dynamic_attributes.owner_type = ?", 
-                    self.scoped_by_class.class_name, scopper.id, self.this_class_name], :include => :dynamic_attribute_values)
+                    self.scoped_by_class.class_name, scoper.id, self.this_class_name], :include => :dynamic_attribute_values)
                     
       end
         
-      def has_dynamic_attribute?(attr)
-        return nil if attr == "#{scope_relationship}_id" or attr == "id"
-          
-        scopper = send scope_relationship
-        return nil if scopper.nil?
+      def dynamic_attributes_cache
+        @dynamic_attributes_cache ||= HashWithIndifferentAccess.new
+      end
+      
+      def has_dynamic_attribute?(name)
+        return dynamic_attributes_cache[name] if dynamic_attributes_cache[name]
+        return nil if name == "#{scope_relationship}_id" or name == "id"
         
-        attribute = DynamicAttribute.find(:first, 
-                    :conditions => ["dynamic_attributes.scoper_type = ? and dynamic_attributes.scoper_id = ? and dynamic_attributes.name = ? and dynamic_attributes.owner_type = ?", 
-                    self.scoped_by_class.class_name, scopper.id, attr, self.this_class_name])
+        conditions = ["dynamic_attributes.name = :name", "dynamic_attributes.owner_type = :owner_type"]
+        conditions_options = {
+          :name => name, 
+          :owner_type => self.this_class_name
+        }
+
+        if respond_to?(scope_relationship) && (scoper = send(scope_relationship) )
+          conditions.concat ["dynamic_attributes.scoper_id = :scoper_id", "dynamic_attributes.scoper_type = :scoper_type"]
+          conditions_options.update(
+            :scoper_type => self.scoped_by_class.class_name, 
+            :scoper_id => scoper.id
+          )
+        end
+        
+        attribute = DynamicAttribute.find(:first, :conditions => [conditions * " AND ", conditions_options])
+
 
         return nil unless attribute
                     
         attribute_value = dynamic_attribute_values.find_by_dynamic_attribute_id(attribute.id, :conditions => ['owner_id = ? and owner_type = ?', self.id, self.this_class_name])
         #auto-create an attribute value that should exist            
-        if attribute && !attribute_value
-          attribute_value = dynamic_attribute_values.create(:dynamic_attribute => attribute, :owner => self)
-        end
-
-        @dynamic_attributes_cache ||= []
-
-        ## look in our cache. Otherwise we'll get the data in the database
-        if @dynamic_attributes_cache
-          @dynamic_attributes_cache.each do |attr_value|
-            if attribute_value.id = attr_value
-              return attr_value
-            end
-          end
+        if attribute && ! attribute_value
+          attribute_value = dynamic_attribute_values.build(:dynamic_attribute => attribute, :owner => self)
         end
 
         #add to cache and return
-        @dynamic_attributes_cache << attribute_value
-        
-        return attribute_value
+        dynamic_attributes_cache[name] = attribute_value
+        attribute_value
       end
   
       private
@@ -120,13 +123,10 @@ module ActiveRecord # :nodoc:
         # like normal attributes in the fact that the database is not touched
         # until save is called.
         def save_modified_dynamic_attributes
-          return if @dynamic_attributes_cache.nil?
+          return if dynamic_attributes_cache.nil?
 
-          @dynamic_attributes_cache.each do |attr_value|
-            the_attribute_value = attr_value
-            the_attribute_value.save
-          end
-          @dynamic_attributes_cache = []
+          dynamic_attributes_cache.values.each { |attr_value| attr_value.save }
+          dynamic_attributes_cache.clear
         end
 
         # Overrides ActiveRecord::Base#read_attribute
