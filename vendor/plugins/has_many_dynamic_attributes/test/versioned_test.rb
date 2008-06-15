@@ -1,6 +1,8 @@
 require 'test/unit'
 require File.join(File.dirname(__FILE__), 'test_helper')
 
+# TODO - These tests were written for a very different version of this plugin (flex-attributes).  Needs to be updated
+
 # We don't want to do a full test on the capabilites of versioning. That is the
 # responsibility of acts_as_versioned and acts_as_versioned_association.
 # Instead we just want to ensure that versioned support can be installed

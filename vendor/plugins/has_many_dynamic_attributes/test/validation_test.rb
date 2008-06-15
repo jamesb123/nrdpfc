@@ -1,6 +1,7 @@
 require 'test/unit'
 require File.join(File.dirname(__FILE__), 'test_helper')
 
+# TODO - These tests were written for a very different version of this plugin (flex-attributes).  Needs to be updated
 class ValidationTest < Test::Unit::TestCase
 
   # Make sure the normal validates_XXX work
