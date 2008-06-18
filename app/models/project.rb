@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
   
   has_many :organisms, :order => "organism_code"
   has_many :samples
-  has_many :users
+  has_and_belongs_to_many :users
   has_many :sample_non_tissues
   has_many :mt_dna_seqs
   has_many :security_settings

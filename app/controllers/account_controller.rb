@@ -36,7 +36,9 @@ class AccountController < ApplicationController
       # if they're in limbo, waiting to be 
       # assigned to a project.
       if !current_user.has_access_to_active_projects?
-        redirect_to(:action => 'unassigned_user')
+         if !current_user.is_project_manager?
+            redirect_to(:action => 'unassigned_user')
+         end
       else
         redirect_back_or_default(:controller => '/projects')
       end

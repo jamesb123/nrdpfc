@@ -13,8 +13,8 @@ class SamplesController < ApplicationController
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :shippingmaterial, :locality_type, :tissue_type,:security_settings]  
     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :organism, :security_settings, :project
-    config.update.columns.exclude :organism, :security_settings, :project
+    config.create.columns.exclude :security_settings, :project
+    config.update.columns.exclude :security_settings, :project
     config.list.columns.exclude  :project
 
     config.columns[:organism].label = "Organism "
@@ -24,6 +24,7 @@ class SamplesController < ApplicationController
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
+    config.columns[:organism].form_ui = :select
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Day "
