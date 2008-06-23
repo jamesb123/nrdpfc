@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   layout "tabs", :except => [:recompile_status, :recompile]
 
   active_scaffold :projects do |config|
-    config.columns = [:name, :owner, :code, :description, :security_setting]  
+    config.columns = [:id, :name, :owner, :code, :description, :security_setting]  
 
     # Only project managers can edit projects
     config.create.columns.exclude :id, :to_label, :security_setting
@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
 
     columns[:security_setting].sort_by :method => 'security_setting'
     config.list.sorting = {:security_setting => :asc}
-    
+    config.columns[:id].label = "ID"
+
   end
   
   def conditions_for_collection

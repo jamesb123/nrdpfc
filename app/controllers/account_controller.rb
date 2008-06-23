@@ -35,13 +35,16 @@ class AccountController < ApplicationController
       # Send the user to an explanation page 
       # if they're in limbo, waiting to be 
       # assigned to a project.
-      if !current_user.has_access_to_active_projects?
-         if !current_user.is_project_manager?
-            redirect_to(:action => 'unassigned_user')
-         end
-      else
+      
+      # if !current_user.has_access_to_active_projects?
+      #   if current_user.is_project_manager?
+      #      redirect_back_or_default(:controller => '/projects')
+      #   else
+      #      redirect_to(:action => 'unassigned_user')
+      #   end
+      # else
         redirect_back_or_default(:controller => '/projects')
-      end
+      # end
       
     else
       flash[:notice] = "Incorrect login, please try again."

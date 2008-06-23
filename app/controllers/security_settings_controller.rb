@@ -9,11 +9,11 @@ class SecuritySettingsController < ApplicationController
     columns[:to_label].label = "Security Setting"
     columns[:to_label].sort_by :sql => 'level' 
     config.list.sorting = {:to_label => :asc}
-    columns[:level].label = "Security Setting"
+    # columns[:level].label = "Security Setting"
     
     config.list.columns.exclude :level
-    config.create.columns.exclude :id, :to_label 
-    config.update.columns.exclude :id, :to_label
+    # config.create.columns.exclude :user, :to_label, :level
+    # config.update.columns.exclude :id, :to_label
   end
 
   def conditions_for_collection
