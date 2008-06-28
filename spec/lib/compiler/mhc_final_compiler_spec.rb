@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../../test_helper'
+require File.dirname(__FILE__) + '/../../spec_helper'
 
 class Compiler::MhcFinalCompilerTest < Test::Unit::TestCase
   fixtures :projects, :mhcs, :samples, :organisms
@@ -12,7 +12,7 @@ class Compiler::MhcFinalCompilerTest < Test::Unit::TestCase
     @model = MhcFinalHorizontal.model_for_project(@project)
   end
   
-  def test__create_table_for_project__should_create
+  it "should create_table_for_project__should_create" do
     @compiler.create_table
     
     tables = Project.connection.select_values("show tables")
@@ -26,7 +26,7 @@ class Compiler::MhcFinalCompilerTest < Test::Unit::TestCase
     }
   end
   
-  def test__compile_data
+  it "should compile_data" do
     @compiler.compile
     @results = @model.find(:all)
     

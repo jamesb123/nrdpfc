@@ -1,14 +1,15 @@
-require File.dirname(__FILE__) + '/../../test_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 require "compiler.rb"
-class CompilerTest < Test::Unit::TestCase
+
+describe "Compiler" do
   fixtures :projects, :microsatellites, :samples
-  def setup
+  before(:each) do
     @project =  projects(:whale_project)
     @project_id = @project.id
     @connection = ActiveRecord::Base.connection
   end
   
-  def test__compile__should_reset_recompile_required_flag
+  it "should compile__should_reset_recompile_required_flag" do
     @project.recompile_required = true
     @project.save
     @project.reload
@@ -18,7 +19,7 @@ class CompilerTest < Test::Unit::TestCase
     assert ! @project.recompile_required
   end
   
-  def test__compile__should_generate_all_tables
+  it "should compile__should_generate_all_tables" do
     @expected_tables = %w[microsatellite_horizontals microsatellite_final_horizontals mt_dna_final_horizontals y_chromosome_final_horizontals gender_final_horizontals].map{|table_name| "#{table_name}_#{@project_id}" }
     
     @expected_tables.each{|table_name|
