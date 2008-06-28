@@ -170,584 +170,76 @@ ActiveRecord::Schema.define(:version => 46) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "EV1Pma",        :limit => 7
-    t.string  "EV1Pmb",        :limit => 7
-    t.string  "EV37Mna",       :limit => 7
-    t.string  "EV37Mnb",       :limit => 7
-    t.string  "G10Aa",         :limit => 7
-    t.string  "G10Ab",         :limit => 7
-    t.string  "G10Ba",         :limit => 7
-    t.string  "G10Bb",         :limit => 7
-    t.string  "G10Ca",         :limit => 7
-    t.string  "G10Cb",         :limit => 7
-    t.string  "G10Da",         :limit => 7
-    t.string  "G10Db",         :limit => 7
-    t.string  "G10Ha",         :limit => 7
-    t.string  "G10Hb",         :limit => 7
-    t.string  "G10Ja",         :limit => 7
-    t.string  "G10Jb",         :limit => 7
-    t.string  "G10La",         :limit => 7
-    t.string  "G10Lb",         :limit => 7
-    t.string  "G10Ma",         :limit => 7
-    t.string  "G10Mb",         :limit => 7
-    t.string  "G10Pa",         :limit => 7
-    t.string  "G10Pb",         :limit => 7
-    t.string  "G10Ua",         :limit => 7
-    t.string  "G10Ub",         :limit => 7
-    t.string  "G10Xa",         :limit => 7
-    t.string  "G10Xb",         :limit => 7
-    t.string  "GATA028a",      :limit => 7
-    t.string  "GATA028b",      :limit => 7
-    t.string  "GT023a",        :limit => 7
-    t.string  "GT023b",        :limit => 7
-    t.string  "GT271a",        :limit => 7
-    t.string  "GT271b",        :limit => 7
-    t.string  "IGFa",          :limit => 7
-    t.string  "IGFb",          :limit => 7
-    t.string  "MSUT10a",       :limit => 7
-    t.string  "MSUT10b",       :limit => 7
-    t.string  "MSUT100a",      :limit => 7
-    t.string  "MSUT100b",      :limit => 7
-    t.string  "MSUT101a",      :limit => 7
-    t.string  "MSUT101b",      :limit => 7
-    t.string  "MSUT102a",      :limit => 7
-    t.string  "MSUT102b",      :limit => 7
-    t.string  "MSUT103a",      :limit => 7
-    t.string  "MSUT103b",      :limit => 7
-    t.string  "MSUT104a",      :limit => 7
-    t.string  "MSUT104b",      :limit => 7
-    t.string  "MSUT105a",      :limit => 7
-    t.string  "MSUT105b",      :limit => 7
-    t.string  "MSUT106a",      :limit => 7
-    t.string  "MSUT106b",      :limit => 7
-    t.string  "MSUT107a",      :limit => 7
-    t.string  "MSUT107b",      :limit => 7
-    t.string  "MSUT108a",      :limit => 7
-    t.string  "MSUT108b",      :limit => 7
-    t.string  "MSUT109a",      :limit => 7
-    t.string  "MSUT109b",      :limit => 7
-    t.string  "MSUT11a",       :limit => 7
-    t.string  "MSUT11b",       :limit => 7
-    t.string  "MSUT110a",      :limit => 7
-    t.string  "MSUT110b",      :limit => 7
-    t.string  "MSUT111a",      :limit => 7
-    t.string  "MSUT111b",      :limit => 7
-    t.string  "MSUT112a",      :limit => 7
-    t.string  "MSUT112b",      :limit => 7
-    t.string  "MSUT113a",      :limit => 7
-    t.string  "MSUT113b",      :limit => 7
-    t.string  "MSUT114a",      :limit => 7
-    t.string  "MSUT114b",      :limit => 7
-    t.string  "MSUT115a",      :limit => 7
-    t.string  "MSUT115b",      :limit => 7
-    t.string  "MSUT116a",      :limit => 7
-    t.string  "MSUT116b",      :limit => 7
-    t.string  "MSUT117a",      :limit => 7
-    t.string  "MSUT117b",      :limit => 7
-    t.string  "MSUT118a",      :limit => 7
-    t.string  "MSUT118b",      :limit => 7
-    t.string  "MSUT119a",      :limit => 7
-    t.string  "MSUT119b",      :limit => 7
-    t.string  "MSUT12a",       :limit => 7
-    t.string  "MSUT12b",       :limit => 7
-    t.string  "MSUT120a",      :limit => 7
-    t.string  "MSUT120b",      :limit => 7
-    t.string  "MSUT121a",      :limit => 7
-    t.string  "MSUT121b",      :limit => 7
-    t.string  "MSUT122a",      :limit => 7
-    t.string  "MSUT122b",      :limit => 7
-    t.string  "MSUT123a",      :limit => 7
-    t.string  "MSUT123b",      :limit => 7
-    t.string  "MSUT124a",      :limit => 7
-    t.string  "MSUT124b",      :limit => 7
-    t.string  "MSUT125a",      :limit => 7
-    t.string  "MSUT125b",      :limit => 7
-    t.string  "MSUT126a",      :limit => 7
-    t.string  "MSUT126b",      :limit => 7
-    t.string  "MSUT127a",      :limit => 7
-    t.string  "MSUT127b",      :limit => 7
-    t.string  "MSUT128a",      :limit => 7
-    t.string  "MSUT128b",      :limit => 7
-    t.string  "MSUT129a",      :limit => 7
-    t.string  "MSUT129b",      :limit => 7
-    t.string  "MSUT13a",       :limit => 7
-    t.string  "MSUT13b",       :limit => 7
-    t.string  "MSUT130a",      :limit => 7
-    t.string  "MSUT130b",      :limit => 7
-    t.string  "MSUT131a",      :limit => 7
-    t.string  "MSUT131b",      :limit => 7
-    t.string  "MSUT132a",      :limit => 7
-    t.string  "MSUT132b",      :limit => 7
-    t.string  "MSUT133a",      :limit => 7
-    t.string  "MSUT133b",      :limit => 7
-    t.string  "MSUT134a",      :limit => 7
-    t.string  "MSUT134b",      :limit => 7
-    t.string  "MSUT135a",      :limit => 7
-    t.string  "MSUT135b",      :limit => 7
-    t.string  "MSUT136a",      :limit => 7
-    t.string  "MSUT136b",      :limit => 7
-    t.string  "MSUT137a",      :limit => 7
-    t.string  "MSUT137b",      :limit => 7
-    t.string  "MSUT138a",      :limit => 7
-    t.string  "MSUT138b",      :limit => 7
-    t.string  "MSUT139a",      :limit => 7
-    t.string  "MSUT139b",      :limit => 7
-    t.string  "MSUT14a",       :limit => 7
-    t.string  "MSUT14b",       :limit => 7
-    t.string  "MSUT140a",      :limit => 7
-    t.string  "MSUT140b",      :limit => 7
-    t.string  "MSUT141a",      :limit => 7
-    t.string  "MSUT141b",      :limit => 7
-    t.string  "MSUT142a",      :limit => 7
-    t.string  "MSUT142b",      :limit => 7
-    t.string  "MSUT143a",      :limit => 7
-    t.string  "MSUT143b",      :limit => 7
-    t.string  "MSUT144a",      :limit => 7
-    t.string  "MSUT144b",      :limit => 7
-    t.string  "MSUT145a",      :limit => 7
-    t.string  "MSUT145b",      :limit => 7
-    t.string  "MSUT146a",      :limit => 7
-    t.string  "MSUT146b",      :limit => 7
-    t.string  "MSUT147a",      :limit => 7
-    t.string  "MSUT147b",      :limit => 7
-    t.string  "MSUT148a",      :limit => 7
-    t.string  "MSUT148b",      :limit => 7
-    t.string  "MSUT149a",      :limit => 7
-    t.string  "MSUT149b",      :limit => 7
-    t.string  "MSUT15a",       :limit => 7
-    t.string  "MSUT15b",       :limit => 7
-    t.string  "MSUT150a",      :limit => 7
-    t.string  "MSUT150b",      :limit => 7
-    t.string  "MSUT151a",      :limit => 7
-    t.string  "MSUT151b",      :limit => 7
-    t.string  "MSUT152a",      :limit => 7
-    t.string  "MSUT152b",      :limit => 7
-    t.string  "MSUT153a",      :limit => 7
-    t.string  "MSUT153b",      :limit => 7
-    t.string  "MSUT154a",      :limit => 7
-    t.string  "MSUT154b",      :limit => 7
-    t.string  "MSUT155a",      :limit => 7
-    t.string  "MSUT155b",      :limit => 7
-    t.string  "MSUT156a",      :limit => 7
-    t.string  "MSUT156b",      :limit => 7
-    t.string  "MSUT157a",      :limit => 7
-    t.string  "MSUT157b",      :limit => 7
-    t.string  "MSUT158a",      :limit => 7
-    t.string  "MSUT158b",      :limit => 7
-    t.string  "MSUT159a",      :limit => 7
-    t.string  "MSUT159b",      :limit => 7
-    t.string  "MSUT16a",       :limit => 7
-    t.string  "MSUT16b",       :limit => 7
-    t.string  "MSUT160a",      :limit => 7
-    t.string  "MSUT160b",      :limit => 7
-    t.string  "MSUT161a",      :limit => 7
-    t.string  "MSUT161b",      :limit => 7
-    t.string  "MSUT162a",      :limit => 7
-    t.string  "MSUT162b",      :limit => 7
-    t.string  "MSUT163a",      :limit => 7
-    t.string  "MSUT163b",      :limit => 7
-    t.string  "MSUT164a",      :limit => 7
-    t.string  "MSUT164b",      :limit => 7
-    t.string  "MSUT165a",      :limit => 7
-    t.string  "MSUT165b",      :limit => 7
-    t.string  "MSUT166a",      :limit => 7
-    t.string  "MSUT166b",      :limit => 7
-    t.string  "MSUT167a",      :limit => 7
-    t.string  "MSUT167b",      :limit => 7
-    t.string  "MSUT168a",      :limit => 7
-    t.string  "MSUT168b",      :limit => 7
-    t.string  "MSUT169a",      :limit => 7
-    t.string  "MSUT169b",      :limit => 7
-    t.string  "MSUT17a",       :limit => 7
-    t.string  "MSUT17b",       :limit => 7
-    t.string  "MSUT170a",      :limit => 7
-    t.string  "MSUT170b",      :limit => 7
-    t.string  "MSUT171a",      :limit => 7
-    t.string  "MSUT171b",      :limit => 7
-    t.string  "MSUT172a",      :limit => 7
-    t.string  "MSUT172b",      :limit => 7
-    t.string  "MSUT173a",      :limit => 7
-    t.string  "MSUT173b",      :limit => 7
-    t.string  "MSUT174a",      :limit => 7
-    t.string  "MSUT174b",      :limit => 7
-    t.string  "MSUT175a",      :limit => 7
-    t.string  "MSUT175b",      :limit => 7
-    t.string  "MSUT176a",      :limit => 7
-    t.string  "MSUT176b",      :limit => 7
-    t.string  "MSUT177a",      :limit => 7
-    t.string  "MSUT177b",      :limit => 7
-    t.string  "MSUT178a",      :limit => 7
-    t.string  "MSUT178b",      :limit => 7
-    t.string  "MSUT179a",      :limit => 7
-    t.string  "MSUT179b",      :limit => 7
-    t.string  "MSUT18a",       :limit => 7
-    t.string  "MSUT18b",       :limit => 7
-    t.string  "MSUT180a",      :limit => 7
-    t.string  "MSUT180b",      :limit => 7
-    t.string  "MSUT181a",      :limit => 7
-    t.string  "MSUT181b",      :limit => 7
-    t.string  "MSUT182a",      :limit => 7
-    t.string  "MSUT182b",      :limit => 7
-    t.string  "MSUT183a",      :limit => 7
-    t.string  "MSUT183b",      :limit => 7
-    t.string  "MSUT184a",      :limit => 7
-    t.string  "MSUT184b",      :limit => 7
-    t.string  "MSUT185a",      :limit => 7
-    t.string  "MSUT185b",      :limit => 7
-    t.string  "MSUT186a",      :limit => 7
-    t.string  "MSUT186b",      :limit => 7
-    t.string  "MSUT187a",      :limit => 7
-    t.string  "MSUT187b",      :limit => 7
-    t.string  "MSUT188a",      :limit => 7
-    t.string  "MSUT188b",      :limit => 7
-    t.string  "MSUT189a",      :limit => 7
-    t.string  "MSUT189b",      :limit => 7
-    t.string  "MSUT19a",       :limit => 7
-    t.string  "MSUT19b",       :limit => 7
-    t.string  "MSUT190a",      :limit => 7
-    t.string  "MSUT190b",      :limit => 7
-    t.string  "MSUT191a",      :limit => 7
-    t.string  "MSUT191b",      :limit => 7
-    t.string  "MSUT192a",      :limit => 7
-    t.string  "MSUT192b",      :limit => 7
-    t.string  "MSUT193a",      :limit => 7
-    t.string  "MSUT193b",      :limit => 7
-    t.string  "MSUT194a",      :limit => 7
-    t.string  "MSUT194b",      :limit => 7
-    t.string  "MSUT195a",      :limit => 7
-    t.string  "MSUT195b",      :limit => 7
-    t.string  "MSUT196a",      :limit => 7
-    t.string  "MSUT196b",      :limit => 7
-    t.string  "MSUT197a",      :limit => 7
-    t.string  "MSUT197b",      :limit => 7
-    t.string  "MSUT198a",      :limit => 7
-    t.string  "MSUT198b",      :limit => 7
-    t.string  "MSUT199a",      :limit => 7
-    t.string  "MSUT199b",      :limit => 7
-    t.string  "MSUT20a",       :limit => 7
-    t.string  "MSUT20b",       :limit => 7
-    t.string  "MSUT200a",      :limit => 7
-    t.string  "MSUT200b",      :limit => 7
-    t.string  "MSUT201a",      :limit => 7
-    t.string  "MSUT201b",      :limit => 7
-    t.string  "MSUT202a",      :limit => 7
-    t.string  "MSUT202b",      :limit => 7
-    t.string  "MSUT203a",      :limit => 7
-    t.string  "MSUT203b",      :limit => 7
-    t.string  "MSUT204a",      :limit => 7
-    t.string  "MSUT204b",      :limit => 7
-    t.string  "MSUT205a",      :limit => 7
-    t.string  "MSUT205b",      :limit => 7
-    t.string  "MSUT206a",      :limit => 7
-    t.string  "MSUT206b",      :limit => 7
-    t.string  "MSUT207a",      :limit => 7
-    t.string  "MSUT207b",      :limit => 7
-    t.string  "MSUT208a",      :limit => 7
-    t.string  "MSUT208b",      :limit => 7
-    t.string  "MSUT209a",      :limit => 7
-    t.string  "MSUT209b",      :limit => 7
-    t.string  "MSUT21a",       :limit => 7
-    t.string  "MSUT21b",       :limit => 7
-    t.string  "MSUT210a",      :limit => 7
-    t.string  "MSUT210b",      :limit => 7
-    t.string  "MSUT211a",      :limit => 7
-    t.string  "MSUT211b",      :limit => 7
-    t.string  "MSUT212a",      :limit => 7
-    t.string  "MSUT212b",      :limit => 7
-    t.string  "MSUT213a",      :limit => 7
-    t.string  "MSUT213b",      :limit => 7
-    t.string  "MSUT214a",      :limit => 7
-    t.string  "MSUT214b",      :limit => 7
-    t.string  "MSUT215a",      :limit => 7
-    t.string  "MSUT215b",      :limit => 7
-    t.string  "MSUT216a",      :limit => 7
-    t.string  "MSUT216b",      :limit => 7
-    t.string  "MSUT217a",      :limit => 7
-    t.string  "MSUT217b",      :limit => 7
-    t.string  "MSUT218a",      :limit => 7
-    t.string  "MSUT218b",      :limit => 7
-    t.string  "MSUT219a",      :limit => 7
-    t.string  "MSUT219b",      :limit => 7
-    t.string  "MSUT22a",       :limit => 7
-    t.string  "MSUT22b",       :limit => 7
-    t.string  "MSUT220a",      :limit => 7
-    t.string  "MSUT220b",      :limit => 7
-    t.string  "MSUT221a",      :limit => 7
-    t.string  "MSUT221b",      :limit => 7
-    t.string  "MSUT222a",      :limit => 7
-    t.string  "MSUT222b",      :limit => 7
-    t.string  "MSUT223a",      :limit => 7
-    t.string  "MSUT223b",      :limit => 7
-    t.string  "MSUT224a",      :limit => 7
-    t.string  "MSUT224b",      :limit => 7
-    t.string  "MSUT225a",      :limit => 7
-    t.string  "MSUT225b",      :limit => 7
-    t.string  "MSUT226a",      :limit => 7
-    t.string  "MSUT226b",      :limit => 7
-    t.string  "MSUT227a",      :limit => 7
-    t.string  "MSUT227b",      :limit => 7
-    t.string  "MSUT228a",      :limit => 7
-    t.string  "MSUT228b",      :limit => 7
-    t.string  "MSUT229a",      :limit => 7
-    t.string  "MSUT229b",      :limit => 7
-    t.string  "MSUT23a",       :limit => 7
-    t.string  "MSUT23b",       :limit => 7
-    t.string  "MSUT230a",      :limit => 7
-    t.string  "MSUT230b",      :limit => 7
-    t.string  "MSUT231a",      :limit => 7
-    t.string  "MSUT231b",      :limit => 7
-    t.string  "MSUT232a",      :limit => 7
-    t.string  "MSUT232b",      :limit => 7
-    t.string  "MSUT233a",      :limit => 7
-    t.string  "MSUT233b",      :limit => 7
-    t.string  "MSUT234a",      :limit => 7
-    t.string  "MSUT234b",      :limit => 7
-    t.string  "MSUT235a",      :limit => 7
-    t.string  "MSUT235b",      :limit => 7
-    t.string  "MSUT236a",      :limit => 7
-    t.string  "MSUT236b",      :limit => 7
-    t.string  "MSUT237a",      :limit => 7
-    t.string  "MSUT237b",      :limit => 7
-    t.string  "MSUT238a",      :limit => 7
-    t.string  "MSUT238b",      :limit => 7
-    t.string  "MSUT239a",      :limit => 7
-    t.string  "MSUT239b",      :limit => 7
-    t.string  "MSUT24a",       :limit => 7
-    t.string  "MSUT24b",       :limit => 7
-    t.string  "MSUT240a",      :limit => 7
-    t.string  "MSUT240b",      :limit => 7
-    t.string  "MSUT241a",      :limit => 7
-    t.string  "MSUT241b",      :limit => 7
-    t.string  "MSUT242a",      :limit => 7
-    t.string  "MSUT242b",      :limit => 7
-    t.string  "MSUT243a",      :limit => 7
-    t.string  "MSUT243b",      :limit => 7
-    t.string  "MSUT244a",      :limit => 7
-    t.string  "MSUT244b",      :limit => 7
-    t.string  "MSUT245a",      :limit => 7
-    t.string  "MSUT245b",      :limit => 7
-    t.string  "MSUT25a",       :limit => 7
-    t.string  "MSUT25b",       :limit => 7
-    t.string  "MSUT26a",       :limit => 7
-    t.string  "MSUT26b",       :limit => 7
-    t.string  "MSUT27a",       :limit => 7
-    t.string  "MSUT27b",       :limit => 7
-    t.string  "MSUT28a",       :limit => 7
-    t.string  "MSUT28b",       :limit => 7
-    t.string  "MSUT29a",       :limit => 7
-    t.string  "MSUT29b",       :limit => 7
-    t.string  "MSUT30a",       :limit => 7
-    t.string  "MSUT30b",       :limit => 7
-    t.string  "MSUT31a",       :limit => 7
-    t.string  "MSUT31b",       :limit => 7
-    t.string  "MSUT32a",       :limit => 7
-    t.string  "MSUT32b",       :limit => 7
-    t.string  "MSUT33a",       :limit => 7
-    t.string  "MSUT33b",       :limit => 7
-    t.string  "MSUT34a",       :limit => 7
-    t.string  "MSUT34b",       :limit => 7
-    t.string  "MSUT35a",       :limit => 7
-    t.string  "MSUT35b",       :limit => 7
-    t.string  "MSUT36a",       :limit => 7
-    t.string  "MSUT36b",       :limit => 7
-    t.string  "MSUT37a",       :limit => 7
-    t.string  "MSUT37b",       :limit => 7
-    t.string  "MSUT38a",       :limit => 7
-    t.string  "MSUT38b",       :limit => 7
-    t.string  "MSUT39a",       :limit => 7
-    t.string  "MSUT39b",       :limit => 7
-    t.string  "MSUT40a",       :limit => 7
-    t.string  "MSUT40b",       :limit => 7
-    t.string  "MSUT41a",       :limit => 7
-    t.string  "MSUT41b",       :limit => 7
-    t.string  "MSUT42a",       :limit => 7
-    t.string  "MSUT42b",       :limit => 7
-    t.string  "MSUT43a",       :limit => 7
-    t.string  "MSUT43b",       :limit => 7
-    t.string  "MSUT44a",       :limit => 7
-    t.string  "MSUT44b",       :limit => 7
-    t.string  "MSUT45a",       :limit => 7
-    t.string  "MSUT45b",       :limit => 7
-    t.string  "MSUT46a",       :limit => 7
-    t.string  "MSUT46b",       :limit => 7
-    t.string  "MSUT47a",       :limit => 7
-    t.string  "MSUT47b",       :limit => 7
-    t.string  "MSUT48a",       :limit => 7
-    t.string  "MSUT48b",       :limit => 7
-    t.string  "MSUT49a",       :limit => 7
-    t.string  "MSUT49b",       :limit => 7
-    t.string  "MSUT50a",       :limit => 7
-    t.string  "MSUT50b",       :limit => 7
-    t.string  "MSUT51a",       :limit => 7
-    t.string  "MSUT51b",       :limit => 7
-    t.string  "MSUT52a",       :limit => 7
-    t.string  "MSUT52b",       :limit => 7
-    t.string  "MSUT53a",       :limit => 7
-    t.string  "MSUT53b",       :limit => 7
-    t.string  "MSUT54a",       :limit => 7
-    t.string  "MSUT54b",       :limit => 7
-    t.string  "MSUT55a",       :limit => 7
-    t.string  "MSUT55b",       :limit => 7
-    t.string  "MSUT56a",       :limit => 7
-    t.string  "MSUT56b",       :limit => 7
-    t.string  "MSUT57a",       :limit => 7
-    t.string  "MSUT57b",       :limit => 7
-    t.string  "MSUT58a",       :limit => 7
-    t.string  "MSUT58b",       :limit => 7
-    t.string  "MSUT59a",       :limit => 7
-    t.string  "MSUT59b",       :limit => 7
-    t.string  "MSUT6a",        :limit => 7
-    t.string  "MSUT6b",        :limit => 7
-    t.string  "MSUT60a",       :limit => 7
-    t.string  "MSUT60b",       :limit => 7
-    t.string  "MSUT61a",       :limit => 7
-    t.string  "MSUT61b",       :limit => 7
-    t.string  "MSUT62a",       :limit => 7
-    t.string  "MSUT62b",       :limit => 7
-    t.string  "MSUT63a",       :limit => 7
-    t.string  "MSUT63b",       :limit => 7
-    t.string  "MSUT64a",       :limit => 7
-    t.string  "MSUT64b",       :limit => 7
-    t.string  "MSUT65a",       :limit => 7
-    t.string  "MSUT65b",       :limit => 7
-    t.string  "MSUT66a",       :limit => 7
-    t.string  "MSUT66b",       :limit => 7
-    t.string  "MSUT67a",       :limit => 7
-    t.string  "MSUT67b",       :limit => 7
-    t.string  "MSUT68a",       :limit => 7
-    t.string  "MSUT68b",       :limit => 7
-    t.string  "MSUT69a",       :limit => 7
-    t.string  "MSUT69b",       :limit => 7
-    t.string  "MSUT7a",        :limit => 7
-    t.string  "MSUT7b",        :limit => 7
-    t.string  "MSUT70a",       :limit => 7
-    t.string  "MSUT70b",       :limit => 7
-    t.string  "MSUT71a",       :limit => 7
-    t.string  "MSUT71b",       :limit => 7
-    t.string  "MSUT72a",       :limit => 7
-    t.string  "MSUT72b",       :limit => 7
-    t.string  "MSUT73a",       :limit => 7
-    t.string  "MSUT73b",       :limit => 7
-    t.string  "MSUT74a",       :limit => 7
-    t.string  "MSUT74b",       :limit => 7
-    t.string  "MSUT75a",       :limit => 7
-    t.string  "MSUT75b",       :limit => 7
-    t.string  "MSUT76a",       :limit => 7
-    t.string  "MSUT76b",       :limit => 7
-    t.string  "MSUT77a",       :limit => 7
-    t.string  "MSUT77b",       :limit => 7
-    t.string  "MSUT78a",       :limit => 7
-    t.string  "MSUT78b",       :limit => 7
-    t.string  "MSUT79a",       :limit => 7
-    t.string  "MSUT79b",       :limit => 7
-    t.string  "MSUT8a",        :limit => 7
-    t.string  "MSUT8b",        :limit => 7
-    t.string  "MSUT80a",       :limit => 7
-    t.string  "MSUT80b",       :limit => 7
-    t.string  "MSUT81a",       :limit => 7
-    t.string  "MSUT81b",       :limit => 7
-    t.string  "MSUT82a",       :limit => 7
-    t.string  "MSUT82b",       :limit => 7
-    t.string  "MSUT83a",       :limit => 7
-    t.string  "MSUT83b",       :limit => 7
-    t.string  "MSUT84a",       :limit => 7
-    t.string  "MSUT84b",       :limit => 7
-    t.string  "MSUT85a",       :limit => 7
-    t.string  "MSUT85b",       :limit => 7
-    t.string  "MSUT86a",       :limit => 7
-    t.string  "MSUT86b",       :limit => 7
-    t.string  "MSUT87a",       :limit => 7
-    t.string  "MSUT87b",       :limit => 7
-    t.string  "MSUT88a",       :limit => 7
-    t.string  "MSUT88b",       :limit => 7
-    t.string  "MSUT89a",       :limit => 7
-    t.string  "MSUT89b",       :limit => 7
-    t.string  "MSUT9a",        :limit => 7
-    t.string  "MSUT9b",        :limit => 7
-    t.string  "MSUT90a",       :limit => 7
-    t.string  "MSUT90b",       :limit => 7
-    t.string  "MSUT91a",       :limit => 7
-    t.string  "MSUT91b",       :limit => 7
-    t.string  "MSUT92a",       :limit => 7
-    t.string  "MSUT92b",       :limit => 7
-    t.string  "MSUT93a",       :limit => 7
-    t.string  "MSUT93b",       :limit => 7
-    t.string  "MSUT94a",       :limit => 7
-    t.string  "MSUT94b",       :limit => 7
-    t.string  "MSUT95a",       :limit => 7
-    t.string  "MSUT95b",       :limit => 7
-    t.string  "MSUT96a",       :limit => 7
-    t.string  "MSUT96b",       :limit => 7
-    t.string  "MSUT97a",       :limit => 7
-    t.string  "MSUT97b",       :limit => 7
-    t.string  "MSUT98a",       :limit => 7
-    t.string  "MSUT98b",       :limit => 7
-    t.string  "MSUT99a",       :limit => 7
-    t.string  "MSUT99b",       :limit => 7
-    t.string  "MU05a",         :limit => 7
-    t.string  "MU05b",         :limit => 7
-    t.string  "MU50a",         :limit => 7
-    t.string  "MU50b",         :limit => 7
-    t.string  "MU59a",         :limit => 7
-    t.string  "MU59b",         :limit => 7
-    t.string  "RW18a",         :limit => 7
-    t.string  "RW18b",         :limit => 7
-    t.string  "RW212a",        :limit => 7
-    t.string  "RW212b",        :limit => 7
-    t.string  "RW217a",        :limit => 7
-    t.string  "RW217b",        :limit => 7
-    t.string  "RW219a",        :limit => 7
-    t.string  "RW219b",        :limit => 7
-    t.string  "RW25a",         :limit => 7
-    t.string  "RW25b",         :limit => 7
-    t.string  "RW31a",         :limit => 7
-    t.string  "RW31b",         :limit => 7
-    t.string  "RW34a",         :limit => 7
-    t.string  "RW34b",         :limit => 7
-    t.string  "RW417a",        :limit => 7
-    t.string  "RW417b",        :limit => 7
-    t.string  "RW45a",         :limit => 7
-    t.string  "RW45b",         :limit => 7
-    t.string  "RW48a",         :limit => 7
-    t.string  "RW48b",         :limit => 7
-    t.string  "SAM25a",        :limit => 7
-    t.string  "SAM25b",        :limit => 7
-    t.string  "TR2F3a",        :limit => 7
-    t.string  "TR2F3b",        :limit => 7
-    t.string  "TR2G5a",        :limit => 7
-    t.string  "TR2G5b",        :limit => 7
-    t.string  "TR3A1a",        :limit => 7
-    t.string  "TR3A1b",        :limit => 7
-    t.string  "TR3F2a",        :limit => 7
-    t.string  "TR3F2b",        :limit => 7
-    t.string  "TR3F7a",        :limit => 7
-    t.string  "TR3F7b",        :limit => 7
-    t.string  "TR3G1a",        :limit => 7
-    t.string  "TR3G1b",        :limit => 7
-    t.string  "TR3G10a",       :limit => 7
-    t.string  "TR3G10b",       :limit => 7
-    t.string  "TR3G11a",       :limit => 7
-    t.string  "TR3G11b",       :limit => 7
-    t.string  "TR3G13a",       :limit => 7
-    t.string  "TR3G13b",       :limit => 7
-    t.string  "TR3G2a",        :limit => 7
-    t.string  "TR3G2b",        :limit => 7
-    t.string  "TR3G5a",        :limit => 7
-    t.string  "TR3G5b",        :limit => 7
-    t.string  "TR3G6a",        :limit => 7
-    t.string  "TR3G6b",        :limit => 7
-    t.string  "TR3H14a",       :limit => 7
-    t.string  "TR3H14b",       :limit => 7
-    t.string  "TR3H4a",        :limit => 7
-    t.string  "TR3H4b",        :limit => 7
-    t.string  "TV14a",         :limit => 7
-    t.string  "TV14b",         :limit => 7
-    t.string  "TV17a",         :limit => 7
-    t.string  "TV17b",         :limit => 7
-    t.string  "TV19a",         :limit => 7
-    t.string  "TV19b",         :limit => 7
-    t.string  "TV20a",         :limit => 7
-    t.string  "TV20b",         :limit => 7
+    t.integer "EV1Pma"
+    t.integer "EV1Pmb"
+    t.integer "EV37Mna"
+    t.integer "EV37Mnb"
+    t.integer "GATA028a"
+    t.integer "GATA028b"
+    t.integer "GT023a"
+    t.integer "GT023b"
+    t.integer "GT271a"
+    t.integer "GT271b"
+    t.integer "IGFa"
+    t.integer "IGFb"
+    t.integer "RW18a"
+    t.integer "RW18b"
+    t.integer "RW212a"
+    t.integer "RW212b"
+    t.integer "RW217a"
+    t.integer "RW217b"
+    t.integer "RW219a"
+    t.integer "RW219b"
+    t.integer "RW25a"
+    t.integer "RW25b"
+    t.integer "RW31a"
+    t.integer "RW31b"
+    t.integer "RW34a"
+    t.integer "RW34b"
+    t.integer "RW417a"
+    t.integer "RW417b"
+    t.integer "RW45a"
+    t.integer "RW45b"
+    t.integer "RW48a"
+    t.integer "RW48b"
+    t.integer "SAM25a"
+    t.integer "SAM25b"
+    t.integer "TR2F3a"
+    t.integer "TR2F3b"
+    t.integer "TR2G5a"
+    t.integer "TR2G5b"
+    t.integer "TR3A1a"
+    t.integer "TR3A1b"
+    t.integer "TR3F2a"
+    t.integer "TR3F2b"
+    t.integer "TR3F7a"
+    t.integer "TR3F7b"
+    t.integer "TR3G1a"
+    t.integer "TR3G1b"
+    t.integer "TR3G10a"
+    t.integer "TR3G10b"
+    t.integer "TR3G11a"
+    t.integer "TR3G11b"
+    t.integer "TR3G13a"
+    t.integer "TR3G13b"
+    t.integer "TR3G2a"
+    t.integer "TR3G2b"
+    t.integer "TR3G5a"
+    t.integer "TR3G5b"
+    t.integer "TR3G6a"
+    t.integer "TR3G6b"
+    t.integer "TR3H14a"
+    t.integer "TR3H14b"
+    t.integer "TR3H4a"
+    t.integer "TR3H4b"
+    t.integer "TV14a"
+    t.integer "TV14b"
+    t.integer "TV17a"
+    t.integer "TV17b"
+    t.integer "TV19a"
+    t.integer "TV19b"
+    t.integer "TV20a"
+    t.integer "TV20b"
   end
 
   create_table "microsatellite_final_horizontals_2", :force => true do |t|
@@ -1341,6 +833,82 @@ ActiveRecord::Schema.define(:version => 46) do
     t.integer "org_sample"
     t.integer "allelea"
     t.integer "alleleb"
+  end
+
+  create_table "microsatellite_horizontals_1", :force => true do |t|
+    t.integer "project_id"
+    t.integer "sample_id"
+    t.integer "organism_index"
+    t.integer "EV1Pma"
+    t.integer "EV1Pmb"
+    t.integer "EV37Mna"
+    t.integer "EV37Mnb"
+    t.integer "GATA028a"
+    t.integer "GATA028b"
+    t.integer "GT023a"
+    t.integer "GT023b"
+    t.integer "GT271a"
+    t.integer "GT271b"
+    t.integer "IGFa"
+    t.integer "IGFb"
+    t.integer "RW18a"
+    t.integer "RW18b"
+    t.integer "RW212a"
+    t.integer "RW212b"
+    t.integer "RW217a"
+    t.integer "RW217b"
+    t.integer "RW219a"
+    t.integer "RW219b"
+    t.integer "RW25a"
+    t.integer "RW25b"
+    t.integer "RW31a"
+    t.integer "RW31b"
+    t.integer "RW34a"
+    t.integer "RW34b"
+    t.integer "RW417a"
+    t.integer "RW417b"
+    t.integer "RW45a"
+    t.integer "RW45b"
+    t.integer "RW48a"
+    t.integer "RW48b"
+    t.integer "SAM25a"
+    t.integer "SAM25b"
+    t.integer "TR2F3a"
+    t.integer "TR2F3b"
+    t.integer "TR2G5a"
+    t.integer "TR2G5b"
+    t.integer "TR3A1a"
+    t.integer "TR3A1b"
+    t.integer "TR3F2a"
+    t.integer "TR3F2b"
+    t.integer "TR3F7a"
+    t.integer "TR3F7b"
+    t.integer "TR3G1a"
+    t.integer "TR3G1b"
+    t.integer "TR3G10a"
+    t.integer "TR3G10b"
+    t.integer "TR3G11a"
+    t.integer "TR3G11b"
+    t.integer "TR3G13a"
+    t.integer "TR3G13b"
+    t.integer "TR3G2a"
+    t.integer "TR3G2b"
+    t.integer "TR3G5a"
+    t.integer "TR3G5b"
+    t.integer "TR3G6a"
+    t.integer "TR3G6b"
+    t.integer "TR3H14a"
+    t.integer "TR3H14b"
+    t.integer "TR3H4a"
+    t.integer "TR3H4b"
+    t.integer "TV14a"
+    t.integer "TV14b"
+    t.integer "TV17a"
+    t.integer "TV17b"
+    t.integer "TV19a"
+    t.integer "TV19b"
+    t.integer "TV20a"
+    t.integer "TV20b"
   end
 
   create_table "microsatellite_horizontals_2", :force => true do |t|

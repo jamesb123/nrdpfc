@@ -5,7 +5,7 @@
 #  id          :integer(11)   not null, primary key
 #  sample_id   :integer(11)   
 #  project_id  :integer(11)   
-#  locus       :string(7)     
+#  locus       :string(30)    
 #  allele1     :integer(11)   
 #  allele2     :integer(11)   
 #  gel         :string(255)   
