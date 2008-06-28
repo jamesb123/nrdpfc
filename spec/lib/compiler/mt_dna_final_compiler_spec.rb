@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-class Compiler::MtDnaFinalCompilerTest < Test::Unit::TestCase
+describe Compiler::MtDnaFinalCompiler do
   fixtures :projects, :mt_dnas, :samples, :organisms
   def setup
     @project =  projects(:whale_project)
@@ -8,6 +8,8 @@ class Compiler::MtDnaFinalCompilerTest < Test::Unit::TestCase
     
     @compiler = Compiler::MtDnaFinalCompiler.new(@project_id)
     @compiler.create_table
+    restart_transaction
+    
     @table_name = "mt_dna_final_horizontals_#{@project_id}"
     @model = MtDnaFinalHorizontal.model_for_project(@project)
   end

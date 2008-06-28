@@ -1,13 +1,15 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-class Compiler::YChromosomeFinalCompilerTest < Test::Unit::TestCase
+describe Compiler::YChromosomeFinalCompiler do
   fixtures :projects, :y_chromosomes, :samples, :organisms
-  def setup
+  before(:each) do
     @project =  projects(:whale_project)
     @project_id = @project.id
     
     @compiler = Compiler::YChromosomeFinalCompiler.new(@project_id)
     @compiler.create_table
+    restart_transaction
+    
     @table_name = "y_chromosome_final_horizontals_#{@project_id}"
     @model = YChromosomeFinalHorizontal.model_for_project(@project)
   end
@@ -40,7 +42,5 @@ class Compiler::YChromosomeFinalCompilerTest < Test::Unit::TestCase
     }
     assert_equal(1, @results.length)
   end
-  
-  
 end
  

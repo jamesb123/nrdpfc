@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-class Compiler::MicrosatelliteFinalCompilerTest < Test::Unit::TestCase
+describe Compiler::MicrosatelliteFinalCompiler do
   fixtures :projects, :microsatellites, :samples, :organisms
   def setup
     @project =  projects(:whale_project)
@@ -8,6 +8,8 @@ class Compiler::MicrosatelliteFinalCompilerTest < Test::Unit::TestCase
     
     @compiler = Compiler::MicrosatelliteFinalCompiler.new(@project_id)
     @compiler.create_table
+    restart_transaction
+    
     @table_name = "microsatellite_final_horizontals_#{@project_id}"
     @model = MicrosatelliteFinalHorizontal.model_for_project(@project)
   end

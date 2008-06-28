@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
+# A NOTE about testing code that modifies the schema:
+#  apparently, anytime you modify a table, the current transaction is broken.  You therefore need manually recreate your transaction and restart it.
 describe Compiler::GenderFinalCompiler do
   fixtures :projects, :genders, :samples, :organisms
   before(:each) do
@@ -8,6 +10,7 @@ describe Compiler::GenderFinalCompiler do
     
     @compiler = Compiler::GenderFinalCompiler.new(@project_id)
     @compiler.create_table
+    restart_transaction
     @table_name = "gender_final_horizontals_#{@project_id}"
     @model = GenderFinalHorizontal.model_for_project(@project)
   end
@@ -25,9 +28,9 @@ describe Compiler::GenderFinalCompiler do
     }
   end
   
-  it "should blank_loci=__doesnt_error" do
+  it "should ignore blank locii without raising a fuss" do
     Gender.update_all("locus=''")
-    @compiler.compile
+    @compiler.compile_data
   end
   
   it "should compile_data" do

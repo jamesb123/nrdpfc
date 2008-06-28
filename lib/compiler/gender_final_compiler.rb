@@ -36,9 +36,9 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
         ["organisms", "id", "=", "%s"]
       ]).to_sql
     
-    
     create_row_for_each_organism do |row|
       @connection.select_all( final_genders_query % row["organism_id"] ).each{|gender|
+        next if gender["genders_locus"].blank?
         row[gender["genders_locus"]] ||= gender["genders_gender"]
       }
     end

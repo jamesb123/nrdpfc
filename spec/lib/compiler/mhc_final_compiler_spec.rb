@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-class Compiler::MhcFinalCompilerTest < Test::Unit::TestCase
+describe Compiler::MhcFinalCompiler do
   fixtures :projects, :mhcs, :samples, :organisms
   def setup
     @project =  projects(:whale_project)
@@ -8,6 +8,8 @@ class Compiler::MhcFinalCompilerTest < Test::Unit::TestCase
     
     @compiler = Compiler::MhcFinalCompiler.new(@project_id)
     @compiler.create_table
+    restart_transaction
+    
     @table_name = "mhc_final_horizontals_#{@project_id}"
     @model = MhcFinalHorizontal.model_for_project(@project)
   end

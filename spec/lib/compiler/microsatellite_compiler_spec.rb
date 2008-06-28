@@ -1,23 +1,25 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-class Compiler::MicrosatelliteCompilerTest < Test::Unit::TestCase
+describe Compiler::MicrosatelliteCompiler do
   fixtures :projects, :microsatellites, :samples
-  def setup
+  before(:each) do
     @project =  projects(:whale_project)
     @project_id = @project.id
     
     @compiler = Compiler::MicrosatelliteCompiler.new(@project)
     @compiler.create_table
+    restart_transaction
+    
     @table_name = "microsatellite_horizontals_#{@project_id}"
     @model = MicrosatelliteHorizontal.model_for_project(@project)
   end
   
-  it "should create_table_for_project__should_create" do
-    @compiler.create_table
-    
+  it "should create the table for the project" do
     tables = Project.connection.select_values("show tables")
     assert tables.include?(@table_name)
-    
+  end
+  
+  it "should create a table for a project using only the locus values for the given" do
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.microsatellites.each{|m|
@@ -26,10 +28,13 @@ class Compiler::MicrosatelliteCompilerTest < Test::Unit::TestCase
     }
   end
   
-  def test__
+  it "should ignore locus for other projects" do
+    Microsatellite.update_all("project_id = #{@project_id + 1}")
+    @compiler.locii(true).should == []
+  end
   
   it "should compile_data" do
-    @compiler.compile
+    @compiler.compile_data
     @results = @model.find(:all)
 #    y @results
     
@@ -42,7 +47,6 @@ class Compiler::MicrosatelliteCompilerTest < Test::Unit::TestCase
       assert_not_nil(result.organism_index)
     }
     assert_equal(2, @results.length)
-    
   end
 end
  

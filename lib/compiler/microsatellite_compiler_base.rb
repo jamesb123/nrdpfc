@@ -1,6 +1,6 @@
 class Compiler::MicrosatelliteCompilerBase < Compiler::CompilerBase
-  def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from microsatellites order by locus")
+  def locii(reload = false)
+    @locii = nil if reload
+    @locii ||= @connection.select_values("select DISTINCT locus from microsatellites WHERE project_id = #{@project.id.to_i} ORDER BY locus")
   end
-  
 end

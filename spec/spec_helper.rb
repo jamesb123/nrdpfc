@@ -36,6 +36,11 @@ Spec::Runner.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  def restart_transaction
+    ActiveRecord::Base.connection.execute("COMMIT")
+    ActiveRecord::Base.connection.execute("BEGIN")
+  end
+  
 end
 
 module Factory
