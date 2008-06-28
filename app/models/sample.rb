@@ -52,8 +52,20 @@
 class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
-  has_many :dna_results
   has_many :y_chromosome_seqs
+  has_many :y_chromosomes
+  has_many :microsatellite_horizontals
+  has_many :microsatellites
+  has_many :mt_dnas
+  has_many :mhcs
+  has_many :genders
+  has_many :dna_results
+  has_many :genders
+  belongs_to :locality_type
+  belongs_to :shippingmaterial
+  belongs_to :tissue_type
+  belongs_to :extraction_method
+  belongs_to :project
   
   def organism_code
     organism.organism_code if organism
@@ -72,20 +84,8 @@ class Sample < ActiveRecord::Base
       :order => "#{table_name}.id"
   end
   
-  has_many :microsatellite_horizontals
-  belongs_to :locality_type
-  belongs_to :shippingmaterial
-  belongs_to :tissue_type
-  belongs_to :extraction_method
-    
-  # before_save :assign_loc_type
-
+  
   before_create :assign_project_id
-
-  # def assign_loc_type
-  #   self.loctype = self.locality_type.locality_type_name
-  # end
-
 
   def assign_project_id
     self.project_id = current_project_id

@@ -11,6 +11,7 @@
 class SecuritySetting < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
+
   
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "has already been assigned a security setting for this project."
   validates_presence_of :project_id
@@ -23,6 +24,11 @@ class SecuritySetting < ActiveRecord::Base
   READ_WRITE_DELETE  = 3
   
   LEVELS = [ ["No Access", NO_ACCESS], [ "Read Only", READ_ONLY], ["Read/Write", READ_WRITE], ["Full", READ_WRITE_DELETE] ].freeze
+
+  before_create :assign_project_id
+  def assign_project_id
+    self.project_id = current_project_id
+  end
 
   def level_option_for_select_selected
     the_level = SecuritySetting::LEVELS.detect {|the_level| self.level == the_level[1]}
@@ -43,7 +49,7 @@ class SecuritySetting < ActiveRecord::Base
   end
   
   def authorized_for_create?
-logger.debug("!!!!!!! authorized_for_create self = #{self.inspect}")    
+    logger.debug("!!!!!!! authorized_for_create self = #{self.inspect}")    
     true
   end
     
@@ -70,5 +76,8 @@ logger.debug("!!!!!!! authorized_for_create self = #{self.inspect}")
     return true unless existing_record_check?
     current_user.authorized_security_for?(self.project, SecuritySetting::READ_WRITE_DELETE)
   end
+
+  
+
       
 end

@@ -17,6 +17,10 @@ class SamplesController < ApplicationController
     config.update.columns.exclude :id, :security_settings, :project
     config.list.columns.exclude  :project
 
+# config.nested.add_link("Gender", [:dna_results])
+# config.columns[:dna_results].association.reverse = :samples 
+# options_for_association_conditions
+
     config.columns[:id].label = "ID"
     config.columns[:organism].label = "Organism "
     config.columns[:organism_index].label = "Org. Index "
@@ -64,7 +68,6 @@ class SamplesController < ApplicationController
     config.columns[:storage_box].label = "Box"
     config.columns[:xy_position].label = "xy pos"
     config.columns[:tissue_remaining].label = "tissue remaining"
-    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
     
   end
 

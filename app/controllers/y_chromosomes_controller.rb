@@ -2,18 +2,18 @@ class YChromosomesController < ApplicationController
   layout "tabs"
   active_scaffold :y_chromosomes do |config|
     config.label = "y Chromosome"
-    config.columns = [:project, :sample, :locus, :haplotype, :finalResult]
-    config.list.columns.exclude :project
+    config.columns = [:id, :sample_id, :project, :sample, :locus, :haplotype, :finalResult]
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
     
     config.create.columns.exclude :id, :project, :sample
     config.update.columns.exclude :id, :project, :sample
-    config.list.columns.exclude :security_settings
+    config.list.columns.exclude :project
+
     config.columns[:finalResult].form_ui = :checkbox
-    columns[:sample].label = "Organism"
-    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
+    config.columns[:sample].label = "Organism"
+    config.columns[:sample_id].label = "Sample ID"
     
   end
   
