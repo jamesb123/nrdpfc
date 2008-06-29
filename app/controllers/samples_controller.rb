@@ -1,6 +1,10 @@
 class SamplesController < ApplicationController
   layout "tabs"
   
+  record_select :per_page => 20, :search_on => ['samples.id', 'organisms.organism_code'], :order_by => ['samples.id, organisms.organism_code'], :include => "organisms"
+  
+  def record_select_includes; :organism; end
+  
   include GoToOrganismCode::Controller
   
   active_scaffold :samples do |config|

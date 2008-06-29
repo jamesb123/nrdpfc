@@ -9,10 +9,6 @@ module ApplicationHelper
     select_tag('record[user][id]', options_for_select(User.find_everybody_but_me.collect{|user| [user.login, user.id]}, record.user_id), {:id => 'record_user_id', :class => 'user-id-input'})
   end
 
-  def sample_form_column(record, input_name)
-    select_tag('record[sample][id]', options_for_select(Sample.find(:all).collect{|sample| [sample.to_label, sample.id]}, record.sample_id), {:id => 'record_sample_id', :class => 'sample-id-input'})
-  end
-  
   def link_to_modal(label, url_options = {}, html_options ={ })
     url = Hash===url_options ? url_for(url_options) : url_options
     popup_options = {

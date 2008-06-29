@@ -92,7 +92,7 @@ class Sample < ActiveRecord::Base
   end
   
   def to_label 
-    "#{organism.organism_code}" 
+    "#{self.id} - #{organism.organism_code}" 
   end
   
   def security_settings
