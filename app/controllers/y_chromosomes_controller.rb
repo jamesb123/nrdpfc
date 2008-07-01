@@ -1,8 +1,10 @@
 class YChromosomesController < ApplicationController
   layout "tabs"
+  
+  # include GoToOrganismCode::Controller
   active_scaffold :y_chromosomes do |config|
     config.label = "y Chromosome"
-    config.columns = [:id, :sample_id, :project, :sample, :locus, :haplotype, :finalResult]
+    config.columns = [:id, :project, :sample, :locus, :haplotype, :comments, :finalResult]
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
@@ -13,7 +15,6 @@ class YChromosomesController < ApplicationController
 
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].label = "Organism"
-    config.columns[:sample_id].label = "Sample ID"
     
   end
   

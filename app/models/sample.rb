@@ -52,6 +52,11 @@
 class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
+  belongs_to :locality_type
+  belongs_to :shippingmaterial
+  belongs_to :tissue_type
+  belongs_to :extraction_method
+
   has_many :y_chromosome_seqs
   has_many :y_chromosomes
   has_many :microsatellite_horizontals
@@ -60,12 +65,7 @@ class Sample < ActiveRecord::Base
   has_many :mhcs
   has_many :genders
   has_many :dna_results
-  has_many :genders
-  belongs_to :locality_type
-  belongs_to :shippingmaterial
-  belongs_to :tissue_type
-  belongs_to :extraction_method
-  belongs_to :project
+  
   
   def organism_code
     organism.organism_code if organism
@@ -93,6 +93,7 @@ class Sample < ActiveRecord::Base
   
   def to_label 
     "#{self.id} - #{organism.organism_code}" 
+#    "#{self.id}" 
   end
   
   def security_settings

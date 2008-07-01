@@ -1,12 +1,13 @@
 class SamplesController < ApplicationController
   layout "tabs"
-  
+
   record_select :per_page => 20, :search_on => ['samples.id', 'organisms.organism_code'], :order_by => ['samples.id, organisms.organism_code'], :include => "organisms"
-  
   def record_select_includes; :organism; end
+#  record_select :per_page => 20, :search_on => ['samples.id'], :order_by => ['samples.id']
+
   
   include GoToOrganismCode::Controller
-  
+
   active_scaffold :samples do |config|
     config.columns = [:id, :organism, :organism_index, :project, :tubebc, :platebc, 
     :plateposition, :field_code, :batch_number, :storage_medium, :country, :province,
@@ -21,7 +22,14 @@ class SamplesController < ApplicationController
     config.update.columns.exclude :id, :security_settings, :project
     config.list.columns.exclude  :project
 
-# config.nested.add_link("Gender", [:dna_results])
+    config.nested.add_link("DNA", [:dna_results])
+    config.nested.add_link("mtDNA", [:mt_dnas])
+    config.nested.add_link("Genders", [:genders])
+    config.nested.add_link("MS", [:microsatellites])
+    config.nested.add_link("MHC", [:mhcs])
+    config.nested.add_link("Y", [:y_chromosomes])
+
+
 # config.columns[:dna_results].association.reverse = :samples 
 # options_for_association_conditions
 
@@ -29,6 +37,7 @@ class SamplesController < ApplicationController
     config.columns[:organism].label = "Organism "
     config.columns[:organism_index].label = "Org. Index "
     config.columns[:security_settings].label = "Security"
+    
     config.columns[:extraction_method].form_ui = :select
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:locality_type].form_ui = :select

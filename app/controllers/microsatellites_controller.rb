@@ -1,26 +1,22 @@
 class MicrosatellitesController < ApplicationController
   layout "tabs"
   active_scaffold :microsatellites do |config|
-    config.list.columns = [:id, :sample_id, :project, :sample, :locus, :allele1, :allele2, :gel, :well, :finalResult]
+    config.list.columns = [:project, :sample, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult]
     
     for uc in [config.update, config.create]
-      uc.columns = [:id, :sample_id, :project, :sample, :locus, :allele1, :allele2, :gel, :well, :finalResult]
+      uc.columns = [:project, :sample, :locus, :allele1, :allele2, :gel, :well, :finalResult]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
-    config.create.columns.exclude :id, :project, :sample
-    config.update.columns.exclude :id, :project, :sample
+    config.create.columns.exclude :project, :sample
+    config.update.columns.exclude :project, :sample
 
     columns = config.columns
     config.list.columns.exclude :project
     columns[:sample].label = "Organism"
-    columns[:sample_id].label = "Sample ID"
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox
-    columns[:sample].form_ui = :select
-
-    config.columns[:id].label = "ID"
     
     [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     

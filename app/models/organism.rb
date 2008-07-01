@@ -11,6 +11,7 @@
 class Organism < ActiveRecord::Base
 
   has_many_dynamic_attributes :scoped_by => 'Project'
+  # before_create :assign_project_id
   
   belongs_to :project
   has_many :samples
@@ -18,6 +19,7 @@ class Organism < ActiveRecord::Base
   has_many :mhc_final_horizontals
   has_many :mt_dna_final_horizontals
   has_many :y_chromosome_final_horizontals
+  has_many :sample_non_tissues
   
   extend Exportables::DynamicAttributesExportableModel
   extend GoToOrganismCode::Model
@@ -27,8 +29,12 @@ class Organism < ActiveRecord::Base
     has_many "final_#{table_name}", :through => :samples
   end
   
-  has_many :sample_non_tissues
-  
+  before_create :assign_project_id
+
+  def assign_project_id
+    self.project_id = current_project_id
+  end
+   
   def to_label
    "#{organism_code}" 
   end
