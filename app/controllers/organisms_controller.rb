@@ -8,9 +8,9 @@ class OrganismsController < ApplicationController
   cattr_accessor :action_links
   
   active_scaffold  :organisms do |config|
-    config.columns = [:organism_code, :comment, :samples]
-    config.create.columns.exclude :project, :security_settings
-    config.update.columns.exclude :project, :security_settings
+    config.columns = [:id, :organism_code, :comment, :samples]
+    config.create.columns.exclude :id, :project, :security_settings
+    config.update.columns.exclude :id, :project, :security_settings
     config.columns[:organism_code].label = "Organism"
     config.columns[:comment].label = "Comments"
     config.columns[:organism_code].sort_by :sql => 'organisms.organism_code'
