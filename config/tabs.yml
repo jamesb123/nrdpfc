@@ -17,6 +17,8 @@
 - label: "mtDNA"  
   	controller: "mt_dnas"
   sub_tabs:
+  - label: "mtDNA"
+    controller: "mt_dnas"
   - label: "mtDNA Final Horizontals"
     controller: "mt_dna_final_horizontals"
   - label: "mtDNA SEQ"

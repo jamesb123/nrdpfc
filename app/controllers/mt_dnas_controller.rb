@@ -3,7 +3,7 @@ class MtDnasController < ApplicationController
   include GoToOrganismCode::Controller
   active_scaffold :mt_dnas do |config|
     config.label = "mtDNA"
-    config.columns = [:id, :project,  :sample, :locus, :haplotype, :gelNum, :wellNum, :finalResult, :accession, :comments]
+    config.columns = [:id, :project,  :sample, :locus, :haplotype, :gelNum, :wellNum, :finalResult, :comments]
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
