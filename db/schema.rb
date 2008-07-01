@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 48) do
+ActiveRecord::Schema.define(:version => 46) do
 
   create_table "country_orig", :force => true do |t|
   end
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "storage_box"
     t.string  "xy_position"
     t.boolean "dna_remaining"
-    t.text    "comments"
   end
 
   create_table "dynamic_attribute_values", :force => true do |t|
@@ -126,7 +125,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "wellNum"
     t.boolean "finalResult"
     t.string  "locus"
-    t.text    "comments"
   end
 
   create_table "locality_types", :force => true do |t|
@@ -188,7 +186,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "gelNum"
     t.string  "wellNum"
     t.boolean "finalResult"
-    t.text    "comments"
   end
 
   create_table "microsatellite_final_horizontals", :force => true do |t|
@@ -1847,7 +1844,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "gel"
     t.string  "well"
     t.boolean "finalResult"
-    t.text    "comments"
   end
 
   add_index "microsatellites", ["sample_id", "project_id", "locus"], :name => "Index_2"
@@ -1907,8 +1903,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "gelNum"
     t.string  "wellNum"
     t.boolean "finalResult"
-    t.string  "accession",   :limit => 30
-    t.text    "comments"
   end
 
   create_table "organisms", :force => true do |t|
@@ -2095,7 +2089,6 @@ ActiveRecord::Schema.define(:version => 48) do
     t.string  "gelNum"
     t.string  "wellNum"
     t.boolean "finalResult"
-    t.text    "comments"
   end
 
 end
