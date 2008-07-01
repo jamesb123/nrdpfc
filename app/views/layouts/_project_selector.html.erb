@@ -16,7 +16,8 @@
 </p>
 
 
-<% if (current_project && current_project.recompile_required) or true %>
+<! % if (current_project && current_project.recompile_required) or true % /!>
+<% if (current_project && current_project.recompile_required) %>
   
   <div id="recompile_required_alert" class="alert">
     <! Data needs to be recompiled for this project.  >
