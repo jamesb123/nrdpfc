@@ -7,5 +7,6 @@ class MtDnaSeqsController < ApplicationController
     config.update.columns.exclude :security_settings, :project
     config.columns[:haplotype].label = "Haplotype"
   end 
+  include ResultTableSharedMethods
   
 end

@@ -48,7 +48,7 @@ class SamplesController < ApplicationController
     config.columns[:collected_on_month].label = "Month "
     config.columns[:collected_on_year].label = "Year "
   
-    config.columns[:tubebc].label = "Tube Bar Code"
+    config.columns[:tubebc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
     config.columns[:field_code].label = "Field Code"

@@ -13,6 +13,10 @@ class MtDnaSeq < ActiveRecord::Base
   belongs_to :project
   
   before_create :assign_project_id
+  after_save :flag_project_for_update
+  
+  extend Exportables::ExportableModel
+  extend GoToOrganismCode::Model
   
   def assign_project_id
     self.project_id = current_project_id
