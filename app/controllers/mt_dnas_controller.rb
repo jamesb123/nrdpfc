@@ -9,14 +9,12 @@ class MtDnasController < ApplicationController
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
 
-    config.create.columns.exclude :id, :sample, :project
-    config.update.columns.exclude :id, :sample, :project
-    config.columns[:sample].label = "Organism"  
+    config.create.columns.exclude :id, :project
+    config.update.columns.exclude :id, :project
+    config.columns[:sample].label = "Sample - Organism"
     config.columns[:finalResult].form_ui = :checkbox
+    config.columns[:sample].form_ui = :record_select
     
-    # config.columns[:id].label = "ID"
-    # config.columns[:sample_id].form_ui = :select
-      
   end
   
   include ResultTableSharedMethods

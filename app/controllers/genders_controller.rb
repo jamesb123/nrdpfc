@@ -3,6 +3,7 @@ class GendersController < ApplicationController
   active_scaffold :genders do |config|
     config.columns = [:project, :sample, :gender, :locus, :wellNum, :gelNum, :comments, :finalResult]
 
+    config.columns[:sample].label = "Sample - Organism"
     config.create.columns.exclude :project
     config.update.columns.exclude :project
     config.list.columns.exclude :project

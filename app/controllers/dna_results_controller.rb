@@ -12,10 +12,10 @@ class DnaResultsController < ApplicationController
     config.columns[:sample].includes << {:sample => :organism}
 
     config.list.columns.exclude :project_id
-    config.create.columns.exclude :project_id, :sample
-    config.update.columns.exclude  :project_id, :sample
+    config.create.columns.exclude :project_id
+    config.update.columns.exclude  :project_id
 
-    config.columns[:sample].label = "Organism"  
+    config.columns[:sample].label = "Sample - Organism"
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
     config.columns[:fluoro_conc].label = "Flouro"
@@ -23,6 +23,7 @@ class DnaResultsController < ApplicationController
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
+    config.columns[:sample].form_ui = :record_select
   end 
 
   def conditions_for_collection

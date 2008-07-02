@@ -9,15 +9,16 @@ class MicrosatellitesController < ApplicationController
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
-    config.create.columns.exclude :project, :sample
-    config.update.columns.exclude :project, :sample
+    config.create.columns.exclude :project
+    config.update.columns.exclude :project
+    config.list.columns.exclude :project
 
     columns = config.columns
-    config.list.columns.exclude :project
-    columns[:sample].label = "Organism"
+    columns[:sample].label = "Sample - Organism"
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox
-    
+    config.columns[:sample].form_ui = :record_select
+   
     [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
   end

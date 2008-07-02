@@ -28,8 +28,7 @@ class SamplesController < ApplicationController
     config.nested.add_link("MS", [:microsatellites])
     config.nested.add_link("MHC", [:mhcs])
     config.nested.add_link("Y", [:y_chromosomes])
-
-
+    
 # config.columns[:dna_results].association.reverse = :samples 
 # options_for_association_conditions
 
