@@ -14,7 +14,7 @@ class SecuritySetting < ActiveRecord::Base
 
   
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "has already been assigned a security setting for this project."
-  validates_presence_of :project_id
+  # validates_presence_of :project_id
   validates_presence_of :user_id
   validates_presence_of :level
   

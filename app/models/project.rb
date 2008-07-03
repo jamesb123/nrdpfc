@@ -17,7 +17,6 @@ class Project < ActiveRecord::Base
   
   has_many :organisms, :order => "organism_code"
   has_many :samples
-  has_and_belongs_to_many :users
   has_many :sample_non_tissues
   has_many :mt_dna_seqs
   has_many :security_settings
@@ -35,6 +34,9 @@ class Project < ActiveRecord::Base
   before_create :assign_project_owner
   after_save :assign_default_project
 
+  # has_and_belongs_to_many :users
+  belongs_to  :user
+  
   def assign_project_owner
     return true if self.name == "Default"  
     begin

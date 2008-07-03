@@ -2,7 +2,7 @@ class SecuritySettingsController < ApplicationController
   layout "tabs"
   # version 6
   active_scaffold :security_settings do |config|
-    config.columns = [:project_id, :project, :user, :to_label, :level]
+    config.columns = [:project, :user, :to_label, :level]
 
 #    config.columns[:project].form_ui = :select
 
@@ -14,9 +14,9 @@ class SecuritySettingsController < ApplicationController
 
     config.list.sorting = {:to_label => :asc}
 
-    config.list.columns.exclude :level, :project_id
-    config.create.columns.exclude :project,  :to_label
-    config.update.columns.exclude :project, :to_label
+    config.list.columns.exclude :level
+    config.create.columns.exclude :to_label
+    config.update.columns.exclude :to_label
   end
 
   def conditions_for_collection

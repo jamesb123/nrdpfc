@@ -65,6 +65,8 @@
     controller: "locality_types"
   - label: "Extraction Methods"
     controller: "extraction_methods"
+  - label: "Tissue Types"
+    controller: "tissue_types"
 	
 - label: "Admin"
   controller: "users"

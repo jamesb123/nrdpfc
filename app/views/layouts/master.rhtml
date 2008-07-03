@@ -33,9 +33,17 @@
       
       </div>
       <h2>
-        NRDPFC
-      </h2>
-      <br clear="both"/>
+
+      	<% if production? %>
+       		NRDPFC PRODUCTION
+		<%else%>
+			<body bgcolor="#000000" ></body>
+			NRDPFC TEST
+		<% end %> 
+
+	  </h2>
+	  <%RAILS_ENV%>
+      <br clear="both" >
     </div>
       
   </div>
