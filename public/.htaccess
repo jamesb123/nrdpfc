@@ -1,5 +1,7 @@
 # General Apache options
-Options +FollowSymLinks +ExecCGI
+# All of this is now handled by passenger (mod_rails)
+
+# Options +FollowSymLinks +ExecCGI
 
 # If you don't want Rails to look in certain directories,
 # use the following rewrite rules so that Apache won't rewrite certain requests
@@ -15,7 +17,7 @@ Options +FollowSymLinks +ExecCGI
 #
 # Example:
 #   RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
-RewriteEngine On
+# RewriteEngine On
 
 # If your Rails application is accessed via an Alias directive,
 # then you MUST also set the RewriteBase in this htaccess file.
@@ -24,10 +26,10 @@ RewriteEngine On
 #   Alias /myrailsapp /path/to/myrailsapp/public
 #   RewriteBase /myrailsapp
 
-RewriteRule ^$ index.html [QSA]
-RewriteRule ^([^.]+)$ $1.html [QSA]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+# RewriteRule ^$ index.html [QSA]
+# RewriteRule ^([^.]+)$ $1.html [QSA]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
 # In case Rails experiences terminal errors
 # Instead of displaying this message you can supply a file here which will be rendered instead
