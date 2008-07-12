@@ -1,7 +1,10 @@
 # Be sure to restart your web server when you modify this file.
 
 # DO NOT REMOVE THIS LINE - It's important for the fcgid deployment we are using.
-ENV['RAILS_ENV'] ||= ENV["HTTP_RAILS_ENV"]
+begin
+  ENV['RAILS_ENV'] = File.read("config/RAILS_ENV").strip if ENV['RAILS_ENV'] == 'production'
+rescue 
+end
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION

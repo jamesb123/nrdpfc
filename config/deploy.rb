@@ -4,45 +4,44 @@ set :repository, "https://svn.nrdpfc.info/repos/nrdpfc/trunk"
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
-set :deploy_to, "/var/www/nrdpfc/"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion
+set :deploy_via, :remote_cache
 
-role :app, "nrdpfc@nrdpfc.info"
-role :web, "nrdpfc@nrdpfc.info"
-role :db, "nrdpfc@nrdpfc.info", :primary => true
 
 set :use_sudo, false
 
-
-desc "Symlink the tmp directory, to keep sessions the same"
-task :maintain_sessions, :roles => [:app] do
-  run <<-EOF
-    rm -rf "#{release_path}/tmp/" &&
-    mkdir -p #{shared_path}/tmp/{cache,pids,sessions,sockets} &&
-    ln -s #{shared_path}/tmp #{release_path}/tmp
-  EOF
+task :production do
+  set :deploy_to, "/var/www/nrdpfc/"
+  set :rails_env,      "production"
+  
+  role :app, "nrdpfc@nrdpfc.info"
+  role :web, "nrdpfc@nrdpfc.info"
+  role :db,  "nrdpfc@nrdpfc.info", :primary => true
 end
 
-task :make_public_not_public_writeable do
-  run "chmod 755 #{release_path}/public #{release_path}/public/dispatch.fcgi"
-end 
+task :development do
+  set :deploy_to, "/var/www/nrdpfc_dev/"
+  set :rails_env,      "development"
+  
+  role :app, "nrdpfc@nrdpfc.info"
+  role :web, "nrdpfc@nrdpfc.info"
+  role :db,  "nrdpfc@nrdpfc.info", :primary => true
+end
 
-task :create_public_file_links do
-  for dir in %w()
-    run "mkdir #{shared_path}/#{dir} -p && rm -rf #{release_path}/public/#{dir} && ln -nfs #{shared_path}/#{dir} #{release_path}/public/#{dir}"
+# =============================================================================
+# TASKS
+# Don't change unless you know what you are doing!
+after "deploy:update_code", "deploy:symlink_database_yml"
+
+namespace :deploy do
+  task :symlink_database_yml do
+    run "ln -nfs {#{shared_path},#{release_path}/config}/database.yml"
   end
-end
-
-task :create_database_yml_symlink do
-  run "ln -nfs {#{shared_path},#{release_path}/config}/database.yml"
-end
-
-task :after_update_code, :roles => [:app] do
-  maintain_sessions
-#  create_public_file_links
-  make_public_not_public_writeable
-  create_database_yml_symlink
+  
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
 end
