@@ -1,17 +1,12 @@
 set :application, "nrdpfc"
+set :scm, :subversion
 set :repository, "https://svn.nrdpfc.info/repos/nrdpfc/trunk"
-
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
 set :deploy_via, :remote_cache
-
-
+set :keep_releases, 5
 set :use_sudo, false
+
+ssh_options[:paranoid] = false
+default_run_options[:pty] = true
 
 task :production do
   set :deploy_to, "/var/www/nrdpfc/"
@@ -35,10 +30,15 @@ end
 # TASKS
 # Don't change unless you know what you are doing!
 after "deploy:update_code", "deploy:symlink_database_yml"
+after "deploy:update_code", "deploy:set_default_rails_env"
 
 namespace :deploy do
   task :symlink_database_yml do
-    run "ln -nfs {#{shared_path},#{release_path}/config}/database.yml"
+    run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+  end
+  
+  task :set_default_rails_env do
+    run "echo #{rails_env} > #{release_path}/config/RAILS_ENV"
   end
   
   task :restart do
