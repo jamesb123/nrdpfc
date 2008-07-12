@@ -17,9 +17,9 @@ task :production do
   role :db,  "nrdpfc@nrdpfc.info", :primary => true
 end
 
-task :development do
-  set :deploy_to, "/var/www/nrdpfc_dev/"
-  set :rails_env,      "development"
+task :staging do
+  set :deploy_to, "/var/www/nrdpfc_staging/"
+  set :rails_env,      "staging"
   
   role :app, "nrdpfc@nrdpfc.info"
   role :web, "nrdpfc@nrdpfc.info"
