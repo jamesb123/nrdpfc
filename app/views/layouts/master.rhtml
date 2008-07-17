@@ -33,14 +33,11 @@
       
       </div>
       <h2>
-
-      	<% if production? %>
+	  <%if ENV['RAILS_ENV']=='production'%>
        		NRDPFC PRODUCTION
-		<%else%>
-			<body bgcolor="#000000" ></body>
+	  <%else%>
 			NRDPFC TEST
-		<% end %> 
-
+	  <%end%>
 	  </h2>
 	  <%RAILS_ENV%>
       <br clear="both" >

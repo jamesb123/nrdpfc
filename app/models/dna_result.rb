@@ -28,12 +28,15 @@
 class DnaResult < ActiveRecord::Base
   belongs_to :sample
   belongs_to :project
-
+  
+  # belongs_to :organism, :through => :samples
+  
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   
   def to_label 
-    "#{sample_id}" 
+#    "#{sample_id}" 
+     "#{self.id}" 
   end
 
   before_create :assign_project_id

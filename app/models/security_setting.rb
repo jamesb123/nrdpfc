@@ -26,6 +26,7 @@ class SecuritySetting < ActiveRecord::Base
   LEVELS = [ ["No Access", NO_ACCESS], [ "Read Only", READ_ONLY], ["Read/Write", READ_WRITE], ["Full", READ_WRITE_DELETE] ].freeze
 
   before_create :assign_project_id
+  
   def assign_project_id
     self.project_id = current_project_id
   end

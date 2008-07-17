@@ -1,21 +1,21 @@
 class SamplesController < ApplicationController
   layout "tabs"
 
-  record_select :per_page => 20, :search_on => ['samples.id', 'organisms.organism_code'], :order_by => ['samples.id, organisms.organism_code'], :include => "organisms"
-  def record_select_includes; :organism; end
-#  record_select :per_page => 20, :search_on => ['samples.id'], :order_by => ['samples.id']
+#  record_select :per_page => 20, :search_on => ['samples.id', 'organisms.organism_code'], :order_by => ['samples.id, organisms.organism_code'], :include => "organisms"
+#  def record_select_includes; :organism; end
 
+  record_select :per_page => 20, :search_on => ['samples.id'], :order_by => ['samples.id']
   
   include GoToOrganismCode::Controller
 
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism, :organism_index, :project, :tubebc, :platebc, 
-    :plateposition, :field_code, :batch_number, :storage_medium, :country, :province,
+    config.columns = [:id, :organism, :organism_id, :organism_index, :project, :tubebc, :platebc, 
+    :plateposition, :field_code, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_day, :collected_on_month, :collected_on_year, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :type_lat_long, :storage_building, :storage_room,
-    :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :shippingmaterial, :locality_type, :tissue_type,:security_settings]  
+    :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
     config.create.columns.exclude :id, :security_settings, :project
@@ -29,12 +29,10 @@ class SamplesController < ApplicationController
     config.nested.add_link("MHC", [:mhcs])
     config.nested.add_link("Y", [:y_chromosomes])
     
-# config.columns[:dna_results].association.reverse = :samples 
-# options_for_association_conditions
-
-    config.columns[:id].label = "ID"
-    config.columns[:organism].label = "Organism "
-    config.columns[:organism_index].label = "Org. Index "
+    config.columns[:id].label = "Sample ID"
+    config.columns[:organism].label = "Organism Code"
+    config.columns[:organism_id].label = "Organism ID"
+    config.columns[:organism_index].label = "Organism Sample Index"
     config.columns[:security_settings].label = "Security"
     
     config.columns[:extraction_method].form_ui = :select
@@ -48,6 +46,7 @@ class SamplesController < ApplicationController
     config.columns[:collected_on_month].label = "Month "
     config.columns[:collected_on_year].label = "Year "
   
+    config.columns[:shippingmaterial].label = "Shipping Medium"
     config.columns[:tubebc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
@@ -84,6 +83,7 @@ class SamplesController < ApplicationController
   end
 
   def conditions_for_collection
+#    ['organism.project_id = (?)', current_project]
     ['samples.project_id = (?)', current_project]
   end
 end

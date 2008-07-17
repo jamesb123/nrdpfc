@@ -20,6 +20,7 @@ class Organism < ActiveRecord::Base
   has_many :mt_dna_final_horizontals
   has_many :y_chromosome_final_horizontals
   has_many :sample_non_tissues
+  has_many :dna_results, :through => :samples
   
   extend Exportables::DynamicAttributesExportableModel
   extend GoToOrganismCode::Model
@@ -30,15 +31,27 @@ class Organism < ActiveRecord::Base
   end
   
   before_create :assign_project_id
-
+#  after_create :assign_org_id
+  
   def assign_project_id
     self.project_id = current_project_id
   end
-   
-  def to_label
-   "#{organism_code}" 
-  end
 
+#  def assign_org_id
+#    if self.organism_code.empty? 
+#      self.organism_code = self.id
+#    end
+#  end
+   
+#  def to_label
+#   "#{id} #{organism_code}" 
+#  end
+
+  def to_label
+#   "#{organism_code} #{self.id}" 
+   "#{self.organism_code}" 
+  end
+  
   def security_settings
     current_user.authorization_display_for project
   end

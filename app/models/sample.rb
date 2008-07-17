@@ -67,9 +67,9 @@ class Sample < ActiveRecord::Base
   has_many :dna_results
   
   
-  def organism_code
-    organism.organism_code if organism
-  end
+#  def organism_code
+#    organism.organism_code if organism
+#  end
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
@@ -92,8 +92,8 @@ class Sample < ActiveRecord::Base
   end
   
   def to_label 
-    "#{self.id} - #{organism.organism_code}" 
 #    "#{self.id}" 
+    "#{organism.organism_code}(#{self.id})"
   end
   
   def security_settings

@@ -1,8 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def production?
-      @is_production ||=(ENV['RAILS_ENV']=='production')
-  end   
   def project_form_column(record, input_name)
     select_tag('record[project][id]', options_for_select(current_user.projects.collect{|project| [project.name, project.id]}, record.project_id), {:id => 'record_project_id', :class => 'project-id-input'})
   end
@@ -37,5 +34,6 @@ module ApplicationHelper
     return false if ! project
     @project_manager = (project.user_id == user.id)
   end
+
     
 end

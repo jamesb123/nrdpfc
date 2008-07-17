@@ -3,7 +3,7 @@ class DnaResultsController < ApplicationController
   
   include GoToOrganismCode::Controller
   active_scaffold :dna_results do |config|
-    config.columns = [:sample, :project_id,  :prep_number, :extraction_number, 
+    config.columns = [:sample, :sample_id,  :project,  :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
      :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
@@ -11,11 +11,12 @@ class DnaResultsController < ApplicationController
     config.columns[:sample].sort_by :sql => 'organisms.organism_code'
     config.columns[:sample].includes << {:sample => :organism}
 
-    config.list.columns.exclude :project_id
-    config.create.columns.exclude :project_id
-    config.update.columns.exclude  :project_id
+    config.list.columns.exclude :project
+    config.create.columns.exclude :project, :sample_id
+    config.update.columns.exclude  :project, :sample_id
 
-    config.columns[:sample].label = "Sample - Organism"
+    config.columns[:sample].label = "Organism Code (SID)"
+    config.columns[:sample_id].label = "Sample ID"
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
     config.columns[:fluoro_conc].label = "Flouro"
@@ -23,7 +24,8 @@ class DnaResultsController < ApplicationController
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
-    config.columns[:sample].form_ui = :record_select
+#    config.columns[:sample].form_ui = :record_select
+   config.columns[:sample].form_ui = :select
   end 
 
   def conditions_for_collection

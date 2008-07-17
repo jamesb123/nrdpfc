@@ -4,18 +4,20 @@ class YChromosomesController < ApplicationController
   # include GoToOrganismCode::Controller
   active_scaffold :y_chromosomes do |config|
     config.label = "y Chromosome"
-    config.columns = [:project, :sample, :locus, :haplotype, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id, :locus, :haplotype, :comments, :finalResult]
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
     
-    config.create.columns.exclude :project
-    config.update.columns.exclude :project
+    config.create.columns.exclude :project, :sample_id
+    config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
 
-    config.columns[:sample].label = "Sample - Organism"
+    config.columns[:sample].label = "Organism ID (SID)"
+    config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox
-    config.columns[:sample].form_ui = :record_select
+#    config.columns[:sample].form_ui = :record_select
+    config.columns[:sample].form_ui = :select
     
   end
   
