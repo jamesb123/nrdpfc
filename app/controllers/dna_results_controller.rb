@@ -15,7 +15,7 @@ class DnaResultsController < ApplicationController
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude  :project, :sample_id
 
-    config.columns[:sample].label = "Organism Code (SID)"
+    config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
@@ -27,6 +27,9 @@ class DnaResultsController < ApplicationController
 #    config.columns[:sample].form_ui = :record_select
    config.columns[:sample].form_ui = :select
   end 
+
+  include ResultTableSharedMethods  
+  include GoToOrganismCode::Controller
 
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]

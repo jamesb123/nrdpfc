@@ -18,10 +18,9 @@ class SamplesController < ApplicationController
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :id, :security_settings, :project
-    config.update.columns.exclude :id, :security_settings, :project
+    config.create.columns.exclude :id, :security_settings, :project, :date_collected
+    config.update.columns.exclude :id, :security_settings, :project, :date_collected
     config.list.columns.exclude  :project
-
     config.nested.add_link("DNA", [:dna_results])
     config.nested.add_link("mtDNA", [:mt_dnas])
     config.nested.add_link("Genders", [:genders])
@@ -42,9 +41,9 @@ class SamplesController < ApplicationController
     config.columns[:organism].form_ui = :select
     
     config.columns[:date_collected].label = "Date Collected "
-    config.columns[:collected_on_day].label = "Day "
-    config.columns[:collected_on_month].label = "Month "
-    config.columns[:collected_on_year].label = "Year "
+    config.columns[:collected_on_day].label = "Collected Day "
+    config.columns[:collected_on_month].label = "Collected Month "
+    config.columns[:collected_on_year].label = "Collected Year "
   
     config.columns[:shippingmaterial].label = "Shipping Medium"
     config.columns[:tubebc].label = "Sample Bar Code"
@@ -86,4 +85,5 @@ class SamplesController < ApplicationController
 #    ['organism.project_id = (?)', current_project]
     ['samples.project_id = (?)', current_project]
   end
+  
 end

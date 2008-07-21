@@ -22,6 +22,7 @@ class Mhc < ActiveRecord::Base
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   
+  before_create :assign_project_id
   
   def flag_project_for_update
     Project.flag_for_update(self.project_id)
@@ -30,8 +31,6 @@ class Mhc < ActiveRecord::Base
   def to_label 
     "Ex#: #{locus}" 
   end
-
-  before_create :assign_project_id
 
   def assign_project_id
     self.project_id = current_project_id

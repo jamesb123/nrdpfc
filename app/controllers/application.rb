@@ -13,12 +13,13 @@ class ApplicationController < ActionController::Base
   ActiveScaffold.set_defaults do |config|
     config.security.current_user_method = :current_user
     config.security.default_permission = false
+   
   end
   
   # This should implement the Go to functionality
-  def go_to
-    render :text => "Not yet implemented...", :layout => false
-  end
+#  def go_to
+#    render :text => "Not yet implemented...", :layout => false
+#  end
   
   # This isn't working, I'm not quite sure why...
   # something isn't scoped right...

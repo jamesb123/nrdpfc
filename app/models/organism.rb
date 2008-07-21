@@ -31,18 +31,11 @@ class Organism < ActiveRecord::Base
   end
   
   before_create :assign_project_id
-#  after_create :assign_org_id
   
   def assign_project_id
     self.project_id = current_project_id
   end
 
-#  def assign_org_id
-#    if self.organism_code.empty? 
-#      self.organism_code = self.id
-#    end
-#  end
-   
 #  def to_label
 #   "#{id} #{organism_code}" 
 #  end

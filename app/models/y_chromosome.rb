@@ -22,7 +22,10 @@ class YChromosome < ActiveRecord::Base
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
-  
+
+  def conditions_for_collection
+    ['samples.project_id = (?)', current_project_id ]
+  end
   
   def flag_project_for_update
     Project.flag_for_update(self.project_id)

@@ -34,6 +34,6 @@ module ApplicationHelper
     return false if ! project
     @project_manager = (project.user_id == user.id)
   end
-
+ 
     
 end

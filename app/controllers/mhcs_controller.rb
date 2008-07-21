@@ -10,7 +10,7 @@ class MhcsController < ApplicationController
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
 
-    config.columns[:sample].label = "Organism ID (SID)"
+    config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:allele1].label = "Allele 1"
     config.columns[:allele2].label = "Allele 2"    
@@ -23,5 +23,8 @@ class MhcsController < ApplicationController
 
   include ResultTableSharedMethods
   include GoToOrganismCode::Controller
-  
+
+  def conditions_for_collection
+    ['samples.project_id = (?)', current_project_id ]
+  end
 end

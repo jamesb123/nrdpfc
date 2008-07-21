@@ -9,7 +9,7 @@ class GendersController < ApplicationController
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
 
-    config.columns[:sample].sort_by :sql => "organisms.organism_code"
+    config.columns[:sample].sort_by :sql => "Organism Code or Sample ID"
     config.columns[:sample].includes << {:sample => :organism}
 
     config.columns[:finalResult].form_ui = :checkbox
@@ -19,5 +19,8 @@ class GendersController < ApplicationController
   
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-  
+
+  def conditions_for_collection
+    ['samples.project_id = (?)', current_project_id ]
+  end  
 end

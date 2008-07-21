@@ -67,10 +67,6 @@ class Sample < ActiveRecord::Base
   has_many :dna_results
   
   
-#  def organism_code
-#    organism.organism_code if organism
-#  end
-  
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   
@@ -86,15 +82,28 @@ class Sample < ActiveRecord::Base
   
   
   before_create :assign_project_id
+  before_save :assign_date_collected
+  
 
+
+  def assign_date_collected
+#    self.date_collected = 
+#    self.date_collected = Date.civil(y=:collected_on_year, m=:collected_on_month, d=:collected_on_day,sg=ITALY)
+# self.date_collected = now.date
+#    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
+  end
+  
   def assign_project_id
     self.project_id = current_project_id
   end
   
   def to_label 
-#    "#{self.id}" 
-    "#{organism.organism_code}(#{self.id})"
-  end
+    if !organism.nil?  
+      return "#{organism.organism_code}"
+    else
+      return "#{self.id}" 
+    end
+  end    
   
   def security_settings
     current_user.authorization_display_for self.project
