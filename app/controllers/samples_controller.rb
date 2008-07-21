@@ -18,9 +18,10 @@ class SamplesController < ApplicationController
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :id, :security_settings, :project, :date_collected
-    config.update.columns.exclude :id, :security_settings, :project, :date_collected
+    config.create.columns.exclude :id, :security_settings, :project
+    config.update.columns.exclude :id, :security_settings, :project
     config.list.columns.exclude  :project
+    
     config.nested.add_link("DNA", [:dna_results])
     config.nested.add_link("mtDNA", [:mt_dnas])
     config.nested.add_link("Genders", [:genders])
