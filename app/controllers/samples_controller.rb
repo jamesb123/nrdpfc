@@ -11,15 +11,15 @@ class SamplesController < ApplicationController
   active_scaffold :samples do |config|
     config.columns = [:id, :organism, :organism_id, :organism_index, :project, :tubebc, :platebc, 
     :plateposition, :field_code, :batch_number, :shippingmaterial, :country, :province,
-    :date_collected, :collected_on_day, :collected_on_month, :collected_on_year, :collected_by, 
+    :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :type_lat_long, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :id, :security_settings, :project
-    config.update.columns.exclude :id, :security_settings, :project
+    config.create.columns.exclude :id, :security_settings, :project, :date_submitted
+    config.update.columns.exclude :id, :security_settings, :project, :date_submitted
     config.list.columns.exclude  :project
     
     config.nested.add_link("DNA", [:dna_results])
