@@ -6,4 +6,9 @@ module DnaResultsHelper
       super
     end
   end
+
+  def extraction_date_form_column(record, input_name)
+    date_select :record, :extraction_date, :name => input_name, :include_blank => true
+  end 
+
 end

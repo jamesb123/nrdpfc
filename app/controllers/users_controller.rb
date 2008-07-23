@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     config.columns[:is_admin].form_ui = :checkbox
     config.columns[:projects].label = "Projects"
     config.columns[:projects].form_ui = :select
+    config.update.columns.exclude :projects
+    config.create.columns.exclude :projects
   end
   
   def create_authorized?

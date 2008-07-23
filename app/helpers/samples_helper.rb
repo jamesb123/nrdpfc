@@ -15,11 +15,16 @@ module SamplesHelper
     date_select :record, :date_collected, :name => input_name, :include_blank => true
   end 
 
-  def collected_on_month_form_column(record, input_name)
-    select_month record[:collected_on_month], :prefix=>input_name, :include_blank => true
-  end
+############### test
+
+  # month
+#  def collected_on_month_form_column(record, input_name)
+#    select_month record[:collected_on_month], :prefix => input_name, :include_blank => true
+#  end 
+
+  # day
 #  def collected_on_day_form_column(record, input_name)
-#    select_day(record[:collected_on_day.to_s], :name=>input_name, :include_blank => true)
+#    select_day(record[:collected_on_day], :prefix => input_name, :include_blank => true)
 #  end
 
 #  def collected_on_year_form_column(record, input_name)

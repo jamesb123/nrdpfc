@@ -16,10 +16,7 @@ class ApplicationController < ActionController::Base
    
   end
   
-  # This should implement the Go to functionality
-#  def go_to
-#    render :text => "Not yet implemented...", :layout => false
-#  end
+ 
   
   # This isn't working, I'm not quite sure why...
   # something isn't scoped right...
