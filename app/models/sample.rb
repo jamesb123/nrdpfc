@@ -99,7 +99,7 @@ class Sample < ActiveRecord::Base
   
   def to_label 
     if !organism.nil?  
-      return "#{organism.organism_code}"
+      return "#{organism.organism_code} - #{organism_index}: (#{self.id})"
     else
       return "#{self.id}" 
     end

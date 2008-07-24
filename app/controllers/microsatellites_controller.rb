@@ -14,7 +14,7 @@ class MicrosatellitesController < ApplicationController
     config.list.columns.exclude :project
 
     columns = config.columns
-    columns[:sample].label = "Organism Code or Sample ID"
+    columns[:sample].label = "Organism Code (Sample ID)"
     columns[:sample_id].label = "Sample ID"
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox

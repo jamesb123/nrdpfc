@@ -8,6 +8,10 @@ class DnaResultsController < ApplicationController
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
      :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
 
+    # search associated sample colum
+    config.columns[:sample].search_sql = 'organisms.organism_code'
+    config.search.columns << :sample
+
     config.columns[:sample].sort_by :sql => 'organisms.organism_code'
     config.columns[:sample].includes << {:sample => :organism}
 
@@ -15,7 +19,7 @@ class DnaResultsController < ApplicationController
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude  :project, :sample_id
 
-    config.columns[:sample].label = "Organism Code or Sample ID"
+    config.columns[:sample].label = "Organism Code - Organism Index:   Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
