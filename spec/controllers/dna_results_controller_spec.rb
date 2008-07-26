@@ -7,7 +7,7 @@ describe DnaResultsController do
       
       @controller.stub!(:conditions_from_params)
       DnaResult.should_receive(:alphabetical_index_of_organism_code).with("CODE123", nil).and_return(21)
-      @controller.stub!(:active_scaffold_config).and_return(stub("Core", :list => stub("List", :per_page => 10)))
+      @controller.active_scaffold_config.stub!(:list).and_return(stub("List", :per_page => 10))
       @controller.stub!(:params).and_return(@params)
       @controller.go_to_organism_code
     end
