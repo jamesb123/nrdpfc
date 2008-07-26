@@ -6,7 +6,7 @@ module Exportables::HorizontalExportableModel
   end
   
   def exportable_fields
-    self.model_for_project(current_project).columns.map(&:name)
+    self.model_for_project(current_project).columns.map(&:name) rescue []
   end
   
   def exportable_table_name
