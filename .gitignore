@@ -1,5 +1,6 @@
 /public/javascripts/cache
 /public/stylesheets/cache
+/public/download
 .DS_Store
 /db/development_structure.sql
 /scratchpad.rb
