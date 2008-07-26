@@ -130,12 +130,12 @@ describe QueryController do
       post :add_field, :table => "samples"
     end
       
-    it "should add all non_id fields" do
-      assigns[:query_fields].map(&:name).map(&:to_s).should == Sample.exportable_non_id_fields
+    it "should add all fields" do
+      assigns[:query_fields].map(&:name).map(&:to_s).should == Sample.exportable_fields
     end
     
     it "should render all the fields at once" do
-      Sample.exportable_non_id_fields.each do |field|
+      Sample.exportable_fields.each do |field|
         response.body.should include(field.titleize)
       end
     end

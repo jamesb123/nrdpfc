@@ -14,7 +14,7 @@ class QueryController < ApplicationController
     if params[:field]
       @query_fields = [@query_table.add_field(params[:field])]
     else
-      @query_fields = @query_table.model.exportable_non_id_fields.map {|f| @query_table.add_field(f) }
+      @query_fields = @query_table.model.exportable_fields.map {|f| @query_table.add_field(f) }
     end
   end
   
