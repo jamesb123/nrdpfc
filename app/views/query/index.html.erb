@@ -1,35 +1,32 @@
 <h1>Query</h1>
 
 <% content_tag :div, :id => "query_form" do %>
-<div style="width:400px; display:block; float:left;" />
+<div style="width:250px; display:block; float:left;" />
   <h2>Tables</h2>
-  <ul id='query_field_selector'>
-    <% Exportables::ExportableModel.models.each do |model| 
-      table_name = model.exportable_name
-      # checked = @query.tables.include?(model_name)
-      fields_ul_id = "#{table_name}_fields"
-      table_checkbox_id = "query_tables_#{table_name}"
-      %>
-      <li>
-        <%= link_to_function(table_name.titleize, "toggle_section('#{table_name}')") %>
-        <ul id="<%= fields_ul_id %>" style="display: none">
-            <li>
-              <%= link_to_remote("- Add all -", :url => {:action => "add_field", :table => table_name}) %>
-            </li>
-          <% model.exportable_fields.each do |field| %>
-            <li>
-              <%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %>
-            </li>
-          <% end %>
-        </ul>
-      </li>    
-      <script language='javascript'>
-        // new ElementFader( '<%= table_checkbox_id %>', '<%= fields_ul_id %>', "=='<%= table_name %>'");
-      </script>
+  <div id='query_table_selector'>
+    <% Exportables::ExportableModel.models.each do |model| %>
+      <div>
+        <%= link_to_function(model.exportable_name.titleize, "toggle_section('#{model.exportable_name}')") %>
+      </div>    
     <% end %>
-  </ul>
-  
+  </div>
 </div>
+
+<div id="query_field_selector" style="width:250px; display:block; height:400px; overflow: auto; float:left;">
+  <% Exportables::ExportableModel.models.each do |model| 
+      table_name = model.exportable_name
+      fields_ul_id = "#{table_name}_fields"
+  %>
+  <div id="<%= fields_ul_id %>" style="display: none">
+    <h2><%= model.exportable_name.titleize %></h2>
+    <div><%= link_to_remote("- Add all -", :url => {:action => "add_field", :table => table_name}) %></div>
+    <% model.exportable_fields.each do |field| %>
+      <div><%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %></div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
 <div style="width:600px; display:block; float:left">
   <h2>Selected Fields</h2>
   <table id='selected_fields_entries_table'>
@@ -74,7 +71,7 @@
   {
     var fields_ul_id = table_name + "_fields";
     
-    $$("ul#query_field_selector > li > ul").each(function(ul) {
+    $$("#query_field_selector > div").each(function(ul) {
       if (ul.id == fields_ul_id) { new Effect.BlindDown(ul, { duration: 0.5 }); return false; }
       if (ul.visible()) new Effect.BlindUp(ul);
     });
