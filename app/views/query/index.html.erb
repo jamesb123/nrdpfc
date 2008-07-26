@@ -33,10 +33,10 @@
     <thead>
       <tr>
         <th></th>
-        <th>Model Name</th>
-        <th>Field Name</th>
-        <th>Sort</th>
-        <th>Filter</th>
+        <th style="text-align: left">Model Name</th>
+        <th style="text-align: left">Field Name</th>
+        <th style="text-align: left">Sort</th>
+        <th style="text-align: left">Filter</th>
       </tr>
     </thead>
     <tbody id="selected_fields_entries">
@@ -77,64 +77,74 @@
     });
   }
 
- Sorter = Class.create();
- Sorter.prototype = {
-   initialize: function(table, column_classes) {
-     this.table = $(table);
-     this.column_classes = column_classes
-   },
-   get_rows: function() {
-     return this.table.getElementsBySelector('tr');
-   },    
-   do_sort: function() {
-     if(this.get_rows().length <= 1) return true;
-
-     var result;
-     var rows = this.get_rows();
-     do {
-       var sorted = true;
-       for (x=0; x<= rows.length - 2; x++) {
-
-         var row1 = rows[x]
-         var row2 = rows[x+1];
-         if (!row2) continue;
-         result = this.compare_rows(row1, row2);
-         switch(result) {
-           case 0:
-             rows.splice(x+1, 1);
-             row2.remove();
-             sorted = false;
-             break;
-           case 1:
-             rows[x] = row2;
-             rows[x+1] = row1;
-             sorted = false;
-             break;
-         }
-       }
-     } while (! sorted);
-
-     that = this;
-     rows.each(function(r) { r.remove()});
-     rows.each(function(r) { that.table.appendChild(r)});
-   },
-   compare_rows: function(r1, r2) {
-     var result = 0;
-     this.column_classes.each(function(c) {
-       v1 = r1.down("." + c).innerHTML;
-       v2 = r2.down("." + c).innerHTML;
-       if (v1 != v2)
-       {
-         if (v1 > v2) 
-           { result = 1; throw $break; }
-         else
-           { result = -1; throw $break; }        
-         end
-       }
-     });
-     return result;
-   }
- }
+  Sorter = Class.create();
+  Sorter.prototype = {
+    initialize: function(table, column_classes) {
+      this.table = $(table);
+      this.column_classes = column_classes
+    },
+    get_rows: function() {
+      that = this;
+      return this.table.getElementsBySelector('tr').map(function(r) {
+        if (!r.contents_by_class) {
+          r.contents_by_class = that.column_classes.inject($H(), function(h, column_class) {
+            h.set(column_class, r.down("." + column_class).innerHTML);
+            return h;
+          });
+        }
+        return r;
+      });
+    },    
+    do_sort: function() {
+      if(this.get_rows().length <= 1) return this;
+  
+      var rows = this.get_rows();
+      do {
+        var sorted = true;
+        for (x=0; x<= rows.length - 2; x++) {
+  
+          var row1 = rows[x]
+          var row2 = rows[x+1];
+          if (!row2) continue;
+          if (this.compare_rows(row1, row2) == -1) {
+            rows[x] = row2;
+            rows[x+1] = row1;
+            sorted = false;
+          }
+        }
+      } while (! sorted);
+  
+      that = this;
+      rows.each(function(r) { r.remove()});
+      rows.each(function(r) { that.table.appendChild(r)});
+      return this;
+    },
+    do_uniq: function() {
+      var rows = this.get_rows();
+      for (x=0; x<= rows.length - 2; x++) {
+        var row1 = rows[x]
+        var row2 = rows[x+1];
+        if (this.compare_rows(row1, row2) == 0) {
+          rows.splice(x+1, 1);
+          row2.remove();
+          sorted = false;
+        }
+      }
+      return this;
+    },
+    compare_rows: function(r1, r2) {
+      return this.column_classes.map(function(c) {
+        v1 = r1.contents_by_class.get(c);
+        v2 = r2.contents_by_class.get(c);
+        if (v1 == v2) 
+          return null;
+        else if (v1 > v2)
+          return 1;
+        else
+          return -1;
+      }).compact().first() || 0;
+    }
+  }
 
 </script>
 
