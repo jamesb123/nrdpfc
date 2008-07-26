@@ -45,6 +45,7 @@
     <tbody id="selected_fields_entries">
     </tbody>
   </table>
+  <%= link_to_function "#{image_tag('cancel.png')} Start Over", "$$('#selected_fields_entries_table tbody tr').each(function(e) { e.remove(); });" %>
 </div>
 <br clear='both' />
   <% indicated_div "query_submit_button" do %>
