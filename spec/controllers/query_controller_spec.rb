@@ -8,10 +8,14 @@ describe QueryController do
     login_as :quentin
   end
   
+  before(:each) do
+    clear_all_compiled_tables
+  end
+  
   describe "when getting index" do
     integrate_views
     
-    it "should get" do
+    it "should get and not raise an error if compiled tables are missing" do
       get :index
     end
   end

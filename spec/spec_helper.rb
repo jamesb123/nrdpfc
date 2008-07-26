@@ -41,6 +41,15 @@ Spec::Runner.configure do |config|
     ActiveRecord::Base.connection.execute("BEGIN")
   end
   
+  def clear_all_compiled_tables
+    projects = Project.find(:all)
+    Exportables::ExportableModel.models.each do |model|
+      next unless model.respond_to?(:table_name_for_project)
+      projects.each do |project|
+        model.connection.drop_table(model.table_name_for_project(project)) rescue nil
+      end
+    end
+  end
 end
 
 module Factory
