@@ -16,7 +16,7 @@
             <li>
               <%= link_to_remote("- Add all -", :url => {:action => "add_field", :table => table_name}) %>
             </li>
-          <% model.exportable_non_id_fields.each do |field| %>
+          <% model.exportable_fields.each do |field| %>
             <li>
               <%= link_to_remote(field.titleize, :url => {:action => "add_field", :table => table_name, :field => field}) %>
             </li>
