@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <% @query_builder.select_field_aliases.each do |select_field_alias| %>
-          <th><%= select_field_alias.titleize %></th>
+          <th><%= select_field_alias.titleize_with_id %></th>
         <% end %>
       </tr>
     </thead>

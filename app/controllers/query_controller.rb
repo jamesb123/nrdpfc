@@ -41,7 +41,7 @@ class QueryController < ApplicationController
     @filename = "/download/results_#{uniq_id}.csv"
     @abs_filename = "#{RAILS_ROOT}/public#{@filename}"
     FasterCSV.open(@abs_filename, "w") do |csv|
-      csv << @query_builder.select_field_aliases.map(&:titleize)
+      csv << @query_builder.select_field_aliases.map(&:titleize_with_id)
       
       @results.each do |result|
         csv << @query_builder.select_field_aliases.map{ |col| result[col]}
