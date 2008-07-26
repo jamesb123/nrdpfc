@@ -141,4 +141,6 @@ td.sequence-column div {
   font-family: Verdana,sans-serif;
   padding: 5px 4px;
 }
-  
+img {
+  border: 0px;
+}
