@@ -3,7 +3,7 @@ id_prefix = "#{query_table.name}_#{query_field.name}"
 row_id = "#{id_prefix}_tr"
 content_tag :tr, :id => row_id do %>
       <td>
-        <%= link_to_function "X", "$(this).up('tr').remove();" %>
+        <%= link_to_function image_tag("delete.png"), "$(this).up('tr').remove();" %>
       </td>
       <td class="model_name_column"><%= query_table.title %></td>
       <td class="field_name_column"><%= query_field.title %></td>
@@ -11,7 +11,7 @@ content_tag :tr, :id => row_id do %>
         <%= select_tag "data[#{query_table.name}][#{query_field.name}][order]", options_for_select([["None", ""], ["Ascending", "ASC"], ["Descending", "DESC"]]) %>
       </td>
       <td class="filter_column">
-        <%= link_to_remote "add filter", {:url => {:action => "add_filter", :table => query_table.name, :field => query_field.name }}, {:id => "#{id_prefix}_add_filter_link" } %>
+        <%= link_to_remote "#{image_tag('zoom_in.png')}filter", {:url => {:action => "add_filter", :table => query_table.name, :field => query_field.name }}, {:id => "#{id_prefix}_add_filter_link" } %>
       </td>
       <td>
         <%= hidden_field_tag "data[#{query_table.name}][#{query_field.name}][select]", "true" %>
