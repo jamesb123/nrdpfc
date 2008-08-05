@@ -22,8 +22,8 @@ class SamplesController < ApplicationController
     config.search.columns << :organism
      
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :id, :security_settings, :project, :date_submitted
-    config.update.columns.exclude :id, :security_settings, :project, :date_submitted
+    config.create.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.list.columns.exclude  :project
     
     config.nested.add_link("DNA", [:dna_results])
