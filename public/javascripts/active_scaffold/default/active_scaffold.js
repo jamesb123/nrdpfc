@@ -3,9 +3,9 @@ if (typeof Prototype == 'undefined')
   warning = "ActiveScaffold Error: Prototype could not be found. Please make sure that your application's layout includes prototype.js (e.g. <%= javascript_include_tag :defaults %>) *before* it includes active_scaffold.js (e.g. <%= active_scaffold_includes %>).";
   alert(warning);
 }
-if (Prototype.Version.substring(0, 8) == '1.5.0_rc')
+if (Prototype.Version.substring(0, 3) != '1.6')
 {
-  warning = "ActiveScaffold Error: Prototype 1.5.0_rc is not supported. Please update prototype.js (rake rails:update:javascripts).";
+  warning = "ActiveScaffold Error: Prototype version 1.6.x is required. Please update prototype.js (rake rails:update:javascripts).";
   alert(warning);
 }
 
@@ -14,40 +14,44 @@ if (Prototype.Version.substring(0, 8) == '1.5.0_rc')
  */
 
 var ActiveScaffold = {
-  stripe: function(tableBody) {
+  records_for: function(tbody_id) {
+    var rows = [];
+    var child = $(tbody_id).down('.record');
+    while (child) {
+      rows.push(child);
+      child = child.next('.record');
+    }
+    return rows;
+  },
+  stripe: function(tbody_id) {
     var even = false;
-    var tableBody = $(tableBody);
-    var tableRows = tableBody.down("tr");
-    var length = tableBody.rows.length;
-
-    for (var i = 0; i < length; i++) {
-      var tableRow = tableBody.rows[i];
+    var rows = this.records_for(tbody_id);
+    for (var i = 0; i < rows.length; i++) {
+      var child = rows[i];
       //Make sure to skip rows that are create or edit rows or messages
-      if (!tableRow.hasClassName("create")
-        && !tableRow.hasClassName("update")
-        && !tableRow.hasClassName("inline-adapter")
-        && !tableRow.hasClassName("active-scaffold-calculations")) {
+      if (child.tagName != 'SCRIPT'
+        && !child.hasClassName("create")
+        && !child.hasClassName("update")
+        && !child.hasClassName("inline-adapter")
+        && !child.hasClassName("active-scaffold-calculations")) {
 
-        if (even) {
-          tableRow.addClassName("even-record");
-        } else {
-          tableRow.removeClassName("even-record");
-        }
+        if (even) child.addClassName("even-record");
+        else child.removeClassName("even-record");
+
         even = !even;
       }
     }
   },
   hide_empty_message: function(tbody, empty_message_id) {
-    tbody = $(tbody);
-    if (tbody.rows.length != 0) {
+    if (this.records_for(tbody).length != 0) {
       $(empty_message_id).hide();
     }
   },
   reload_if_empty: function(tbody, url) {
     var content_container_id = tbody.replace('tbody', 'content');
-    tbody = $(tbody);
-    if (tbody.rows.length == 0) {
+    if (this.records_for(tbody).length == 0) {
       new Ajax.Updater($(content_container_id), url, {
+        method: 'get',
         asynchronous: true,
         evalScripts: true
       });
@@ -259,7 +263,7 @@ ActiveScaffold.ActionLink.Abstract.prototype = {
   register_cancel_hooks: function() {
     // anything in the insert with a class of cancel gets the closer method, and a reference to this object for good measure
     var self = this;
-    this.adapter.getElementsByClassName('cancel').each(function(elem) {
+    this.adapter.select('.cancel').each(function(elem) {
       elem.observe('click', this.close_handler.bind(this));
       elem.link = self;
     }.bind(this))
