@@ -10,6 +10,7 @@ class YChromosomesController < ApplicationController
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
+    config.search.columns << :sample
 
     config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"

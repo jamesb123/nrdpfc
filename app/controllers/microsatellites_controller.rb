@@ -12,12 +12,14 @@ class MicrosatellitesController < ApplicationController
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
+    config.search.columns << :sample
 
     columns = config.columns
     columns[:sample].label = "Organism Code (Sample ID)"
     columns[:sample_id].label = "Sample ID"
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox
+
 #    config.columns[:sample].form_ui = :record_select
     config.columns[:sample].form_ui = :select
    

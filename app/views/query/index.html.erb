@@ -106,7 +106,7 @@
           var row1 = rows[x]
           var row2 = rows[x+1];
           if (!row2) continue;
-          if (this.compare_rows(row1, row2) == -1) {
+          if (this.compare_rows(row1, row2) == 1) {
             rows[x] = row2;
             rows[x+1] = row1;
             sorted = false;

@@ -101,7 +101,7 @@ class Sample < ActiveRecord::Base
     if !organism.nil?  
       return "#{organism.organism_code} - #{organism_index}: (#{self.id})"
     else
-      return "#{self.id}" 
+      return "#{self.id} SID" 
     end
   end    
   

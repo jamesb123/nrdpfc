@@ -8,6 +8,7 @@ class MtDnasController < ApplicationController
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
+    config.search.columns << :sample
 
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
