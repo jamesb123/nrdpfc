@@ -1,7 +1,10 @@
 set :application, "nrdpfc"
-set :scm, :subversion
-set :repository, "https://svn.nrdpfc.info/repos/nrdpfc/trunk"
+
+set :scm, :git
+set :repository,    'git@nrdpfc.info:nrdpfc.git'
 set :deploy_via, :remote_cache
+set :git_enable_submodules, true
+
 set :keep_releases, 5
 set :use_sudo, false
 
