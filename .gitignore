@@ -4,4 +4,4 @@
 .DS_Store
 /db/development_structure.sql
 /scratchpad.rb
-/config/database.ymlconfig/database.yml
+/config/database.yml
