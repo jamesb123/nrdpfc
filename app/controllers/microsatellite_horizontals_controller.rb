@@ -14,8 +14,6 @@ class MicrosatelliteHorizontalsController < ApplicationController
     model_for_current_project.dynamic_column_names.each{|column_name|
       config.columns[column_name].form_ui = :ajax_link
     }
-    #config.action_links.add('go_to', :label => "Go To...", :page => true) 
-    
   end
   
 public
