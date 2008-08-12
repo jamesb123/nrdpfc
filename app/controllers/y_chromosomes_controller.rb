@@ -10,6 +10,9 @@ class YChromosomesController < ApplicationController
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
+
+    # search associated sample colum
+    config.columns[:sample].search_sql = 'organisms.organism_code'
     config.search.columns << :sample
 
     config.columns[:sample].label = "Organism Code or Sample ID"

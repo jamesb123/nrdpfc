@@ -9,6 +9,9 @@ class MhcsController < ApplicationController
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
+
+    # search associated sample colum
+    config.columns[:sample].search_sql = 'organisms.organism_code'
     config.search.columns << :sample
 
     config.columns[:sample].label = "Organism Code or Sample ID"

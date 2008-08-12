@@ -24,7 +24,7 @@ class DnaResultsController < ApplicationController
     config.columns[:prep_number].label = "Prep. #"  
     config.columns[:extraction_number].label = "Extraction #"  
     config.columns[:extraction_date].label = "Extraction Date"  
-    config.columns[:fluoro_conc].label = "Flouro"
+    config.columns[:fluoro_conc].label = "Fluoro."
     config.columns[:functional_conc].label = "Functional"
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
