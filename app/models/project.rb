@@ -23,6 +23,7 @@ class Project < ActiveRecord::Base
   has_many :y_chromosome_seqs
   has_many :security_settings
   has_many :microsatellite_horizontals
+  has_many :microsatellite_final_horizontals
   has_many :mt_dna_final_horizontals
   has_many :y_chromosome_final_horizontals
   has_many :mhc_final_horizontals
