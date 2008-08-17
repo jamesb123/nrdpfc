@@ -23,4 +23,8 @@ class QueryField
   def title
     name.to_s.titleize
   end
+  
+  def index
+    table.model.column_names.index(name.to_s)
+  end
 end
