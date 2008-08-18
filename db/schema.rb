@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "1"
+    t.string  "2"
+    t.string  "w"
   end
 
   create_table "gender_final_horizontals_2", :force => true do |t|
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(:version => 49) do
     t.string  "organism_code", :limit => 128
     t.string  "1"
     t.string  "2"
+    t.string  "w"
   end
 
   create_table "gender_final_horizontals_4", :force => true do |t|
@@ -205,8 +209,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.integer "1a"
-    t.integer "1b"
+    t.integer "a"
+    t.integer "b"
     t.integer "EV1Pma"
     t.integer "EV1Pmb"
     t.integer "EV37Mna"
@@ -867,6 +871,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.integer "a"
+    t.integer "b"
   end
 
   create_table "microsatellite_final_horizontals_4", :force => true do |t|
@@ -958,8 +964,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
-    t.integer "1a"
-    t.integer "1b"
+    t.integer "a"
+    t.integer "b"
     t.integer "EV1Pma"
     t.integer "EV1Pmb"
     t.integer "EV37Mna"
@@ -1620,6 +1626,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
+    t.integer "a"
+    t.integer "b"
   end
 
   create_table "microsatellite_horizontals_4", :force => true do |t|
@@ -1852,8 +1860,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.datetime "date_submitted"
     t.string   "submitted_by"
     t.text     "submitter_comments"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",             :precision => 24, :scale => 9
+    t.decimal  "longitude",            :precision => 24, :scale => 9
     t.string   "UTM_datum"
     t.string   "locality"
     t.string   "locality_type"
@@ -1921,6 +1929,8 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "1"
+    t.string  "2"
   end
 
   create_table "y_chromosome_final_horizontals_2", :force => true do |t|
@@ -1934,6 +1944,7 @@ ActiveRecord::Schema.define(:version => 49) do
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
     t.string  "1"
+    t.string  "2"
   end
 
   create_table "y_chromosome_final_horizontals_4", :force => true do |t|

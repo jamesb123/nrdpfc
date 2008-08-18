@@ -69,7 +69,8 @@ class Project < ActiveRecord::Base
   end
 
   def authorized_for_destroy?
-    current_user.is_admin
+    return false
+    # current_user.is_admin
   end
   
   def security_setting

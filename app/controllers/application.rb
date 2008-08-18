@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   ActiveScaffold.set_defaults do |config|
     config.security.current_user_method = :current_user
     config.security.default_permission = false
+    config.actions.exclude :live_search
+    config.actions.add :search
    
   end
   
