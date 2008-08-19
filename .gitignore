@@ -1,7 +1,10 @@
-/public/javascripts/cache
-/public/stylesheets/cache
-/public/download
 .DS_Store
-/db/development_structure.sql
-/scratchpad.rb
 /config/database.yml
+/db/development_structure.sql
+/public/download
+/public/images/active_scaffold/DO_NOT_EDIT
+/public/javascripts/active_scaffold/DO_NOT_EDIT
+/public/javascripts/cache
+/public/stylesheets/active_scaffold/DO_NOT_EDIT
+/public/stylesheets/cache
+/scratchpad.rb

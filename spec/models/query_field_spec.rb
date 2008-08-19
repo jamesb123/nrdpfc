@@ -23,6 +23,10 @@ describe QueryField do
     it "should have a field_alias" do
       @query_field.field_alias.should == "samples_receiver_comments"
     end
+    
+    it "should get the index of the field" do
+      @query_field.index.should == 20
+    end
   end
   
   describe "for model MicrosatelliteHorizontal" do

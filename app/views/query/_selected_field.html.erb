@@ -1,5 +1,5 @@
 <% 
-id_prefix = "#{query_table.name}_#{query_field.name}"
+id_prefix = "#{query_table.name}_#{query_field.index.to_s.rjust(3, '0')}_#{query_field.name}"
 row_id = "#{id_prefix}_tr"
 content_tag :tr, :id => row_id do %>
       <td>

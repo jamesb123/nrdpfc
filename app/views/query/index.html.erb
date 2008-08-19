@@ -84,16 +84,10 @@
       this.column_classes = column_classes
     },
     get_rows: function() {
-      that = this;
-      return this.table.getElementsBySelector('tr').map(function(r) {
-        if (!r.contents_by_class) {
-          r.contents_by_class = that.column_classes.inject($H(), function(h, column_class) {
-            h.set(column_class, r.down("." + column_class).innerHTML);
-            return h;
-          });
-        }
-        return r;
-      });
+
+ 
+  
+         return this.table.getElementsBySelector('tr');
     },    
     do_sort: function() {
       if(this.get_rows().length <= 1) return this;
@@ -134,11 +128,9 @@
     },
     compare_rows: function(r1, r2) {
       return this.column_classes.map(function(c) {
-        v1 = r1.contents_by_class.get(c);
-        v2 = r2.contents_by_class.get(c);
-        if (v1 == v2) 
+        if (r1.id == r2.id) 
           return null;
-        else if (v1 > v2)
+        else if (r1.id > r2.id)
           return 1;
         else
           return -1;
