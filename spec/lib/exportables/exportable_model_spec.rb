@@ -30,6 +30,7 @@ describe Exportables::ExportableModel, "in Sample" do
   it "should return a hash of it's data types" do
     Gender.exportable_column_types_hash.should == {
       "project_id"  => :integer,
+      "comments"    => :text,
       "gelNum"      => :string,
       "gender"      => :string,
       "id"          => :integer,

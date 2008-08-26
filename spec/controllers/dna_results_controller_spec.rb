@@ -13,7 +13,7 @@ describe DnaResultsController do
     end
     
     it "should set the sort order to be on the column with organism_code" do
-      @params[:sort].should == "sample"
+      @params[:sort].should == :sample
       @params[:sort_direction].should == "ASC"
     end
     

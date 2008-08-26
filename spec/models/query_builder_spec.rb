@@ -207,7 +207,7 @@ describe QueryBuilder do
     @query_builder = QueryBuilder.new
     @query_builder.add_tables("genders")
     @query_builder.add_fields(:genders => ["*"])
-    @query_builder.fields.map(&:name).should == [:id, :sample_id, :project_id, :gender, :gelNum, :wellNum, :finalResult, :locus]
+    @query_builder.fields.map(&:name).should == Gender.exportable_fields.map(&:to_sym)
     @query_builder.to_sql
   end
   

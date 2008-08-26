@@ -14,6 +14,7 @@ class Organism < ActiveRecord::Base
   # before_create :assign_project_id
   
   belongs_to :project
+  has_many :microsatellite_final_horizontals
   has_many :samples
   has_many :gender_final_horizontals
   has_many :mhc_final_horizontals
