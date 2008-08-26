@@ -39,7 +39,6 @@
     controller: "microsatellite_horizontals"
   - label: "Final Horizontals"
     controller: "microsatellite_final_horizontals"
-
 - label: "MHC"
   controller: "mhcs"
   sub_tabs:
@@ -47,7 +46,8 @@
     controller: "mhcs"
   - label: "MHC Horizontal"
     controller: "mhc_final_horizontals"
- 
+  - label: "MHC SEQ"
+    controller: "mhc_seqs" 
 - label: "Y Chromosomes"
   controller: "y_chromosomes"
   sub_tabs:
@@ -55,7 +55,8 @@
     controller: "y_chromosomes"
   - label: "Y Chromosomes Final"
     controller: "y_chromosome_final_horizontals"
-	
+  - label: "Y Chromsomes SEQ"
+    controller: "y_chromosome_seqs 
 - label: "Lookup Tables"
   controller: "shippingmaterials"
   sub_tabs:

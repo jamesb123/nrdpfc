@@ -5,7 +5,6 @@ class MtDnaSeqsController < ApplicationController
     config.columns = [:project, :locus, :haplotype, :sequence, :accession ]
     config.create.columns.exclude :security_settings, :project
     config.update.columns.exclude :security_settings, :project
-    config.columns[:haplotype].label = "Haplotype"
   end 
   include ResultTableSharedMethods
   

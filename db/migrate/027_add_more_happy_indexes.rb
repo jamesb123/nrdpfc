@@ -6,8 +6,8 @@ class AddMoreHappyIndexes < ActiveRecord::Migration
   end
 
   def self.down
-#    remove_index :samples, :project_id
-#    remove_index :samples, :organism_code
-#    remove_index :samples, :organism_id
+    remove_index :samples, :project_id
+    remove_index :samples, :organism_code
+    remove_index :samples, :organism_id
   end
 end

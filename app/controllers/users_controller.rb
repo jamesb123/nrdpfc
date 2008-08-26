@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   
   active_scaffold :users do |config|
     config.columns = [:login, :email, :is_admin, :projects]
-    config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation, :projects]
-    config.update.columns = [:login, :email, :is_admin, :password, :password_confirmation, :projects]
+    config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation, :project_id, :projects]
+    config.update.columns = [:login, :email, :is_admin, :password, :password_confirmation, :project_id, :projects]
     config.subform.columns = [:login]
     config.columns[:is_admin].label = "Administrator"
     config.columns[:is_admin].form_ui = :checkbox
