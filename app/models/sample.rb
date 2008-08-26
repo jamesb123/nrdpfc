@@ -63,6 +63,7 @@ class Sample < ActiveRecord::Base
   has_many :microsatellites
   has_many :mt_dnas
   has_many :mhcs
+  has_many :mhc_seqs
   has_many :genders
   has_many :dna_results
   

@@ -18,25 +18,27 @@ class Project < ActiveRecord::Base
   has_many :organisms, :order => "organism_code"
   has_many :samples
   has_many :sample_non_tissues
-  has_many :mt_dna_seqs
   has_many :security_settings
-  has_many :y_chromosome_seqs
   has_many :security_settings
   has_many :microsatellite_horizontals
   has_many :microsatellite_final_horizontals
   has_many :mt_dna_final_horizontals
+  has_many :mt_dna_seqs
+  has_many :y_chromosome_seqs
   has_many :y_chromosome_final_horizontals
+  has_many :y_chromososomes
   has_many :mhc_final_horizontals
+  has_many :mhc_seqs
   has_many :gender_final_horizontals
   has_many :dna_results
-  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   has_many :mhc_seqs
   has_many :genders
-  before_create :assign_project_owner
-  after_save :assign_default_project
-
+  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   # has_and_belongs_to_many :users
   belongs_to  :user
+
+  before_create :assign_project_owner
+  after_save :assign_default_project
   
   def assign_project_owner
     return true if self.name == "Default"  
