@@ -1,5 +1,2 @@
-id_prefix = "#{@query_table.name}_#{@query_field.name}"
-row_id = "#{id_prefix}_tr"
-
-row_id = "#{@query_table.name}_#{@query_field}_tr"
+id_prefix = query_field_id_prefix(@query_field)
 page.insert_html :before, "#{id_prefix}_add_filter_link", :partial => "filtering", :locals => {:query_table => @query_table, :query_field => @query_field} 
