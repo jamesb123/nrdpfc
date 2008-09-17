@@ -75,5 +75,7 @@
     controller: "users"
   - label: "Security Settings"
     controller: "security_settings"
+  - label: "Addresses"
+    controller: "addresses"
 - label: "Queries"
   controller: "query"

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   belongs_to :default_project, :class_name => 'Project', :foreign_key => "project_id"  
   has_many :security_settings
   has_many :projects
-  
+  has_many :addresses
   before_save :set_project, :check_for_duplicate_admins
 
   # Virtual attribute for the unencrypted password
