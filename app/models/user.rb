@@ -100,9 +100,9 @@ class User < ActiveRecord::Base
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-logger.debug("!!!!!!!!!! login == #{login}, password = #{password}")
+    # logger.debug("!!!!!!!!!! login == #{login}, password = #{password}")
     u = find_by_login(login) # need to get the salt
-logger.debug("!!!!!!!!!! user  == #{u.inspect}")
+    # logger.debug("!!!!!!!!!! user  == #{u.inspect}")
     u && u.authenticated?(password) ? u : nil
   end
 
