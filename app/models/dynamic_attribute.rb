@@ -15,8 +15,22 @@ class DynamicAttribute < ActiveRecord::Base
   has_many :dynamic_attribute_values
   belongs_to :dynamic_type
   belongs_to :dynamic_class
-  
   belongs_to :scoper, :polymorphic => true
+  after_save :check_for_nulls
+  validates_presence_of :name, :dynamic_type
+
+  # force text type if user fails to pick
+  def check_for_nulls
+#    if self.name.nil? && self.dynamic_type_id.nil?
+#      flash[:notice] = "You must fill in something !"
+      if self.dynamic_type_id.nil?
+        self.dynamic_type_id = 3
+      end
+      if self.name.nil?
+        self.name = "please enter a name"
+      end
+#    end
+  end
   
   def authorized_for_update?
     # this method gets called for rows and for Class level questions, so this check returns true at the class level

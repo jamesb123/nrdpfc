@@ -1,25 +1,34 @@
+# Table name: dynamic_attributes
+#  id               :integer(11)   not null, primary key
+#  name             :string(255)   
+#  dynamic_type_id  :integer(11)   
+#  dynamic_class_id :integer(11)   
+#  scoper_type      :string(255)   
+#  scoper_id        :integer(11)   
+#  owner_type       :string(255)   
+#
 load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb"
 
 class DynamicAttributesController < ApplicationController
   layout "tabs"
   active_scaffold :dynamic_attribute do |config|
-    config.columns = [:name, :dynamic_type, :dynamic_class]  
-    config.create.columns.exclude :project, :sample, :security_settings
-    config.update.columns.exclude :project, :sample, :security_settings
+    config.columns = [:name, :dynamic_type]  
     config.columns[:name].label = "Column Name"  
     config.columns[:dynamic_type].label = "Data Type"  
-    config.columns[:dynamic_class].label = "Data Class"  
     config.columns[:dynamic_type].form_ui = :select
-    config.columns[:dynamic_class].form_ui = :select
-    config.columns[:scoper_type].label = "Scope Type - Project"  
-    config.columns[:scoper_id].label = "Project ID"  
-    config.columns[:owner_type].label = "Owner Type "  
   end
   
   def before_create_save(record)
+    record.dynamic_class_id = 0
     record.scoper = current_project
-    record.owner_type = "Organism"
-    true
+    record.owner_type = "organism"
+    if record.name.nil? && record.dynamic_type_id.nil?
+      puts "null false"
+      flash[:notice] = "You must fill in something !"
+      false
+    else
+      true
+    end
   end
   
   def conditions_from_params
