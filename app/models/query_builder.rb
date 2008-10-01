@@ -97,7 +97,7 @@ class QueryBuilder
     @fields = nil if reload
     
     table_keys = tables(reload).keys.map(&:to_s)
-    @fields ||= table_keys.sort.map {|key| tables[key.to_sym].fields }.flatten
+    @fields ||= table_keys.sort.map {|key| tables[key.to_sym].fields.sort }.flatten
     
     # @fields.sort! { |a,b| (a.seq||0) <=> (b.seq||0) }
     @fields

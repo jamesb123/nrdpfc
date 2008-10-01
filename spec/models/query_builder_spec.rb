@@ -92,11 +92,11 @@ describe QueryBuilder do
     end
     
     it "should return a list of all fields selected from" do
-      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_results_extraction_method`, `organism_dynamic_attribute_nea`.`integer_value` as organisms_nea, `organisms`.`organism_code` as `organisms_organism_code`, `samples`.`tubebc` as `samples_tubebc`, `samples`.`receiver_comments` as `samples_receiver_comments`\n"]
+      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_results_extraction_method`, `organisms`.`organism_code` as `organisms_organism_code`, `organism_dynamic_attribute_nea`.`integer_value` as organisms_nea, `samples`.`tubebc` as `samples_tubebc`, `samples`.`receiver_comments` as `samples_receiver_comments`\n"]
     end
     
     it "should return a list of select_field_aliases" do
-      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organisms_nea", "organisms_organism_code", "samples_tubebc", "samples_receiver_comments"]
+      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organisms_organism_code", "organisms_nea", "samples_tubebc", "samples_receiver_comments"]
     end
   end
   
@@ -196,15 +196,29 @@ describe QueryBuilder do
   # end
   # 
   it "should query sample" do
-    @query_builder = QueryBuilder.new
     @query_builder.add_tables("samples")
     @query_builder.add_fields(:samples => %w[organism_code])
     @query_builder.fields.first.name.should == :organism_code
     @query_builder.to_sql
   end
   
-  it "should respect wildcards when adding fields" do
+  it "should sort fields by table name" do
+    @query_builder.add_tables("samples")
+    @query_builder.add_fields(:samples => %w[organism_code])
+    @query_builder.add_tables("genders")
+    @query_builder.add_fields(:genders => ["*"])
+    @query_builder.fields.map {|f| f.table.name }.uniq.should == [:genders, :samples]
+  end
+  
+  it "should sort fields by column index" do
     @query_builder = QueryBuilder.new
+    @query_builder.add_tables("genders")
+    @query_builder.add_fields(:genders => Gender.exportable_fields.reverse)
+    indices = @query_builder.fields.map(&:index)
+    indices.sort.should == indices
+  end
+  
+  it "should respect wildcards when adding fields" do
     @query_builder.add_tables("genders")
     @query_builder.add_fields(:genders => ["*"])
     @query_builder.fields.map(&:name).should == Gender.exportable_fields.map(&:to_sym)
@@ -212,7 +226,6 @@ describe QueryBuilder do
   end
   
   it "should allow setting of a limit" do
-    @query_builder = QueryBuilder.new
     @query_builder.add_tables("samples")
     @query_builder.limit = 10
     @query_builder.to_sql.should include("LIMIT 10")

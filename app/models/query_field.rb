@@ -27,4 +27,8 @@ class QueryField
   def index
     table.model.column_names.index(name.to_s)
   end
+  
+  def <=>(other)
+    (index || 999) <=> (other.index || 999)
+  end
 end
