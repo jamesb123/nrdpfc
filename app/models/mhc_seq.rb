@@ -1,5 +1,6 @@
 class MhcSeq < ActiveRecord::Base
   belongs_to :project
+  belongs_to :sample
   
   before_create :assign_project_id
   
