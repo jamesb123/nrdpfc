@@ -26,11 +26,11 @@ class QueryField
   end
   
   def index
-    table.model.column_names.index(name.to_s)
+    table.model.column_names.index(name.to_s) || 999
   end
   
   def <=>(other)
-    result = ((index || 999) <=> (other.index || 999))
+    result = (index <=> other.index)
     result == 0 ? name.to_s <=> other.name.to_s : result
   end
 end

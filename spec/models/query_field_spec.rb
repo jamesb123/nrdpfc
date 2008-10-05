@@ -21,8 +21,8 @@ describe QueryField do
     end
     
     it "should compare by column name when index is same" do
-      @column_a.stub!(:index).and_return(nil)
-      @column_b.stub!(:index).and_return(nil)
+      @column_a.stub!(:index).and_return(999)
+      @column_b.stub!(:index).and_return(999)
       @column_a.should < @column_b
     end
   end
