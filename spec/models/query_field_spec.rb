@@ -8,6 +8,25 @@ describe QueryField do
     ActiveRecord::Base.current_project_proc = lambda { @project }
   end
   
+  describe "comparing" do
+    before(:each) do
+      @column_a = QueryField.new("a")
+      @column_b = QueryField.new("b")
+    end
+    
+    it "should compare by column index" do
+      @column_a.stub!(:index).and_return(2)
+      @column_b.stub!(:index).and_return(1)
+      @column_a.should > @column_b
+    end
+    
+    it "should compare by column name when index is same" do
+      @column_a.stub!(:index).and_return(nil)
+      @column_b.stub!(:index).and_return(nil)
+      @column_a.should < @column_b
+    end
+  end
+  
   describe "for model Project" do
     before(:each) do
       @query_table = QueryTable.new("samples")
@@ -55,7 +74,5 @@ describe QueryField do
     it "should render select_sql using the model's field renderer" do
       @notes_query_field.select_sql.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as organisms_notes"] #{}"max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
     end
-    
-    
   end
 end

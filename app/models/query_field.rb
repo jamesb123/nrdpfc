@@ -1,4 +1,5 @@
 class QueryField
+  include Comparable
   attr_accessor :sequence, :name, :sort_direction, :table
   
   def initialize(name, options = {})
@@ -29,6 +30,7 @@ class QueryField
   end
   
   def <=>(other)
-    (index || 999) <=> (other.index || 999)
+    result = ((index || 999) <=> (other.index || 999))
+    result == 0 ? name.to_s <=> other.name.to_s : result
   end
 end
