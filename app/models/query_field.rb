@@ -31,6 +31,6 @@ class QueryField
   
   def <=>(other)
     result = (index <=> other.index)
-    result == 0 ? name.to_s <=> other.name.to_s : result
+    result == 0 ? name.to_s.downcase <=> other.name.to_s.downcase : result
   end
 end

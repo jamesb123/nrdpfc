@@ -9,21 +9,29 @@ describe QueryField do
   end
   
   describe "comparing" do
-    before(:each) do
+    it "should compare by column index" do
       @column_a = QueryField.new("a")
       @column_b = QueryField.new("b")
-    end
-    
-    it "should compare by column index" do
       @column_a.stub!(:index).and_return(2)
       @column_b.stub!(:index).and_return(1)
       @column_a.should > @column_b
     end
     
     it "should compare by column name when index is same" do
+      @column_a = QueryField.new("a")
+      @column_b = QueryField.new("b")
       @column_a.stub!(:index).and_return(999)
       @column_b.stub!(:index).and_return(999)
       @column_a.should < @column_b
+    end
+    
+    it "should compare by column name in a case-insensitive manner" do
+      @Ape = QueryField.new("ape")
+      @banang = QueryField.new("Banang")
+      "a".should > "B"
+      @Ape.stub!(:index).and_return(999)
+      @banang.stub!(:index).and_return(999)
+      @Ape.should < @banang
     end
   end
   
