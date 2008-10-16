@@ -34,8 +34,7 @@ class Project < ActiveRecord::Base
   has_many :mhc_seqs
   has_many :genders
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
-  # has_and_belongs_to_many :users
-  belongs_to  :user
+  belongs_to :user
 
   before_create :assign_project_owner
   after_save :assign_default_project
