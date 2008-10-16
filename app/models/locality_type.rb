@@ -11,24 +11,9 @@ class LocalityType < ActiveRecord::Base
   
   has_many :samples
   extend Exportables::ExportableModel
+  include SecuritySets::AllowAll
   
   def to_label
     "#{locality_type_name}"
-  end
-
-  def authorized_for_create?
-    true
-  end
-  
-  def authorized_for_update?
-    true
-  end
-  
-  def authorized_for_read?
-    true
-  end
-
-  def authorized_for_destroy?
-    true
   end
 end

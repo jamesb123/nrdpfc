@@ -36,11 +36,12 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
+
+  include SecuritySets::AllowAll
   
   def to_label
     "#{login}"
   end
-  
   
   def check_for_duplicate_admins
     return true # DLR: Now, allowing multiple admins, as per 4/10/8 conversation
@@ -138,22 +139,6 @@ class User < ActiveRecord::Base
   end
   
   def current_project_authorized?
-    true
-  end
-  
-  def authorized_for_create?
-    true
-  end
-    
-  def authorized_for_update?
-    true
-  end
-  
-  def authorized_for_read?
-    true
-  end
-
-  def authorized_for_destroy?
     true
   end
   

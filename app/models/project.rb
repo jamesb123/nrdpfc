@@ -68,14 +68,14 @@ class Project < ActiveRecord::Base
   end
   
   def authorized_for_read?
-    return true
+    true
   end
 
   def authorized_for_destroy?
     return false
     # current_user.is_admin
   end
-  
+
   def security_setting
     current_user.authorization_display_for(self)
   end
