@@ -1,7 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def project_form_column(record, input_name)
-    select_tag('record[project][id]', options_for_select(current_user.projects.collect{|project| [project.name, project.id]}, record.project_id), {:id => 'record_project_id', :class => 'project-id-input'})
+    projects = current_user.is_admin ?
+                 Project.find(:all, :select => "id, name") :
+                 current_user.projects
+
+    select_tag('record[project][id]', options_for_select(projects.collect{|project| [project.name, project.id]}, record.project_id), {:id => 'record_project_id', :class => 'project-id-input'})
   end
   
 # moved to users helper  

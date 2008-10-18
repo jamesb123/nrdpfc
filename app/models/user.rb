@@ -57,9 +57,12 @@ class User < ActiveRecord::Base
   end
   
   # We're experimenting with a simpler idea: all project managers are admins
-  def is_project_manager?
-    project_owners = Project.find(:all).map{|project| project.owner}.uniq
-    project_owners.include?(current_user)
+  def is_project_manager?(project = nil)
+    if project.nil?
+      current_user.projects.size > 0
+    else
+      project.owner == current_user
+    end
   end
   
   # Count all projects with access level above 0 (0 is NO ACCESS)
@@ -136,10 +139,6 @@ class User < ActiveRecord::Base
     self.remember_token_expires_at = nil
     self.remember_token            = nil
     save(false)
-  end
-  
-  def current_project_authorized?
-    true
   end
   
   def accessible_projects

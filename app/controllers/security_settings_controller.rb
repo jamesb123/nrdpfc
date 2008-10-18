@@ -4,7 +4,7 @@ class SecuritySettingsController < ApplicationController
   active_scaffold :security_settings do |config|
     config.columns = [:project, :user, :to_label, :level]
 
-#    config.columns[:project].form_ui = :select
+    config.columns[:project].form_ui = :select
 
     config.columns[:user].form_ui = :select
     config.columns[:to_label].form_ui = :select
