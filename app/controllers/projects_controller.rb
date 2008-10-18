@@ -4,12 +4,13 @@ class ProjectsController < ApplicationController
   active_scaffold :projects do |config|
     config.columns = [:id, :name, :owner, :code, :description, :security_setting]  
 
+    config.columns[:name].set_link 'set_current_project_action', :label => "Set Current", :type => :record, :page => true
+
     # Only project managers can edit projects
     config.create.columns.exclude :id, :to_label, :security_setting
     config.update.columns.exclude :id, :to_label, :security_setting
     config.columns[:owner].form_ui = :select
            
-
     columns[:security_setting].sort_by :method => 'security_setting'
     config.list.sorting = {:security_setting => :asc}
     config.columns[:id].label = "ID"
@@ -30,7 +31,27 @@ class ProjectsController < ApplicationController
     Compiler.compile_project(@project)
     @project.reload
   end
-  
+
+  def set_current_project_action
+    @project = Project.find(params[:id])
+    if @project.authorized_for_read?
+      self.current_project = @project
+    end
+
+    url = url_for(:controller => 'projects')
+
+    respond_to do |format|
+      format.html { 
+        redirect_to(url)
+      }
+      format.js {
+        render :update do |page|
+          page.redirect_to(url)
+        end
+      }
+    end
+  end
+
   def update_current_project
     @project = Project.find(params[:current_project_id])
     if @project.authorized_for_read?
