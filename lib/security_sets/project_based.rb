@@ -10,7 +10,10 @@ module SecuritySets
     end
 
     def authorized_for_create?
-      current_user.authorized_security_for?(relevant_project, SecuritySetting::READ_WRITE)
+      # create is always called on !existing_record_check? 
+      check_project = self.respond_to?(:project) && self.project ? self.project : current_project
+
+      current_user.authorized_security_for?(check_project, SecuritySetting::READ_WRITE)
     end
     
     def authorized_for_update?
