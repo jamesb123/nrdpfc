@@ -3,15 +3,14 @@ class UsersController < ApplicationController
   
   active_scaffold :users do |config|
     config.columns = [:login, :email, :is_admin, :projects]
-    config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation, :project_id, :projects]
-    config.update.columns = [:login, :email, :is_admin, :password, :password_confirmation, :project_id, :projects]
+    config.create.columns = [:login, :email, :is_admin, :password, :password_confirmation, :default_project ]
+    config.update.columns = [:login, :email, :is_admin, :password, :password_confirmation, :default_project ]
     config.subform.columns = [:login]
+
     config.columns[:is_admin].label = "Administrator"
     config.columns[:is_admin].form_ui = :checkbox
-    config.columns[:projects].label = "Projects"
-    config.columns[:projects].form_ui = :select
-    config.update.columns.exclude :projects
-    config.create.columns.exclude :projects
+
+    config.columns[:default_project].form_ui = :select
   end
   
   def create_authorized?
