@@ -19,6 +19,8 @@ class DynamicAttribute < ActiveRecord::Base
   after_save :check_for_nulls
   validates_presence_of :name, :dynamic_type
 
+  include SecuritySets::ProjectBased
+
   # force text type if user fails to pick
   def check_for_nulls
 #    if self.name.nil? && self.dynamic_type_id.nil?
@@ -30,28 +32,5 @@ class DynamicAttribute < ActiveRecord::Base
         self.name = "please enter a name"
       end
 #    end
-  end
-  
-  def authorized_for_update?
-    # this method gets called for rows and for Class level questions, so this check returns true at the class level
-    return true unless existing_record_check?
-    
-    current_user.authorized_security_for?(current_project, SecuritySetting::READ_WRITE)
-  end
-  
-  def authorized_for_read?
-    return true unless existing_record_check?
-
-    current_user.authorized_security_for?(current_project, SecuritySetting::READ_ONLY)
-  end
-
-  def authorized_for_destroy?
-    return true unless existing_record_check?
-
-    current_user.authorized_security_for?(current_project, SecuritySetting::READ_WRITE_DELETE)
-  end
-  
-  def authorized_for_create?
-    true
   end
 end

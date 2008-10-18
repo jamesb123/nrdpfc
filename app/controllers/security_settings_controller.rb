@@ -20,22 +20,13 @@ class SecuritySettingsController < ApplicationController
   end
 
   def conditions_for_collection
-    ['projects.user_id = (?)', current_user.id]
-  end
-  
-  def create_authorized?
-    current_user.is_admin
-  end
-
-  def read_authorized?
-    current_user.is_admin
-  end
-
-  def update_authorized?
-    current_user.is_admin
-  end
-
-  def delete_authorized?
-    current_user.is_admin
+    # Admins can see all users and if they don't have read
+    # permissions, the projects table won't be included
+    # in the query
+    unless current_user.is_admin || !authorized_for?(:action => :read)
+      # If not, and admin, only show security settings
+      # they manage
+      ['projects.user_id = (?)', current_user.id]
+    end
   end
 end

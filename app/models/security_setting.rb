@@ -26,6 +26,8 @@ class SecuritySetting < ActiveRecord::Base
   LEVELS = [ ["No Access", NO_ACCESS], [ "Read Only", READ_ONLY], ["Read/Write", READ_WRITE], ["Full", READ_WRITE_DELETE] ].freeze
 
   before_create :assign_project_id
+
+  include SecuritySets::AdminOnly
   
   def assign_project_id
     self.project_id = current_project_id
@@ -49,36 +51,4 @@ class SecuritySetting < ActiveRecord::Base
     end
   end
   
-  def authorized_for_create?
-    logger.debug("!!!!!!! authorized_for_create self = #{self.inspect}")    
-    true
-  end
-    
-  def authorized_for_update?
-    # this method gets called for rows and for Class level questions, so this check returns true at the class level
-    return true unless existing_record_check?
-    logger.debug("!!!!!!! authorized_for_update self = #{self.inspect}")
-
-#    if !self.project
-#      logger.debug("!!!!!!! new record. params = #{params[:record][:project_id]}")
-#      project = Project.find(params[:record][:project_id])
-#    else
-      project = self.project
-#    end  
-    current_user.authorized_security_for?(project, SecuritySetting::READ_WRITE)
-  end
-  
-  def authorized_for_read?
-    return true unless existing_record_check?
-    current_user.authorized_security_for?(self.project, SecuritySetting::READ_ONLY)
-  end
-
-  def authorized_for_destroy?
-    return true unless existing_record_check?
-    current_user.authorized_security_for?(self.project, SecuritySetting::READ_WRITE_DELETE)
-  end
-
-  
-
-      
 end

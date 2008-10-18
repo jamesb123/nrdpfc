@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
 
-  include SecuritySets::AllowAll
+  include SecuritySets::AdminOnly
   
   def to_label
     "#{login}"
