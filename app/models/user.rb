@@ -146,6 +146,15 @@ class User < ActiveRecord::Base
     Project.find(:all).select{ |p| p.authorized_for_read? }
   end
 
+  def initial_project
+    list = accessible_projects
+
+    list.size > 0 && !list.include?(default_project) ?
+      list.first : # use the first accessible project if the
+                   # default project isn't accessible
+      default_project
+  end
+
 protected
   # before filter 
   def encrypt_password

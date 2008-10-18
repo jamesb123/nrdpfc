@@ -20,7 +20,7 @@ module CurrentProjectHelper
     if current_project_id
       @current_project = Project.find(current_project_id)
     else
-      @current_project = current_user.default_project || Project.current_users_accessible_projects.first
+      @current_project = current_user.initial_project
     end
   end
   
