@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     # Only project managers can edit projects
     config.create.columns.exclude :id, :to_label, :security_setting
     config.update.columns.exclude :id, :to_label, :security_setting
-    config.columns[:owner].ui_type = :select
+    config.columns[:owner].form_ui = :select
            
 
     columns[:security_setting].sort_by :method => 'security_setting'
