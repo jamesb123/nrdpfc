@@ -51,7 +51,9 @@ class QueryPiece
     select_fields = select.empty? ? ["*"] : select
     
     q = ""
-    q << "SELECT #{select_fields * ', '}\n"
+# JWB added DISTINCT clause 2008/10/21
+#    q << "SELECT #{select_fields * ', '}\n"
+    q << "SELECT DISTINCT #{select_fields * ', '}\n"
     q << "FROM #{from}\n"
     q << "#{join * "\n"}\n" unless join.blank?
     q << "WHERE " + (where.map{ |w| "(#{w})" } * " AND ") + "\n" unless where.blank?
