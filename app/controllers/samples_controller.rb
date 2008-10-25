@@ -1,10 +1,15 @@
 class SamplesController < ApplicationController
   layout "tabs"
 
-#  record_select :per_page => 20, :search_on => ['samples.id', 'organisms.organism_code'], :order_by => ['samples.id, organisms.organism_code'], :include => "organisms"
-#  def record_select_includes; :organism; end
+  record_select :per_page => 20,
+                :search_on => ['organisms.organism_code'],
+                :order_by => 'samples.id'
 
-  record_select :per_page => 20, :search_on => ['samples.id'], :order_by => ['samples.id']
+  def record_select_includes; :organism; end
+
+  def record_select_conditions_from_controller
+    [ 'samples.project_id = ?', current_project_id ]
+  end
   
   include GoToOrganismCode::Controller
 
@@ -87,8 +92,7 @@ class SamplesController < ApplicationController
   end
 
   def conditions_for_collection
-#    ['organism.project_id = (?)', current_project]
-    ['samples.project_id = (?)', current_project]
+    ['samples.project_id = (?)', current_project_id ]
   end
   
 end

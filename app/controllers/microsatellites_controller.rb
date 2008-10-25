@@ -23,8 +23,8 @@ class MicrosatellitesController < ApplicationController
     columns[:allele1].label = "Allele-1"
     columns[:finalResult].form_ui = :checkbox
 
-#    config.columns[:sample].form_ui = :record_select
-    config.columns[:sample].form_ui = :select
+    config.columns[:sample].form_ui = :record_select
+#    config.columns[:sample].form_ui = :select
    
     [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     

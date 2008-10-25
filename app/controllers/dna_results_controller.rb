@@ -29,8 +29,8 @@ class DnaResultsController < ApplicationController
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
-#    config.columns[:sample].form_ui = :record_select
-   config.columns[:sample].form_ui = :select
+    config.columns[:sample].form_ui = :record_select
+#   config.columns[:sample].form_ui = :select
   end 
 
   include ResultTableSharedMethods  

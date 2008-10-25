@@ -17,8 +17,8 @@ class MtDnasController < ApplicationController
     config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox
-#    config.columns[:sample].form_ui = :record_select
-    config.columns[:sample].form_ui = :select
+    config.columns[:sample].form_ui = :record_select
+#    config.columns[:sample].form_ui = :select
     
   end
   
