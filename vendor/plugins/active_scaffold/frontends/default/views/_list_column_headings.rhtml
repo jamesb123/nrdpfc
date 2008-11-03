@@ -13,6 +13,12 @@ default_sorting_stages = ['ASC', 'DESC']
   column_header_id = active_scaffold_column_header_id(column)
   -%>
   <th id="<%= column_header_id %>" <%= "class=\"sorted #{sorting.direction_of(column).downcase}\"" if sorting.sorts_on? column %>>
+    <% puts column.inspect %>
+    <% unless column.tooltip.blank? %>
+    <div class="header_tooltip">
+      <% tooltip do%><%= column.tooltip %><% end %>
+    </div>
+    <% end %>
   <% if column.sortable? -%>
     <% href = url_for(sort_params) -%>
     <%= link_to_remote column.label,

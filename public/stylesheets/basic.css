@@ -144,3 +144,15 @@ td.sequence-column div {
 img {
   border: 0px;
 }
+
+div.header_tooltip {
+  float:left;
+}
+
+.header_tooltip a:hover {
+  background: #333333 !important;
+ }
+
+.header_tooltip a {
+  background: #333333 !important;
+ }
