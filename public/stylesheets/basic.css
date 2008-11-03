@@ -150,9 +150,10 @@ div.header_tooltip {
 }
 
 .header_tooltip a:hover {
-  background: #333333 !important;
+  background: #555555 !important;
  }
 
 .header_tooltip a {
-  background: #333333 !important;
+  background: #555555 !important;
+  padding-right: 5px !important;
  }
