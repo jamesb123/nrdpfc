@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     config.columns[:is_admin].label = "Administrator"
     config.columns[:is_admin].form_ui = :checkbox
 
+    config.columns[:projects].tooltip = "Projects this user manages."
+    config.columns[:is_admin].tooltip = <<-END
+      Admins have privileges to edit users,<br/>
+      and projects and grant privileges to<br/>
+      any project. They don't have to be<br/>
+      the manager of any specific project.
+    END
+
     config.columns[:default_project].form_ui = :select
   end
   
