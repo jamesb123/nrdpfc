@@ -74,3 +74,12 @@ require "fastercsv"
 load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb" # manually require this because we want to inject some more code into the model that comes with the dynamic_attribute plugin.
 # require 'paginator'
 
+# Fixes problems with ruby 1.8.7
+unless '1.9'.respond_to?(:force_encoding)
+  String.class_eval do
+    begin
+      remove_method :chars
+    rescue NameError # OK
+    end
+  end
+end
