@@ -12,10 +12,19 @@
           tab = tab.clone
           controller, label, sub_tabs, role = tab["controller"], tab.delete("label"), tab.delete("sub_tabs"), tab.delete("role")
           
-          # We've elevated project manager to be an admin for now...
+          # hide admin tab for non-administrators
           if label == 'Admin'
-            #next unless current_user && current_user.is_project_manager?
-            #next unless current_user && current_user.is_admin
+            # next unless current_user && current_user.is_project_manager?
+            next unless current_user && current_user.is_admin
+          end
+          if label == 'Lookup Tables'
+            # next unless current_user && current_user.is_project_manager?
+            next unless current_user && current_user.is_admin
+          end
+          # hide security tab for non-administrators
+          if label == 'Security Settings'
+            next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
+            # next unless current_user && current_user.is_admin
           end
           
           controllers = [controller]
@@ -45,6 +54,11 @@
           controller, action, label, selected_if, role, sub_tabs = sub_tab["controller"], sub_tab["action"], sub_tab.delete("label"), sub_tab.delete("selected_if"), sub_tab.delete("role"), sub_tab.delete("sub_tabs")
           url_options = sub_tab
           sub_tab["controller"] = "/#{controller}" if controller
+
+          # hide security tab for non-administrators
+          if label == 'Security Settings'
+            next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
+          end
           
           next unless current_user.has_role?(role) if role
           

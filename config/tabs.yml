@@ -1,5 +1,10 @@
-- label: "Projects"
+- label: "Start Here"
   controller: "projects"
+  sub_tabs:
+  - label: "Projects"
+    controller: "projects"
+  - label: "Security Settings"
+    controller: "security_settings"
 - label: "Organisms"
   controller: "organisms"
   sub_tabs:
@@ -73,8 +78,6 @@
   sub_tabs:
   - label: "Users"
     controller: "users"
-  - label: "Security Settings"
-    controller: "security_settings"
   - label: "Addresses"
     controller: "addresses"
 - label: "Queries"
