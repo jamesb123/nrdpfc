@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
   end
   
   def accessible_projects
-    Project.find(:all).select{ |p| p.authorized_for_read? }
+    Project.find(:all).select{|p| self.authorized_security_for?(p, SecuritySetting::READ_ONLY)}
   end
 
   def initial_project
