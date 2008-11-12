@@ -25,17 +25,69 @@ module ActiveScaffold
     # that column's database type (or form_ui ... for virtual columns?).
     # TODO: this should reside on the column, not the controller
     def self.condition_for_column(column, value, like_pattern = '%?%')
-      return unless column and column.search_sql and value and not value.empty?
-      case column.form_ui || column.column.type
-        when :boolean, :checkbox
-        ["#{column.search_sql} = ?", (value.to_i == 1)]
-
-        when :integer
-        ["#{column.search_sql} = ?", value.to_i]
-
-        else
-        ["LOWER(#{column.search_sql}) LIKE ?", like_pattern.sub('?', value.downcase)]
+      # we must check false or not blank because we want to search for false but false is blank
+      return unless column and column.search_sql and not value.blank?
+      search_ui = column.search_ui || column.column.type
+      if self.respond_to?("condition_for_#{search_ui}_column")
+        self.send("condition_for_#{search_ui}_column", column, value, like_pattern)
+      else
+        case search_ui
+          when :boolean, :checkbox
+          ["#{column.search_sql} = ?", value.to_i]
+          when :select
+          ["#{column.search_sql} = ?", value[:id]] unless value[:id].blank?
+          when :multi_select
+          ["#{column.search_sql} in (?)", value.values.collect{|hash| hash[:id]}]
+          else
+          ["LOWER(#{column.search_sql}) LIKE ?", like_pattern.sub('?', value.downcase)]
+        end
       end
+    end
+
+    NumericComparators = [
+      '=',
+      '>=',
+      '<=',
+      '>',
+      '<',
+      '!=',
+      'BETWEEN'
+    ]
+
+    def self.condition_for_integer_column(column, value, like_pattern)
+      if value['from'].blank? or not NumericComparators.include?(value['opt'])
+        nil
+      elsif value['opt'] == 'BETWEEN'
+        ["#{column.search_sql} BETWEEN ? AND ?", value['from'].to_f, value['to'].to_f]
+      else
+        ["#{column.search_sql} #{value['opt']} ?", value['from'].to_f]
+      end
+    end
+    class << self
+      alias_method :condition_for_decimal_column, :condition_for_integer_column
+      alias_method :condition_for_float_column, :condition_for_integer_column
+    end
+
+    def self.condition_for_datetime_column(column, value, like_pattern)
+      conversion = value['from']['hour'].blank? && value['to']['hour'].blank? ? 'to_date' : 'to_time'
+      from_value, to_value = ['from', 'to'].collect do |field|
+        Time.zone.local(*['year', 'month', 'day', 'hour', 'minutes', 'seconds'].collect {|part| value[field][part].to_i}) rescue nil
+      end
+
+      if from_value.nil? and to_value.nil?
+        nil
+      elsif !from_value
+        ["#{column.search_sql} <= ?", to_value.send(conversion).to_s(:db)]
+      elsif !to_value
+        ["#{column.search_sql} >= ?", from_value.send(conversion).to_s(:db)]
+      else
+        ["#{column.search_sql} BETWEEN ? AND ?", from_value.send(conversion).to_s(:db), to_value.send(conversion).to_s(:db)]
+      end
+    end
+    class << self
+      alias_method :condition_for_date_column, :condition_for_datetime_column
+      alias_method :condition_for_time_column, :condition_for_datetime_column
+      alias_method :condition_for_timestamp_column, :condition_for_datetime_column
     end
 
     protected
@@ -50,6 +102,11 @@ module ActiveScaffold
       @active_scaffold_joins ||= []
     end
 
+    attr_writer :active_scaffold_habtm_joins
+    def active_scaffold_habtm_joins
+      @active_scaffold_habtm_joins ||= []
+    end
+    
     def all_conditions
       merge_conditions(
         active_scaffold_conditions,                   # from the search modules
@@ -77,20 +134,25 @@ module ActiveScaffold
     # * :page
     # TODO: this should reside on the model, not the controller
     def find_page(options = {})
-      options.assert_valid_keys :sorting, :per_page, :page
+      options.assert_valid_keys :sorting, :per_page, :page, :count_includes
+
+      full_includes = (active_scaffold_joins.empty? ? nil : active_scaffold_joins)
       options[:per_page] ||= 999999999
       options[:page] ||= 1
+      options[:count_includes] ||= full_includes
 
       klass = active_scaffold_config.model
 
       # create a general-use options array that's compatible with Rails finders
       finder_options = { :order => build_order_clause(options[:sorting]),
                          :conditions => all_conditions,
-                         :joins => joins_for_collection,
-                         :include => active_scaffold_joins.empty? ? nil : active_scaffold_joins}
+                         :joins => joins_for_finder,
+                         :include => options[:count_includes]}
 
       # NOTE: we must use :include in the count query, because some conditions may reference other tables
       count = klass.count(finder_options.reject{|k,v| [:order].include? k})
+
+      finder_options.merge! :include => full_includes
 
       # we build the paginator differently for method- and sql-based sorting
       if options[:sorting] and options[:sorting].sorts_by_method?
@@ -107,6 +169,17 @@ module ActiveScaffold
       pager.page(options[:page])
     end
 
+    def joins_for_finder
+      case joins_for_collection.class
+      when String
+        [ joins_for_collection ]
+      when Array
+        joins_for_collection
+      else
+        []
+      end + active_scaffold_habtm_joins
+    end
+    
     # TODO: this should reside on the model, not the controller
     def merge_conditions(*conditions)
       c = conditions.find_all {|c| not c.nil? and not c.empty? }

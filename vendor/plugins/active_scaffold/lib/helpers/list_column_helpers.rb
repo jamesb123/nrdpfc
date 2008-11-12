@@ -15,6 +15,8 @@ module ActiveScaffold
 
         elsif column.inplace_edit and record.authorized_for?(:action => :update, :column => column.name)
           active_scaffold_inplace_edit(record, column)
+        elsif override_column_ui?(column.column.type)
+          send(override_column_ui(column.column.type), column, record)
         else
           value = record.send(column.name)
 
@@ -26,9 +28,11 @@ module ActiveScaffold
                 formatted_value = clean_column_value(format_column(value.to_label))
 
               when :has_many, :has_and_belongs_to_many
-                firsts = value.first(4).collect { |v| v.to_label }
-                firsts[3] = '…' if firsts.length == 4
+                firsts = value.first(column.associated_limit + 1).collect { |v| v.to_label }
+                firsts[column.associated_limit] = '…' if firsts.length > column.associated_limit
                 formatted_value = clean_column_value(format_column(firsts.join(', ')))
+                formatted_value << " (#{value.length})" if column.associated_number? and firsts.length > column.associated_limit
+                formatted_value
             end
           end
 
@@ -44,15 +48,34 @@ module ActiveScaffold
       # TODO: we need to distinguish between the automatic links *we* create and the ones that the dev specified. some logic may not apply if the dev specified the link.
       def render_list_column(text, column, record)
         if column.link
+          link = column.link.clone
+          if column.singular_association? and column_empty?(text)
+            column_model = column.association.klass
+            controller_actions = active_scaffold_config_for(column_model).actions
+            if controller_actions.include?(:create) and column_model.authorized_for?(:action => :create)
+              link.action = 'new'
+              link.crud_type = :create
+              text = as_('Create New')
+            end
+          end
           return "<a class='disabled'>#{text}</a>" unless record.authorized_for?(:action => column.link.crud_type)
-          return text if column.singular_association? and column_empty?(text)
 
           url_options = params_for(:action => nil, :id => record.id, :link => text)
-          if column.singular_association? and column.link.action != 'nested' and associated = record.send(column.association.name)
-            url_options[:id] = associated.id
+          if column.singular_association? and column.link.action != 'nested'
+            if associated = record.send(column.association.name)
+              url_options[:id] = associated.id
+            elsif link.action == 'new'
+              url_options.delete :id
+              url_options[:parent_id] = record.id
+              url_options[:parent_column] = column.association.reverse
+              constraints = {url_options[:parent_column].to_sym => url_options[:parent_id]}
+              eid = Digest::MD5.hexdigest(params[:controller] + params[:parent_controller].to_s + constraints.to_s)
+              session["as:#{eid}"] = {:constraints => constraints}
+              url_options[:eid] = eid
+            end
           end
 
-          render_action_link(column.link, url_options)
+          render_action_link(link, url_options)
         else
           text
         end
@@ -72,12 +95,16 @@ module ActiveScaffold
       ##
       ## Overrides
       ##
+      def active_scaffold_column_text(column, record)
+        truncate(clean_column_value(record.send(column.name)), 50)
+      end
+
       def active_scaffold_column_checkbox(column, record)
         column_value = record.send(column.name)
         if column.inplace_edit and record.authorized_for?(:action => :update, :column => column.name)
           id_options = {:id => record.id.to_s, :action => 'update_column', :name => column.name.to_s}
           tag_options = {:tag => "span", :id => element_cell_id(id_options), :class => "in_place_editor_field"}
-          script = remote_function(:url => {:controller => params_for[:controller], :action => "update_column", :column => column.name, :id => record.id.to_s, :value => !column_value})
+          script = remote_function(:url => {:controller => params_for[:controller], :action => "update_column", :column => column.name, :id => record.id.to_s, :value => !column_value, :eid => params[:eid]})
           content_tag(:span, check_box_tag(tag_options[:id], 1, column_value || column_value == 1, {:onchange => script}) , tag_options)
         else
           check_box_tag(nil, 1, column_value || column_value == 1, :disabled => true)
@@ -139,47 +166,20 @@ module ActiveScaffold
         end
       end
       
-      def active_scaffold_in_place_editor_js(field_id, options = {})
-        function =  "new Ajax.InPlaceEditor("
-        function << "'#{field_id}', "
-        function << "'#{url_for(options[:url])}'"
-
-        js_options = {}
-        js_options['cancelText'] = %('#{options[:cancel_text]}') if options[:cancel_text]
-        js_options['okText'] = %('#{options[:save_text]}') if options[:save_text]
-        js_options['loadingText'] = %('#{options[:loading_text]}') if options[:loading_text]
-        js_options['savingText'] = %('#{options[:saving_text]}') if options[:saving_text]
-        js_options['rows'] = options[:rows] if options[:rows]
-        js_options['htmlResponse'] = options[:html_response] if options.has_key?(:html_response)
-        js_options['cols'] = options[:cols] if options[:cols]
-        js_options['size'] = options[:size] if options[:size]
-        js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
-        js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
-        js_options['ajaxOptions'] = options[:options] if options[:options]
-        js_options['evalScripts'] = options[:script] if options[:script]
-        js_options['callback']   = "function(form) { return #{options[:with]} }" if options[:with]
-        js_options['clickToEditText'] = %('#{options[:click_to_edit_text]}') if options[:click_to_edit_text]
-        function << (', ' + options_for_javascript(js_options)) unless js_options.empty?
-        
-        function << ')'
-
-        javascript_tag(function)
-      end
-      
       def active_scaffold_inplace_edit(record, column)
         formatted_column = format_inplace_edit_column(record,column)
         id_options = {:id => record.id.to_s, :action => 'update_column', :name => column.name.to_s}
         tag_options = {:tag => "span", :id => element_cell_id(id_options), :class => "in_place_editor_field"}
         in_place_editor_options = {:url => {:controller => params_for[:controller], :action => "update_column", :column => column.name, :id => record.id.to_s},
+         :with => params[:eid] ? "Form.serialize(form) + '&eid=#{params[:eid]}'" : nil,
          :click_to_edit_text => as_("Click to edit"),
          :cancel_text => as_("Cancel"),
          :loading_text => as_("Loading…"),
          :save_text => as_("Update"),
          :saving_text => as_("Saving…"),
-         :html_response => false,
          :options => "{method: 'post'}",
          :script => true}.merge(column.options)
-        content_tag(:span, formatted_column, tag_options) + active_scaffold_in_place_editor_js(tag_options[:id], in_place_editor_options)
+        content_tag(:span, formatted_column, tag_options) + in_place_editor(tag_options[:id], in_place_editor_options)
       end
 
     end

@@ -36,15 +36,21 @@ module ActiveScaffold::Actions
             # note: we can't create nested scaffolds on :through associations because there's no reverse association.
             column.set_link('nested', :parameters => {:associations => column.name.to_sym}) #unless column.through_association?
           elsif not column.polymorphic_association?
-            parent_controller = params[:controller]
+            model = column.association.klass
             begin
-              controller = self.class.active_scaffold_controller_for(column.association.klass)
+              controller = self.class.active_scaffold_controller_for(model)
             rescue ActiveScaffold::ControllerNotFound
               next
             end
-            # TODO: allow both update and show
-            # TODO: check whether ('show' || 'update') is included on remote controller
-            column.set_link('show', :controller => controller.controller_path, :parameters => {:parent_controller => params[:controller]})
+
+            actions = controller.active_scaffold_config.actions
+            action = nil
+            if actions.include? :update and model.authorized_for? :action => :update
+              action = 'edit'
+            elsif actions.include? :show and model.authorized_for? :action => :read
+              action = 'show'
+            end
+            column.set_link(action, :controller => controller.controller_path, :parameters => {:parent_controller => params[:controller]}) if action
           end
         end
       end

@@ -26,6 +26,7 @@ module ActiveScaffold::Actions
 
     def create
       do_create
+      @insert_row = params[:parent_controller].nil?
 
       respond_to do |type|
         type.html do
@@ -40,7 +41,11 @@ module ActiveScaffold::Actions
           else
             if successful?
               flash[:info] = as_('Created %s', @record.to_label)
-              return_to_main
+              if active_scaffold_config.create.edit_after_create
+                redirect_to params.merge(:action => "edit", :id => @record.id)
+              else
+                return_to_main
+              end
             else
               render(:action => 'create_form', :layout => true)
             end
