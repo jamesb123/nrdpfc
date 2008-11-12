@@ -12,7 +12,7 @@ module CurrentProjectHelper
   end
   
   def current_project=(project)
-    project = project.is_a?(Project) ? project : Project.find(project)
+    project = project.is_a?(Project) ? project : Project.find(project) rescue nil
     
     session[:project_id] = project.id unless project.nil?
     Thread.current[:current_project] = project

@@ -22,7 +22,7 @@ class AccountController < ApplicationController
   def login
     return unless request.post?
     self.current_user = User.authenticate(params[:login], params[:password])
-    self.current_project = params[:project_id]
+    self.current_project = params[:project_id] unless params[:project_id].blank?
     
     if logged_in?
       if params[:remember_me] == "1"
