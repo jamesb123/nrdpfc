@@ -7,7 +7,9 @@ module ActiveScaffold
       include ActiveScaffold::Helpers::Associations
       include ActiveScaffold::Helpers::Pagination
       include ActiveScaffold::Helpers::ListColumns
+      include ActiveScaffold::Helpers::ShowColumns
       include ActiveScaffold::Helpers::FormColumns
+      include ActiveScaffold::Helpers::SearchColumns
 
       ##
       ## Delegates
@@ -142,7 +144,7 @@ module ActiveScaffold
         url_options.delete(:search) if link.controller and link.controller.to_s != params[:controller]
         url_options.merge! link.parameters if link.parameters
 
-        html_options = {:class => link.action}
+        html_options = link.html_options.merge({:class => link.action})
         if link.inline?
           # NOTE this is in url_options instead of html_options on purpose. the reason is that the client-side
           # action link javascript needs to submit the proper method, but the normal html_options[:method]
@@ -152,7 +154,10 @@ module ActiveScaffold
           if link.method != :get and respond_to?(:protect_against_forgery?) and protect_against_forgery?
             url_options[:authenticity_token] = form_authenticity_token
           end
-        else
+
+          # robd: protect against submitting get links as forms, since this causes annoying 
+          # 'Do you wish to resubmit your form?' messages whenever you go back and forwards.
+        elsif link.method != :get
           # Needs to be in html_options to as the adding _method to the url is no longer supported by Rails
           html_options[:method] = link.method
         end
@@ -161,14 +166,15 @@ module ActiveScaffold
         html_options[:position] = link.position if link.position and link.inline?
         html_options[:class] += ' action' if link.inline?
         html_options[:popup] = true if link.popup?
-        html_options[:id] = action_link_id(url_options[:action],url_options[:id])
+        html_options[:id] = action_link_id(url_options[:action],url_options[:id] || url_options[:parent_id])
 
         if link.dhtml_confirm?
           html_options[:class] += ' action' if !link.inline?
           html_options[:page_link] = 'true' if !link.inline?
           html_options[:dhtml_confirm] = link.dhtml_confirm.value
-          html_options[:onclick] = link.dhtml_confirm.onclick_function(controller,action_link_id(url_options[:action],url_options[:id]))
+          html_options[:onclick] = link.dhtml_confirm.onclick_function(controller,action_link_id(url_options[:action],url_options[:id] || url_options[:parent_id]))
         end
+        html_options[:class] += " #{link.html_options[:class]}" unless link.html_options[:class].blank?
 
         # issue 260, use url_options[:link] if it exists. This prevents DB data from being localized.
         label = url_options.delete(:link) || link.label
