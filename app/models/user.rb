@@ -148,10 +148,14 @@ class User < ActiveRecord::Base
   def initial_project
     list = accessible_projects
 
-    list.size > 0 && !list.include?(default_project) ?
-      list.first : # use the first accessible project if the
-                   # default project isn't accessible
-      default_project
+    if list.size > 0
+      !list.include?(default_project) ?
+        list.first : # use the first accessible project if the
+                     # default project isn't accessible
+        default_project
+    else
+      nil
+    end
   end
 
 protected
