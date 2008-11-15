@@ -22,11 +22,10 @@ module CurrentProjectHelper
   
   def current_project
     if Thread.current[:current_project].nil?
-      project = if session[:project_id]
-        Project.find(session[:project_id])
-      else
-        current_user.initial_project
-      end
+      # Sometimes the session gets set wrong and we just need to be REALLY
+      # sure that what we assign as the current_project is accessible
+      project = session[:project_id].blank? ? nil : Project.find(session[:project_id]) rescue nil
+      project = current_user.initial_project if project.nil? || !project.readable_by?(current_user)
 
       self.current_project = project
     end
