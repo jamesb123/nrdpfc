@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
    #return true if current_user.is_admin
    return false if !project
     
-   current_user == project.owner || current_user.security_settings.detect {|setting| setting.project == project && setting.level >= minimum_security_level}
+   self == project.owner || self.security_settings.detect {|setting| setting.project == project && setting.level >= minimum_security_level}
   end
 
   def authorized_as_project_manager?
@@ -142,19 +142,14 @@ class User < ActiveRecord::Base
   end
   
   def accessible_projects
-    Project.find(:all).select{|p| self.authorized_security_for?(p, SecuritySetting::READ_ONLY)}
+    Project.find(:all).select{|p| p.readable_by?(self) }
   end
 
   def initial_project
-    list = accessible_projects
-
-    if list.size > 0
-      !list.include?(default_project) ?
-        list.first : # use the first accessible project if the
-                     # default project isn't accessible
-        default_project
+    if default_project.readable_by?(self)
+      default_project 
     else
-      nil
+      accessible_projects.first
     end
   end
 

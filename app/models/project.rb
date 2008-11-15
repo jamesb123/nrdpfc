@@ -68,8 +68,12 @@ class Project < ActiveRecord::Base
   
   def authorized_for_read?
     existing_record_check? ?
-      current_user.authorized_security_for?(self, SecuritySetting::READ_ONLY) :
+      readable_by?(current_user) :
       true # in general they can see the projects
+  end
+
+  def readable_by?(user)
+    user.authorized_security_for?(self, SecuritySetting::READ_ONLY)
   end
 
   def authorized_for_destroy?
