@@ -5,7 +5,7 @@ class AccountController < ApplicationController
   #  before_filter :login_from_cookie
 
   skip_before_filter :login_required, :except => :register_to_project
-  skip_before_filter :current_project_required
+  skip_before_filter :set_current_project
   
   def authorized?
     current_user ? true : false
