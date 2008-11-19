@@ -1,5 +1,17 @@
 Event.observe(window, 'load', function() {RecordSelect.document_loaded = true});
 
+Form.Element.AfterActivity = function(element, callback, delay) {
+  element = $(element);
+  if (!delay) delay = 0.25;
+  new Form.Element.Observer(element, delay, function(element, value) {
+    // TODO: display loading indicator
+    if (element.activity_timer) clearTimeout(element.activity_timer);
+    element.activity_timer = setTimeout(function() {
+      callback(element.value);
+    }, delay * 1000 + 50);
+  });
+}
+
 var RecordSelect = new Object();
 RecordSelect.document_loaded = false;
 
@@ -60,10 +72,10 @@ Object.extend(RecordSelect.Abstract.prototype, {
       method: 'get',
       evalScripts: true,
       asynchronous: true,
-      insertion: Insertion.Bottom,
       onComplete: function() {
         this.show();
-        Element.observe(document.body, 'click', this.onbodyclick.bindAsEventListener(this));
+        // needs to be mousedown so the event doesn't get canceled by other code (see issue #26)
+        Element.observe(document.body, 'mousedown', this.onbodyclick.bindAsEventListener(this));
       }.bind(this)
     });
   },
@@ -331,7 +343,7 @@ RecordSelect.Multiple.prototype = Object.extend(new RecordSelect.Abstract(), {
     if (already_selected) return;
 
     var entry = '<li>'
-              + '<a href="#" onclick="$(this.parentNode).remove();" class="remove">remove</a>'
+              + '<a href="#" onclick="$(this.parentNode).remove(); return false;" class="remove">remove</a>'
               + '<input type="hidden" name="' + this.input_name + '" value="' + id + '" />'
               + '<label>' + label + '</label>'
               + '</li>';

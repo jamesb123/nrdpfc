@@ -29,8 +29,8 @@ module RecordSelect
     def record_select_conditions_from_search
       search_pattern = record_select_config.full_text_search? ? '%?%' : '?%'
 
-      if params[:search] and !params[:search].empty?
-        tokens = params[:search].split(' ')
+      if params[:search] and !params[:search].strip.empty?
+        tokens = params[:search].strip.split(' ')
 
         where_clauses = record_select_config.search_on.collect { |sql| "LOWER(#{sql}) LIKE ?" }
         phrase = "(#{where_clauses.join(' OR ')})"
@@ -69,12 +69,12 @@ module RecordSelect
 
     # generates an SQL condition for the given column/value
     def record_select_condition_for_column(column, value)
-      if value.nil?
+      if value.blank? and column.null
         "#{column.name} IS NULL"
       elsif column.text?
-        ["LOWER(#{field}) LIKE ?", value]
-      elsif column.number?
-        ["#{field} = ?", value]
+        ["LOWER(#{column.name}) LIKE ?", value]
+      else
+        ["#{column.name} = ?", column.type_cast(value)]
       end
     end
 
