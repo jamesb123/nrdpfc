@@ -1,6 +1,6 @@
 class QueryController < ApplicationController
   layout "tabs"
-  before_filter :project_required
+
   def index
     @query = Query.new
   end
