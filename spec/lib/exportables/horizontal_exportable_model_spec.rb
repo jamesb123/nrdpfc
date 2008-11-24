@@ -7,7 +7,7 @@ describe Exportables::HorizontalExportableModel, "in MicrosatelliteHorizontal" d
   
   before(:each) do
     @project = projects(:whale_project)
-    ActiveRecord::Base.current_project_proc = lambda{@project}
+    Thread.current[:current_project] = @project
     Compiler::MicrosatelliteCompiler.new(projects(:whale_project)).create_table
   end
   

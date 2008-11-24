@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   end
 
   def initial_project
-    if default_project.readable_by?(self)
+    if default_project && default_project.readable_by?(self)
       default_project 
     else
       accessible_projects.first

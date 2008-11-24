@@ -5,7 +5,7 @@ describe QueryField do
   
   before(:each) do
     @project = projects(:whale_project)
-    ActiveRecord::Base.current_project_proc = lambda { @project }
+    Thread.current[:current_project] = @project
   end
   
   describe "comparing" do
