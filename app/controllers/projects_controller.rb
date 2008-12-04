@@ -14,7 +14,8 @@ class ProjectsController < ApplicationController
     columns[:security_setting].sort_by :method => 'security_setting'
     config.list.sorting = {:security_setting => :asc}
     config.columns[:id].label = "ID"
-
+    config.columns[:name].search_sql = 'projects.name'
+    config.search.columns << :name
   end
   
   def conditions_for_collection

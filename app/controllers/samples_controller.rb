@@ -89,8 +89,45 @@ class SamplesController < ApplicationController
     config.columns[:xy_position].label = "xy pos"
     config.columns[:tissue_remaining].label = "tissue remaining"
     
-  end
+    config.columns[:id].tooltip = "This is the unique identifier given to each sample by the database It is based on the ENTIRE database, not just the samples within your project."
+    
+    config.columns[:organism].tooltip = "This is the unique identifier given to<br/>
+    each sample by the database.<br/>
+    It is based on the ENTIRE database,<br/>
+    not just the samples within your project."
+   
+    config.columns[:organism_id].tooltip = "This is the unique identifier, given by you,<br/>
+    to the individuals/organisms within your project.<br/> 
+    You need to fill in this field as appropriate for your project."
+  
+    config.columns[:plateposition].tooltip = "This is the weel number for the sample on the plate<br/>
+     (e.g. A01, H12, etc."
 
+    config.columns[:field_code].tooltip = "This is the unique identifier given to the sample by the people<br/>
+    who collected the sample."
+  
+    config.columns[:batch_number].tooltip = "If you are processing samples in batches,<br/>
+    then this is the batch number in which the sample was entered into the database."
+      
+    config.columns[:date_collected].tooltip = <<-END
+      If you know the exact date on which the sample was collected,<br/>
+      then you should enter that information here.<br/>
+      If you do not have the complete date,<br/>
+      then use the independent fields in the next columns.
+    END
+    config.columns[:collected_on_year].tooltip = <<-END
+      If you don't know the exact date on which the sample was collected, but you know the year, enter that here.
+    END
+    config.columns[:collected_on_month].tooltip = <<-END
+      If you don't know the exact date on which the sample was collected, but you know the month, enter that here.
+    END
+    config.columns[:collected_on_day].tooltip = <<-END
+      If you don't know the exact date on which the sample was collected, but you know the day, enter that here.
+    END
+    
+  
+  end
+  
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
