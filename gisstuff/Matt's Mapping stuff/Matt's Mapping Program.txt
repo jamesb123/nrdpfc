@@ -1,0 +1,51 @@
+Extract and host the contents of the zip.
+
+I'm just using window's IIS...because it's simple and works
+
+
+This is my current development version
+(10/14/2008)
+
+
+What this page does:
+
+It uses Microsoft 'Virtual Earth' which is their equivalent to Google Earth.
+It should only require javascript enable browser to work.
+
+
+it's automatically loading the two XML files included.
+Which are in GeoRSS format.
+en.wikipedia.org/wiki/GeoRSS
+georss.org
+
+
+Control summary:
+
+Row one: latitude / longitude of mouse pointer...
+
+Row Two:1-Show displays all loaded xml files onto the map.
+	2-hide's the xml items...
+	3-show list is for when you've selected an area of items...
+	3a-this would be tied back into an sql 'in' list condition.
+
+Row Three:Search, show on the map what you want... 
+	1-Search location, put a place name...like "Peterborough, on"
+	2-Title, quickly searches the titles of items like 'CAN003734'
+	3-Description just looks for the word in the description, hasn't been too slow yet...example "shot"
+
+Row 4: the reason this map exists. Allow searching by area!
+       1-Point, kinda useless...but lets you put your own basic pins on the map...
+       2-PolyLine, again, kinda useless but you can draw route etc
+       3-PolyGon...fun stuff, make whatever shape you want!
+       4-Circle, pick start point, then right click when at desired radius.
+
+       *Hover over the 'pushpin' of your new shape, and click 'search' to see only samples in that area
+       *Bug wherein I haven't moved the pushpin overtop of the other icons, so hit hide all to see it.
+	
+Row 5:Importing...mostly for show, the file-browser looks at your own computer,
+	 but the import button gets stuff from the server...
+	so this doesn't work very well, unless you have identically named files. or know what your are looking for and type it.
+
+
+
+

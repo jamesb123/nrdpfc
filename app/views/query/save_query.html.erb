@@ -1,0 +1,3 @@
+<br/><br/>
+Download: <%= link_to "Download Link", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, 
+GeoRSS: <%= link_to "GeoRSS Link", url_for(:controller => 'query', :action => 'georss', :key => @query.access_key) %>

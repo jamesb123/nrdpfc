@@ -53,6 +53,13 @@
             :indicate => "query_submit_button", 
             :update => "results_output", 
             :html => {:id => "query_form"}) %>
+    <%= content_tag :button, "Save", :onclick => 
+          remote_function(
+            :url => {:action => "save_query" }, 
+            :submit => "query_form", 
+            :indicate => "query_submit_button", 
+            :update => "results_output", 
+            :html => {:id => "query_form"}) %>
     <%= content_tag :button, "Download (csv)", :onclick => "download_csv();" %>
   <% end %>
 <% end %>
