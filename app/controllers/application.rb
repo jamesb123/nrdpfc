@@ -3,6 +3,7 @@
 # test new respository - jim
 
 require "current_project_helpers"
+require 'digest/sha1'
 
 class ApplicationController < ActionController::Base
 
@@ -30,5 +31,24 @@ class ApplicationController < ActionController::Base
     project = Project.find_by_id(session[:project_id])
     return false if ! project
     @project_manager = (project.user_id == user.id)
+  end
+
+  def download_table
+    model = active_scaffold_config.model
+
+    file = Tempfile.new(model.table_name)
+    file.close
+
+    q = QueryBuilder.new(:tables => [ model.table_name ])
+    results = model.connection.select_all(q.to_sql + "where samples.project_id = #{current_project_id}")
+
+    unless results.empty?
+      FasterCSV.open(file.path, "w") do |csv|
+        csv << results[0].keys
+        results.each {|res| csv << res.values }
+      end
+    end
+
+    send_file file.path, :filename => "#{model.table_name}.csv", :type => 'text/csv'
   end
 end

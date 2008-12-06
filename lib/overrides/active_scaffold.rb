@@ -4,6 +4,16 @@ module ActiveScaffold
     self.class.as_reconfigure(model_id, model, &block)
     handle_user_settings
   end
+
+  module Config
+    class Core
+      alias initialize_without_defaults initialize
+      def initialize(*args)
+        initialize_without_defaults(*args)
+        self.action_links.add 'download_table', :label => 'Download', :popup => true
+      end
+    end
+  end
     
   module ClassMethods
     def as_reconfigure(model_id = nil, model = nil, &block)
