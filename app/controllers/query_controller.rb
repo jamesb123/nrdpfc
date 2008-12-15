@@ -67,11 +67,11 @@ class QueryController < ApplicationController
 
   def georss
     @stored_query = DataQuery.query_by_key(params[:key])
-    @query = Query.new(:data => @stored_query.data)
 
-    if @query.nil?
-      render :text => "No such key"
+    if params[:key].blank? || @stored_query.nil?
+      render :text => ""
     else
+      @query = Query.new(:data => @stored_query.data)
       @query_builder = @query.query_builder
       @query_builder.limit = 100
       @results = Query.connection.select_all(@query_builder.to_sql)
