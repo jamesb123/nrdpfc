@@ -93,7 +93,7 @@ class Sample < ActiveRecord::Base
 
   def validate
     if has_coordinates?
-      errors.add(:type_lat_long, "must be the same as the Latitude and Longitude format used") unless geocoords.format_correct?
+      errors.add(:base, "Latitude and Longitude must be written in the chosen format") unless geocoords.format_correct?
       errors.add(:UTM_datum, "must include the UTM Zone") if requires_utm_datum? && geocoords.utm_zone.nil?
       errors.add(:UTM_datum, "must include the UTM Datum used") if requires_utm_datum? && geocoords.utm_datum_version.nil?
     end

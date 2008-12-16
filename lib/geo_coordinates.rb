@@ -44,8 +44,8 @@ class GeoCoordinates
      end
   end
 
-  def utm_zone?
-    return nill if self.utm_datum.nil?
+  def utm_zone
+    return nil if self.utm_datum.nil?
     match = self.utm_datum.match(/zone\s*(\d{1,2})/i)
     unless match.nil?
       match[0]
@@ -82,7 +82,12 @@ class GeoCoordinates
     parts = value.split(/ /)
     return nil unless parts.all? {|p| value_is_number?(p) } && parts.size >= 2
 
-    { :hours => parts[0].to_f, :minutes => parts[1].to_f, :seconds => parts[2].to_f }
+    values = { :hours => parts[0].to_f, :minutes => parts[1].to_f, :seconds => parts[2].to_f }
+    return nil unless values[:hours] > -181 && values[:hours] < 181 &&
+                      values[:minutes] > 0 && values[:minutes] < 91 &&
+                      values[:seconds] > 0 && values[:seconds] < 91
+
+    values
   end
 
   def data_format
