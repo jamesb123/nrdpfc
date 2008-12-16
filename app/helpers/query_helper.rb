@@ -5,14 +5,16 @@ module QueryHelper
 
   def georss_description(query_builder, result)
     query_builder.select_field_aliases.collect do |select_field_alias|
-      "#{select_field_alias.titleize_with_id}: #{result[select_field_alias]}"
-    end.join("\n")
+      if !select_field_alias.match(/_true_\w+$/)
+        "#{select_field_alias.titleize_with_id}: #{result[select_field_alias]}" 
+      end
+    end.compact.join("<br/>\n")
   end
 
   def georss_long_lat(xml, result)
     result.each do |k,v|
-      xml.geo :long, v if k.match(/longitude/)
-      xml.geo :lat, v if k.match(/latitude/)
+      xml.geo :long, v if k.match(/true_longitude/)
+      xml.geo :lat, v if k.match(/true_latitude/)
     end
   end
 end
