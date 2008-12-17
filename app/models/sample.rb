@@ -105,7 +105,7 @@ class Sample < ActiveRecord::Base
 
   def self.guess_true_coordinates!
     Sample.all.each do |s|
-      s.send(:save_without_validation) if has_coordinates?
+      s.send(:save_without_validation) if s.has_coordinates?
     end
   end
 
