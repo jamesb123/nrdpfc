@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
   has_many :dna_results
   has_many :mhc_seqs
   has_many :genders
+  has_many :data_querys
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   belongs_to :user
 
