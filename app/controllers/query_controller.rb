@@ -37,7 +37,10 @@ class QueryController < ApplicationController
     if params[:key].blank?
       @query = Query.new(:data => params[:data])
     else
-      @query = DataQuery.query_by_key(params[:key])
+      @stored_query = DataQuery.query_by_key(params[:key])
+      self.current_project = @stored_query.project
+
+      @query = Query.new(:data => @stored_query.located_query)
     end
 
     unless @query.nil?
