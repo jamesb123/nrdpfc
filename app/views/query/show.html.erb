@@ -1,5 +1,7 @@
 <% if @results.blank? %>
-  There are no records that match your query.
+	<div style="color: red" id="no_results">
+		<p></p><b>There are no records that match your query.</b>
+  	</div>
 <% else %>
   <table border="1" cellpadding="0" cellspacing="0">
     <thead>
@@ -19,8 +21,8 @@
       <% end %>
     </tbody>
   </table>
-
-  Only <%= @limit %> records shown.  Download to see all or Save to get RSS url for maps.
+  <p></p>
+  <b>Only <%= @limit %> records shown.  Download to see all or Save to get RSS url for maps. </b>
 <% end %>
 
 <h2>SQL</h2>
