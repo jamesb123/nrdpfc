@@ -20,8 +20,7 @@
     </tbody>
   </table>
 
-  Only <%= @limit %> records shown.  Download to see all.
-  <%= link_to "View in google maps", url_for(:controller => 'query', :action => 'georss', :data => params[:data] ) %>
+  Only <%= @limit %> records shown.  Download to see all or Save to get RSS url for maps.
 <% end %>
 
 <h2>SQL</h2>
