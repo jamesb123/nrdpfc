@@ -15,8 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   # map.connect '', :controller => "welcome"
 
-# map.resources :samples, :collection => {:browse => :get}, :member => {:select => :post}
-
+  map.georss '/georss/:key.xml', :controller => 'query', :action => 'georss'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
@@ -25,7 +24,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'
-
 
   map.connect '/', :controller => "projects"
 end

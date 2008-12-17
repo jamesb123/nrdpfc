@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+  <channel>
+    <title>wolves</title>
+    <link/>
+    <description>wsg84 wolves</description>
+
+    <item>
+      <title>CAN003708</title>
+      <description>Kawartha Highlands Signature Site</description>
+      <geo:lat>44.615750684</geo:lat>
+      <geo:long>-78.186412393</geo:long>
+    </item>
+
+
+  </channel>
+</rss>

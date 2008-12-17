@@ -21,6 +21,7 @@
   </table>
 
   Only <%= @limit %> records shown.  Download to see all.
+  <%= link_to "View in google maps", url_for(:controller => 'query', :action => 'georss', :data => params[:data] ) %>
 <% end %>
 
 <h2>SQL</h2>

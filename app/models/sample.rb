@@ -86,8 +86,44 @@ class Sample < ActiveRecord::Base
   
   before_create :assign_project_id
   before_save :assign_date_collected
-  
+  before_save :assign_true_coords, :if => :has_coordinates?
 
+  validates_presence_of :type_lat_long, :if => :has_coordinates?
+  validates_presence_of :UTM_datum, :if => :requires_utm_datum?
+
+  def validate
+    if has_coordinates?
+      errors.add(:base, "Latitude and Longitude must be written in the chosen format") unless geocoords.format_correct?
+      errors.add(:UTM_datum, "must include the UTM Zone") if requires_utm_datum? && geocoords.utm_zone.nil?
+      errors.add(:UTM_datum, "must include the UTM Datum used") if requires_utm_datum? && geocoords.utm_datum_version.nil?
+    end
+  end
+
+  def assign_true_coords
+    self.true_latitude, self.true_longitude = geocoords.decimal_lat_long
+  end
+
+  def self.guess_true_coordinates!
+    Sample.all.each do |s|
+      s.send(:save_without_validation) if has_coordinates?
+    end
+  end
+
+  def geocoords
+    @geocoords ||= GeoCoordinates.new(:longitude => self.longitude,
+                                      :latitude => self.latitude,
+                                      :utm_datum => self.UTM_datum,
+                                      :format => self.type_lat_long)
+  end
+
+  def requires_utm_datum?
+    has_coordinates? &&
+    self.geocoords.data_format == :utm
+  end
+
+  def has_coordinates?
+    !self.latitude.blank? && !self.longitude.blank?
+  end
 
   def assign_date_collected
 #    self.date_collected = 

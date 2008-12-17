@@ -32,23 +32,53 @@ class QueryController < ApplicationController
   def update
   end
   
+  skip_filter :login_required, :only => [ :georss, :download_csv ], :if => Proc.new { !params[:key].blank? }
   def download_csv
-    @query = Query.new(:data => params[:data])
-    @query_builder = @query.query_builder
-    @results = Query.connection.select_all(@query_builder.to_sql)
-    uniq_id = (rand * 10000000).to_i
-    
-    @filename = "/download/results_#{uniq_id}.csv"
-    @abs_filename = "#{RAILS_ROOT}/public#{@filename}"
-    FasterCSV.open(@abs_filename, "w") do |csv|
-      csv << @query_builder.select_field_aliases.map(&:titleize_with_id)
-      
-      @results.each do |result|
-        csv << @query_builder.select_field_aliases.map{ |col| result[col]}
-      end
+    if params[:key].blank?
+      @query = Query.new(:data => params[:data])
+    else
+      @query = DataQuery.query_by_key(params[:key])
     end
-    
-    redirect_to(@filename)
+
+    unless @query.nil?
+      @query_builder = @query.query_builder
+      @results = Query.connection.select_all(@query_builder.to_sql)
+      uniq_id = (rand * 10000000).to_i
+      
+      @filename = "/download/results_#{uniq_id}.csv"
+      @abs_filename = "#{RAILS_ROOT}/public#{@filename}"
+      FasterCSV.open(@abs_filename, "w") do |csv|
+        csv << @query_builder.select_field_aliases.map(&:titleize_with_id)
+        
+        @results.each do |result|
+          csv << @query_builder.select_field_aliases.map{ |col| result[col]}
+        end
+      end
+      
+      redirect_to(@filename)
+    end
+  end
+
+  def save_query
+    @query = DataQuery.create!(:data => params[:data], :project => current_project)
+
+    render :layout => false if request.xhr? 
+  end
+
+  def georss
+    @stored_query = DataQuery.query_by_key(params[:key])
+    self.current_project = @stored_query.project
+
+    if params[:key].blank? || @stored_query.nil?
+      render :text => ""
+    else
+      @query = Query.new(:data => @stored_query.located_query)
+      @query_builder = @query.query_builder
+      @query_builder.limit = 500
+      @results = Query.connection.select_all(@query_builder.to_sql)
+
+      render :layout => false
+    end
   end
   
   def show

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asmv1:assemblyIdentity name="GIS XML.exe" version="1.0.0.1" publicKeyToken="727eff29e8794d0c" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="GIS XML" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="GIS XML.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GIS XML.exe" size="28672">
+      <assemblyIdentity name="GIS XML" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>nMku2TLGXwjARyAiLBJzM/kcFdA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="XML_GeoRSS_Template.xml" size="448" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>TLsy559Tqdadj/0HwGMixec8FNs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="XML_kml_Template.xml" size="392" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>PUb5wb34iw3iAJt3AbnBe0WBMZY=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=NRDPFC-MATT\Matt" issuerKeyHash="a7228361206d9eed19f6c0ef7771e4ed20c6bdef" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>hhkJQ2NJJIkOgguSpPpZTBM7uyE=</DigestValue></Reference></SignedInfo><SignatureValue>iXyv2GYwUpxtSi5pN3lZTXlq5VPevrPqAaf7mCZMyAgOGZc7Hhg030XODGsubRbMZfFl2cHoEUEJCLOrbdh9QBzqwbkZtn4bsm0EYPdVONJr5TRkqJDcKAzGMlRLRQmrHPUgU7ZGeaqOQDqCJPkuaDJCjhgJcSrVm/8/Hx76Za4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>nvGQslYUQvvYHl8jMqv3L7b3vacK+8l5S8OXf1JHBnsgMWZYVPS9pB9z/nm02kSrxH9DuT5A+uYRqvJ7Q/FrHp6fpNXFGPIVcvgd1VPCphoxjVaU7WKjP8xSrtzdpLAJNevxXpRdfIArLbK8/B8oQ2Jy1N5K4+bZuwU+l35gJ+8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="21bb3b134c59faa4920b820e8924496343091986" Description="" Url=""><as:assemblyIdentity name="GIS XML.exe" version="1.0.0.1" publicKeyToken="727eff29e8794d0c" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=NRDPFC-MATT\Matt</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>u4dtqaxaQnClo4NGiUs7FIbZ2wE=</DigestValue></Reference></SignedInfo><SignatureValue>DvCCLZARYqKr4cRjZ8DBJT32kihJVjUg3akhdq4kmSPgwcknh3J44v8lKmLhuiUyRC4n9/YnYTVqGBGfDA53I6ztrTK4FWgrx7bJAwiyOuN0n6jWDkNDger+ES/IDMt4Rvk3HM+N3QGsJYg5nKZtDCQTIL+p7ZpBrNN4/uDwGrY=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>nvGQslYUQvvYHl8jMqv3L7b3vacK+8l5S8OXf1JHBnsgMWZYVPS9pB9z/nm02kSrxH9DuT5A+uYRqvJ7Q/FrHp6fpNXFGPIVcvgd1VPCphoxjVaU7WKjP8xSrtzdpLAJNevxXpRdfIArLbK8/B8oQ2Jy1N5K4+bZuwU+l35gJ+8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCAT6gAwIBAgIQVs8dUU65OoxLHrX9hpy6FDAJBgUrDgMCHQUAMCsxKTAnBgNVBAMeIABOAFIARABQAEYAQwAtAE0AQQBUAFQAXABNAGEAdAB0MB4XDTA4MDkxOTE3NTMwM1oXDTA5MDkxOTIzNTMwM1owKzEpMCcGA1UEAx4gAE4AUgBEAFAARgBDAC0ATQBBAFQAVABcAE0AYQB0AHQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJ7xkLJWFEL72B5fIzKr9y+2972nCvvJeUvDl39SRwZ7IDFmWFT0vaQfc/55tNpEq8R/Q7k+QPrmEarye0Pxax6en6TVxRjyFXL4HdVTwqYaMY1WlO1ioz/MUq7c3aSwCTXr8V6UXXyAKy2yvPwfKENictTeSuPm2bsFPpd+YCfvAgMBAAEwCQYFKw4DAh0FAAOBgQCek5OY78OejNkESt5qz7kvdYXyjulPzGVMQeC1NRPs9kSdoIbIYjeeryiDWZ6zW2zVOkZoIZVyrJJGYxH8q928JJDql7FnGe+4O78elQkchCgGQ8ufWRX6Ij8Q/hOyrghfXQeF4aVBHw+dY70J8HYMYrkL3fMgOn5c4zulZRT6AQ==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

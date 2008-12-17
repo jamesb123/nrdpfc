@@ -18,8 +18,8 @@ class SamplesController < ApplicationController
     :plateposition, :field_code, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :latitude, :longitude, :UTM_datum, :locality, 
-    :locality_comments, :location_accuracy, :type_lat_long, :storage_building, :storage_room,
+    :submitter_comments, :type_lat_long, :latitude, :longitude, :UTM_datum, :locality, 
+    :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
     
     # search associated organism colum

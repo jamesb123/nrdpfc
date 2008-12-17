@@ -1,0 +1,162 @@
+What my program does.
+
+1-Import: takes a '.csv' from your query builder
+2-automatically tries and determine the latitude, longitude, and main identifier to use.
+3-allows user to choose what fields to add as a description.
+ -(these appear on the map when you mouse over)
+ -(these fields will be structured into a simple html table.)
+
+
+
+4-converts it to 'geoRSS' xml format, 
+ -(simply by string building)
+ -(doesn't use proper xml validation or GeoRSS library yet.)
+
+
+ToDo: Split files of over 200 records into seperate files, named likely file-1, file-2 etc...
+ -(Live maps doesn't like you to import more than 250 'items' at a time for free.)
+
+
+
+Example format is below.
+
+Explaination:
+ -to use html data in the xml, you need to tag it with Character Data '<![CDATA   yourstuffhere   ]]>' 
+ -there are more GeoRSS tags we could be using, but if we want to get fancier, we might as well use ".KML"
+
+the first two lines are just delcaring the file type.
+the next few lines are meta data about the file
+
+
+then, there are:
+'<item>' indicates a record from the query builder.
+within an item you'll find a title, description to display,
+ and where to place it (wgs84 format). (altitude is defaulted, because we don't have it)
+
+
+   <?xml version="1.0" encoding="utf-8" ?>
+    <rss version="2.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <channel>
+    <title>wolves</title>
+    <link/>
+    <description>wsg84 wolves</description>
+
+ 
+      <item>
+      <title>	CAN003708	</title>
+      
+      <description>
+          <![CDATA[
+              <table>
+                  <tr><td>Batch Name        </td><td>	Kawartha Highlands Signature Site	</td></tr>
+                  <tr><td>Collector         </td><td>	Graham Cameron                  	</td></tr>
+                  <tr><td>Field Code:       </td><td>	F14-H1	                            </td></tr>
+                  <tr><td>Collector Comments</td><td>	2 hairs	                            </td></tr>
+                  <tr><td>Tissue Type       </td><td>	Hair	                            </td></tr>
+                  <tr><td>Date Collected    </td><td>	2/14/2006 0:00	                    </td></tr>
+              </table>
+          ]]>
+      </description>
+      
+      <geo:lat>	44.61575068	</geo:lat>
+      <geo:long>	-78.18641239	</geo:long>
+      
+      </item>
+ 
+  
+  
+  </channel>
+  </rss>
+
+
+
+
+
+
+
+
+
+How my string builder works...it's hopefully straightforward..
+I'm just adding the tags to the data
+
+after this is built, I just write the 'outputs' to a file
+
+
+
+        public void buildOutputSimple()
+        {
+            String ChannelTitle=txtName.Text;
+            String ChannelDesc = txtDescription.Text.Replace('<', ' ').Replace('>', ' ');
+            String TitleColumn = cmbxTitle.Text;
+            
+            String[] descriptionColumns = new String[listBoxDesc.Items.Count];
+            for(int row=0;row<listBoxDesc.Items.Count;row++)
+            {
+                descriptionColumns[row] = listBoxDesc.Items[row].ToString();
+            }
+
+            String latitudeColumn =cmbxLatitude.Text;
+            String longitudeColumn =cmbxLongitude.Text;
+
+            
+            //String[] strOutputs = new String[ds.Tables["file"].Rows.Count];
+            //List<String> outputs = new List<string>();
+            outputs = new List<string>();
+
+
+            //build header
+            outputs.Add("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            outputs.Add("<rss version=\"2.0\" xmlns:geo=\"http://www.w3.org/2003/01/geo/wgs84_pos#\">");
+            outputs.Add("<channel>");
+            outputs.Add("<title>"+ChannelTitle+"</title>");
+            outputs.Add("<link/>");
+            outputs.Add("<description>"+ ChannelDesc+ "</description>");
+
+
+            //getItemData
+            for (int row = 0; row < ds.Tables["file"].Rows.Count; row++)
+            {
+                //Collect data
+                DataRow DR = ds.Tables["file"].Rows[row];
+                
+                String title =DR[TitleColumn].ToString();
+                title = "<title>" + title + "</title>";
+                
+                String latitude = DR[latitudeColumn].ToString();
+                latitude = "<geo:lat>" + latitude + "</geo:lat>";
+
+                String longitude = DR[longitudeColumn].ToString();
+                longitude = "<geo:long>" + longitude + "</geo:long>";
+
+                String[] descriptions = new String[descriptionColumns.Length + 2];
+                descriptions[0] = "<description><![CDATA[<table>";
+                descriptions[descriptionColumns.Length + 1] = "</table>]]></description>";
+
+                for (int col = 0; col < descriptionColumns.Length; col++)
+                {
+                    //get data
+                    descriptions[col + 1] = DR[descriptionColumns[col]].ToString();
+                    //add table column giving column name, then data
+                    descriptions[col + 1] = "<tr><td>" + descriptionColumns[col].ToString() + ":</td><td>" + descriptions[col + 1] + "</td></tr>";
+                }
+
+                String output = "<item>";
+                output += title;
+
+                foreach (String description in descriptions)
+                {
+                    output += description;
+                }
+
+                output += latitude;
+                output += longitude;
+                output += "</item>";
+
+                outputs.Add(output);
+
+            }
+
+            //build footer
+            outputs.Add("</channel>");
+            outputs.Add("</rss>");
+        }
