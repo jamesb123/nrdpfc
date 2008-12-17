@@ -67,11 +67,12 @@ class QueryController < ApplicationController
 
   def georss
     @stored_query = DataQuery.query_by_key(params[:key])
-    self.current_project = @stored_query.project
 
     if params[:key].blank? || @stored_query.nil?
       render :text => ""
     else
+      self.current_project = @stored_query.project
+
       @query = Query.new(:data => @stored_query.located_query)
       @query_builder = @query.query_builder
       @query_builder.limit = 500
