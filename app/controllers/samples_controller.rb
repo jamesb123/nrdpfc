@@ -91,12 +91,12 @@ class SamplesController < ApplicationController
     
     config.columns[:id].tooltip = "This is the unique identifier given to each sample by the database It is based on the ENTIRE database, not just the samples within your project."
     
-    config.columns[:organism].tooltip = "This is the unique identifier given to<br/>
+    config.columns[:organism_id].tooltip = "This is the unique identifier given to<br/>
     each sample by the database.<br/>
     It is based on the ENTIRE database,<br/>
     not just the samples within your project."
    
-    config.columns[:organism_id].tooltip = "This is the unique identifier, given by you,<br/>
+    config.columns[:organism].tooltip = "This is the unique identifier, given by you,<br/>
     to the individuals/organisms within your project.<br/> 
     You need to fill in this field as appropriate for your project."
   

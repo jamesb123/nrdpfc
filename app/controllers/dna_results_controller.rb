@@ -3,10 +3,10 @@ class DnaResultsController < ApplicationController
   
   include GoToOrganismCode::Controller
   active_scaffold :dna_results do |config|
-    config.columns = [:sample, :sample_id,  :project,  :prep_number, :extraction_number, 
+    config.columns = [:project, :sample, :sample_id, :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
-     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining]
+     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments]
 
     # search associated sample colum
     config.columns[:sample].search_sql = 'organisms.organism_code'
@@ -37,6 +37,6 @@ class DnaResultsController < ApplicationController
   include GoToOrganismCode::Controller
 
   def conditions_for_collection
-    ['samples.project_id = (?)', current_project_id ]
+    ['dna_results.project_id = (?)', current_project_id ]
   end
 end

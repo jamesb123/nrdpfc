@@ -1,7 +1,7 @@
 class GendersController < ApplicationController
   layout "tabs"
   active_scaffold :genders do |config|
-    config.columns = [:project, :sample, :sample_id, :gender, :locus, :wellNum, :gelNum, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id , :gender, :locus, :wellNum, :gelNum, :comments, :finalResult]
 
     config.columns[:sample].label = "Organism Code (SID)"
     config.columns[:sample_id].label = "Sample ID"
@@ -25,6 +25,6 @@ class GendersController < ApplicationController
   include GoToOrganismCode::Controller
 
   def conditions_for_collection
-    ['samples.project_id = (?)', current_project_id ]
+    ['genders.project_id = (?)', current_project_id ]
   end  
 end

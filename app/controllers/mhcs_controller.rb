@@ -29,6 +29,6 @@ class MhcsController < ApplicationController
   include GoToOrganismCode::Controller
 
   def conditions_for_collection
-    ['samples.project_id = (?)', current_project_id ]
+    ['mhcs.project_id = (?)', current_project_id ]
   end
 end
