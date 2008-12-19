@@ -109,6 +109,26 @@ class Sample < ActiveRecord::Base
     end
   end
 
+  # There has been some problems with MySQL truncating the coordinate values
+  # You can run this method to check all the samples and make sure the database
+  # is storing their values correctly
+  def self.check_coordinate_storage!
+    self.all.each do |s|
+      if s.has_coordinates?
+        pair = s.geocoords.decimal_lat_long
+        # Compare them to three decimal places. Floating point math can
+        # cause it to skew by a few thousandths.
+        unless pair.nil? || pair[0].nil? ||
+               ((BigDecimal.new(pair[0].to_s) * 1000).to_i == (s.true_latitude * 1000).to_i &&
+                (BigDecimal.new(pair[1].to_s) * 1000).to_i == (s.true_longitude * 1000).to_i)
+
+          puts s.inspect
+          raise "bad storage"
+        end
+      end
+    end
+  end
+
   def geocoords
     @geocoords ||= GeoCoordinates.new(:longitude => self.longitude,
                                       :latitude => self.latitude,

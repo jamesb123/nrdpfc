@@ -18,7 +18,10 @@ class GeoCoordinates
       # TODO implement utm to dd conversion
       [ nil, nil ]
     when :dd
-      [ self.latitude.to_f, self.longitude.to_f ]
+      values = [ latitude_number, longitude_number ]
+
+      valid_decimal_range?(values[0]) &&
+      valid_decimal_range?(values[1]) ? values : [ nil, nil ]
     when :dms
       [ convert_dms_to_dd(self.latitude), convert_dms_to_dd(self.longitude) ]
     end
@@ -30,8 +33,9 @@ class GeoCoordinates
 
     partial = (dms[:minutes] * 60 + dms[:seconds]) / 3600
     partial = partial * -1 if dms[:hours] < 0
+    number = dms[:hours] + partial
 
-    dms[:hours] + partial
+    valid_decimal_range?(number) ? number : nil
   end
 
   def utm_datum_version
@@ -57,8 +61,8 @@ class GeoCoordinates
 
   def looks_like_utm?
     coords_integers? &&
-    self.latitude.to_i > 1000 &&
-    self.longitude.to_i > 1000
+    1000 < self.latitude.to_i  && self.latitude.to_i  < 10000001 &&
+    1000 < self.longitude.to_i && self.longitude.to_i < 10000001
   end
 
   def coords_numbers?
@@ -77,6 +81,10 @@ class GeoCoordinates
     (value.to_f.to_s == value || value.to_i.to_s == value || value.match(/\d+\.\d+e\+\d+/))
   end
 
+  def valid_decimal_range?(value)
+    -181 < value && value < 181
+  end
+
   def value_to_dms(value)
     # TODO can we extract the N/S/E/W in order to allow it?
     parts = value.split(/ /)
@@ -90,6 +98,14 @@ class GeoCoordinates
     values
   end
 
+  def longitude_number
+    BigDecimal.new(self.longitude).to_f
+  end
+
+  def latitude_number
+    BigDecimal.new(self.latitude).to_f
+  end
+
   def data_format
     # Sometimes the user puts in the wrong format
     # so try and figure it out on our own
@@ -97,7 +113,7 @@ class GeoCoordinates
       if looks_like_utm?
         # Positive integers on a custom grid
         :utm
-      else
+      elsif valid_decimal_range?(latitude_number) && valid_decimal_range?(longitude_number)
         # Decimal geographic numbers
         :dd
       end
