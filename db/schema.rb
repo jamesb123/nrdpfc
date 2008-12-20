@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081206171116) do
+ActiveRecord::Schema.define(:version => 20081218201714) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
 
   create_table "data_queries", :force => true do |t|
     t.text     "data"
+    t.integer  "project_id"
     t.string   "access_key"
     t.datetime "accessed_at"
     t.datetime "created_at"
@@ -129,32 +130,18 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.string  "1"
   end
 
-  create_table "gender_final_horizontals_12", :force => true do |t|
+  create_table "gender_final_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-  end
-
-  create_table "gender_final_horizontals_17", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-    t.string  "a"
-    t.string  "l3"
-    t.string  "ZFX/SRY"
+    t.string  "1"
+    t.string  "ZFX/ZFY"
   end
 
   create_table "gender_final_horizontals_2", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-  end
-
-  create_table "gender_final_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-    t.string  "1"
   end
 
   create_table "gender_final_horizontals_3", :force => true do |t|
@@ -215,42 +202,18 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "aa"
-    t.string  "ab"
-    t.string  "socola"
-    t.string  "socolb"
   end
 
-  create_table "mhc_final_horizontals_12", :force => true do |t|
+  create_table "mhc_final_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-  end
-
-  create_table "mhc_final_horizontals_17", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-    t.string  "aa"
-    t.string  "ab"
-    t.string  "socola"
-    t.string  "socolb"
   end
 
   create_table "mhc_final_horizontals_2", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-  end
-
-  create_table "mhc_final_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-    t.string  "aa"
-    t.string  "ab"
-    t.string  "socola"
-    t.string  "socolb"
   end
 
   create_table "mhc_final_horizontals_3", :force => true do |t|
@@ -315,18 +278,10 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.integer "1a"
-    t.integer "1b"
-    t.integer "204a"
-    t.integer "204b"
-    t.integer "aeioua"
-    t.integer "aeioub"
     t.integer "EV1Pma"
     t.integer "EV1Pmb"
     t.integer "EV37Mna"
     t.integer "EV37Mnb"
-    t.integer "g10Aa"
-    t.integer "g10Ab"
     t.integer "GATA028a"
     t.integer "GATA028b"
     t.integer "GT023a"
@@ -395,30 +350,28 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "TV20b"
   end
 
-  create_table "microsatellite_final_horizontals_12", :force => true do |t|
+  create_table "microsatellite_final_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-    t.integer "EV1Pma"
-    t.integer "EV1Pmb"
-    t.integer "IGFa"
-    t.integer "IGFb"
-    t.integer "MK6a"
-    t.integer "MK6b"
-    t.integer "RW34a"
-    t.integer "RW34b"
-    t.integer "TV19a"
-    t.integer "TV19b"
-    t.integer "TV2a"
-    t.integer "TV2b"
-    t.integer "TV5a"
-    t.integer "TV5b"
-  end
-
-  create_table "microsatellite_final_horizontals_17", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
+    t.string  "organism_code",   :limit => 128
+    t.integer "EV104_locusa"
+    t.integer "EV104_locusb"
+    t.integer "EV1Pm_locusa"
+    t.integer "EV1Pm_locusb"
+    t.integer "FCB4_locusa"
+    t.integer "FCB4_locusb"
+    t.integer "GATA028_locusa"
+    t.integer "GATA028_locusb"
+    t.integer "RW34_locusa"
+    t.integer "RW34_locusb"
+    t.integer "RW48_locusa"
+    t.integer "RW48_locusb"
+    t.integer "TexVet11_locusa"
+    t.integer "TexVet11_locusb"
+    t.integer "TexVet16_locusa"
+    t.integer "TexVet16_locusb"
+    t.integer "TexVet17_locusa"
+    t.integer "TexVet17_locusb"
   end
 
   create_table "microsatellite_final_horizontals_2", :force => true do |t|
@@ -1005,12 +958,6 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "TV20b"
   end
 
-  create_table "microsatellite_final_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
   create_table "microsatellite_final_horizontals_3", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
@@ -1164,18 +1111,10 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
-    t.integer "1a"
-    t.integer "1b"
-    t.integer "204a"
-    t.integer "204b"
-    t.integer "aeioua"
-    t.integer "aeioub"
     t.integer "EV1Pma"
     t.integer "EV1Pmb"
     t.integer "EV37Mna"
     t.integer "EV37Mnb"
-    t.integer "g10Aa"
-    t.integer "g10Ab"
     t.integer "GATA028a"
     t.integer "GATA028b"
     t.integer "GT023a"
@@ -1244,30 +1183,28 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "TV20b"
   end
 
-  create_table "microsatellite_horizontals_12", :force => true do |t|
+  create_table "microsatellite_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
-    t.integer "EV1Pma"
-    t.integer "EV1Pmb"
-    t.integer "IGFa"
-    t.integer "IGFb"
-    t.integer "MK6a"
-    t.integer "MK6b"
-    t.integer "RW34a"
-    t.integer "RW34b"
-    t.integer "TV19a"
-    t.integer "TV19b"
-    t.integer "TV2a"
-    t.integer "TV2b"
-    t.integer "TV5a"
-    t.integer "TV5b"
-  end
-
-  create_table "microsatellite_horizontals_17", :force => true do |t|
-    t.integer "project_id"
-    t.integer "sample_id"
-    t.integer "organism_index"
+    t.integer "EV104_locusa"
+    t.integer "EV104_locusb"
+    t.integer "EV1Pm_locusa"
+    t.integer "EV1Pm_locusb"
+    t.integer "FCB4_locusa"
+    t.integer "FCB4_locusb"
+    t.integer "GATA028_locusa"
+    t.integer "GATA028_locusb"
+    t.integer "RW34_locusa"
+    t.integer "RW34_locusb"
+    t.integer "RW48_locusa"
+    t.integer "RW48_locusb"
+    t.integer "TexVet11_locusa"
+    t.integer "TexVet11_locusb"
+    t.integer "TexVet16_locusa"
+    t.integer "TexVet16_locusb"
+    t.integer "TexVet17_locusa"
+    t.integer "TexVet17_locusb"
   end
 
   create_table "microsatellite_horizontals_2", :force => true do |t|
@@ -1854,12 +1791,6 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "TV20b"
   end
 
-  create_table "microsatellite_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "sample_id"
-    t.integer "organism_index"
-  end
-
   create_table "microsatellite_horizontals_3", :force => true do |t|
     t.integer "project_id"
     t.integer "sample_id"
@@ -2012,12 +1943,11 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.text    "comments"
   end
 
+  add_index "microsatellites", ["sample_id", "project_id", "locus"], :name => "Index_2"
   add_index "microsatellites", ["locus"], :name => "index_microsatellites_on_locus"
   add_index "microsatellites", ["allele1"], :name => "index_microsatellites_on_allele1"
   add_index "microsatellites", ["allele2"], :name => "index_microsatellites_on_allele2"
   add_index "microsatellites", ["finalResult"], :name => "index_microsatellites_on_finalResult"
-  add_index "microsatellites", ["sample_id"], :name => "index_sample_id"
-  add_index "microsatellites", ["project_id"], :name => "index_project_id"
 
   create_table "microsatellites_project_001_by_sample", :force => true do |t|
     t.string  "project_id",        :limit => 50
@@ -2109,30 +2039,18 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
   create_table "mt_dna_final_horizontals_1", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",                         :limit => 128
+    t.string  "organism_code",  :limit => 128
     t.string  "Control Region"
-    t.string  "Control region, Yoshida et al. (2001)"
     t.string  "cytochrome b"
-    t.string  "mtDNA"
   end
 
-  create_table "mt_dna_final_horizontals_12", :force => true do |t|
+  create_table "mt_dna_final_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code",                         :limit => 128
     t.string  "Control Region"
     t.string  "Control region, Yoshida et al. (2001)"
     t.string  "cytochrome b"
-  end
-
-  create_table "mt_dna_final_horizontals_17", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code",                         :limit => 128
-    t.string  "Control Region"
-    t.string  "Control region, Yoshida et al. (2001)"
-    t.string  "cytochrome b"
-    t.string  "mtDNA"
   end
 
   create_table "mt_dna_final_horizontals_2", :force => true do |t|
@@ -2140,16 +2058,6 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "organism_id"
     t.string  "organism_code",  :limit => 128
     t.string  "Control Region"
-  end
-
-  create_table "mt_dna_final_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code",                         :limit => 128
-    t.string  "Control Region"
-    t.string  "Control region, Yoshida et al. (2001)"
-    t.string  "cytochrome b"
-    t.string  "mtDNA"
   end
 
   create_table "mt_dna_final_horizontals_3", :force => true do |t|
@@ -2311,8 +2219,8 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer  "storage_medium_id"
     t.integer  "country_id"
     t.integer  "extraction_method_id"
-    t.decimal  "true_latitude",        :precision => 11, :scale => 9
-    t.decimal  "true_longitude",       :precision => 11, :scale => 9
+    t.decimal  "true_latitude",        :precision => 18, :scale => 9
+    t.decimal  "true_longitude",       :precision => 18, :scale => 9
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
@@ -2326,6 +2234,16 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
 
   add_index "security_settings", ["project_id"], :name => "index_security_settings_on_project_id"
   add_index "security_settings", ["user_id"], :name => "index_security_settings_on_user_id"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :default => "", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "shippingmaterials", :force => true do |t|
     t.string "medium_short_desc"
@@ -2360,18 +2278,6 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
   create_table "y_chromosome_final_horizontals_1", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",     :limit => 128
-    t.string  "34a"
-    t.string  "34b"
-    t.string  "41a"
-    t.string  "41b"
-    t.string  "many grasshoppers"
-    t.string  "Y-Intron"
-  end
-
-  create_table "y_chromosome_final_horizontals_12", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
     t.string  "organism_code", :limit => 128
     t.string  "34a"
     t.string  "34b"
@@ -2380,15 +2286,14 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.string  "Y-Intron"
   end
 
-  create_table "y_chromosome_final_horizontals_17", :force => true do |t|
+  create_table "y_chromosome_final_horizontals_18", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",     :limit => 128
+    t.string  "organism_code", :limit => 128
     t.string  "34a"
     t.string  "34b"
     t.string  "41a"
     t.string  "41b"
-    t.string  "many grasshoppers"
     t.string  "Y-Intron"
   end
 
@@ -2396,18 +2301,6 @@ ActiveRecord::Schema.define(:version => 20081206171116) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-  end
-
-  create_table "y_chromosome_final_horizontals_20", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code",     :limit => 128
-    t.string  "34a"
-    t.string  "34b"
-    t.string  "41a"
-    t.string  "41b"
-    t.string  "many grasshoppers"
-    t.string  "Y-Intron"
   end
 
   create_table "y_chromosome_final_horizontals_3", :force => true do |t|
