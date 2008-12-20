@@ -16,12 +16,7 @@ module SamplesHelper
   end 
 
   def type_lat_long_form_column(record, input_name)
-    output = select_tag(input_name, options_for_select([ ['', ''], ['DD (Decimal)', 'DD'], ['DMS (Hours Min Sec)', 'DMS'], ['UTM (Zone Coordinates)', 'UTM'] ], record.type_lat_long))
-
-    puts record.inspect
-    puts output.inspect
-
-    output
+    select_tag(input_name, options_for_select([ ['', ''], ['DD (Decimal)', 'DD'], ['DMS (Hours Min Sec)', 'DMS'], ['UTM (Zone Coordinates)', 'UTM'] ], record.type_lat_long))
   end
 
 ############### test
