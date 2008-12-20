@@ -17,4 +17,42 @@ module QueryHelper
       xml.geo :lat, v if k.match(/true_latitude/)
     end
   end
+
+  def filter_value_form_column
+    input_name = "data[#{@query_table.name}][#{@query_field.name}][filters][value][]"
+
+    if data = picklist_field(@query_table, @query_field.name.to_s, input_name)
+      data
+    else
+      text_field_tag input_name, ""
+    end
+  end
+
+  def picklist_field(table, field, name)
+    picklists = %w( project_id extraction_method_id extraction_method
+      shippingmaterial_id locality_type locality_type_id
+      tissue_type tissue_type_id )
+
+    if picklists.include?(field)
+      related = picklist_column(table, field)
+      return nil if related.nil?
+
+      is_id = field.to_s.match(/_id/)
+      options = options_from_collection_for_select(related.all,
+                                (is_id ? 'id' : 'to_label'), 'to_label')
+
+      select_tag(name, options)
+    end
+  end
+
+  def picklist_column(table, field)
+    if match = field.match(/(.+?)_id/)
+      # Auto picklist associations
+      assoc = table.model.reflections[match[1].intern]
+      return assoc.klass unless assoc.nil?
+    else
+      related = Object.const_get(field.camelcase) rescue nil
+      return related unless related.nil?
+    end
+  end
 end
