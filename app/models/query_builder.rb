@@ -123,6 +123,17 @@ class QueryBuilder
     
     query_piece.to_sql
   end
+
+  def column_headers
+    self.select_field_aliases.map(&:titleize_with_id)
+  end
+
+  def results
+    results = Query.connection.select_all(self.to_sql)
+    results.collect do |row|
+      self.select_field_aliases.map {|col| row[col] }
+    end
+  end
   
   #
   ##

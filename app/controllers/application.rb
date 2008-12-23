@@ -39,16 +39,17 @@ class ApplicationController < ActionController::Base
     file = Tempfile.new(model.table_name)
     file.close
 
-    q = QueryBuilder.new(:tables => [ model.table_name ])
-    results = model.connection.select_all(q.to_sql + "where samples.project_id = #{current_project_id}")
+    table = model.table_name
+    q = QueryBuilder.new(:tables => [ table ], :fields => { table => "*" })
+    q.add_filter("samples", "project_id", "=", current_project_id.to_i)
 
-    unless results.empty?
-      FasterCSV.open(file.path, "w") do |csv|
-        csv << results[0].keys
-        results.each {|res| csv << res.values }
-      end
+    FasterCSV.open(file.path, "w") do |csv|
+      csv << q.column_headers
+      q.results.each {|result| csv << result }
     end
 
+    # The file isn't actualy sent until later in the request, so
+    # we can't unlink the file right now
     send_file file.path, :filename => "#{model.table_name}.csv", :type => 'text/csv'
   end
 end
