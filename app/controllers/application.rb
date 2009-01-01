@@ -34,12 +34,16 @@ class ApplicationController < ActionController::Base
   end
 
   def download_table
-    model = active_scaffold_config.model
+    # Horizontals use magic to define their tables so we have to use
+    # reverse magic to figure it out
+    table_name = self.class.respond_to?(:target_table_name) ?
+                   self.class.target_table_name.to_s :
+                   active_scaffold_config.model.table_name
 
-    file = Tempfile.new(model.table_name)
+    file = Tempfile.new(table_name)
     file.close
 
-    table = model.table_name
+    table = table_name
     q = QueryBuilder.new(:tables => [ table ], :fields => { table => "*" })
     q.add_filter("samples", "project_id", "=", current_project_id.to_i)
 
@@ -50,6 +54,6 @@ class ApplicationController < ActionController::Base
 
     # The file isn't actualy sent until later in the request, so
     # we can't unlink the file right now
-    send_file file.path, :filename => "#{model.table_name}.csv", :type => 'text/csv'
+    send_file file.path, :filename => "#{table_name}.csv", :type => 'text/csv'
   end
 end
