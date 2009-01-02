@@ -12,6 +12,20 @@ class QueryBuilder
       end
     end
   end
+
+  def filter_by_project(project_id)
+    path = includes.model.path_to_exportable_table('projects')
+    raise "Sorry, couldn't find a link to the projects table" if path.nil?
+
+    #pop the projects table off the list
+    path.shift
+
+    # make sure we have a link to the projects table
+    add_include(*path)
+
+    link = path.shift || includes.model.table_name
+    add_filter(link, "project_id", "=", project_id.to_i) unless project_id.blank?
+  end
   
   def add_tables(*table_names)
     table_names = table_names.flatten
@@ -71,6 +85,28 @@ class QueryBuilder
   def filterings
     @filterings ||= []
   end
+
+  def calculate_common_join_table(*tables_names)
+    smallest = nil
+    requirements = tables_names.flatten.collect do |table_name|
+      path = Sample.path_to_exportable_table(table_name.to_s)
+      smallest = path if smallest.nil? || path.size < smallest.size
+
+      path
+    end
+
+    puts requirements.inspect
+
+    # if size == 0 then we need the sample table directly
+    return if smallest.nil? || smallest.size == 0
+
+    common_join_table = nil
+    smallest.each_with_index do |table_name, index|
+      common_join_table = table_name if requirements.all? {|path| path[index] == table_name}
+    end
+
+    @default_parent_table = QueryTable.new(common_join_table) unless common_join_table.nil?
+  end
   
   def default_parent_table
     @default_parent_table ||= QueryTable.new(:samples)
@@ -108,7 +144,7 @@ class QueryBuilder
   end
   
   def to_sql
-    query_piece = QueryPiece.new(:from => default_parent_table.model.table_name)
+    query_piece = QueryPiece.new(:from => default_parent_table.model.exportable_table_name)
     
     # joins must come first, because select statements may include joins that depend on the table being joined in already.
     query_piece += includes.joins

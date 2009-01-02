@@ -11,6 +11,8 @@
 #
 
 class Project < ActiveRecord::Base
+  extend Exportables::ExportableModel
+
   for table_name in Sample::RESULT_TABLES
     has_many table_name.to_sym
   end
@@ -26,7 +28,7 @@ class Project < ActiveRecord::Base
   has_many :mt_dna_seqs
   has_many :y_chromosome_seqs
   has_many :y_chromosome_final_horizontals
-  has_many :y_chromososomes
+  has_many :y_chromosomes
   has_many :mhc_final_horizontals
   has_many :mhc_seqs
   has_many :gender_final_horizontals

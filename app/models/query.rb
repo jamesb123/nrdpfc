@@ -53,6 +53,8 @@ class Query < ActiveRecord::Base
   
   def query_builder
     qb = QueryBuilder.new
+
+    qb.calculate_common_join_table( data.collect {|table, fields| table } )
     
     data.each_pair do |table, fields|
       qb.add_tables table
@@ -71,7 +73,7 @@ class Query < ActiveRecord::Base
       end
     end
     
-    qb.add_filter("samples", "project_id", "=", ActiveRecord::Base.current_project_id.to_i) if ActiveRecord::Base.current_project
+    qb.filter_by_project(ActiveRecord::Base.current_project_id) if ActiveRecord::Base.current_project
     
     qb
   end
