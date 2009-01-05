@@ -1,7 +1,6 @@
 class VideosController < ApplicationController
-#  <%= swfobject_tag "flash.swf", :div_id => "id_of_div"  %>
-
+  layout "tabs"
   def index
-    @message = 'Video Listing'
+    @message = 'Help Videos'
   end
 end

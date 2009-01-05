@@ -1,0 +1,11 @@
+<%= javascript_include_tag 'swfobject' %>
+
+<h1>Query Help Video</h1>
+
+	<%flash_id = '/swf/navigation.swf'%>
+	<%= flashobject_tag "#{flash_id}", 
+	:background_color=>"FFF", 
+	:size => "640x480",
+	:parameters => {:menu => "true", :wmode => "opaque", :quality => "high" },
+	:fallback_html => "Check that flash plugin is installed if no video appears"
+	%>

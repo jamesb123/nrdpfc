@@ -1,0 +1,7 @@
+	<%flash_id = '/swf/data_entry.swf'%>
+	<%= flashobject_tag "#{flash_id}", 
+	:background_color=>"FFF", 
+	:size => "640x480",
+	:parameters => {:menu => "true", :wmode => "opaque", :quality => "high" },
+	:fallback_html => "Check that flash plugin is installed if no video appears"
+	%>

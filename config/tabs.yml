@@ -82,3 +82,5 @@
     controller: "addresses"
 - label: "Queries"
   controller: "query"
+- label: "Help"
+  controller: "videos"
