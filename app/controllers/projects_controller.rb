@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
   end
   
   def conditions_for_collection
-    ['projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND security_settings.user_id = ? AND security_settings.level > 0)', current_user.id, current_user.id]
+    ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
   end
   
   # recompile_status will fire an ajax request to recompile
