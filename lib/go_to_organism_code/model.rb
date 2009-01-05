@@ -2,6 +2,8 @@ module GoToOrganismCode::Model
   def alphabetical_index_of_organism_code(organism_code, conditions = nil)
     search = Where("organisms.organism_code < ?", organism_code)
     search.and conditions if conditions
+    search.and ["organisms.project_id = ?", current_project_id] unless current_project.nil?
+
     count(:conditions => search.to_s, :include => organism_path) + 1
   end
   
