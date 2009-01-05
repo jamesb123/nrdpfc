@@ -14,7 +14,7 @@ class QueryField
   end
   
   def field_alias
-    "#{table.name}_#{name}"
+    "#{table.model.exportable_name}_#{name}"
   end
   
   def select_sql

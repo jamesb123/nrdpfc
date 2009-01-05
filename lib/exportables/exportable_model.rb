@@ -64,10 +64,18 @@ module Exportables::ExportableModel
   def exportable_filter(field, operator, operand)
     qp = QueryPiece.new
     return(qp) if operator.strip.blank?
-    qp.where << Where("#{exportable_table_name}.#{field} #{operator} ?", operand).to_s
+
+    field_name = "#{exportable_table_name}.#{field}"
+    data = if [ 'IS NULL', 'IS NOT NULL' ].include?(operator)
+      [ "#{field_name} #{operator}" ]
+    else
+      [ "#{field_name} #{operator} ?", operand ]
+    end
+
+    qp.where << Where(*data).to_s
     qp
   end
-  
+
   def exportable_reflections
     Exportables::ExportableModel.load_all_models
     self.reflections.select_hash do |k, v|
@@ -82,7 +90,7 @@ module Exportables::ExportableModel
   end
   
   def exportable_select(column_name)
-    QueryPiece.new :select => "`#{exportable_table_name}`.`#{column_name}` as `#{self.table_name}_#{column_name}`"
+    QueryPiece.new :select => "`#{exportable_table_name}`.`#{column_name}` as `#{self.exportable_name}_#{column_name}`"
   end
   
   # Organism.exportable_from(:parent => Project, :association => 'organisms').
