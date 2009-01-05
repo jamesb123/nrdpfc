@@ -31,6 +31,10 @@ module HorizontalSharedMethods
     end
     
     as_reconfigure(self.class.target_table_name, @model) {|config| 
+      # Users are not allowed to update the data directly, and some
+      # require model data that doesn't exist for our magic models
+      config.actions.exclude :create, :update, :delete, :show
+
       custom_reconfiguration(config)
     }
     true

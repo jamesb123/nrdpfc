@@ -2,6 +2,8 @@ module ActiveScaffold
   
   def as_reconfigure(model_id = nil, model = nil, &block)
     self.class.as_reconfigure(model_id, model, &block)
+    self.active_scaffold_conditions = nil
+
     handle_user_settings
   end
 
