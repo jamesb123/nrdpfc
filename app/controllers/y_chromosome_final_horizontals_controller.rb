@@ -6,8 +6,7 @@ class YChromosomeFinalHorizontalsController < ApplicationController
   end
   
   def custom_reconfiguration(config)
-    config.columns = [:project, :sample]
-    config.list.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
+    config.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
   end
   
 public

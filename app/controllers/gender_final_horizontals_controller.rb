@@ -6,7 +6,7 @@ class GenderFinalHorizontalsController < ApplicationController
   end
   
   def custom_reconfiguration(config)
-    config.list.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
+    config.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
   end
   
 public
