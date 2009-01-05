@@ -1,5 +1,4 @@
 <br/><br/>
 <%= link_to "View in Google Maps", "http://maps.google.com/?q=#{georss_url(@query.access_key)}" %><br />
-<br />
-Download CSV: <%= link_to "Download Link", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, <br/>
-GeoRSS URL: <%= link_to "GeoRSS Link", georss_url(@query.access_key) %><br />
+<%= link_to "Download CSV", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, <br/>
+<%= link_to "Download Map Data", georss_url(@query.access_key, :download => true) %>, <br/>

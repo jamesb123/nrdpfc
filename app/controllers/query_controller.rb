@@ -78,6 +78,11 @@ class QueryController < ApplicationController
       @query_builder.limit = 500
       @results = Query.connection.select_all(@query_builder.to_sql)
 
+      unless params[:download].blank?
+        filename = "#{self.current_project.name.gsub(/ /, '')}_map_data.xml"
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+      end
+
       render :layout => false
     end
   end
