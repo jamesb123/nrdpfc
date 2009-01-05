@@ -95,8 +95,6 @@ class QueryBuilder
       path
     end
 
-    puts requirements.inspect
-
     # if size == 0 then we need the sample table directly
     return if smallest.nil? || smallest.size == 0
 
