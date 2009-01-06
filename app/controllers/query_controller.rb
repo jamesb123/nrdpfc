@@ -46,10 +46,12 @@ class QueryController < ApplicationController
     unless @query.nil?
       @query_builder = @query.query_builder
 
-      stream_csv("query_results.csv") do |csv|
+      csv_string = FasterCSV.generate do |csv|
         csv << @query_builder.column_headers
         @query_builder.results.each {|result| csv << result }
       end
+
+      send_data csv_string, :filename => 'query_results.csv'
     end
   end
 

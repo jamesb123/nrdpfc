@@ -44,33 +44,11 @@ class ApplicationController < ActionController::Base
     q = QueryBuilder.new(:parent => table, :tables => [ table ], :fields => { table => "*" })
     q.filter_by_project(current_project_id) unless (table == :projects)
 
-    stream_csv("#{table_name}.csv") do |csv|
+    csv_string = FasterCSV.generate do |csv|
       csv << q.column_headers
       q.results.each {|result| csv << result }
     end
+
+    send_data csv_string, :filename => "#{table_name}.csv"
   end
-
-  private
-    def stream_csv(filename = nil)
-       filename ||= params[:action] + ".csv"    
-	
-       #this is required if you want this to work with IE		
-       if request.env['HTTP_USER_AGENT'] =~ /msie/i
-         headers['Pragma'] = 'public'
-         headers["Content-type"] = "text/plain"
-         headers['Cache-Control'] = 'no-cache, must-revalidate, post-check=0, pre-check=0'
-         headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
-         headers['Expires'] = "0"
-       else
-         headers["Content-Type"] ||= 'text/csv'
-         headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" 
-       end
- 
-      render :text => Proc.new { |response, output|
-        csv = FasterCSV.new(output)
-        yield csv
-      }
-    end
-
-
 end
