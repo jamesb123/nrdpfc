@@ -32,18 +32,15 @@ class QueryController < ApplicationController
   def update
   end
   
-  skip_filter :login_required, :only => [ :georss, :download_csv ], :if => Proc.new { !params[:key].blank? }
+  skip_filter :login_required, :only => [ :georss, :download_csv ]
   def download_csv
-    if params[:key].blank?
-      @query = Query.new(:data => params[:data])
+    @stored_query = DataQuery.query_by_key(params[:key])
+
+    if params[:key].blank? || @stored_query.nil?
+      render :text => ""
     else
-      @stored_query = DataQuery.query_by_key(params[:key])
       self.current_project = @stored_query.project
-
       @query = Query.new(:data => @stored_query.located_query)
-    end
-
-    unless @query.nil?
       @query_builder = @query.query_builder
 
       csv_string = FasterCSV.generate do |csv|
@@ -56,9 +53,13 @@ class QueryController < ApplicationController
   end
 
   def save_query
-    @query = DataQuery.create!(:data => params[:data], :project => current_project)
+    begin
+      @query = DataQuery.create!(:data => params[:data], :project => current_project)
 
-    render :layout => false if request.xhr? 
+      render :layout => false if request.xhr? 
+    rescue ActiveRecord::RecordInvalid
+      render :text => "Empty queries will not return any data. Please add fields and/or conditions."
+    end
   end
 
   def georss

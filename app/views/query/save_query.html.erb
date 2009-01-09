@@ -2,3 +2,6 @@
 <%= link_to "View in Google Maps", "http://maps.google.com/?q=#{georss_url(@query.access_key)}" %><br />
 <%= link_to "Download CSV", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, <br/>
 <%= link_to "Download Map Data", georss_url(@query.access_key, :download => true) %>, <br/>
+
+<p>These links can be saved as bookmarks by right clicking on them. By visiting<br/>
+the bookmark you can re-download the query with up-to-date data.<p/>
