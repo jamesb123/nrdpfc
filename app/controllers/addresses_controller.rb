@@ -12,12 +12,12 @@ class AddressesController < ApplicationController
     config.columns[:postal].label = "Postal/Zip"
     config.columns[:phone].label = "Phone"
     config.columns[:mobile].label = "Mobile"
-    config.columns[:fax].label = "Last Name"
-    config.columns[:email].label = "Login"
-    config.columns[:payment_method].label = "Payment"
-    config.columns[:credit_card].label = "Credit Card"
-    config.columns[:purchase_order].label = "Purchase Order"
-    config.columns[:overdue].label = "Overdue"
+    config.columns[:fax].label = "Fax Number"
+    config.columns[:email].label = "Email Address"
+    config.columns[:payment_method].label = "Payment Method"
+    config.columns[:credit_card].label = "Credit Card Number"
+    config.columns[:purchase_order].label = "Purchase Order Number"
+    config.columns[:overdue].label = "Overdue Amount"
     config.columns[:user].form_ui = :select
     config.columns[:role].form_ui = :select
   end 
