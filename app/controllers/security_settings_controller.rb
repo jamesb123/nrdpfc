@@ -27,6 +27,7 @@ class SecuritySettingsController < ApplicationController
       # If not, and admin, only show security settings
       # they manage
       ['projects.user_id = (?)', current_user.id]
+#    ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
     end
   end
 end

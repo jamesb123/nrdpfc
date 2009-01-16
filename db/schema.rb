@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081231184023) do
+ActiveRecord::Schema.define(:version => 20090116151210) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.string   "overdue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role_id"
   end
 
   create_table "country_orig", :force => true do |t|
@@ -180,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "1"
   end
 
   create_table "gender_final_horizontals_7", :force => true do |t|
@@ -278,6 +280,12 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "1a"
+    t.string  "1b"
+    t.string  "aa"
+    t.string  "ab"
+    t.string  "socola"
+    t.string  "socolb"
   end
 
   create_table "mhc_final_horizontals_7", :force => true do |t|
@@ -1138,6 +1146,8 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.integer "1a"
+    t.integer "1b"
   end
 
   create_table "microsatellite_final_horizontals_7", :force => true do |t|
@@ -1995,6 +2005,8 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
+    t.integer "1a"
+    t.integer "1b"
   end
 
   create_table "microsatellite_horizontals_7", :force => true do |t|
@@ -2119,9 +2131,12 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
   create_table "mt_dna_final_horizontals_6", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",  :limit => 128
+    t.string  "organism_code",                         :limit => 128
+    t.string  "1"
     t.string  "Control Region"
+    t.string  "Control region, Yoshida et al. (2001)"
     t.string  "cytochrome b"
+    t.string  "mtDNA"
   end
 
   create_table "mt_dna_final_horizontals_7", :force => true do |t|
@@ -2180,6 +2195,11 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string "short_role"
+    t.string "long_role"
   end
 
   create_table "sample_non_tissues", :force => true do |t|
@@ -2251,8 +2271,10 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.integer  "storage_medium_id"
     t.integer  "country_id"
     t.integer  "extraction_method_id"
-    t.decimal  "true_latitude",        :precision => 18, :scale => 9
-    t.decimal  "true_longitude",       :precision => 18, :scale => 9
+    t.decimal  "true_latitude",             :precision => 18, :scale => 9
+    t.decimal  "true_longitude",            :precision => 18, :scale => 9
+    t.string   "sample_bc_prv"
+    t.string   "shipping_material_txt_prv"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
@@ -2298,15 +2320,6 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.boolean  "is_admin",                                :default => false
-  end
-
-  create_table "videos", :force => true do |t|
-    t.integer  "video_name"
-    t.string   "video_description"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "y_chromosome_final_horizontals", :force => true do |t|
@@ -2401,11 +2414,13 @@ ActiveRecord::Schema.define(:version => 20081231184023) do
   create_table "y_chromosome_final_horizontals_6", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
+    t.string  "organism_code",     :limit => 128
+    t.string  "1"
     t.string  "34a"
     t.string  "34b"
     t.string  "41a"
     t.string  "41b"
+    t.string  "many grasshoppers"
     t.string  "Y-Intron"
   end
 

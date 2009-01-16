@@ -31,6 +31,52 @@ class DnaResultsController < ApplicationController
     config.columns[:plate].label = "Plate"
     config.columns[:sample].form_ui = :record_select
 #   config.columns[:sample].form_ui = :select
+    
+    config.columns[:sample].tooltip = <<-END
+    This is a compliation of the "Organism Code" <br>
+    and "Organism Sample Index" from the "Sample" table.<br>
+    For example, the third sample from individual EGL00001 would be EGL00001-3
+    END
+
+    config.columns[:sample_id].tooltip = <<-END
+    The unique number given to each sample by the database in the "Sample" table.
+    END
+    config.columns[:prep_number].tooltip = <<-END
+    If you have multiple preparations for this sample, this is the number of that preparation.  If you just have one preparation, then this value should be 1.
+    END
+    
+    config.columns[:extraction_number].tooltip = <<-END
+    The number of times you have extracted from this preparation - represented by the DNA data in this row.
+    END
+    
+    config.columns[:barcode].tooltip = <<-END
+    The bar code for the tube in which the stock DNA is stored
+    END
+    
+    config.columns[:extraction_date].tooltip = <<-END
+    The date on which the extraction was conducted
+    END
+
+    config.columns[:fluoro_conc].tooltip = <<-END
+    The concentration of the stock DNA based on a fluorometer reading.  This is an older method that we used to use to quantify DNA.
+    END
+    
+    config.columns[:functional_conc].tooltip = <<-END
+    The concentration of the stock DNA based on functional amplification (if conducted).  This field allows the user to differentiation between the actual concentration of DNA, and the functional concentration of DNA (e.g. due to inhibotors, degradation, etc...).
+    END
+    
+    config.columns[:pico_green_conc].tooltip = <<-END
+    The concentration of the stock DNA based on PicoGreen quantification.
+    END
+    
+    config.columns[:barcode].tooltip = <<-END
+    The bar code for the tube in which the stock DNA is stored
+    END
+    
+    config.columns[:plate].tooltip = <<-END
+    The bar code for the plate in which the stock DNA is stored
+    END
+  
   end 
 
   include ResultTableSharedMethods  

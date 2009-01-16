@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   layout "tabs"
   active_scaffold :addresses do |config|
-    config.columns = [:user, :first_name, :last_name, :address1, :address2, 
+    config.columns = [:user, :role, :first_name, :last_name, :address1, :address2, 
       :province, :postal, :phone, :mobile, :fax, :email, :payment_method, 
       :credit_card, :purchase_order, :overdue ]
     config.columns[:first_name].label = "First Name"
@@ -19,5 +19,6 @@ class AddressesController < ApplicationController
     config.columns[:purchase_order].label = "Purchase Order"
     config.columns[:overdue].label = "Overdue"
     config.columns[:user].form_ui = :select
+    config.columns[:role].form_ui = :select
   end 
 end

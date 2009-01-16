@@ -46,6 +46,7 @@ class SamplesController < ApplicationController
     
     config.columns[:extraction_method].form_ui = :select
     config.columns[:shippingmaterial].form_ui = :select
+#    config.columns[:storage_medium].form_ui = :select
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
@@ -89,25 +90,37 @@ class SamplesController < ApplicationController
     config.columns[:xy_position].label = "xy pos"
     config.columns[:tissue_remaining].label = "tissue remaining"
     
-    config.columns[:id].tooltip = "This is the unique identifier given to each sample by the database It is based on the ENTIRE database, not just the samples within your project."
+    config.columns[:id].tooltip = <<-END
+    This is the unique identifier <br>
+    given to each sample by the database. <br>
+    It is based on the ENTIRE database, <br>
+    not just the samples within your project.
+    END
     
-    config.columns[:organism_id].tooltip = "This is the unique identifier given to<br/>
+    config.columns[:organism_id].tooltip = <<-END
+    This is the unique identifier given to<br/>
     each sample by the database.<br/>
     It is based on the ENTIRE database,<br/>
-    not just the samples within your project."
+    not just the samples within your project.
+    END
    
-    config.columns[:organism].tooltip = "This is the unique identifier, given by you,<br/>
+    config.columns[:organism].tooltip = <<-END
+    This is the unique identifier, given by you,<br/>
     to the individuals/organisms within your project.<br/> 
-    You need to fill in this field as appropriate for your project."
+    You need to fill in this field as appropriate for your project.
+    END
   
-    config.columns[:plateposition].tooltip = "This is the weel number for the sample on the plate<br/>
-     (e.g. A01, H12, etc."
+    config.columns[:plateposition].tooltip = <<-END
+    This is the well number <br>
+    for sample on the plate<br>
+    (e.g. A01, H12, etc.
+    END
 
-    config.columns[:field_code].tooltip = "This is the unique identifier given to the sample by the people<br/>
-    who collected the sample."
-  
-    config.columns[:batch_number].tooltip = "If you are processing samples in batches,<br/>
-    then this is the batch number in which the sample was entered into the database."
+    config.columns[:batch_number].tooltip = <<-END
+    If you are processing samples in batches,<br/>
+    then this is the batch number<br>
+    in which the sample in the database.
+    END
       
     config.columns[:date_collected].tooltip = <<-END
       If you know the exact date on which the sample was collected,<br/>
@@ -125,7 +138,98 @@ class SamplesController < ApplicationController
       If you don't know the exact date on which the sample was collected, but you know the day, enter that here.
     END
     
+    config.columns[:collected_by].tooltip = <<-END
+      This field should contain the identity of the person<br>
+      or research team who collected the sample
+    END
+    
+    config.columns[:date_received].tooltip = <<-END
+    The date that the sample was received at the laboratory
+    END
   
+    config.columns[:received_by].tooltip = <<-END
+    The person in the laboratory who received the sample
+    END
+    
+    config.columns[:receiver_comments].tooltip = <<-END
+    END
+    
+    config.columns[:date_submitted].tooltip = <<-END
+    The date that the sample was submitted to the database
+    END
+    
+    config.columns[:submitted_by].tooltip = <<-END
+    The person who entered the sample data into the database
+    END
+    
+    config.columns[:submitter_comments].tooltip = <<-END
+    Any comments that the submitter has regarding the sample (e.g. lid was half open and liquid was oozing out).
+    END
+    
+    config.columns[:latitude].tooltip = <<-END
+    The latitude at which the sample was collected - in decimal degrees or in degrees, but you need to specify which one in the "Type-Lat-Long" field.  Can also be the Northing/Southing number for UTM data, and you should specify your projection in the "UTM" field.
+    END
+  
+    config.columns[:longitude].tooltip = <<-END
+    The longitude at which the sample was collected - in decimal degrees or in degrees, but you need to specify which one in the "Type-Lat-Long" field.  Can also be the Easting/Westing number if you have UTM data; you will need to specify your projection in the "UTM" field.
+    END
+
+    config.columns[:UTM_datum].tooltip = <<-END
+    If you have UTM location data, then this field should contain the projection in which your location data are formatted.
+    END
+
+    config.columns[:locality].tooltip = <<-END
+    This is a pull-down menu for different locality types (e.g. National Park, Provincial Park, etc…).
+    END
+    
+    config.columns[:locality_comments].tooltip = <<-END
+    A field to describe what locality the sample was collected in (e.g. Algonquin if the sample was collected in Alonquin Provincial Park).  
+    END
+    
+    config.columns[:location_accuracy].tooltip = <<-END
+    This is a field where you can describe how accurate your location data are, if applicaple.  For example, maybe it is the given location +/- 10 m, etc…
+    END
+    
+    config.columns[:type_lat_long].tooltip = <<-END
+    This field allows you to describe if your latitude and longitude data are in degrees or decimal degrees.
+    END
+    config.columns[:storage_building].tooltip = <<-END
+    What building is the sample stored in?
+    END
+    config.columns[:storage_room].tooltip = <<-END
+    What room is the sample stored in?
+    END
+    config.columns[:storage_fridge].tooltip = <<-END
+    What refrigerator is the sample stored in?
+    END
+    config.columns[:storage_box].tooltip = <<-END
+    The box number/label that the sample is stored in
+    END
+    
+    config.columns[:xy_position].tooltip = <<-END
+    The position in the box where the sample is located (e.g. A10, B02, etc…).
+    END
+    
+    config.columns[:xy_position].tooltip = <<-END
+    The position in the box where the sample is located (e.g. A10, B02, etc…).
+    END
+
+    config.columns[:tissue_remaining].tooltip = <<-END
+    Is there any tissue remaining?
+    END
+
+    config.columns[:extraction_method].tooltip = <<-END
+    What extraction method did you use to obtain DNA from this sample.
+    END
+
+    config.columns[:storage_medium].tooltip = <<-END
+    What is the medium that the sample is stored in
+    END
+    
+    config.columns[:tissue_type].tooltip = <<-END
+    Pull-down menu.  What is the type of tissue of this sample?
+    END
+
   end
   
   def conditions_for_collection
