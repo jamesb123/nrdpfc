@@ -21,7 +21,6 @@ class SamplesController < ApplicationController
     :submitter_comments, :type_lat_long, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
-    
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
