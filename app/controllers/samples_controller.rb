@@ -78,7 +78,7 @@ class SamplesController < ApplicationController
     config.columns[:submitter_comments].label = "Submitter Comments"
     config.columns[:latitude].label = "Latitude"
     config.columns[:longitude].label = "Longitude"
-    config.columns[:UTM_datum].label = "UTM"
+    config.columns[:UTM_datum].label = "UTM or Datum"
     config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
     config.columns[:location_accuracy].label = "Loc. Accuaracy"
@@ -98,15 +98,15 @@ class SamplesController < ApplicationController
     END
     
     config.columns[:organism_id].tooltip = <<-END
-    This is the unique identifier given to<br/>
-    each sample by the database.<br/>
-    It is based on the ENTIRE database,<br/>
+    This is the unique identifier given to<br>
+    each sample by the database.<br>
+    It is based on the ENTIRE database,<br>
     not just the samples within your project.
     END
    
     config.columns[:organism].tooltip = <<-END
-    This is the unique identifier, given by you,<br/>
-    to the individuals/organisms within your project.<br/> 
+    This is the unique identifier, given by you,<br>
+    to the individuals/organisms within your project.<br> 
     You need to fill in this field as appropriate for your project.
     END
   
@@ -117,34 +117,41 @@ class SamplesController < ApplicationController
     END
 
     config.columns[:batch_number].tooltip = <<-END
-    If you are processing samples in batches,<br/>
+    If you are processing samples in batches,<br>
     then this is the batch number<br>
     in which the sample in the database.
     END
       
     config.columns[:date_collected].tooltip = <<-END
-      If you know the exact date on which the sample was collected,<br/>
-      then you should enter that information here.<br/>
-      If you do not have the complete date,<br/>
-      then use the independent fields in the next columns.
+    If you know the exact date on which the sample was collected,<br>
+    then you should enter that information here.<br>
+    If you do not have the complete date,<br>
+    then use the independent fields in the next columns.
     END
     config.columns[:collected_on_year].tooltip = <<-END
-      If you don't know the exact date on which the sample was collected, but you know the year, enter that here.
+    If you don't know the exact date<br>
+    on which the sample was collected,<br>
+    but you know the year, enter that here.
     END
     config.columns[:collected_on_month].tooltip = <<-END
-      If you don't know the exact date on which the sample was collected, but you know the month, enter that here.
+    If you don't know the exact date<br>
+    on which the sample was collected,<br>
+    but you know the month, enter that here.
     END
     config.columns[:collected_on_day].tooltip = <<-END
-      If you don't know the exact date on which the sample was collected, but you know the day, enter that here.
+    If you don't know the exact date<br>
+    on which the sample was collected,<br>
+    but you know the day, enter that here.
     END
     
     config.columns[:collected_by].tooltip = <<-END
-      This field should contain the identity of the person<br>
-      or research team who collected the sample
+    The identity of the person <br>
+    or research team who collected the sample.
     END
     
     config.columns[:date_received].tooltip = <<-END
-    The date that the sample was received at the laboratory
+    The date that the sample<br>
+    was received at the laboratory.
     END
   
     config.columns[:received_by].tooltip = <<-END
@@ -152,6 +159,7 @@ class SamplesController < ApplicationController
     END
     
     config.columns[:receiver_comments].tooltip = <<-END
+    receiver comments
     END
     
     config.columns[:date_submitted].tooltip = <<-END
@@ -163,35 +171,56 @@ class SamplesController < ApplicationController
     END
     
     config.columns[:submitter_comments].tooltip = <<-END
-    Any comments that the submitter has regarding the sample (e.g. lid was half open and liquid was oozing out).
+    Any comments that the submitter has<br>
+    regarding the sample<br>
+    (e.g. lid was half open and liquid was oozing out).
     END
     
     config.columns[:latitude].tooltip = <<-END
-    The latitude at which the sample was collected - in decimal degrees or in degrees, but you need to specify which one in the "Type-Lat-Long" field.  Can also be the Northing/Southing number for UTM data, and you should specify your projection in the "UTM" field.
+    The latitude at which the sample was collected<br>
+    In decimal degrees or in degrees,<br>
+    but you need to specify which one in the<br>
+    Type-Lat-Long field.  Can also be the<br>
+    Northing/Southing number for UTM data,<br>
+    but you will need to specify your projection in the "UTM" field.
     END
   
     config.columns[:longitude].tooltip = <<-END
-    The longitude at which the sample was collected - in decimal degrees or in degrees, but you need to specify which one in the "Type-Lat-Long" field.  Can also be the Easting/Westing number if you have UTM data; you will need to specify your projection in the "UTM" field.
+    The longitude at which the sample was collected<br>
+    In decimal degrees or in degrees,<br>
+    but you need to specify which one in the<br>
+    Type-Lat-Long field.  Can also be the<br>
+    Easting/Westing number if you have UTM data,<br>
+    but you will need to specify your projection in the "UTM" field.
     END
 
     config.columns[:UTM_datum].tooltip = <<-END
-    If you have UTM location data, then this field should contain the projection in which your location data are formatted.
+    If you have UTM location data,<br>
+    then this field should contain the projection<br>
+    in which your location data are formatted.<br>
+    If you have UTM coordinates, indicate the zone.<br>
+    If not, indicate the Datum used.
     END
 
     config.columns[:locality].tooltip = <<-END
-    This is a pull-down menu for different locality types (e.g. National Park, Provincial Park, etc…).
+    This is a pull-down menu for different<br>
+    locality types (e.g. National Park, Provincial Park, etc…).
     END
     
     config.columns[:locality_comments].tooltip = <<-END
-    A field to describe what locality the sample was collected in (e.g. Algonquin if the sample was collected in Alonquin Provincial Park).  
+    A field to describe in what locality the sample was collected<br>
+    (e.g. Algonquin if the sample was collected in Alonquin Provincial Park).  
     END
     
     config.columns[:location_accuracy].tooltip = <<-END
-    This is a field where you can describe how accurate your location data are, if applicaple.  For example, maybe it is the given location +/- 10 m, etc…
+    Describe how accurate your location data are,<br>
+    if applicable.  For example,<br>
+    given location +/- 10 m, etc…
     END
     
     config.columns[:type_lat_long].tooltip = <<-END
-    This field allows you to describe if your latitude and longitude data are in degrees or decimal degrees.
+    Latitude and longitude data<br>
+    are in degrees or decimal degrees.
     END
     config.columns[:storage_building].tooltip = <<-END
     What building is the sample stored in?
@@ -227,7 +256,7 @@ class SamplesController < ApplicationController
     END
     
     config.columns[:tissue_type].tooltip = <<-END
-    Pull-down menu.  What is the type of tissue of this sample?
+    What is the type of tissue of this sample?
     END
 
   end

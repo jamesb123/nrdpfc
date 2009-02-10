@@ -9,7 +9,7 @@ class SampleNonTissuesController < ApplicationController
   
     config.columns = SampleNonTissuesController::SNT_BASE_ATTRIBUTE
     list.sorting = {:field_code => 'ASC'}  
-#    config.list.columns.exclude :id, :project, :security_settings
+    config.list.columns.exclude :security_settings
     config.create.columns.exclude :id, :project, :security_settings
     config.update.columns.exclude :id, :project, :security_settings
     

@@ -39,7 +39,8 @@ class DnaResultsController < ApplicationController
     END
 
     config.columns[:sample_id].tooltip = <<-END
-    The unique number given to each sample by the database in the "Sample" table.
+    The unique number given to each sample<br>
+    by the database in the "Sample" table.
     END
     config.columns[:prep_number].tooltip = <<-END
     If you have multiple preparations for this sample, this is the number of that preparation.  If you just have one preparation, then this value should be 1.
