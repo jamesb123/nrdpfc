@@ -19,6 +19,10 @@ module SamplesHelper
     select_tag(input_name, options_for_select([ ['', ''], ['DD (Decimal)', 'DD'], ['DMS (Hours Min Sec)', 'DMS'], ['UTM (Zone Coordinates)', 'UTM'] ], record.type_lat_long))
   end
 
+  def location_measurement_method_form_column(record, input_name)
+    select_tag(input_name, options_for_select([ ['Random', 'Random'], ['Measured', 'Measured'], ['Centroid', 'Centroid'] ], record.type_lat_long))
+  end 
+
 ############### test
 
   # month
