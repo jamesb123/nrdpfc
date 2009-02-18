@@ -20,14 +20,12 @@ module SamplesHelper
   end
 
   def location_measurement_method_form_column(record, input_name)
-    select_tag(input_name, options_for_select([ ['Random', 'Random'], ['Measured', 'Measured'], ['Centroid', 'Centroid'] ], record.type_lat_long))
+    select_tag(input_name, options_for_select([ ['', ''], ['Random', 'Random'], ['Measured', 'Measured'], ['Centroid', 'Centroid'] ], record.type_lat_long))
   end 
-
-############### test
 
   # month
   def collected_on_month_form_column(record, input_name)
-    select_tag(input_name, options_for_select([ ['January', 'January'], ['February', 'February'], ['March', 'March'] ], record.type_lat_long))
+    select_tag(input_name, options_for_select([  ['', ''], ['January', 'January'], ['February', 'February'], ['March', 'March'], ['April','April'] , ['May','May'] , ['June','June'] , ['July','July'] , ['August','August'] , ['September','September'] , ['October','October'] , ['November','November'] , ['December','December'] ], record.type_lat_long))
   end 
 
   # day
