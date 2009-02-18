@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090116151210) do
+ActiveRecord::Schema.define(:version => 20090217223041) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -2271,10 +2271,11 @@ ActiveRecord::Schema.define(:version => 20090116151210) do
     t.integer  "storage_medium_id"
     t.integer  "country_id"
     t.integer  "extraction_method_id"
-    t.decimal  "true_latitude",             :precision => 18, :scale => 9
-    t.decimal  "true_longitude",            :precision => 18, :scale => 9
+    t.decimal  "true_latitude",               :precision => 18, :scale => 9
+    t.decimal  "true_longitude",              :precision => 18, :scale => 9
     t.string   "sample_bc_prv"
     t.string   "shipping_material_txt_prv"
+    t.string   "location_measurement_method"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"

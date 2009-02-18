@@ -22,9 +22,9 @@ module SamplesHelper
 ############### test
 
   # month
-#  def collected_on_month_form_column(record, input_name)
-#    select_month record[:collected_on_month], :prefix => input_name, :include_blank => true
-#  end 
+  def collected_on_month_form_column(record, input_name)
+    select_tag(input_name, options_for_select([ ['January', 'January'], ['February', 'February'], ['March', 'March'] ], record.type_lat_long))
+  end 
 
   # day
 #  def collected_on_day_form_column(record, input_name)

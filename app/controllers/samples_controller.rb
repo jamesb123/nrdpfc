@@ -1,6 +1,8 @@
 class SamplesController < ApplicationController
   layout "tabs"
-
+  
+#  protect_from_forgery :except => [:samples _field_code] 
+  
   record_select :per_page => 20,
                 :search_on => ['organisms.organism_code'],
                 :order_by => 'samples.id'
@@ -18,9 +20,10 @@ class SamplesController < ApplicationController
     :plateposition, :field_code, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :type_lat_long, :latitude, :longitude, :UTM_datum, :locality, 
+    :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :storage_building, :storage_room,
-    :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method, :storage_medium, :locality_type, :tissue_type,:security_settings]  
+    :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
+    :storage_medium, :locality_type, :tissue_type,:security_settings]  
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
@@ -28,8 +31,9 @@ class SamplesController < ApplicationController
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
     config.create.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.update.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.list.columns.exclude  :project
-    
+    config.list.columns.exclude  :project, :type_lat_long
+
+#    in_place_edit_for :field_code
     config.nested.add_link("DNA", [:dna_results])
     config.nested.add_link("mtDNA", [:mt_dnas])
     config.nested.add_link("Genders", [:genders])
@@ -81,6 +85,7 @@ class SamplesController < ApplicationController
     config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
     config.columns[:location_accuracy].label = "Loc. Accuaracy"
+    config.columns[:location_measurement_method].label = "Location Measurement Method"
     config.columns[:type_lat_long].label = "Type-Lat-Long"
     config.columns[:storage_building].label = "Building"
     config.columns[:storage_room].label = "Room"
