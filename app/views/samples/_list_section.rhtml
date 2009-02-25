@@ -4,7 +4,7 @@
       <%= render :partial => 'list_column_headings', :locals => { :columns => columns } %>
     </tr>
   </thead>
-  <tbody class="records" <%= "id=\"#{body_id}\"" unless body_id.blank? rescue nil %> style="border-right:1px solid #CCCCCC" >
+  <tbody class="records" <%= "id=\"#{body_id}\"" unless body_id.blank? rescue nil %> >
     <% reset_cycle %>
     <% if !@records.empty? -%>
       <%= render :partial => 'list_record', :collection => @page.items, :locals => { :hidden => false, :dont_show_calculations => true, :columns => columns } %>
