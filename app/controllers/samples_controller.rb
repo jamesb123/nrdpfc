@@ -1,7 +1,7 @@
 class SamplesController < ApplicationController
   layout "tabs"
   
-#  protect_from_forgery :except => [:samples _field_code] 
+#  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
                 :search_on => ['organisms.organism_code'],
@@ -16,14 +16,14 @@ class SamplesController < ApplicationController
   include GoToOrganismCode::Controller
 
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism, :organism_id, :organism_index, :project, :tubebc, :platebc, 
-    :plateposition, :field_code, :batch_number, :shippingmaterial, :country, :province,
+    config.columns = [:organism, :organism_index, :field_code, :tubebc, :platebc, 
+    :plateposition, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
-    :storage_medium, :locality_type, :tissue_type,:security_settings]  
+    :storage_medium, :locality_type, :tissue_type,:security_settings,:id, :organism_id, :project]  
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
