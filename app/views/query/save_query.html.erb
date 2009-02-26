@@ -1,10 +1,16 @@
+<!--
 <p>Click to open in a new window. Right Click to Save or Bookmark Link.
 <br/>By visiting the bookmark you can re-download the query with up-to-date data.<p/>
+
+<!--- remove this for a few weeks for tims demo 
 <%= link_to "View in Google Maps", "http://maps.google.com/?q=#{georss_url(@query.access_key)}", :popup => true %><br />
 <%= link_to "View in Microsoft Maps","http://maps.live.com?mapurl=#{georss_url(@query.access_key)}", :popup => true %><br />
 <%= link_to "View in NRDPFC Maps","http://map.nrdpfc.ca?mapurl=#{georss_url(@query.access_key)}", :popup => true %><br />
-<%= link_to "Download CSV", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, <br/>
+
 <%= link_to "Download Map Data", georss_url(@query.access_key, :download => true) %>, <br/>
+---->
+
+<%= link_to "Download CSV", url_for(:controller => 'query', :action => 'download_csv', :key => @query.access_key) %>, <br/>
 
 <!--- link_to "Help", { :action => "help" }, :popup => true
   # => <a href="/testing/help/" onclick="window.open(this.href);return false;">Help</a>
