@@ -59,7 +59,8 @@ module ActiveScaffold
         options[:action] ||= params[:action]
         options[:id] ||= params[:id]
         options[:id] ||= params[:parent_id]
-        clean_id "#{controller_id}-#{options[:action]}-#{options[:id]}-row"
+        options[:section] ||= 'main'
+        clean_id "#{controller_id}-#{options[:action]}-#{options[:id]}-#{options[:section]}-row"
       end
 
       def element_cell_id(options = {})

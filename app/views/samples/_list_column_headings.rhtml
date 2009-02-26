@@ -22,7 +22,7 @@ default_sorting_stages = ['ASC', 'DESC']
   column_header_id = active_scaffold_column_header_id(column)
   -%>
   <th id="<%= column_header_id %>" <%= "class=\"sorted #{sorting.direction_of(column).downcase}\"" if sorting.sorts_on? column %>>
-  <div style="<%= @column_wrapper_style %>">
+  <div style="<%= header_wrapper_style %>">
   <% unless column.tooltip.blank? %>
   <div class="header_tooltip">
     <% tooltip do%><%= column.tooltip %><% end %>

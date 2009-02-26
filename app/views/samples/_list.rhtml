@@ -16,10 +16,9 @@
   </tbody>
 </table>
 
-<% @column_wrapper_style = "height:50px;overflow:hidden;" %>
-<%= render :partial => 'list_section', :locals => { :columns => (0..3).to_a ,  :style => "float:left;width:200px;border-right:1px solid #CCCCCC" } %>
+<%= render :partial => 'list_section', :locals => { :style => "float:left;width:200px;border-right:1px solid #CCCCCC", :section => 'fixed' } %>
 <div style="overflow:auto;">
-  <%= render :partial => 'list_section', :locals => { :columns => (4..100).to_a, :body_id => active_scaffold_tbody_id } %>
+  <%= render :partial => 'list_section', :locals => { :section => "scrollable" } %>
 </div>
 
 <div class="active-scaffold-footer">

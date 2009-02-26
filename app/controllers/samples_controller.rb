@@ -33,7 +33,11 @@ class SamplesController < ApplicationController
     config.update.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.list.columns.exclude  :project, :type_lat_long
 
-    config.list.per_page = 10
+    config.list.per_page = 25
+    # The split tables can't update after an edit,
+    # so we just have to do the edit in a new page
+    config.update.link.page = true
+    config.create.link.page = true
 
 #    in_place_edit_for :field_code
     config.nested.add_link("DNA", [:dna_results])

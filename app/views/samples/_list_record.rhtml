@@ -1,4 +1,7 @@
 <%
+section ||= params['split_section']
+columns ||= columns_per_section(section)
+
 record = list_record if list_record # compat with render :partial :collection
 dont_show_calculations ||= false
 tr_class = cycle("", "even-record")
@@ -6,7 +9,7 @@ tr_class += " #{list_row_class(record)}" if respond_to? :list_row_class
 url_options = params_for(:action => :list, :id => record.id)
 -%>
 
-<tr class="record <%= tr_class %>" id="<%= element_row_id(:action => :list, :id => record.id) %>">
+<tr class="record <%= tr_class %>" id="<%= element_row_id(:action => :list, :id => record.id, :section => section) %>">
   
 </div>
   <% active_scaffold_config.list.columns.each_with_index do |column, index| %>
@@ -21,20 +24,20 @@ url_options = params_for(:action => :list, :id => record.id)
     <% column_value = get_column_value(record, column) -%>
 
     <td class="<%= column_class(column, column_value) %>">
-      <div style="<%= @column_wrapper_style %>">
+      <div style="<%= row_wrapper_style %>">
       <%= render_list_column(column_value, column, record) %>
       </div>
     </td>
   <% end -%>
 </tr>
 
-<% target_id = element_row_id(:action => :list, :id => record.id) -%>
+<% target_id = element_row_id(:action => :list, :id => record.id, :section => section) -%>
 <script type="text/javascript">
 actions = new ActiveScaffold.Actions.Record(
   $$('#<%= target_id -%> a.action'),
   $('<%= target_id -%>'),
   $('<%= loading_indicator_id(:action => :record, :id => record.id) -%>'),
-  {refresh_url: '<%= url_for params_for(:action => :row, :id => record.id, :_method => :get, :escape => false) -%>'}
+  {refresh_url: '<%= url_for params_for(:action => :row, :id => record.id, :_method => :get, :escape => false, :split_section => section) -%>'}
 );
   <%= update_page do |page|
         page.replace active_scaffold_calculations_id, :partial => 'list_calculations'

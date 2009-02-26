@@ -6,12 +6,12 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= @title || ( "NRDPFC : " + params[:controller].to_s.titleize )%></title>
 
-  <% bundle do %>
+  <%# bundle do %>
     <%= javascript_include_tag :defaults, "control.modal.js"%>
     <%= stylesheet_link_tag "basic" %>
     <%= active_scaffold_includes %>
     <%= record_select_includes %>
-  <% end %>
+  <%# end %>
 
 	<!--[if IE]>
     <%= stylesheet_link_tag "ie6" %>

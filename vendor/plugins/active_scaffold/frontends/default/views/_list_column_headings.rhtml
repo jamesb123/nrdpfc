@@ -4,6 +4,10 @@ sorting_stages = ['reset', 'ASC', 'DESC']
 default_sorting = active_scaffold_config.list.sorting
 default_sorting_stages = ['ASC', 'DESC']
 -%>
+
+<th class="actions">
+</th>
+
 <% active_scaffold_config.list.columns.each do |column| -%>
   <%
   stages = default_sorting.sorts_on?(column) ? default_sorting_stages : sorting_stages
@@ -33,5 +37,3 @@ default_sorting_stages = ['ASC', 'DESC']
    <% end -%>
  </th>
 <% end -%>
-<th class="actions">
-</th>
