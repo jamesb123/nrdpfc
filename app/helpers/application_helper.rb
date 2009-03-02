@@ -77,5 +77,29 @@ module ApplicationHelper
               :class => "next"}) if current_page.next?
     end
   end
+
+  def columns_per_section(section, divide = 4)
+    (section == 'fixed' ? (0..(divide-1)) : ((divide)..100)).to_a
+  end
+
+  def row_wrapper_style
+    "height:15px;overflow:hidden;"
+  end
+
+  def header_wrapper_style
+    "height:50px;overflow:hidden;"
+  end
+
+  def cb_content(name, &block)
+    ivar = "@cb_content_block_#{name}"
+    instance_variable_set(ivar, block)
+    nil
+  end
+
+  def render_cb_content(name, *args)
+    ivar = "@cb_content_block_#{name}"
+    block = instance_variable_get(ivar)
+    block.call(args) unless block.nil?
+  end
     
 end

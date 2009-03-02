@@ -1,16 +1,4 @@
 module SamplesHelper
-  def columns_per_section(section)
-    (section == 'fixed' ? (0..3) : (4..100)).to_a
-  end
-
-  def row_wrapper_style
-    "height:15px;overflow:hidden;"
-  end
-
-  def header_wrapper_style
-    "height:50px;overflow:hidden;"
-  end
-
   def options_for_association_conditions(association)
     if association.name == :organism
       ['project_id = ?', current_project]

@@ -7,6 +7,7 @@ class MicrosatelliteFinalHorizontalsController < ApplicationController
   
   def custom_reconfiguration(config)
     config.columns = [:project, :organism_code, :raw_data] + @model.dynamic_column_names
+    config.list.per_page = 25
   end
 
 public

@@ -11,6 +11,7 @@ class MicrosatelliteHorizontalsController < ApplicationController
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
     config.columns[:sample].label = "Organism Code (Sample ID)"
+    config.list.per_page = 25
 
     config.columns[:sample].search_sql = "organisms.organism_code"
     config.search.columns = [ :sample ]
