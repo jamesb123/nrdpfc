@@ -4,7 +4,7 @@ class MicrosatellitesController < ApplicationController
     config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult]
     
     for uc in [config.update, config.create]
-      uc.columns = [:project, :sample_id, :sample, :locus, :allele1, :allele2, :gel, :well, :finalResult]
+      uc.columns = [:project, :sample_id, :sample, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
@@ -20,7 +20,8 @@ class MicrosatellitesController < ApplicationController
     columns = config.columns
     columns[:sample].label = "Organism Code (Sample ID)"
     columns[:sample_id].label = "Sample ID"
-    columns[:allele1].label = "Allele-1"
+    columns[:allele1].label = "Allele 1"
+    columns[:allele2].label = "Allele 2"
     columns[:finalResult].form_ui = :checkbox
 
     config.columns[:sample].form_ui = :record_select
