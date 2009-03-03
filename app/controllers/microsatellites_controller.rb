@@ -1,10 +1,10 @@
 class MicrosatellitesController < ApplicationController
   layout "tabs"
   active_scaffold :microsatellites do |config|
-    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult]
+    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height]
     
     for uc in [config.update, config.create]
-      uc.columns = [:project, :sample_id, :sample, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult]
+      uc.columns = [:project, :sample_id, :sample, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
@@ -23,6 +23,8 @@ class MicrosatellitesController < ApplicationController
     columns[:allele1].label = "Allele 1"
     columns[:allele2].label = "Allele 2"
     columns[:finalResult].form_ui = :checkbox
+    columns[:allele_1_peak_height].label = "Allele 1 Peak"
+    columns[:allele_2_peak_height].label = "Allele 2 Peak"
 
     config.columns[:sample].form_ui = :record_select
 #    config.columns[:sample].form_ui = :select

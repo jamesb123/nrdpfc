@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090217223041) do
+ActiveRecord::Schema.define(:version => 20090303170217) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -2034,13 +2034,15 @@ ActiveRecord::Schema.define(:version => 20090217223041) do
   create_table "microsatellites", :force => true do |t|
     t.integer "sample_id"
     t.integer "project_id"
-    t.string  "locus",       :limit => 30
+    t.string  "locus",                :limit => 30
     t.integer "allele1"
     t.integer "allele2"
     t.string  "gel"
     t.string  "well"
     t.boolean "finalResult"
     t.text    "comments"
+    t.decimal "allele_1_peak_height",               :precision => 6, :scale => 2
+    t.decimal "allele_2_peak_height",               :precision => 6, :scale => 2
   end
 
   add_index "microsatellites", ["locus"], :name => "index_microsatellites_on_locus"
