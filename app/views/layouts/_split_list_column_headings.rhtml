@@ -9,7 +9,7 @@ default_sorting_stages = ['ASC', 'DESC']
 <% active_scaffold_config.list.columns.each_with_index do |column, index| -%>
   <% next unless columns.include?(index) %>
 
-  <% if index == 0 -%>
+  <% if index == 0 && active_scaffold_config.action_links.any? {|link| link.type == :record } -%>
     <th class="actions">
     </th>
   <% end -%>

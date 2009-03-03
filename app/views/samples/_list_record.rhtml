@@ -1,45 +1,7 @@
-<%
-section ||= params['split_section']
-columns ||= columns_per_section(section)
+<% record = list_record if list_record # compat with render :partial :collection %>
 
-record = list_record if list_record # compat with render :partial :collection
-dont_show_calculations ||= false
-tr_class = cycle("", "even-record")
-tr_class += " #{list_row_class(record)}" if respond_to? :list_row_class
-url_options = params_for(:action => :list, :id => record.id)
--%>
+<% cb_content :ajax_link_columns do |column| %>
+  <%= (value=record.send(column.name)) ? link_to_modal(value, {:controller => "/microsatellites", :action => "list", :sample_id => record.sample_id, :locus => column.name.to_s[0..-2], :page => 1 }) : " - "%>
+<% end %>
 
-<tr class="record <%= tr_class %>" id="<%= element_row_id(:action => :list, :id => record.id, :section => section) %>">
-  
-</div>
-  <% active_scaffold_config.list.columns.each_with_index do |column, index| %>
-    <% next unless columns.include?(index) %>
-
-    <% if index == 0 && active_scaffold_config.action_links.any? {|link| link.type == :record } -%>
-    <td class="actions">
-      <%= render :partial => 'list_actions', :locals => {:record => record, :url_options => url_options} %>
-    </td>
-    <% end -%>
-
-    <% column_value = get_column_value(record, column) -%>
-
-    <td class="<%= column_class(column, column_value) %>">
-      <div style="<%= row_wrapper_style %>">
-      <%= render_list_column(column_value, column, record) %>
-      </div>
-    </td>
-  <% end -%>
-</tr>
-
-<% target_id = element_row_id(:action => :list, :id => record.id, :section => section) -%>
-<script type="text/javascript">
-actions = new ActiveScaffold.Actions.Record(
-  $$('#<%= target_id -%> a.action'),
-  $('<%= target_id -%>'),
-  $('<%= loading_indicator_id(:action => :record, :id => record.id) -%>'),
-  {refresh_url: '<%= url_for params_for(:action => :row, :id => record.id, :_method => :get, :escape => false, :split_section => section) -%>'}
-);
-  <%= update_page do |page|
-        page.replace active_scaffold_calculations_id, :partial => 'list_calculations'
-      end if not dont_show_calculations and active_scaffold_config.list.columns.any? {|c| c.calculation?} %>
-</script>
+<%= render :partial => 'layouts/split_list_record', :locals => { :hidden => hidden, :section => section, :record => record, :columns => 4 } %>

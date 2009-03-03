@@ -1,0 +1,43 @@
+<%
+section ||= params['split_section']
+columns = columns_per_section(section, columns)
+
+tr_class = cycle("", "even-record")
+tr_class += " #{list_row_class(record)}" if respond_to? :list_row_class
+url_options = params_for(:action => :list, :id => record.id)
+-%>
+
+<tr class="record <%= tr_class %>" id="<%= element_row_id(:action => :list, :id => record.id, :section => section) %>">
+  <% active_scaffold_config.list.columns.each_with_index do |column, index| %>
+    <% next unless columns.include?(index) %>
+
+    <% if index == 0 && active_scaffold_config.action_links.any? {|link| link.type == :record } -%>
+    <td class="actions">
+      <%= render :partial => 'list_actions', :locals => {:record => record, :url_options => url_options} %>
+    </td>
+    <% end -%>
+
+
+    <% column_value = column.form_ui == :ajax_link ? nil : get_column_value(record, column) -%>
+
+    <td class="<%= column_class(column, column_value) %>" >
+      <div style="<%= row_wrapper_style %>">
+        <% if column.form_ui == :ajax_link %>
+          render_cb_content(:ajax_link_columns, column)
+        <% else %>
+          <%= render_list_column(column_value, column, record) %>
+        <% end %>
+      </div>
+    </td>
+  <% end -%>
+</tr>
+
+<% target_id = element_row_id(:action => :list, :id => record.id) -%>
+<script type="text/javascript">
+actions = new ActiveScaffold.Actions.Record(
+  $$('#<%= target_id -%> a.action'),
+  $('<%= target_id -%>'),
+  $('<%= loading_indicator_id(:action => :record, :id => record.id) -%>'),
+  {refresh_url: '<%= url_for params_for(:action => :row, :id => record.id, :_method => :get, :escape => false, :split_section => section) -%>'}
+);
+</script>
