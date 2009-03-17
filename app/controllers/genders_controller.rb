@@ -21,6 +21,48 @@ class GendersController < ApplicationController
 #    config.columns[:sample].form_ui = :select
   end
   
+    config.columns[:sample].tooltip = <<-END
+    This is a compliation of the "Organism Code" <br>
+    and "Organism Sample Index" from the "Sample" table.<br>
+    For example, the third sample from individual EGL00001 would be EGL00001-3
+    END
+    
+    config.columns[:sample_id].tooltip = <<-END
+    The unique number given to each sample<br>
+    by the database in the "Sample" table.
+    END
+
+    config.columns[:gender].tooltip = <<-END
+    The gender of this sample based on analyses<br/>
+    of the locus used and specified in the "Locus" field.
+    END
+    
+    
+    config.columns[:locus].tooltip = <<-END
+    The locus at which the data in this row are for<br/>
+    (e.g. control region, cytochrome b, etc…).
+    END
+
+    config.columns[:gelNum].tooltip = <<-END
+    The MegaBACE run (or other reference run)<br/>
+    containing the raw data for this sample at this locus.
+    END
+
+    config.columns[:wellNum].tooltip = <<-END
+    The well number on the plate that was analyzed
+    END
+
+    config.columns[:finalResult].tooltip = <<-END
+    Check this box if you would like the result for this sample at this locus to be the representative of this individual/organism.  Note that you can only check this box for one sample for per individual/organism.
+    END
+
+    config.columns[:comments].tooltip = <<-END
+    Any comments that you have regarding the mitochondrial DNA data presented in this row.
+    END
+
+    
+
+  
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
 
