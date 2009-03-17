@@ -25,7 +25,7 @@ class CreatePrimers < ActiveRecord::Migration
       t.column :estimated_200uM_stock , :float 
       t.column :entered_by, :string 
       t.column :date_primer_received, :string 
-      
+    end  
   end
 
   def self.down

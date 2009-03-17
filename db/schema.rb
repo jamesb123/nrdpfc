@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090303170217) do
+ActiveRecord::Schema.define(:version => 20090317155751) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -326,10 +326,6 @@ ActiveRecord::Schema.define(:version => 20090303170217) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.integer "1a"
-    t.integer "1b"
-    t.integer "204a"
-    t.integer "204b"
     t.integer "aeioua"
     t.integer "aeioub"
     t.integer "EV1Pma"
@@ -1185,10 +1181,6 @@ ActiveRecord::Schema.define(:version => 20090303170217) do
     t.integer "project_id"
     t.integer "sample_id"
     t.integer "organism_index"
-    t.integer "1a"
-    t.integer "1b"
-    t.integer "204a"
-    t.integer "204b"
     t.integer "aeioua"
     t.integer "aeioub"
     t.integer "EV1Pma"
@@ -2172,6 +2164,33 @@ ActiveRecord::Schema.define(:version => 20090303170217) do
     t.integer "project_id"
     t.string  "organism_code"
     t.string  "comment"
+  end
+
+  create_table "primers", :force => true do |t|
+    t.string   "name"
+    t.string   "region"
+    t.string   "marker"
+    t.string   "forward_reverse"
+    t.string   "label"
+    t.string   "taxon_isolated_from"
+    t.string   "paper_reference"
+    t.string   "sequence_entry_1"
+    t.string   "sequence_entry_2"
+    t.string   "comments"
+    t.datetime "date_primer_ordered"
+    t.string   "company"
+    t.string   "lot_number"
+    t.string   "room"
+    t.string   "freezer"
+    t.string   "box_number"
+    t.string   "lane_inactive"
+    t.string   "lane_active"
+    t.string   "box_type"
+    t.float    "estimated_40uM_stock"
+    t.float    "estimated_100uM_stock"
+    t.float    "estimated_200uM_stock"
+    t.string   "entered_by"
+    t.string   "date_primer_received"
   end
 
   create_table "projects", :force => true do |t|
