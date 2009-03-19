@@ -16,14 +16,14 @@ class SamplesController < ApplicationController
   include GoToOrganismCode::Controller
 
   active_scaffold :samples do |config|
-    config.columns = [:organism, :organism_index, :field_code, :tubebc, :platebc, 
+    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :tubebc, :platebc, 
     :plateposition, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum, :locality, 
     :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
-    :storage_medium, :locality_type, :tissue_type,:security_settings,:id, :organism_id, :project]  
+    :storage_medium, :locality_type, :tissue_type,:security_settings,:project]  
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism

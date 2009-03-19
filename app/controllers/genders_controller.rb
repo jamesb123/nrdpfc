@@ -19,7 +19,6 @@ class GendersController < ApplicationController
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].form_ui = :record_select
 #    config.columns[:sample].form_ui = :select
-  end
   
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>
@@ -59,7 +58,7 @@ class GendersController < ApplicationController
     config.columns[:comments].tooltip = <<-END
     Any comments that you have regarding the mitochondrial DNA data presented in this row.
     END
-
+  end
     
 
   
