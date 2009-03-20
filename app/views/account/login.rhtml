@@ -3,6 +3,10 @@
 <h1> NOTE: this system requires Internet Eplorer 7 or Fire Fox 3</h1>
 <h2> It will NOT work with IE6 or FF2 </h2>
 <%= error_messages_for :user %>
+<% if browser_too_old? %>
+  The Samples and Horizontal tables only look good in Firefox 3 or Internet Explorer 7/8. Please use one of those for the best experience.
+<% end %>
+
 <% form_tag do -%>
 
 <p><label for="login">Login</label><br/>

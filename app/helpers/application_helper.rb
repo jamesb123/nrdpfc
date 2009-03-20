@@ -101,5 +101,10 @@ module ApplicationHelper
     block = instance_variable_get(ivar)
     block.call(args) unless block.nil?
   end
+
+  def browser_too_old?
+    str = request.headers['User-agent']
+    str.match(/Firefox\/2/) || str.match(/MSIE 6/)
+  end
     
 end
