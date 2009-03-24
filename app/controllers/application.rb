@@ -13,8 +13,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include CurrentProjectHelper
   include InPlaceEditing
-  include ExceptionNotifiable
-
+ 
   prepend_before_filter :login_required  
   
   ActiveScaffold.set_defaults do |config|
