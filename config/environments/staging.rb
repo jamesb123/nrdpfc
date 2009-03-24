@@ -3,7 +3,6 @@
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
-ExceptionNotifier.exception_recipients = %w(james@burrett.org)
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
