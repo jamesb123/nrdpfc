@@ -87,6 +87,8 @@ class Sample < ActiveRecord::Base
   before_create :assign_project_id
   before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
+#  before_save :assign_locality_type, :if => :has_locality_type?
+#  before_save :assign_locality_type
 
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :UTM_datum, :if => :requires_utm_datum?
@@ -97,6 +99,18 @@ class Sample < ActiveRecord::Base
       errors.add(:UTM_datum, "must include the UTM Zone") if requires_utm_datum? && geocoords.utm_zone.nil?
       errors.add(:UTM_datum, "must include the UTM Datum used") if requires_utm_datum? && geocoords.utm_datum_version.nil?
     end
+  end
+  
+  def assign_locality_type
+    self.locality = Sample.find_by_locality_type_id
+  end
+  
+  def find_locality_description
+    @localitytype = locality_type.find(params[:locality_type_id])    
+  end
+  
+  def has_locality_type?
+    !self.locality_type_id.blank? 
   end
 
   def assign_true_coords
@@ -144,6 +158,7 @@ class Sample < ActiveRecord::Base
   def has_coordinates?
     !self.latitude.blank? && !self.longitude.blank?
   end
+  
 
   def assign_date_collected
 #    self.date_collected = 

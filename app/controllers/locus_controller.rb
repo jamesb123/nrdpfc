@@ -1,0 +1,2 @@
+class LocusController < ApplicationController
+end

@@ -20,10 +20,10 @@ class SamplesController < ApplicationController
     :plateposition, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum, :locality, 
-    :locality_comments, :location_accuracy, :storage_building, :storage_room,
+    :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum,  
+    :locality_type, :locality, :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
-    :storage_medium, :locality_type, :tissue_type,:security_settings,:project]  
+    :storage_medium, :tissue_type,:security_settings,:project]  
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
@@ -88,7 +88,8 @@ class SamplesController < ApplicationController
     config.columns[:latitude].label = "Latitude"
     config.columns[:longitude].label = "Longitude"
     config.columns[:UTM_datum].label = "UTM or Datum"
-    config.columns[:locality].label = "Locality"
+    config.columns[:locality_type].label = "Locality"
+    config.columns[:locality].label = "Original Locality"
     config.columns[:locality_comments].label = "Locality Comments"
     config.columns[:location_accuracy].label = "Loc. Accuaracy"
     config.columns[:location_measurement_method].label = "Location Measurement Method"
@@ -212,7 +213,7 @@ class SamplesController < ApplicationController
     If not, indicate the Datum used.
     END
 
-    config.columns[:locality].tooltip = <<-END
+    config.columns[:locality_type].tooltip = <<-END
     This is a pull-down menu for different<br>
     locality types (e.g. National Park, Provincial Park, etc…).
     END
@@ -270,9 +271,15 @@ class SamplesController < ApplicationController
     END
 
   end
+
+  protected
   
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
   
+  def before_update_save(record)
+    record.locality = record.locality_type
+#    record.locality = localityType.find_by_id(session[:locality_type_id])
+  end
 end
