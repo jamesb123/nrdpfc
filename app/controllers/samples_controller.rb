@@ -29,9 +29,9 @@ class SamplesController < ApplicationController
     config.search.columns << :organism
      
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.update.columns.exclude :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.list.columns.exclude  :project, :type_lat_long
+    config.create.columns.exclude :locality, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude :locality, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.list.columns.exclude  :project, :type_lat_long, :locality_type
 
     config.list.per_page = 25
     # The split tables can't update after an edit,
@@ -89,7 +89,7 @@ class SamplesController < ApplicationController
     config.columns[:longitude].label = "Longitude"
     config.columns[:UTM_datum].label = "UTM or Datum"
     config.columns[:locality_type].label = "Locality"
-    config.columns[:locality].label = "Original Locality"
+    config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
     config.columns[:location_accuracy].label = "Loc. Accuaracy"
     config.columns[:location_measurement_method].label = "Location Measurement Method"
@@ -277,9 +277,5 @@ class SamplesController < ApplicationController
   def conditions_for_collection
     ['samples.project_id = (?)', current_project_id ]
   end
-  
-  def before_update_save(record)
-    record.locality = record.locality_type
-#    record.locality = localityType.find_by_id(session[:locality_type_id])
-  end
+
 end

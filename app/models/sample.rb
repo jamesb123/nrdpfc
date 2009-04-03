@@ -87,8 +87,7 @@ class Sample < ActiveRecord::Base
   before_create :assign_project_id
   before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
-#  before_save :assign_locality_type, :if => :has_locality_type?
-#  before_save :assign_locality_type
+  before_save :assign_locality_type, :if => :has_locality_type?
 
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :UTM_datum, :if => :requires_utm_datum?
@@ -102,11 +101,7 @@ class Sample < ActiveRecord::Base
   end
   
   def assign_locality_type
-    self.locality = Sample.find_by_locality_type_id
-  end
-  
-  def find_locality_description
-    @localitytype = locality_type.find(params[:locality_type_id])    
+    # self.locality =  self.locality_type.to_label
   end
   
   def has_locality_type?
