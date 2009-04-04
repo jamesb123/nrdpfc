@@ -101,7 +101,7 @@ class Sample < ActiveRecord::Base
   end
   
   def assign_locality_type
-    self.locality =  self.locality_type.to_label
+    self.locality_type_text =  self.locality_type.to_label
   end
   
   def has_locality_type?

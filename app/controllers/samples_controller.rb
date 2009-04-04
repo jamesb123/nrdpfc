@@ -21,7 +21,7 @@ class SamplesController < ApplicationController
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum,  
-    :locality_type, :locality, :locality_comments, :location_accuracy, :storage_building, :storage_room,
+    :locality_type, :locality_type_text, :locality, :locality_comments, :location_accuracy, :storage_building, :storage_room,
     :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
     :storage_medium, :tissue_type,:security_settings,:project]  
     # search associated organism colum
@@ -29,10 +29,9 @@ class SamplesController < ApplicationController
     config.search.columns << :organism
      
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-    config.create.columns.exclude :locality, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.update.columns.exclude :locality, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.list.columns.exclude  :project, :type_lat_long, :locality_type
-
     config.list.per_page = 25
     # The split tables can't update after an edit,
     # so we just have to do the edit in a new page
@@ -88,7 +87,7 @@ class SamplesController < ApplicationController
     config.columns[:latitude].label = "Latitude"
     config.columns[:longitude].label = "Longitude"
     config.columns[:UTM_datum].label = "UTM or Datum"
-    config.columns[:locality_type].label = "Locality"
+    config.columns[:locality_type_text].label = "Locality Type"
     config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
     config.columns[:location_accuracy].label = "Loc. Accuaracy"

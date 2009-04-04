@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090317155751) do
+ActiveRecord::Schema.define(:version => 20090403192734) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -141,9 +141,7 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "a"
-    t.string  "l3"
-    t.string  "ZFX/SRY"
+    t.string  "1"
   end
 
   create_table "gender_final_horizontals_2", :force => true do |t|
@@ -190,6 +188,13 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.string  "organism_code", :limit => 128
   end
 
+  create_table "gender_final_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code", :limit => 128
+    t.string  "1"
+  end
+
   create_table "genders", :force => true do |t|
     t.integer "sample_id"
     t.integer "project_id"
@@ -204,6 +209,16 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
   create_table "locality_types", :force => true do |t|
     t.string "locality_type_name"
     t.string "locality_type_desc"
+  end
+
+  create_table "locus", :force => true do |t|
+    t.string   "locus"
+    t.string   "region"
+    t.string   "marker"
+    t.string   "conditions_data"
+    t.string   "pdf_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mhc_final_horizontals", :force => true do |t|
@@ -236,6 +251,8 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "1a"
+    t.string  "1b"
     t.string  "aa"
     t.string  "ab"
     t.string  "socola"
@@ -292,6 +309,18 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+  end
+
+  create_table "mhc_final_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code", :limit => 128
+    t.string  "1a"
+    t.string  "1b"
+    t.string  "aa"
+    t.string  "ab"
+    t.string  "socola"
+    t.string  "socolb"
   end
 
   create_table "mhc_seqs", :force => true do |t|
@@ -1168,6 +1197,14 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "377b"
   end
 
+  create_table "microsatellite_final_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code", :limit => 128
+    t.integer "2a"
+    t.integer "2b"
+  end
+
   create_table "microsatellite_horizontals", :force => true do |t|
     t.integer "project_id"
     t.integer "sample_id"
@@ -2023,6 +2060,14 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "377b"
   end
 
+  create_table "microsatellite_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "sample_id"
+    t.integer "organism_index"
+    t.integer "2a"
+    t.integer "2b"
+  end
+
   create_table "microsatellites", :force => true do |t|
     t.integer "sample_id"
     t.integer "project_id"
@@ -2075,6 +2120,7 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code",                         :limit => 128
+    t.string  "1"
     t.string  "Control Region"
     t.string  "Control region, Yoshida et al. (2001)"
     t.string  "cytochrome b"
@@ -2139,6 +2185,17 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.string  "organism_code",  :limit => 128
     t.string  "Control Region"
     t.string  "cytochrome b"
+  end
+
+  create_table "mt_dna_final_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code",                         :limit => 128
+    t.string  "1"
+    t.string  "Control Region"
+    t.string  "Control region, Yoshida et al. (2001)"
+    t.string  "cytochrome b"
+    t.string  "mtDNA"
   end
 
   create_table "mt_dna_seqs", :force => true do |t|
@@ -2275,7 +2332,7 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.string   "longitude"
     t.string   "UTM_datum"
     t.string   "locality"
-    t.string   "locality_type"
+    t.string   "locality_type_text"
     t.string   "locality_comments"
     t.string   "location_accuracy"
     t.string   "storage_building"
@@ -2379,6 +2436,7 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code",     :limit => 128
+    t.string  "1"
     t.string  "34a"
     t.string  "34b"
     t.string  "41a"
@@ -2454,6 +2512,19 @@ ActiveRecord::Schema.define(:version => 20090317155751) do
     t.string  "34b"
     t.string  "41a"
     t.string  "41b"
+    t.string  "Y-Intron"
+  end
+
+  create_table "y_chromosome_final_horizontals_9", :force => true do |t|
+    t.integer "project_id"
+    t.integer "organism_id"
+    t.string  "organism_code",     :limit => 128
+    t.string  "1"
+    t.string  "34a"
+    t.string  "34b"
+    t.string  "41a"
+    t.string  "41b"
+    t.string  "many grasshoppers"
     t.string  "Y-Intron"
   end
 
