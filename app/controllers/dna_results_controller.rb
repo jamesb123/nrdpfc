@@ -30,7 +30,7 @@ class DnaResultsController < ApplicationController
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
     config.columns[:sample].form_ui = :record_select
-#   config.columns[:sample].form_ui = :select
+    # config.columns[:extraction_method].form_ui = :select
     
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>

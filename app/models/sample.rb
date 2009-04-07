@@ -56,7 +56,8 @@ class Sample < ActiveRecord::Base
   belongs_to :shippingmaterial
   belongs_to :tissue_type
   belongs_to :extraction_method
-
+  belongs_to :locus
+  
   has_many :y_chromosome_seqs
   has_many :y_chromosomes
   has_many :microsatellite_horizontals

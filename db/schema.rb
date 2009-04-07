@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090403192734) do
+ActiveRecord::Schema.define(:version => 20090406012801) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.string  "xy_position"
     t.boolean "dna_remaining"
     t.text    "comments"
+    t.integer "extraction_method_id"
   end
 
   create_table "dynamic_attribute_values", :force => true do |t|
@@ -204,6 +205,7 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.boolean "finalResult"
     t.string  "locus"
     t.text    "comments"
+    t.integer "locu_id"
   end
 
   create_table "locality_types", :force => true do |t|
@@ -341,6 +343,7 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.string  "wellNum"
     t.boolean "finalResult"
     t.text    "comments"
+    t.integer "locu_id"
   end
 
   create_table "microsatellite_final_horizontals", :force => true do |t|
@@ -2080,6 +2083,7 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.text    "comments"
     t.decimal "allele_1_peak_height",               :precision => 6, :scale => 2
     t.decimal "allele_2_peak_height",               :precision => 6, :scale => 2
+    t.integer "locu_id"
   end
 
   add_index "microsatellites", ["locus"], :name => "index_microsatellites_on_locus"
@@ -2215,6 +2219,12 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.string  "wellNum"
     t.boolean "finalResult"
     t.text    "comments"
+    t.integer "locu_id"
+  end
+
+  create_table "nats", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organisms", :force => true do |t|
@@ -2224,30 +2234,25 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
   end
 
   create_table "primers", :force => true do |t|
-    t.string   "name"
-    t.string   "region"
-    t.string   "marker"
-    t.string   "forward_reverse"
-    t.string   "label"
-    t.string   "taxon_isolated_from"
-    t.string   "paper_reference"
-    t.string   "sequence_entry_1"
-    t.string   "sequence_entry_2"
-    t.string   "comments"
-    t.datetime "date_primer_ordered"
-    t.string   "company"
-    t.string   "lot_number"
-    t.string   "room"
-    t.string   "freezer"
-    t.string   "box_number"
-    t.string   "lane_inactive"
-    t.string   "lane_active"
-    t.string   "box_type"
-    t.float    "estimated_40uM_stock"
-    t.float    "estimated_100uM_stock"
-    t.float    "estimated_200uM_stock"
-    t.string   "entered_by"
-    t.string   "date_primer_received"
+    t.string  "primer"
+    t.string  "label"
+    t.integer "locus_id"
+    t.string  "paper_reference"
+    t.string  "primer_sequence"
+    t.string  "comments"
+    t.date    "date_primer_ordered"
+    t.string  "company"
+    t.string  "lot_number"
+    t.date    "date_primer_received"
+    t.string  "room"
+    t.string  "freezer"
+    t.string  "box_number"
+    t.string  "box_type"
+    t.string  "lane_inactive"
+    t.string  "lane_active"
+    t.string  "entered_by"
+    t.integer "stock_conc"
+    t.integer "alquot_conc"
   end
 
   create_table "projects", :force => true do |t|
@@ -2546,6 +2551,7 @@ ActiveRecord::Schema.define(:version => 20090403192734) do
     t.string  "wellNum"
     t.boolean "finalResult"
     t.text    "comments"
+    t.integer "locu_id"
   end
 
 end

@@ -82,6 +82,8 @@
     controller: "users"
   - label: "Addresses"
     controller: "addresses"
+  - label: "Locus"
+    controller: "locus"
 - label: "Queries"
   controller: "query"
 - label: "Help"
