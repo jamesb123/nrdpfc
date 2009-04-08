@@ -15,6 +15,8 @@
 class YChromosome < ActiveRecord::Base
   belongs_to :sample
   belongs_to :project
+  belongs_to :locu
+  
   before_create :assign_project_id
   after_save :flag_project_for_update
   

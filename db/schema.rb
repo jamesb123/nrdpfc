@@ -2234,9 +2234,10 @@ ActiveRecord::Schema.define(:version => 20090406012801) do
   end
 
   create_table "primers", :force => true do |t|
+    t.integer "locu_id"
     t.string  "primer"
     t.string  "label"
-    t.integer "locus_id"
+    t.text    "locus_text"
     t.string  "paper_reference"
     t.string  "primer_sequence"
     t.string  "comments"

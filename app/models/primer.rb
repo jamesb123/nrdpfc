@@ -1,6 +1,7 @@
 class Primer < ActiveRecord::Base
   
-  belongs_to :locus
+  belongs_to :locu
+  
   include SecuritySets::AdminOnly
   
 end

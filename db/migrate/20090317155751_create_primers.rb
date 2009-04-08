@@ -1,9 +1,10 @@
 class CreatePrimers < ActiveRecord::Migration
   def self.up
     create_table :primers do |t|
+      t.column :locu_id, :integer
       t.column :primer, :string
       t.column :label, :string
-      t.column :locus_id, :integer
+      t.column :locus_text, :text
       t.column :paper_reference, :string
       t.column :primer_sequence, :string
       t.column :comments, :string

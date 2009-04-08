@@ -17,6 +17,7 @@ class Mhc < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :sample
+  belongs_to :locu
   
   after_save :flag_project_for_update
   extend Exportables::ExportableModel
