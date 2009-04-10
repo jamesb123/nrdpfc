@@ -2,7 +2,7 @@ class YChromosomesController < ApplicationController
   layout "tabs"
   active_scaffold :y_chromosomes do |config|
     config.label = "y Chromosome"
-    config.columns = [:project, :sample, :sample_id, :locus, :haplotype,  :wellNum, :gelNum, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id, :locu, :locus, :haplotype,  :wellNum, :gelNum, :comments, :finalResult]
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
@@ -19,7 +19,9 @@ class YChromosomesController < ApplicationController
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].form_ui = :record_select
-#    config.columns[:sample].form_ui = :select
+    config.columns[:locus].label = "Locus Text"
+    config.columns[:locu].label = "Locus"
+    config.columns[:locu].form_ui = :select
   end
   
   include ResultTableSharedMethods  

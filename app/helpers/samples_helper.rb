@@ -30,9 +30,14 @@ module SamplesHelper
 
   def location_accuracy_form_column(record, input_name)
     select_tag(input_name, options_for_select([  ['', ''], ['Very Accurate (to 2m)', 'Very Accurate (to 2m)'], ['Accurate (to 10m)', 'Accurate (to 10m)'], ['Reliable (to 100m)', 'Reliable (to 100m)'], ['Approximate (to 500m)', 'Approximate (to 500m)'], ['Moderate (to 1000m)', 'Moderate (to 1000m)'], ['General (to 10,000m)', 'General (to 10,000m)'], ['Vague (to 100,000m)', 'Vague (to 100,000m)'] ], record.type_lat_long))
+  end
+  
+
+  def location_measurement_method_form_column(record, input_name)
+    select_tag(input_name, options_for_select([ ['', ''], ['Random', 'Random'], ['Measured', 'Measured'], ['Centroid', 'Centroid'] ], record.type_lat_long))
   end 
 
-  # day
+# day
 #  def collected_on_day_form_column(record, input_name)
 #    select_day(record[:collected_on_day], :prefix => input_name, :include_blank => true)
 #  end

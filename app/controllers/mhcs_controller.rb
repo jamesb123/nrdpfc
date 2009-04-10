@@ -2,7 +2,7 @@ class MhcsController < ApplicationController
   layout "tabs"
   
   active_scaffold :mhcs do |config|
-    config.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id, :locu, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult]
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
@@ -21,7 +21,9 @@ class MhcsController < ApplicationController
     config.columns[:gelNum].label = "Gel Num"
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].form_ui = :record_select
-#    config.columns[:sample].form_ui = :select
+    config.columns[:locus].label = "Locus Text"
+    config.columns[:locu].label = "Locus"
+    config.columns[:locu].form_ui = :select
 
   end
 

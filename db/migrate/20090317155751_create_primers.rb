@@ -4,7 +4,7 @@ class CreatePrimers < ActiveRecord::Migration
       t.column :locu_id, :integer
       t.column :primer, :string
       t.column :label, :string
-      t.column :locus_text, :text
+      t.column :locus_text, :string
       t.column :paper_reference, :string
       t.column :primer_sequence, :string
       t.column :comments, :string

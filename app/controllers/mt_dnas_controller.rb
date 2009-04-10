@@ -2,7 +2,7 @@ class MtDnasController < ApplicationController
   layout "tabs"
   active_scaffold :mt_dnas do |config|
     config.label = "mtDNA"
-    config.columns = [:project, :sample,  :sample_id,  :locus, :haplotype, :gelNum, :wellNum, :finalResult, :comments]
+    config.columns = [:project, :sample,  :sample_id,  :locu, :locus, :haplotype, :gelNum, :wellNum, :finalResult, :comments]
     config.list.columns.exclude :project
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
@@ -18,6 +18,9 @@ class MtDnasController < ApplicationController
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].form_ui = :record_select
+    config.columns[:locus].label = "Locus Text"
+    config.columns[:locu].label = "Locus"
+    config.columns[:locu].form_ui = :select
   
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>

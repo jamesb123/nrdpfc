@@ -1,7 +1,7 @@
 class GendersController < ApplicationController
   layout "tabs"
   active_scaffold :genders do |config|
-    config.columns = [:project, :sample, :sample_id , :gender, :locus, :wellNum, :gelNum, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id , :gender, :locu, :locus, :wellNum, :gelNum, :comments, :finalResult]
 
     config.columns[:sample].label = "Organism Code (SID)"
     config.columns[:sample_id].label = "Sample ID"
@@ -18,8 +18,10 @@ class GendersController < ApplicationController
 
     config.columns[:finalResult].form_ui = :checkbox
     config.columns[:sample].form_ui = :record_select
-#    config.columns[:sample].form_ui = :select
-  
+    config.columns[:locu].form_ui = :select
+    config.columns[:locus].label = "Locus Text"
+    config.columns[:locu].label = "Locus"
+    
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>
     and "Organism Sample Index" from the "Sample" table.<br>
