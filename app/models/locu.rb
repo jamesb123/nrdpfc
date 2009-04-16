@@ -6,6 +6,7 @@ class Locu < ActiveRecord::Base
   has_many :mhcs
   has_many :primers
   
+  extend Exportables::ExportableModel
   include SecuritySets::AdminOnly
   
   def to_label 

@@ -54,7 +54,7 @@ class SamplesController < ApplicationController
     
     config.columns[:extraction_method].form_ui = :select
     config.columns[:shippingmaterial].form_ui = :select
-#    config.columns[:storage_medium].form_ui = :select
+    config.columns[:storage_medium].form_ui = :select
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select

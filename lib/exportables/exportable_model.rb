@@ -46,7 +46,16 @@ module Exportables::ExportableModel
   end
   
   def exportable_fields
+    column_strings = self.columns.map(&:name)
+
+    related_controller.active_scaffold_config.list.columns.map(&:name).map(&:to_s).select {|c| self.column_strings.include?(c) }
+  rescue
     self.columns.map(&:name)
+  end
+
+  def related_controller
+    ctl_name = "#{table_name}_controller".camelcase
+    Object.const_get(ctl_name)
   end
   
   def exportable_non_id_fields

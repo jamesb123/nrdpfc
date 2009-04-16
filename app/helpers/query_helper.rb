@@ -31,7 +31,8 @@ module QueryHelper
   def picklist_field(table, field, name)
     picklists = %w( project_id extraction_method_id extraction_method
       shippingmaterial_id locality_type locality_type_id
-      tissue_type tissue_type_id )
+      tissue_type tissue_type_id locus locu_id storage_medium
+      storage_medium_id)
 
     if picklists.include?(field)
       related = picklist_column(table, field)
