@@ -78,7 +78,7 @@ class GeoCoordinates
   end
 
   def value_is_number?(value)
-    (value.to_f.to_s == value || value.to_i.to_s == value || value.match(/\d+\.\d+e\+\d+/))
+    (value.match(/[-]?\d+(\.\d+)?/) || value.to_f.to_s == value || value.to_i.to_s == value || value.match(/\d+\.\d+e\+\d+/))
   end
 
   def valid_decimal_range?(value)
