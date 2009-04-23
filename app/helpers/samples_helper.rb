@@ -1,4 +1,5 @@
 module SamplesHelper
+
   def options_for_association_conditions(association)
     if association.name == :organism
       ['project_id = ?', current_project]
@@ -6,6 +7,10 @@ module SamplesHelper
       super
     end
   end
+  
+#  def country_form_column(record,input_name)
+#    select(record, input_name, state_select(record, input_name))   
+#  end
   
   def date_received_form_column(record, input_name)
     date_select :record, :date_received, :name => input_name, :include_blank => true

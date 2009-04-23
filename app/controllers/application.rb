@@ -4,6 +4,7 @@
 
 require "current_project_helpers"
 require 'digest/sha1'
+require "state_select"
 
 class ApplicationController < ActionController::Base
 

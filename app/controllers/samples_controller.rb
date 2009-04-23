@@ -1,6 +1,6 @@
 class SamplesController < ApplicationController
   layout "tabs"
-  
+  include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
@@ -12,11 +12,12 @@ class SamplesController < ApplicationController
   def record_select_conditions_from_controller
     [ 'samples.project_id = ?', current_project_id ]
   end
-  
+
+
   include GoToOrganismCode::Controller
 
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :tubebc, :platebc, 
+    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :sample_bc, :platebc, 
     :plateposition, :batch_number, :shippingmaterial, :country, :province,
     :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
@@ -65,7 +66,7 @@ class SamplesController < ApplicationController
     config.columns[:collected_on_year].label = "Collected Year "
   
     config.columns[:shippingmaterial].label = "Shipping Medium"
-    config.columns[:tubebc].label = "Sample Bar Code"
+    config.columns[:sample_bc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
     config.columns[:field_code].label = "Field Code"
