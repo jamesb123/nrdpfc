@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090420182928) do
+ActiveRecord::Schema.define(:version => 20090423234314) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -2336,7 +2336,7 @@ ActiveRecord::Schema.define(:version => 20090420182928) do
     t.text     "submitter_comments"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "UTM_datum"
+    t.string   "coordinate_system"
     t.string   "locality"
     t.string   "locality_type_text"
     t.string   "locality_comments"

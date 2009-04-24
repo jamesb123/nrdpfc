@@ -17,14 +17,15 @@ class SamplesController < ApplicationController
   include GoToOrganismCode::Controller
 
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :sample_bc, :platebc, 
-    :plateposition, :batch_number, :shippingmaterial, :country, :province,
-    :date_collected, :collected_on_year, :collected_on_month,  :collected_on_day, :collected_by, 
+    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :country, :province, 
+    :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
+    :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
+    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :type_lat_long, :location_measurement_method, :latitude, :longitude, :UTM_datum,  
-    :locality_type, :locality_type_text, :locality, :locality_comments, :location_accuracy, :storage_building, :storage_room,
-    :storage_fridge, :storage_box, :xy_position, :tissue_remaining, :extraction_method,
-    :storage_medium, :tissue_type,:security_settings,:project]  
+    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
+    :sample_bc, :platebc, :plateposition, :batch_number, 
+    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box, :xy_position, :tissue_remaining,  :security_settings,:project ]
+    
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
@@ -87,7 +88,7 @@ class SamplesController < ApplicationController
     config.columns[:submitter_comments].label = "Submitter Comments"
     config.columns[:latitude].label = "Latitude"
     config.columns[:longitude].label = "Longitude"
-    config.columns[:UTM_datum].label = "UTM or Datum"
+    config.columns[:coordinate_system].label = "Coordinate System"
     config.columns[:locality_type_text].label = "Locality Type"
     config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
@@ -192,8 +193,8 @@ class SamplesController < ApplicationController
     In decimal degrees or in degrees,<br>
     but you need to specify which one in the<br>
     Type-Lat-Long field.  Can also be the<br>
-    Northing/Southing number for UTM data,<br>
-    but you will need to specify your projection in the "UTM" field.
+    Northing/Southing number for coordinate system,<br>
+    but you will need to specify your projection in the "Coordinate System" field.
     END
   
     config.columns[:longitude].tooltip = <<-END
@@ -201,15 +202,15 @@ class SamplesController < ApplicationController
     In decimal degrees or in degrees,<br>
     but you need to specify which one in the<br>
     Type-Lat-Long field.  Can also be the<br>
-    Easting/Westing number if you have UTM data,<br>
-    but you will need to specify your projection in the "UTM" field.
+    Easting/Westing number if you have Coordinate System data,<br>
+    but you will need to specify your projection in the "Coordinate System" field.
     END
 
-    config.columns[:UTM_datum].tooltip = <<-END
-    If you have UTM location data,<br>
+    config.columns[:coordinate_system].tooltip = <<-END
+    If you have Coordinate System location data,<br>
     then this field should contain the projection<br>
     in which your location data are formatted.<br>
-    If you have UTM coordinates, indicate the zone.<br>
+    If you have Coordinate System coordinates, indicate the zone.<br>
     If not, indicate the Datum used.
     END
 

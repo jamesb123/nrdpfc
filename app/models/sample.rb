@@ -28,7 +28,7 @@
 #  submitter_comments   :text          
 #  latitude             :float         
 #  longitude            :float         
-#  UTM_datum            :string(255)   
+#  coordinate_system            :string(255)   
 #  locality             :string(255)   
 #  locality_type        :string(255)   
 #  locality_comments    :string(255)   
@@ -91,13 +91,13 @@ class Sample < ActiveRecord::Base
   before_save :assign_locality_type, :if => :has_locality_type?
 
   validates_presence_of :type_lat_long, :if => :has_coordinates?
-  validates_presence_of :UTM_datum, :if => :requires_utm_datum?
+  validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
 
   def validate
     if has_coordinates?
       errors.add(:base, "Latitude and Longitude must be written in the chosen format") unless geocoords.format_correct?
-      errors.add(:UTM_datum, "must include the UTM Zone") if requires_utm_datum? && geocoords.utm_zone.nil?
-      errors.add(:UTM_datum, "must include the UTM Datum used") if requires_utm_datum? && geocoords.utm_datum_version.nil?
+      errors.add(:coordinate_system, "must include the UTM Zone") if requires_coordinate_system? && geocoords.utm_zone.nil?
+      errors.add(:coordinate_system, "must include the UTM Datum used") if requires_coordinate_system? && geocoords.coordinate_system_version.nil?
     end
   end
   
@@ -142,11 +142,11 @@ class Sample < ActiveRecord::Base
   def geocoords
     @geocoords ||= GeoCoordinates.new(:longitude => self.longitude,
                                       :latitude => self.latitude,
-                                      :utm_datum => self.UTM_datum,
+                                      :coordinate_system => self.coordinate_system,
                                       :format => self.type_lat_long)
   end
 
-  def requires_utm_datum?
+  def requires_coordinate_system?
     has_coordinates? &&
     self.geocoords.data_format == :utm
   end

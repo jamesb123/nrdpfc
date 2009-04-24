@@ -1,5 +1,5 @@
 class GeoCoordinates
-  attr_accessor :longitude, :latitude, :utm_datum, :format
+  attr_accessor :longitude, :latitude, :coordinate_system, :format
 
   def initialize(opts)
     opts.each do |k,v|
@@ -38,8 +38,8 @@ class GeoCoordinates
     valid_decimal_range?(number) ? number : nil
   end
 
-  def utm_datum_version
-    if !self.utm_datum.nil? && self.utm_datum.match(/27/)
+  def coordinate_system_version
+    if !self.coordinate_system.nil? && self.coordinate_system.match(/27/)
       :nad27
     else
       # NAD83 and WGS84 are identical (enough)
@@ -49,12 +49,12 @@ class GeoCoordinates
   end
 
   def utm_zone
-    return nil if self.utm_datum.nil?
-    match = self.utm_datum.match(/zone\s*(\d{1,2})/i)
+    return nil if self.coordinate_system.nil?
+    match = self.coordinate_system.match(/zone\s*(\d{1,2})/i)
     unless match.nil?
       match[0]
     else
-      match  = self.utm_datum.match(/^(?:.*\W)?(\d{1,2})\w(\W.*)?$/)
+      match  = self.coordinate_system.match(/^(?:.*\W)?(\d{1,2})\w(\W.*)?$/)
       match[0] unless match.nil?
     end
   end
