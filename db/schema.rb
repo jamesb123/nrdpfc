@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090423234314) do
+ActiveRecord::Schema.define(:version => 20090424143951) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20090423234314) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_id"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.string   "filename"
+    t.integer  "size"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at"
   end
 
   create_table "country_orig", :force => true do |t|
@@ -2314,10 +2322,10 @@ ActiveRecord::Schema.define(:version => 20090423234314) do
     t.integer  "project_id"
     t.integer  "organism_id"
     t.string   "organism_index"
-    t.string   "sample_bc"
-    t.string   "platebc"
-    t.string   "plateposition"
     t.string   "field_code"
+    t.string   "sample_bc"
+    t.string   "plateposition"
+    t.string   "platebc"
     t.string   "batch_number"
     t.string   "tissue_type"
     t.string   "storage_medium_text"

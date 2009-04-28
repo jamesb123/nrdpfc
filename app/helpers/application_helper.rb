@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+#  include ActiveUploadHelper
 
   def project_form_column(record, input_name)
     projects = current_user.is_admin ?

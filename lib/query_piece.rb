@@ -51,10 +51,6 @@ class QueryPiece
     select_fields = select.empty? ? ["*"] : select
     
     q = ""
-# JWB added DISTINCT clause 2008/10/21
-# JWB - put back original form without distinct 
-# educate user to include unique id
-#    q << "SELECT DISTINCT #{select_fields * ', '}\n"
     q << "SELECT #{select_fields * ', '}\n"
     q << "FROM #{from}\n"
     q << "#{join * "\n"}\n" unless join.blank?

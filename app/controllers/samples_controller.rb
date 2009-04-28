@@ -1,6 +1,18 @@
 class SamplesController < ApplicationController
   layout "tabs"
-  include ActionView::Helpers::FormOptionsHelper
+
+  
+  SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
+    :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
+    :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
+    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, 
+    :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
+    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
+    :platebc, :plateposition, :batch_number, 
+    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box, :xy_position, :tissue_remaining,  :security_settings,:project ]
+    
+
+#  include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
@@ -14,18 +26,11 @@ class SamplesController < ApplicationController
   end
 
 
-  include GoToOrganismCode::Controller
+  include GoToOrganismCode::Controller  
 
   active_scaffold :samples do |config|
-    config.columns = [:id, :organism_id, :organism, :organism_index, :field_code, :country, :province, 
-    :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
-    :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
-    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, 
-    :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
-    :sample_bc, :platebc, :plateposition, :batch_number, 
-    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box, :xy_position, :tissue_remaining,  :security_settings,:project ]
-    
+    config.columns = SAMPLES_COLUMNS 
+
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism

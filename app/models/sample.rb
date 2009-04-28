@@ -1,53 +1,4 @@
-# == Schema Information
-#
-# Table name: samples
-#
-#  id                   :integer(11)   not null, primary key
-#  project_id           :integer(11)   
-#  organism_id          :integer(11)   
-#  organism_index       :string(255)   
-#  tubebc               :string(255)   
-#  platebc              :string(255)   
-#  plateposition        :string(255)   
-#  field_code           :string(255)   
-#  batch_number         :string(255)   
-#  tissue_type          :string(255)   
-#  storage_medium       :string(255)   
-#  country              :string(255)   
-#  province             :string(255)   
-#  date_collected       :datetime      
-#  collected_on_day     :integer(11)   
-#  collected_on_month   :integer(11)   
-#  collected_on_year    :integer(11)   
-#  collected_by         :string(255)   
-#  date_received        :datetime      
-#  received_by          :string(255)   
-#  receiver_comments    :text          
-#  date_submitted       :datetime      
-#  submitted_by         :string(255)   
-#  submitter_comments   :text          
-#  latitude             :float         
-#  longitude            :float         
-#  coordinate_system            :string(255)   
-#  locality             :string(255)   
-#  locality_type        :string(255)   
-#  locality_comments    :string(255)   
-#  location_accuracy    :string(255)   
-#  storage_building     :string(255)   
-#  storage_room         :string(255)   
-#  storage_fridge       :string(255)   
-#  storage_box          :string(255)   
-#  xy_position          :string(255)   
-#  tissue_remaining     :boolean(1)    
-#  type_lat_long        :string(255)   
-#  locality_type_id     :integer(11)   
-#  shippingmaterial_id  :integer(11)   
-#  tissue_type_id       :integer(11)   
-#  province_id          :integer(11)   
-#  storage_medium_id    :integer(11)   
-#  country_id           :integer(11)   
-#  extraction_method_id :integer(11)   
-#
+# see schema at end of model
 
 class Sample < ActiveRecord::Base
   belongs_to :project
@@ -68,7 +19,6 @@ class Sample < ActiveRecord::Base
   has_many :mhc_seqs
   has_many :genders
   has_many :dna_results
-  
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
@@ -92,7 +42,7 @@ class Sample < ActiveRecord::Base
 
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
-
+  
   def validate
     if has_coordinates?
       errors.add(:base, "Latitude and Longitude must be written in the chosen format") unless geocoords.format_correct?
@@ -176,3 +126,53 @@ class Sample < ActiveRecord::Base
   end    
   
 end
+# == Schema Information
+#
+# Table name: samples
+#
+#  id                   :integer(11)   not null, primary key
+#  project_id           :integer(11)   
+#  organism_id          :integer(11)   
+#  organism_index       :string(255)   
+#  tubebc               :string(255)   
+#  platebc              :string(255)   
+#  plateposition        :string(255)   
+#  field_code           :string(255)   
+#  batch_number         :string(255)   
+#  tissue_type          :string(255)   
+#  storage_medium       :string(255)   
+#  country              :string(255)   
+#  province             :string(255)   
+#  date_collected       :datetime      
+#  collected_on_day     :integer(11)   
+#  collected_on_month   :integer(11)   
+#  collected_on_year    :integer(11)   
+#  collected_by         :string(255)   
+#  date_received        :datetime      
+#  received_by          :string(255)   
+#  receiver_comments    :text          
+#  date_submitted       :datetime      
+#  submitted_by         :string(255)   
+#  submitter_comments   :text          
+#  latitude             :float         
+#  longitude            :float         
+#  coordinate_system            :string(255)   
+#  locality             :string(255)   
+#  locality_type        :string(255)   
+#  locality_comments    :string(255)   
+#  location_accuracy    :string(255)   
+#  storage_building     :string(255)   
+#  storage_room         :string(255)   
+#  storage_fridge       :string(255)   
+#  storage_box          :string(255)   
+#  xy_position          :string(255)   
+#  tissue_remaining     :boolean(1)    
+#  type_lat_long        :string(255)   
+#  locality_type_id     :integer(11)   
+#  shippingmaterial_id  :integer(11)   
+#  tissue_type_id       :integer(11)   
+#  province_id          :integer(11)   
+#  storage_medium_id    :integer(11)   
+#  country_id           :integer(11)   
+#  extraction_method_id :integer(11)   
+#

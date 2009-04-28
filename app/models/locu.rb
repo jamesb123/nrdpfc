@@ -8,6 +8,9 @@ class Locu < ActiveRecord::Base
   
   extend Exportables::ExportableModel
   include SecuritySets::AdminOnly
+
+# plugin file column
+  file_column :pdf_name
   
   def to_label 
     "#{locus}" 
