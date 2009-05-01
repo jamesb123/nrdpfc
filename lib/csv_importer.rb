@@ -1,14 +1,20 @@
 class CsvImporter < Struct.new(:data, :model)
   class ParseError < StandardError; end
 
+  RESULTS_TABLES = [ 'Gender', 'DnaResults', 'YChromosome', 'Mhc', 'MtDna' ]
+
   attr_writer :overwrite
   def overwrite?
     @overwrite == true
   end
 
-  def import_records(for_real=false)
+  def valid?
+    self.import_records(false)
+  end
+
+  def import_records(for_real=true)
     records.each_with_index do |row,index|
-      line_no = index + 1 
+      line_no = index + 2
 
       begin
         import_sample(row, for_real)
@@ -156,7 +162,7 @@ class CsvImporter < Struct.new(:data, :model)
 
   def self.import(data, model)
     obj = new(data, model)
-    obj.import_records(true) if obj.import_records
+    obj.import_records if obj.valid?
 
     return obj.errors
   end

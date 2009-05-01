@@ -88,5 +88,13 @@
     controller: "primers"
 - label: "Queries"
   controller: "query"
+  sub_tabs:
+  - label: 'Query builder'
+    controller: 'query'
+    selected_if: 'params[:action] == "index"'
+  - label: "Import"
+    controller: 'query'
+    selected_if: 'params[:action] == "import"'
+    action: 'import'
 - label: "Help"
   controller: "videos"
