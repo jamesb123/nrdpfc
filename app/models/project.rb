@@ -87,11 +87,15 @@ class Project < ActiveRecord::Base
   def security_setting
     current_user.authorization_display_for(self)
   end
+
+  def flag_for_update
+    recompile_required = true
+    save(false)
+  end
   
   def self.flag_for_update(project)
     project = Project.find(project) unless project.is_a?(ActiveRecord::Base)
-    project.recompile_required = true
-    project.save(false)
+    project.flag_for_update
   end
   
   def self.current_users_accessible_projects
