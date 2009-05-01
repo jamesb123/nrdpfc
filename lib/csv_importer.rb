@@ -1,8 +1,6 @@
 class CsvImporter < Struct.new(:data, :model)
   class ParseError < StandardError; end
 
-  RESULTS_TABLES = [ 'Gender', 'DnaResults', 'YChromosome', 'Mhc', 'MtDna' ]
-
   attr_writer :overwrite
   def overwrite?
     @overwrite == true

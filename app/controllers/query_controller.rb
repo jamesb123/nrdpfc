@@ -36,8 +36,8 @@ class QueryController < ApplicationController
     @messages = []
 
     if request.post?
-      if CsvImporter::RESULTS_TABLES.include?(params[:model])
-        klass = Object.const_get(params[:model])
+      if Sample::RESULT_TABLES.include?(params[:model])
+        klass = Object.const_get(params[:model].camelcase)
 
         importer = CsvImporter.new(params[:import_file].read, klass)
         importer.overwrite = true unless params[:overwrite].blank?
