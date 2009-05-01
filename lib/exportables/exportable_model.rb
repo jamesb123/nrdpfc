@@ -48,14 +48,20 @@ module Exportables::ExportableModel
   def exportable_fields
     column_strings = self.columns.map(&:name)
 
-    related_controller.active_scaffold_config.list.columns.map(&:name).map(&:to_s).select {|c| self.column_strings.include?(c) }
-  rescue
-    self.columns.map(&:name)
+    if related_controller && related_controller.respond_to?(:active_scaffold_config)
+      as_columns = related_controller.active_scaffold_config.list.columns
+      as_column_names = as_columns.map(&:name).map(&:to_s)
+      as_column_names.select {|c| column_strings.include?(c) }
+    else
+      column_strings
+    end
   end
 
   def related_controller
     ctl_name = "#{table_name}_controller".camelcase
     Object.const_get(ctl_name)
+  rescue
+    nil
   end
   
   def exportable_non_id_fields
