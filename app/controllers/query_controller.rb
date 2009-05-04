@@ -35,7 +35,7 @@ class QueryController < ApplicationController
   def import
     @messages = []
 
-    if request.post?
+    if request.post? && !params[:model].blank? && !params[:import_file].blank? 
       if CsvImporter::IMPORT_TABLES.include?(params[:model])
         klass = Object.const_get(params[:model].singularize.camelcase)
 
