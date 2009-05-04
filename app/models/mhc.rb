@@ -14,28 +14,16 @@
 #
 
 class Mhc < ActiveRecord::Base
-  
-  belongs_to :project
   belongs_to :sample
   belongs_to :locu
   
-  after_save :flag_project_for_update
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
+  include ProjectResults
   
-  before_create :assign_project_id
-  
-  def flag_project_for_update
-    Project.flag_for_update(self.project_id)
-  end
-
   def to_label 
     "Ex#: #{locus}" 
-  end
-
-  def assign_project_id
-    self.project_id = current_project_id
   end
 
 end

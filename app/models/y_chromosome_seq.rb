@@ -11,26 +11,15 @@
 #
 
 class YChromosomeSeq < ActiveRecord::Base
-  
-  belongs_to :project
   belongs_to :sample
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
-  
-  before_create :assign_project_id
-  
-  def flag_project_for_update
-    Project.flag_for_update(self.project_id)
-  end
+  include ProjectResults
 
   def to_label 
     "Ex#: #{locus}" 
-  end
-
-  def assign_project_id
-    self.project_id = current_project_id
   end
 
 end

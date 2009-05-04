@@ -14,26 +14,15 @@
 
 class MtDna < ActiveRecord::Base
   belongs_to :sample
-  belongs_to :project
   belongs_to :locu
-  
-  before_create :assign_project_id
-  after_save :flag_project_for_update
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
-  
-  def assign_project_id
-    self.project_id = current_project_id
-  end
+  include ProjectResults
   
   def to_label
    "#{locus}" 
-  end
-
-  def flag_project_for_update
-    Project.flag_for_update(self.project_id)
   end
   
 end

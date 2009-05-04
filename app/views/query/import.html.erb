@@ -1,0 +1,24 @@
+<% form_tag url_for(:controller => 'query', :action => 'import'), :method => 'POST', :multipart => true do %>
+  <ul>
+  <% @messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+
+  <p>
+    <%= label_tag :model %>
+    <%= select_tag :model, import_model_options %>
+  </p>
+
+  <p>
+    <%= label_tag :overwrite %>
+    <%= check_box_tag :overwrite %>
+  </p>
+
+  <p>
+    <%= label_tag :import_file %>
+    <%= file_field_tag :import_file %>
+  </p>
+
+  <%= submit_tag "Import Data" %> 
+<% end %>

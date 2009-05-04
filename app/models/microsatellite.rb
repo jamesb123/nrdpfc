@@ -15,31 +15,21 @@
 
 class Microsatellite < ActiveRecord::Base
   belongs_to :sample
-  belongs_to :project
   belongs_to :locu
   
-  before_create :assign_project_id
   before_save :assign_locus_text
   
-  after_save :flag_project_for_update
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
+  include ProjectResults
 
   def assign_locus_text
-    self.locus = self.locu.to_label
-  end
-
-  def assign_project_id
-    self.project_id = current_project_id
+    self.locus = self.locu.to_label unless self.locu.nil?
   end
   
   def to_label
    "#{self.locus} #{allele1} - #{allele2}"
-  end
-
-  def flag_project_for_update
-    Project.flag_for_update(self.project_id)
   end
   
 end

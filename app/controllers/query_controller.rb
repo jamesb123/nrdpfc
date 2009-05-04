@@ -31,6 +31,24 @@ class QueryController < ApplicationController
   
   def update
   end
+
+  def import
+    @messages = []
+
+    if request.post?
+      if CsvImporter::IMPORT_TABLES.include?(params[:model])
+        klass = Object.const_get(params[:model].singularize.camelcase)
+
+        importer = CsvImporter.new(params[:import_file].read, klass)
+        importer.overwrite = true unless params[:overwrite].blank?
+        importer.import_records if importer.valid?
+
+        @messages = (importer.errors.empty? ? [ "Import successfull" ] : importer.errors)
+      else
+        @messages = [ "Invalid model selection" ]
+      end
+    end
+  end
   
   skip_filter :login_required, :only => [ :georss, :download_csv ]
   def download_csv

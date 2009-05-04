@@ -54,4 +54,9 @@ module QueryHelper
       return related unless related.nil?
     end
   end
+
+  def import_model_options
+    list = CsvImporter::IMPORT_TABLES
+    options_for_select(list.collect {|d| [ d.humanize, d ] })
+  end
 end
