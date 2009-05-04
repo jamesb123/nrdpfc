@@ -56,7 +56,7 @@ module QueryHelper
   end
 
   def import_model_options
-    list = Sample::RESULT_TABLES
+    list = CsvImporter::IMPORT_TABLES
     options_for_select(list.collect {|d| [ d.humanize, d ] })
   end
 end

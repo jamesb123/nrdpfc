@@ -1,6 +1,8 @@
 class CsvImporter < Struct.new(:data, :model)
   class ParseError < StandardError; end
 
+  IMPORT_TABLES = [ Sample::RESULT_TABLES, 'organisms' ].flatten
+
   attr_writer :overwrite
   def overwrite?
     @overwrite == true
@@ -15,7 +17,12 @@ class CsvImporter < Struct.new(:data, :model)
       line_no = index + 2
 
       begin
-        import_sample(row, for_real)
+        case model.to_s
+        when 'Organism'
+          import_organism(row, for_real)
+        else
+          import_results(row, for_real)
+        end
       rescue ParseError => e
         errors << "Line #{line_no} failed: " + e.message
       rescue
@@ -27,10 +34,78 @@ class CsvImporter < Struct.new(:data, :model)
     errors.empty?
   end
 
-  def import_sample(row, save_record=false)
+  def import_organism(row, save_record=false)
     sample = Sample.find(row[sample_id_header])
     raise ParseError.new("Invalid/Missing sample id") if sample.nil?
 
+    unless sample.organism.nil?
+      raise ParseError.new("Sample ID##{sample.id} already has an #{model}")
+    end
+
+    match_on = table_attributes(model, row)
+    if match_on['organism_code'].blank?
+      raise ParseError.new("Missing organism_code for Sample ID##{sample.id}")
+    end
+
+    record = model.find(:first, :conditions => { :organism_code => match_on['organism_code'] })
+    if record.nil?
+      record = model.new(:project_id => sample.project_id)
+      record.attributes = table_attributes(model, row)
+      record.attributes = lookup_values(row)
+    end
+
+    sample.organism_index = if record.new_record? || record.samples.empty?
+      1
+    else
+      first_existing = record.samples.find(:first, :order => 'organism_index desc')
+      first_existing.organism_index.to_i + 1 rescue nil
+    end
+
+    sample.organism = record
+    sample.attributes = table_attributes(Sample, row).reject do |k,v|
+      v.blank? || ![ 'organism_index' ].include?(k)
+    end
+
+    unless record.valid?
+      raise ParseError.new("#{model} is not valid for sample #{sample.id}: #{record.errors.full_messages.join(',')}")
+    end
+
+    unless sample.valid?
+      raise ParseError.new("Sample ID##{sample.id} is not valid: #{sample.errors.full_messages.join(',')}")
+    end
+
+    if save_record
+      record.save! 
+      sample.save!
+    end
+  end
+
+  def import_results(row, save_record=false)
+    sample = Sample.find(row[sample_id_header])
+    raise ParseError.new("Invalid/Missing sample id") if sample.nil?
+
+    record = build_result(sample)
+    record.project_id = sample.project_id
+    result_values = table_attributes(model, row)
+    if result_values.empty?
+      raise ParseError.new("Missing values for #{model}")
+    end
+
+    record.attributes = result_values
+    record.attributes = lookup_values(row)
+
+    unless record.valid?
+      raise ParseError.new("#{model} is not valid for sample #{sample.id}: #{record.errors.full_messages.join(',')}")
+    end
+
+    record.save! if save_record
+  end
+
+  def has_many?
+    HAS_MANY_SAMPLES.include?(model.to_s)
+  end
+
+  def build_result(sample)
     record = model.find_by_sample_id(sample.id)
     if record.nil? || overwrite?
       record ||= model.new
@@ -39,15 +114,8 @@ class CsvImporter < Struct.new(:data, :model)
     end
 
     record.sample_id = sample.id
-    record.project_id = sample.project_id
-    record.attributes = table_attributes(model, row)
-    record.attributes = lookup_values(row)
 
-    unless record.valid?
-      raise ParseError.new("#{model} is not valid for sample #{sample.id}: #{record.errors.full_messages.join(',')}")
-    end
-
-    record.save! if save_record
+    record
   end
 
   def lookup_values(row)
