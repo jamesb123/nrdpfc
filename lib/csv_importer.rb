@@ -186,24 +186,28 @@ class CsvImporter < Struct.new(:data, :model)
   end
 
   def map_header(title)
-    tbl_name, field_name = title.split(' ', 2)
-    tbl = klass_by_title(tbl_name)
+    tbl = cut_model_name(title)
     return nil if tbl.nil?
 
-    valid = tbl.exportable_fields.select do |field|
-      field.titleize_with_id == field_name
-    end
-    return nil if valid.empty?
+    valid = cut_field_name(tbl, title)
+    return nil if valid.nil?
 
     {
       :klass => tbl,
-      :field => valid[0]
+      :field => valid
     }
   end
 
-  def klass_by_title(name)
-    tbl = Object.const_get(name.singularize)
-    return tbl if tbl.superclass == ActiveRecord::Base
+  def cut_model_name(title)
+    Exportables::ExportableModel.models.select do |model|
+      title.match(model.exportable_table_name.titleize_with_id)
+    end.first
+  end
+
+  def cut_field_name(tbl, title)
+    tbl.exportable_fields.select do |field|
+      title.match(field.titleize_with_id)
+    end.first
   end
 
   def headers

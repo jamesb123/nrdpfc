@@ -58,7 +58,7 @@ class QueryController < ApplicationController
       render :text => ""
     else
       self.current_project = @stored_query.project
-      @query = Query.new(:data => @stored_query.located_query)
+      @query = Query.new(:data => @stored_query.data)
       @query_builder = @query.query_builder
 
       csv_string = FasterCSV.generate do |csv|
