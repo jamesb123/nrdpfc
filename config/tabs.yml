@@ -1,4 +1,4 @@
-- label: "Start Here"
+- label: "Projects"
   controller: "projects"
   sub_tabs:
   - label: "Projects"
