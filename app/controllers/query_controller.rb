@@ -61,12 +61,18 @@ class QueryController < ApplicationController
       @query = Query.new(:data => @stored_query.data)
       @query_builder = @query.query_builder
 
-      csv_string = FasterCSV.generate do |csv|
+      tmpfile = Tempfile.new('qbcsv-' + params[:key])
+      begin
+        csv = FasterCSV.new(tmpfile)
         csv << @query_builder.column_headers
-        @query_builder.results.each {|result| csv << result }
+        @query_builder.bulk_records do |result|
+          csv << result
+        end
+      ensure
+        tmpfile.close
       end
 
-      send_data csv_string, :filename => 'query_results.csv'
+      send_file tmpfile.path, :filename => 'query_results.csv'
     end
   end
 

@@ -101,4 +101,13 @@ class Project < ActiveRecord::Base
   def self.current_users_accessible_projects
     current_user && current_user.accessible_projects
   end
+
+  def recompile
+    Compiler.compile_project(self)
+  end
+
+  def compile_each_organism
+    q = Compiler::CompilerBase.organism_query(self)
+    q.bulk_records {|org| yield org }
+  end
 end

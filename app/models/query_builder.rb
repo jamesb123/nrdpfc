@@ -158,6 +158,26 @@ class QueryBuilder
     query_piece.to_sql
   end
 
+  def bulk_sql
+    count_by = 500
+    offset = if @previous_bulk_offset == nil
+       0
+    else
+      @previous_bulk_offset + count_by
+    end
+    @previous_bulk_offset = offset
+
+    to_sql + "LIMIT #{offset}, #{count_by}"
+  end
+
+  def bulk_records
+    while !(list = ActiveRecord::Base.connection.select_all(bulk_sql)).empty?
+      list.each do |row|
+        yield row
+      end
+    end
+  end
+
   def column_headers
     self.select_field_aliases.map(&:titleize_with_id)
   end

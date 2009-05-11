@@ -30,29 +30,28 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
   end
   
   def compile_data
-    samples_query = sample_query_builder.to_sql
     microsatellites_query = microsatellites_query_builder.to_sql
     
     # psuedo algorithm
-    @connection.select_all(samples_query).each{|sample|
+    sample_query_builder.bulk_records do |sample|
       row = {}
       
       row[:project_id] = sample["samples_project_id"]
       row[:sample_id] = sample["samples_id"]
       row[:organism_index] = sample["samples_organism_index"]
       
-      @connection.select_all(microsatellites_query % row[:sample_id]).each { |microsatellite|
+      each(microsatellites_query % row[:sample_id]) do |microsatellite|
         row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
         row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
-      }
+      end
       
       model.insert(row)
-    }
+    end
   end
   
   def create_table
     # generate table scchema
-    ActiveRecord::Base.connection.create_table "microsatellite_horizontals_#{@project_id}", :force => true do |t|
+    ActiveRecord::Base.connection.create_table table_name, :force => true do |t|
       t.integer :project_id
       t.integer :sample_id
       t.integer :organism_index
@@ -62,6 +61,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
         t.column "#{locus}b", *column_args(Microsatellite, "allele2")
       }
     end
+    @connection.add_index table_name, 'sample_id'
     
   end
 end

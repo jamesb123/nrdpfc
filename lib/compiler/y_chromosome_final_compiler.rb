@@ -22,10 +22,11 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
         t.column "#{locus}", *column_args(YChromosome, "haplotype")
       }
     end
+    @connection.add_index table_name, 'organism_id'
   end
   
-  def compile_data
-    final_y_chromosomes_query = QueryBuilder.new(
+  def final_y_chromosomes_query
+    @final_y_chromosomes_query ||= QueryBuilder.new(
       :parent => :y_chromosomes, 
       :tables => ["y_chromosomes", "organisms"], 
       :fields => {:y_chromosomes => ["locus", "haplotype"]}, 
@@ -34,11 +35,11 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
         ["organisms", "project_id", "=", @project.id],
         ["organisms", "id", "=", "%s"]
       ]).to_sql
+  end
     
-    create_row_for_each_organism do |row|
-      @connection.select_all( final_y_chromosomes_query % row["organism_id"] ).each{|y_chromosome|
-        row[y_chromosome["y_chromosomes_locus"]] ||= y_chromosome["y_chromosomes_haplotype"]
-      }
+  def compile_organism(row)
+    each(final_y_chromosomes_query % row["organism_id"]) do |y_chromosome|
+      row[y_chromosome["y_chromosomes_locus"]] ||= y_chromosome["y_chromosomes_haplotype"]
     end
   end
 end

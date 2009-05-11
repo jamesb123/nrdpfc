@@ -83,7 +83,7 @@ module Exportables::ExportableModel
     qp = QueryPiece.new
     return(qp) if operator.strip.blank?
 
-    field_name = "#{exportable_table_name}.#{field}"
+    field_name = "`#{exportable_table_name}`.`#{field}`"
     data = if [ 'IS NULL', 'IS NOT NULL' ].include?(operator)
       [ "#{field_name} #{operator}" ]
     elsif [ 'LIKE', 'NOT LIKE' ].include?(operator)
