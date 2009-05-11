@@ -5,7 +5,7 @@ xml.rss :version => '2.0', 'xmlns:geo' => "http://www.w3.org/2003/01/geo/wgs84_p
     xml.title "Map search: #{@stored_query.project.name}"
     xml.description @stored_query.project.description
 
-    @results.each do |result|
+    @query_builder.bulk_records do |result|
       xml.item do
        titlename = @query_builder.select_field_aliases[0]
         xml.title result[titlename]

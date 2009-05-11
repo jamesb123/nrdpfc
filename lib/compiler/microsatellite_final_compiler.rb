@@ -7,17 +7,19 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
     "microsatellites"
   end
   
-  def compile_data
-    # psuedo algorithm
-    organisms_query = QueryBuilder.new(
+  # psuedo algorithm
+  def organisms_query
+    @organisms_query ||= QueryBuilder.new(
       :parent => :organisms, 
       :fields => {:organisms => ["id", "project_id", "organism_code"]},
       :filterings => [
         ["organisms", "project_id", "=", @project.id]
       ]
     ).to_sql
+  end
     
-    microsatellites_query = QueryBuilder.new(
+  def microsatellites_query
+    @microsatellites_query ||= QueryBuilder.new(
       :parent => "microsatellites", 
       :tables => ["microsatellites", "organisms"], 
       :fields => {:microsatellites => %w[locus allele1 allele2]},
@@ -27,18 +29,18 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
         ["organisms", "id", "=", "%s"]
       ]
     ).to_sql
+  end
     
-    create_row_for_each_organism do |row|
-      @connection.select_all(microsatellites_query % row["organism_id"]).each{|microsatellite|
-        row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
-        row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
-      }
+  def compile_organism(row)
+    each(microsatellites_query % row["organism_id"]) do |microsatellite|
+      row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
+      row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
     end
   end
   
   def create_table
     # generate table scchema
-    @connection.create_table "microsatellite_final_horizontals_#{@project_id}", :force => true do |t|
+    @connection.create_table table_name, :force => true do |t|
       t.integer :project_id
       t.integer :organism_id
       t.string :organism_code, :limit => 128
@@ -48,5 +50,6 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
         t.column "#{locus}b", *column_args(Microsatellite, "allele2")
       }
     end
+    @connection.add_index table_name, 'organism_id'
   end
 end

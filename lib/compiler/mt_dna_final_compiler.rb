@@ -18,10 +18,11 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
         t.string "#{locus}"
       }
     end
+    @connection.add_index table_name, 'organism_id'
   end
   
-  def compile_data
-    mt_dna_query = QueryBuilder.new(
+  def mt_dna_query
+    @mt_dna_query ||= QueryBuilder.new(
       :parent => :mt_dnas, 
       :tables => ["mt_dnas", "organisms"], 
       :fields => {:mt_dnas => ["locus", "haplotype"]}, 
@@ -30,11 +31,12 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
         ["organisms", "project_id", "=", @project.id],
         ["organisms", "id", "=", "%s"]
       ]).to_sql
+  end
     
-    create_row_for_each_organism do |row|
-      @connection.select_all( mt_dna_query % row["organism_id"] ).each{|mt_dna|
-        row[mt_dna["mt_dnas_locus"]] ||= mt_dna["mt_dnas_haplotype"]
-      }
+
+  def compile_organism(row)
+    each(mt_dna_query % row["organism_id"]) do |mt_dna|
+      row[mt_dna["mt_dnas_locus"]] ||= mt_dna["mt_dnas_haplotype"]
     end
   end
   

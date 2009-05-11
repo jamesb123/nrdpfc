@@ -61,12 +61,18 @@ class QueryController < ApplicationController
       @query = Query.new(:data => @stored_query.data)
       @query_builder = @query.query_builder
 
-      csv_string = FasterCSV.generate do |csv|
+      tmpfile = Tempfile.new('qbcsv-' + params[:key])
+      begin
+        csv = FasterCSV.new(tmpfile)
         csv << @query_builder.column_headers
-        @query_builder.results.each {|result| csv << result }
+        @query_builder.bulk_records do |result|
+          csv << result
+        end
+      ensure
+        tmpfile.close
       end
 
-      send_data csv_string, :filename => 'query_results.csv'
+      send_file tmpfile.path, :filename => 'query_results.csv'
     end
   end
 
@@ -91,7 +97,6 @@ class QueryController < ApplicationController
       @query = Query.new(:data => @stored_query.located_query)
       @query_builder = @query.query_builder
       @query_builder.limit = 500
-      @results = Query.connection.select_all(@query_builder.to_sql)
 
       unless params[:download].blank?
         filename = "#{self.current_project.name.gsub(/ /, '')}_map_data.xml"

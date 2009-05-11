@@ -5,18 +5,24 @@ class Compiler
   
   def self.compile_project(project, verbose = false)
     logger.info("Compiling VIEW B for #{project.to_label}")
+    # This compiler works on each sample instead of organism
     Compiler::MicrosatelliteCompiler.new(project).compile
-    logger.info("Compiling VIEW C for #{project.to_label}")
-    Compiler::MicrosatelliteFinalCompiler.new(project).compile
     
-    logger.info("YChromosomeFinalCompiler for #{project.to_label}")
-    Compiler::YChromosomeFinalCompiler.new(project).compile
-    logger.info("MtDnaFinalCompiler for #{project.to_label}")
-    Compiler::MtDnaFinalCompiler.new(project).compile
-    logger.info("MhcFinalCompiler for #{project.to_label}")
-    Compiler::MhcFinalCompiler.new(project).compile
-    logger.info("GenderFinalCompiler for #{project.to_label}")
-    Compiler::GenderFinalCompiler.new(project).compile
+    compilers = [
+      Compiler::YChromosomeFinalCompiler.new(project),
+      Compiler::MtDnaFinalCompiler.new(project),
+      Compiler::MhcFinalCompiler.new(project),
+      Compiler::GenderFinalCompiler.new(project),
+      Compiler::MicrosatelliteFinalCompiler.new(project)
+    ]    
+
+    compilers.each {|c| c.create_table }
+
+    project.compile_each_organism do |org|
+      compilers.each do |c|
+        c.create_row_for_organism(org)
+      end
+    end
     
     project.recompile_required = false
     project.save(false)

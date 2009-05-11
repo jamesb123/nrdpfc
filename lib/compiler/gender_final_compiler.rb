@@ -22,11 +22,12 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
         t.column "#{locus}", *column_args(Gender, "gender")
       }
     end
+    @connection.add_index table_name, 'organism_id'
   end
   
 
-  def compile_data
-    final_genders_query = QueryBuilder.new(
+  def final_genders_query
+    @final_genders_query ||= QueryBuilder.new(
       :parent => :genders, 
       :tables => ["genders", "organisms"], 
       :fields => {:genders => ["locus", "gender"]}, 
@@ -35,15 +36,13 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
         ["organisms", "project_id", "=", @project.id],
         ["organisms", "id", "=", "%s"]
       ]).to_sql
-    
-    create_row_for_each_organism do |row|
-      @connection.select_all( final_genders_query % row["organism_id"] ).each{|gender|
-        next if gender["genders_locus"].blank?
-        row[gender["genders_locus"]] ||= gender["genders_gender"]
-      }
-    end
-    
   end
-  
+    
+  def compile_organism(row)
+    each(final_genders_query % row["organism_id"]) do |gender|
+      next if gender["genders_locus"].blank?
+      row[gender["genders_locus"]] ||= gender["genders_gender"]
+    end
+  end
   
 end
