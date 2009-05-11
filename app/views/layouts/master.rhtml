@@ -29,17 +29,19 @@
 	  <%end%>
       
       <div style="float:right; text-align:right;">
-      <% if current_user %>
-        <%= render :partial => 'layouts/logged_in_info' %>
-			<%if current_user.is_project_manager? %>
-				<p>Project Manager</p>
-			<%end%>
-			<%if current_user.is_admin? %>
-				<p>Administrator</p>
-			<%end%>
-      <% end %>
-      
-      </div>
+	  	<% if current_user %>
+    	    <%= render :partial => 'layouts/logged_in_info' %>
+				<%if current_user.is_project_manager? %>
+					<p>Project Manager</p>
+				<%end%>
+				<%if current_user.is_admin? %>
+					<p>Administrator</p>
+				<%end%>
+		<%end%>
+		<%if current_project%>
+			<p style="background-color: #000" Current Project:> <%= current_project.to_label %></p>		  
+		<%end%>
+	  </div>
       <h2>
 	  <%if ENV['RAILS_ENV']=='production' %>
        		NRDPFC PRODUCTION
