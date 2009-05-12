@@ -63,11 +63,7 @@ class QueryController < ApplicationController
 
       tmpfile = Tempfile.new('qbcsv-' + params[:key])
       begin
-        csv = FasterCSV.new(tmpfile)
-        csv << @query_builder.column_headers
-        @query_builder.bulk_records do |result|
-          csv << result
-        end
+        @query_builder.to_csv FasterCSV.new(tmpfile)
       ensure
         tmpfile.close
       end
