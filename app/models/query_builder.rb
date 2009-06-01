@@ -188,6 +188,13 @@ class QueryBuilder
       self.select_field_aliases.map {|col| row[col] }
     end
   end
+
+  def to_csv(csv_writer)
+    csv_writer << column_headers
+    bulk_records do |row|
+      csv_writer << select_field_aliases.map {|col| row[col] }
+    end
+  end
   
   #
   ##
