@@ -1,7 +1,10 @@
-
-<h1> NRDPFC DNA ANALYSIS SYSTEM </h1>
-<h3>This site is for employees and clients only. NRDPFC Public site is located 
+<% if File.read("config/RAILS_SITE").strip == 'demo' %>
+	<h1> Wildlife Genomic Tracking System </h1>
+<%else%>
+	<h1> NRDPFC DNA ANALYSIS SYSTEM </h1>
+	<h3>This site is for employees and clients only. NRDPFC Public site is located 
 	<a href="http://nrdpfc.ca/">here</a></h3>
+<%end%>
 
 <h3> NOTE: this system requires Internet Explorer 7 or Fire Fox 3</h3>
 <% if browser_too_old? %>

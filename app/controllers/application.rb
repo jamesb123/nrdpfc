@@ -7,7 +7,6 @@ require 'digest/sha1'
 require "state_select"
 
 class ApplicationController < ActionController::Base
-
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_nrdpfc_session_id'
   

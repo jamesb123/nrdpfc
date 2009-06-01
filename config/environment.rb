@@ -2,7 +2,9 @@
 
 # DO NOT REMOVE THIS LINE - It's important for the fcgid deployment we are using.
 begin
+  ENV['RAILS_SITE'] = "TRACKER"
   ENV['RAILS_ENV'] = File.read("config/RAILS_ENV").strip if ENV['RAILS_ENV'] == 'production'
+  ENV['RAILS_SITE'] = File.read("config/RAILS_SITE").strip 
 rescue 
 end
 
