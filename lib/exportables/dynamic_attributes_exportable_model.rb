@@ -28,18 +28,18 @@ module Exportables::DynamicAttributesExportableModel
     end
   end
   
-  
-  
   def exportable_filter(field, operator, operand)
     return super if non_dynamic_fields.include?(field.to_s)
-    
+
     qp = QueryPiece.new
     return(qp) if operator.strip.blank?
-    
-    qp.having << Where("#{table_name}_#{field} #{operator} ?", operand).to_s
+
+    field_name = "#{table_name}_#{field}"
+    data = exportable_field_sql(field_name, operator, operand)
+
+    qp.having << Where(*data).to_s
     qp
   end
-  
   
   alias :exportable_column_types_hash_super :exportable_column_types_hash
   def exportable_column_types_hash

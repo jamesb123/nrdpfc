@@ -84,7 +84,14 @@ module Exportables::ExportableModel
     return(qp) if operator.strip.blank?
 
     field_name = "`#{exportable_table_name}`.`#{field}`"
-    data = if [ 'IS NULL', 'IS NOT NULL' ].include?(operator)
+    data = exportable_field_sql(field_name, operator, operand)
+
+    qp.where << Where(*data).to_s
+    qp
+  end
+
+  def exportable_field_sql(field_name, operator, operand)
+    if [ 'IS NULL', 'IS NOT NULL' ].include?(operator)
       [ "#{field_name} #{operator}" ]
     elsif [ 'LIKE', 'NOT LIKE' ].include?(operator)
       [ "LOWER(#{field_name}) #{operator} ?", operand.downcase ]
@@ -94,9 +101,6 @@ module Exportables::ExportableModel
     else
       [ "#{field_name} #{operator} ?", operand ]
     end
-
-    qp.where << Where(*data).to_s
-    qp
   end
 
   def exportable_reflections
