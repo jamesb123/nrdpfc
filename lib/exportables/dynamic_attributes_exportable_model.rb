@@ -69,7 +69,7 @@ module Exportables::DynamicAttributesExportableModel
   ###
   protected
     def dynamic_attribute_join_statement(name)
-      j_alias = "organism_dynamic_attribute_#{name}"
+      j_alias = "`organism_dynamic_attribute_#{name}`"
       "LEFT JOIN dynamic_attribute_values as #{j_alias} ON (#{j_alias}.owner_type = '#{self.to_s}' and #{j_alias}.owner_id = organisms.id and #{j_alias}.dynamic_attribute_id = #{dynamic_attributes_hash[name].id})"
     end
     
@@ -81,7 +81,7 @@ module Exportables::DynamicAttributesExportableModel
   
     def dynamic_attribute_select_statement(column_name)
       source_field = dynamic_attribute_source_field(column_name)
-      "`organism_dynamic_attribute_#{column_name}`.`#{source_field}` as organisms_#{column_name}"
+      "`organism_dynamic_attribute_#{column_name}`.`#{source_field}` as `organisms_#{column_name}`"
     end
   
     # returns an hash of string indexed DynamicAttribute models
