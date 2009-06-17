@@ -170,11 +170,10 @@ module ActiveScaffold
     end
 
     def joins_for_finder
-      # the case statement wasn't matching the classes
-      case joins_for_collection.class.to_s
-      when 'String'
+      case joins_for_collection.class
+      when String
         [ joins_for_collection ]
-      when 'Array'
+      when Array
         joins_for_collection
       else
         []
