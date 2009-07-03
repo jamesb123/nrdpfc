@@ -8,7 +8,8 @@ module QueryHelper
       if !select_field_alias.match(/_true_\w+$/)
         "#{select_field_alias.titleize_with_id}: #{result[select_field_alias]}" 
       end
-    end.compact.join("<br/>\n")
+#    end.compact.join("<br/>\n")
+    end.compact.join("<br/>")
   end
 
   def georss_long_lat(xml, result)
