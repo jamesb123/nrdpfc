@@ -76,6 +76,8 @@ module ApplicationHelper
               :method => :get },
             { :href => next_url,
               :class => "next"}) if current_page.next?
+
+      output
     end
   end
 
