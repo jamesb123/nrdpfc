@@ -4,12 +4,16 @@ module QueryHelper
   end
 
   def georss_description(query_builder, result)
-    query_builder.select_field_aliases.collect do |select_field_alias|
+    text = query_builder.select_field_aliases.collect do |select_field_alias|
       if !select_field_alias.match(/_true_\w+$/)
         "#{select_field_alias.titleize_with_id}: #{result[select_field_alias]}" 
       end
 #    end.compact.join("<br/>\n")
     end.compact.join("<br/>")
+
+    # There were problems with some clients handling the newline and spaces
+    # that builder puts in there, so we have to render the tags by hand
+    "<description><![CDATA[#{text}]]></description>\n"
   end
 
   def georss_long_lat(xml, result)
