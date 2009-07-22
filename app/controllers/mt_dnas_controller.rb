@@ -64,4 +64,5 @@ class MtDnasController < ApplicationController
   end
   
   include ResultTableSharedMethods
+  include GoToOrganismCode::Controller
 end
