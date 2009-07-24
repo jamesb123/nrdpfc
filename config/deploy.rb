@@ -38,6 +38,8 @@ after "deploy:update_code", "deploy:set_default_rails_env"
 namespace :deploy do
   task :symlink_database_yml do
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "rm -rf #{release_path}/public/locu"
+    run "ln -nfs #{shared_path}/locu #{release_path}/public/locu"
   end
   
   task :set_default_rails_env do
