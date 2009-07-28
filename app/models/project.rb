@@ -89,7 +89,7 @@ class Project < ActiveRecord::Base
   end
 
   def flag_for_update
-    recompile_required = true
+    self.recompile_required = true
     save(false)
   end
   

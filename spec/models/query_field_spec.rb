@@ -76,11 +76,11 @@ describe QueryField do
     end
     
     it "should render select_sql using the model's field renderer" do
-      @nea_query_field.select_sql.select.should == ["`organism_dynamic_attribute_nea`.`integer_value` as organisms_nea"]
+      @nea_query_field.select_sql.select.should == ["`organism_dynamic_attribute_nea`.`integer_value` as `organisms_nea`"]
     end
     
     it "should render select_sql using the model's field renderer" do
-      @notes_query_field.select_sql.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as organisms_notes"] #{}"max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
+      @notes_query_field.select_sql.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as `organisms_notes`"] #{}"max( if(dynamic_attribute_values.dynamic_attribute_id = #{dynamic_attributes(:notes).id}, text_value, null) ) as organisms_notes"
     end
   end
 end

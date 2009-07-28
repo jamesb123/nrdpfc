@@ -24,8 +24,16 @@ class Compiler::CompilerBase
     raise "Implement me"
   end
   
+  # This is VERY slow to run individually on each compiler.
+  # Please use Compiler.compile_project
   def compile_data
-    raise "Implement me"
+    # See lib/compiler.rb Compiler.compile_project, it
+    # operates on the compilers in aggregate. Those compilers
+    # don't use #compile nor #compile_data and the code
+    # needs to stay in sync.
+    @project.compile_each_organism do |org|
+      self.create_row_for_organism(org)
+    end
   end
   
   def results_table_name

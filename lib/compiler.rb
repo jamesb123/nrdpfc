@@ -18,6 +18,9 @@ class Compiler
 
     compilers.each {|c| c.create_table }
 
+    # Iterating over each organism is very time consuming,
+    # so we do it once and compile all the results for each
+    # organism at the same time
     project.compile_each_organism do |org|
       compilers.each do |c|
         c.create_row_for_organism(org)

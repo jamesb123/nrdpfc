@@ -24,7 +24,7 @@ describe Exportables::ExportableModel, "in Sample" do
   end
   
   it "should return a valid filter QueryPiece with a where clause" do
-    Sample.exportable_filter("receiver_comments", "=", "Fin sample").where.should == ["(samples.receiver_comments = 'Fin sample')"]
+    Sample.exportable_filter("receiver_comments", "=", "Fin sample").where.should == ["(`samples`.`receiver_comments` = 'Fin sample')"]
   end
   
   it "should return a hash of it's data types" do
@@ -35,6 +35,7 @@ describe Exportables::ExportableModel, "in Sample" do
       "gender"      => :string,
       "id"          => :integer,
       "wellNum"     => :string,
+      "locu_id"     => :integer,
       "locus"       => :string,
       "finalResult" => :boolean,
       "sample_id"   => :integer
