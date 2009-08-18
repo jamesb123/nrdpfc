@@ -9,6 +9,11 @@ class Compiler::CompilerBase
   def final?
     raise "Implement me"
   end
+
+  def data_exists?
+    res = ActiveRecord::Base.connection.select_values('select count(*) as c from mhcs where project_id = 11')
+    res[0].to_i > 0
+  end
   
   def compile
     create_table
@@ -45,13 +50,35 @@ class Compiler::CompilerBase
   end
 
   def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus").select do |l|
-      if l.blank?
-        Compiler.logger.warn("Warning: blank 'locus' found in #{results_table_name} (#{self.class}).  This will cause compiler issues.")
-        next false
-      end
-      true
+    @locii ||= begin
+      ids = unique_locu_ids.select {|l| !l.blank? }
+      list = if ids.size >   0
+        Locu.find(unique_locu_ids, :select => 'locus').map(&:locus) 
+       else
+         []
+       end
+      list << 'Unknown' if unmatched_locii?
+      list
     end
+  end
+
+  def unmatched_locii?
+    if unique_locu_ids.any? {|l| l.blank? }
+      true
+    else
+      unique_locu_ids.any? do |l|
+        Locu.find(l).nil?
+      end
+    end
+  end
+
+  def unique_locu_ids
+    @connection.select_values("select DISTINCT locu_id from #{results_table_name} where project_id = #{@project.id}")
+  end
+
+  def locu_col_name(id)
+    locu = id.nil? ? nil : Locu.find(id) rescue nil
+    locu.nil? ? 'Unknown' : locu.locus
   end
   
   def model_name

@@ -26,7 +26,7 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
     @final_mhcs_query ||= QueryBuilder.new(
       :parent => :mhcs, 
       :tables => ["mhcs", "organisms"], 
-      :fields => {:mhcs => ["locus", "allele1", "allele2"]}, 
+      :fields => {:mhcs => ["locu_id", "allele1", "allele2"]}, 
       :filterings => [
         ["mhcs", "finalResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
@@ -36,8 +36,9 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
 
   def compile_organism(row)
     each(final_mhcs_query % row["organism_id"]) do |mhc|
-      row["#{mhc["mhcs_locus"]}b"] ||= mhc["mhcs_allele1"]
-      row["#{mhc["mhcs_locus"]}a"] ||= mhc["mhcs_allele2"]
+      locu = locu_col_name(mhc["mhcs_locus"])
+      row["#{locu}b"] ||= mhc["mhcs_allele1"]
+      row["#{locu}a"] ||= mhc["mhcs_allele2"]
     end
   end
 end

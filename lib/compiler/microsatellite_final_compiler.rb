@@ -1,4 +1,4 @@
-class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBase
+class Compiler::MicrosatelliteFinalCompiler < Compiler::CompilerBase
   def final?
     true
   end
@@ -22,7 +22,7 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
     @microsatellites_query ||= QueryBuilder.new(
       :parent => "microsatellites", 
       :tables => ["microsatellites", "organisms"], 
-      :fields => {:microsatellites => %w[locus allele1 allele2]},
+      :fields => {:microsatellites => %w[locu_id allele1 allele2]},
       :filterings => [
         ["microsatellites", "finalResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
@@ -33,8 +33,9 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::MicrosatelliteCompilerBa
     
   def compile_organism(row)
     each(microsatellites_query % row["organism_id"]) do |microsatellite|
-      row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
-      row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
+      locu = locu_col_name(microsatellite["microsatellites_locu_id"])
+      row["#{locu}a"] = microsatellite["microsatellites_allele1"]
+      row["#{locu}b"] = microsatellite["microsatellites_allele2"]
     end
   end
   
