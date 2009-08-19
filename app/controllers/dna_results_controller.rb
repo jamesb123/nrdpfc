@@ -2,6 +2,7 @@ class DnaResultsController < ApplicationController
   layout "tabs"
   
   include GoToOrganismCode::Controller
+  
   active_scaffold :dna_results do |config|
     config.columns = [:project, :sample, :sample_id, :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 

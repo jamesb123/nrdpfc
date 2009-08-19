@@ -10,10 +10,11 @@ module SamplesHelper
   
 #  def country_form_column(record,input_name)
 #    select(record, input_name, state_select(record, input_name))   
+#     collection_select(:record, country_select("user", "country_name"))
 #  end
   
   def date_received_form_column(record, input_name)
-    date_select :record, :date_received, :name => input_name, :include_blank => true
+    date_select( :record, :date_received, :name => input_name, :include_blank => true )
   end 
 
   def date_collected_form_column(record, input_name)

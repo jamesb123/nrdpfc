@@ -1,5 +1,6 @@
 class GendersController < ApplicationController
   layout "tabs"
+
   active_scaffold :genders do |config|
     config.columns = [:project, :sample, :sample_id , :gender, :locu, :locus, :wellNum, :gelNum, :comments, :finalResult]
 
@@ -61,12 +62,10 @@ class GendersController < ApplicationController
     Any comments that you have regarding the mitochondrial DNA data presented in this row.
     END
   end
-    
-
   
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-
+    
   def conditions_for_collection
     ['genders.project_id = (?)', current_project_id ]
   end  

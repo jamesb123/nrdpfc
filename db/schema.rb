@@ -233,7 +233,6 @@ ActiveRecord::Schema.define(:version => 20090612014816) do
     t.string   "pdf_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "pdf"
   end
 
   create_table "mhc_final_horizontals", :force => true do |t|
@@ -1144,12 +1143,15 @@ ActiveRecord::Schema.define(:version => 20090612014816) do
     t.integer "locu_id"
   end
 
+  add_index "microsatellites", ["sample_id"], :name => "index_sample_id"
+  add_index "microsatellites", ["project_id"], :name => "index_project_id"
   add_index "microsatellites", ["locus"], :name => "index_microsatellites_on_locus"
   add_index "microsatellites", ["allele1"], :name => "index_microsatellites_on_allele1"
   add_index "microsatellites", ["allele2"], :name => "index_microsatellites_on_allele2"
   add_index "microsatellites", ["finalResult"], :name => "index_microsatellites_on_finalResult"
-  add_index "microsatellites", ["sample_id"], :name => "index_sample_id"
-  add_index "microsatellites", ["project_id"], :name => "index_project_id"
+  add_index "microsatellites", ["gel"], :name => "index_microsatellites_on_gel"
+  add_index "microsatellites", ["well"], :name => "index_microsatellites_on_well"
+  add_index "microsatellites", ["locu_id"], :name => "index_microsatellites_on_locu_id"
 
   create_table "mt_dna_final_horizontals", :force => true do |t|
     t.integer "project_id"
@@ -1310,7 +1312,7 @@ ActiveRecord::Schema.define(:version => 20090612014816) do
     t.integer "locu_id"
     t.string  "primer"
     t.string  "label"
-    t.text    "locus_text"
+    t.string  "locus_text"
     t.string  "paper_reference"
     t.string  "primer_sequence"
     t.string  "comments"

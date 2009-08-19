@@ -1,5 +1,6 @@
 class SamplesController < ApplicationController
   layout "tabs"
+  include GoToOrganismCode::Controller
 
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 

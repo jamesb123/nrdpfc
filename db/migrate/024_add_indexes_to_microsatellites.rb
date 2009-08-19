@@ -4,7 +4,6 @@ class AddIndexesToMicrosatellites < ActiveRecord::Migration
     add_index :microsatellites, :allele1
     add_index :microsatellites, :allele2
     add_index :microsatellites, :finalResult
-    
   end
 
   def self.down

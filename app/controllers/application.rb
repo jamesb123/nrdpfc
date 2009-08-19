@@ -5,6 +5,7 @@
 require "current_project_helpers"
 require 'digest/sha1'
 require "state_select"
+require "country_select"
 
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   include CurrentProjectHelper
-  include InPlaceEditing
+  # include InPlaceEditing
  
   prepend_before_filter :login_required  
   

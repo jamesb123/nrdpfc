@@ -1,3 +1,5 @@
+<!--- Jordan this only goes in certain controllers that have an organism code column - not everywhere --->
+
 <% if current_page.pager.last.number > 1 %>
   Organism Code:
   <%= text_field "go_to_organism_code", "", :onchange => remote_function(options_for_ajax_pagination_link(pagination_params).merge(:with => "'go_to_organism_code=' + $F(this)")) %>

@@ -14,6 +14,7 @@ class OrganismsController < ApplicationController
     config.columns[:organism_code].label = "Organism"
     config.columns[:comment].label = "Comments"
     config.columns[:organism_code].sort_by :sql => 'organisms.organism_code'
+    
     config.nested.add_link("Samples", [:samples])
   end
   

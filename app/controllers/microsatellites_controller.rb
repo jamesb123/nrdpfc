@@ -31,7 +31,7 @@ class MicrosatellitesController < ApplicationController
     config.columns[:sample].form_ui = :record_select
     config.columns[:locu].form_ui = :select
    
-    [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
+    # [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
   end
   
