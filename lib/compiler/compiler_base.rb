@@ -9,6 +9,11 @@ class Compiler::CompilerBase
   def final?
     raise "Implement me"
   end
+
+  def data_exists?
+    res = ActiveRecord::Base.connection.select_values('select count(*) as c from mhcs where project_id = 11')
+    res[0].to_i > 0
+  end
   
   def compile
     create_table
@@ -24,8 +29,16 @@ class Compiler::CompilerBase
     raise "Implement me"
   end
   
+  # This is VERY slow to run individually on each compiler.
+  # Please use Compiler.compile_project
   def compile_data
-    raise "Implement me"
+    # See lib/compiler.rb Compiler.compile_project, it
+    # operates on the compilers in aggregate. Those compilers
+    # don't use #compile nor #compile_data and the code
+    # needs to stay in sync.
+    @project.compile_each_organism do |org|
+      self.create_row_for_organism(org)
+    end
   end
   
   def results_table_name
@@ -37,13 +50,35 @@ class Compiler::CompilerBase
   end
 
   def locii
-    @locii ||= @connection.select_values("select DISTINCT locus from #{results_table_name} order by locus").select do |l|
-      if l.blank?
-        Compiler.logger.warn("Warning: blank 'locus' found in #{results_table_name} (#{self.class}).  This will cause compiler issues.")
-        next false
-      end
-      true
+    @locii ||= begin
+      ids = unique_locu_ids.select {|l| !l.blank? }
+      list = if ids.size >   0
+        Locu.find(unique_locu_ids, :select => 'locus').map(&:locus) 
+       else
+         []
+       end
+      list << 'Unknown' if unmatched_locii?
+      list
     end
+  end
+
+  def unmatched_locii?
+    if unique_locu_ids.any? {|l| l.blank? }
+      true
+    else
+      unique_locu_ids.any? do |l|
+        Locu.find(l).nil?
+      end
+    end
+  end
+
+  def unique_locu_ids
+    @connection.select_values("select DISTINCT locu_id from #{results_table_name} where project_id = #{@project.id}")
+  end
+
+  def locu_col_name(id)
+    locu = id.nil? ? nil : Locu.find(id) rescue nil
+    locu.nil? ? 'Unknown' : locu.locus
   end
   
   def model_name

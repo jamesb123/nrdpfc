@@ -15,6 +15,13 @@ describe Project do
     @project = create_project(:name => 'Default', :user_id => nil)
     @project.user_id.should be_nil
   end
+
+  it "should require compile after flag_for_update" do
+    @project = create_project(:name => 'Default')
+    @project.recompile_required?.should == false
+    @project.flag_for_update
+    @project.recompile_required?.should == true
+  end
   
   protected
     def create_project(options = {})

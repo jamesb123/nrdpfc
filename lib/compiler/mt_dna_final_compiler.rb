@@ -25,7 +25,7 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
     @mt_dna_query ||= QueryBuilder.new(
       :parent => :mt_dnas, 
       :tables => ["mt_dnas", "organisms"], 
-      :fields => {:mt_dnas => ["locus", "haplotype"]}, 
+      :fields => {:mt_dnas => ["locu_id", "haplotype"]}, 
       :filterings => [
         ["mt_dnas", "finalResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
@@ -36,7 +36,8 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
 
   def compile_organism(row)
     each(mt_dna_query % row["organism_id"]) do |mt_dna|
-      row[mt_dna["mt_dnas_locus"]] ||= mt_dna["mt_dnas_haplotype"]
+      locu = locu_col_name(mt_dna["mt_dnas_locu_id"])
+      row[locu] ||= mt_dna["mt_dnas_haplotype"]
     end
   end
   

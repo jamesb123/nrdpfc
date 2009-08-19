@@ -50,9 +50,9 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   
   it "should generate sql select elements for dynamic columns (integer_value), with the table alias" do
     query_piece = Organism.exportable_select("nea")
-    query_piece.select.should == ["`organism_dynamic_attribute_nea`.`integer_value` as organisms_nea"]
+    query_piece.select.should == ["`organism_dynamic_attribute_nea`.`integer_value` as `organisms_nea`"]
     query_piece.join.should == [
-      "LEFT JOIN dynamic_attribute_values as organism_dynamic_attribute_nea ON (organism_dynamic_attribute_nea.owner_type = 'Organism' and organism_dynamic_attribute_nea.owner_id = organisms.id and organism_dynamic_attribute_nea.dynamic_attribute_id = #{dynamic_attributes(:nea).id})"
+      "LEFT JOIN dynamic_attribute_values as `organism_dynamic_attribute_nea` ON (`organism_dynamic_attribute_nea`.owner_type = 'Organism' and `organism_dynamic_attribute_nea`.owner_id = organisms.id and `organism_dynamic_attribute_nea`.dynamic_attribute_id = #{dynamic_attributes(:nea).id})"
     ]
   end
   
@@ -61,14 +61,14 @@ describe Exportables::DynamicAttributesExportableModel, "in Organism" do
   end
   
   it "should generate a where clause for non-dynamic attributes" do
-    Organism.exportable_filter("project_id", "=", "1").where.should == ["(organisms.project_id = '1')"]
+    Organism.exportable_filter("project_id", "=", "1").where.should == ["(`organisms`.`project_id` = '1')"]
   end
   
   it "should generate sql select elements for dynamic columns (text_value), with the table alias" do
     query_piece = Organism.exportable_select("notes")
-    query_piece.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as organisms_notes"]
+    query_piece.select.should == ["`organism_dynamic_attribute_notes`.`text_value` as `organisms_notes`"]
     query_piece.join.should == [
-      "LEFT JOIN dynamic_attribute_values as organism_dynamic_attribute_notes ON (organism_dynamic_attribute_notes.owner_type = 'Organism' and organism_dynamic_attribute_notes.owner_id = organisms.id and organism_dynamic_attribute_notes.dynamic_attribute_id = #{dynamic_attributes(:notes).id})" 
+      "LEFT JOIN dynamic_attribute_values as `organism_dynamic_attribute_notes` ON (`organism_dynamic_attribute_notes`.owner_type = 'Organism' and `organism_dynamic_attribute_notes`.owner_id = organisms.id and `organism_dynamic_attribute_notes`.dynamic_attribute_id = #{dynamic_attributes(:notes).id})" 
     ]
   end
   

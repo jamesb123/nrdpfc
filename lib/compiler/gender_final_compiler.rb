@@ -30,7 +30,7 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
     @final_genders_query ||= QueryBuilder.new(
       :parent => :genders, 
       :tables => ["genders", "organisms"], 
-      :fields => {:genders => ["locus", "gender"]}, 
+      :fields => {:genders => ["locu_id", "gender"]}, 
       :filterings => [
         ["genders", "finalResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
@@ -40,8 +40,8 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
     
   def compile_organism(row)
     each(final_genders_query % row["organism_id"]) do |gender|
-      next if gender["genders_locus"].blank?
-      row[gender["genders_locus"]] ||= gender["genders_gender"]
+      locu = locu_col_name(gender["genders_locu_id"])
+      row[locu] ||= gender["genders_gender"]
     end
   end
   

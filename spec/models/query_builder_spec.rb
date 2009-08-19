@@ -67,7 +67,7 @@ describe QueryBuilder do
       # @query_builder.add_include("samples/dna_results")
       # @query_builder.add_include("organisms")
       @query_builder.add_fields(
-        :samples => %w[tubebc receiver_comments], 
+        :samples => %w[sample_bc receiver_comments], 
         :organisms => %w[nea organism_code], 
         :dna_results => %w[extraction_method]
       )
@@ -77,13 +77,13 @@ describe QueryBuilder do
     
     it "should add fields should add" do
       @query_builder.fields.should have(5).items
-      @query_builder.fields.map{|f| f.name.to_s}.sort.should == ["extraction_method", "nea", "organism_code", "receiver_comments", "tubebc"]
+      @query_builder.fields.map{|f| f.name.to_s}.sort.should == ["extraction_method", "nea", "organism_code", "receiver_comments", "sample_bc"]
     end
 
     it "should build sql should build executable sql" do
       results = Project.connection.select_all(@query_builder.to_sql)
       results.length.should == 2
-      results[0].keys.sort.should == ["dna_results_extraction_method", "organisms_nea", "organisms_organism_code", "samples_receiver_comments", "samples_tubebc"]
+      results[0].keys.sort.should == ["dna_results_extraction_method", "organisms_nea", "organisms_organism_code", "samples_receiver_comments", "samples_sample_bc"]
       results.map{|r| r["samples_receiver_comments"]}.should == ["Fin sample", "Nose sample"]
     end    
     
@@ -92,11 +92,11 @@ describe QueryBuilder do
     end
     
     it "should return a list of all fields selected from" do
-      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_results_extraction_method`, `organisms`.`organism_code` as `organisms_organism_code`, `organism_dynamic_attribute_nea`.`integer_value` as organisms_nea, `samples`.`tubebc` as `samples_tubebc`, `samples`.`receiver_comments` as `samples_receiver_comments`\n"]
+      @query_builder.to_sql.grep(/SELECT/).should == ["SELECT `dna_results`.`extraction_method` as `dna_results_extraction_method`, `organisms`.`organism_code` as `organisms_organism_code`, `organism_dynamic_attribute_nea`.`integer_value` as `organisms_nea`, `samples`.`sample_bc` as `samples_sample_bc`, `samples`.`receiver_comments` as `samples_receiver_comments`\n"]
     end
     
     it "should return a list of select_field_aliases" do
-      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organisms_organism_code", "organisms_nea", "samples_tubebc", "samples_receiver_comments"]
+      @query_builder.select_field_aliases.should == ["dna_results_extraction_method", "organisms_organism_code", "organisms_nea", "samples_sample_bc", "samples_receiver_comments"]
     end
   end
   

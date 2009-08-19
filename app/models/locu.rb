@@ -9,6 +9,8 @@ class Locu < ActiveRecord::Base
   extend Exportables::ExportableModel
   include SecuritySets::AdminOnly
 
+  validates_format_of :locus, :with => /^[a-z0-9_]+$/i
+
 # plugin file column
   file_column :pdf_name
   

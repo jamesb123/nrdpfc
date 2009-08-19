@@ -1,4 +1,4 @@
-class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
+class Compiler::MicrosatelliteCompiler < Compiler::CompilerBase
   def final?
     false
   end
@@ -21,7 +21,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
     QueryBuilder.new(
       :parent => :microsatellites, 
       :tables => %w[microsatellites samples], 
-      :fields => {:microsatellites => %w[locus allele1 allele2]},
+      :fields => {:microsatellites => %w[locu_id allele1 allele2]},
       :filterings => [
         ["samples", "project_id", "=", @project.id],
         ["samples", "id", "=", "%s"]
@@ -41,8 +41,9 @@ class Compiler::MicrosatelliteCompiler < Compiler::MicrosatelliteCompilerBase
       row[:organism_index] = sample["samples_organism_index"]
       
       each(microsatellites_query % row[:sample_id]) do |microsatellite|
-        row["#{microsatellite["microsatellites_locus"]}a"] = microsatellite["microsatellites_allele1"]
-        row["#{microsatellite["microsatellites_locus"]}b"] = microsatellite["microsatellites_allele2"]
+        locu = locu_col_name(microsatellite["microsatellites_locu_id"])
+        row["#{locu}a"] = microsatellite["microsatellites_allele1"]
+        row["#{locu}b"] = microsatellite["microsatellites_allele2"]
       end
       
       model.insert(row)

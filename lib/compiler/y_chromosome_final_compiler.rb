@@ -29,7 +29,7 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
     @final_y_chromosomes_query ||= QueryBuilder.new(
       :parent => :y_chromosomes, 
       :tables => ["y_chromosomes", "organisms"], 
-      :fields => {:y_chromosomes => ["locus", "haplotype"]}, 
+      :fields => {:y_chromosomes => ["locu_id", "haplotype"]}, 
       :filterings => [
         ["y_chromosomes", "finalResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
@@ -39,7 +39,8 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
     
   def compile_organism(row)
     each(final_y_chromosomes_query % row["organism_id"]) do |y_chromosome|
-      row[y_chromosome["y_chromosomes_locus"]] ||= y_chromosome["y_chromosomes_haplotype"]
+      locu = locu_col_name(y_chromosome["y_chromosomes_locus"])
+      row[locu] ||= y_chromosome["y_chromosomes_haplotype"]
     end
   end
 end
