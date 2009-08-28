@@ -5,6 +5,7 @@ class Locu < ActiveRecord::Base
   has_many :mt_dnas
   has_many :mhcs
   has_many :primers
+  belongs_to :project
   
   extend Exportables::ExportableModel
   include SecuritySets::AdminOnly
