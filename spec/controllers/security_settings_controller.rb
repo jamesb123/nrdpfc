@@ -3,10 +3,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe SecuritySettingsController do
   include AuthenticatedTestHelper
   fixtures :users
-  #, :security_settings, :projects
-  
-  before(:each) do
-  end
   
   describe "when getting index" do
     
@@ -17,7 +13,7 @@ describe SecuritySettingsController do
     end
     
     it "should return all people for an admin user" do
-      Factory.create_security_setting
+      Factory.create(:fixture_security_setting)
       login_as :admin
       get :index
       assigns[:records].size.should eql(2)

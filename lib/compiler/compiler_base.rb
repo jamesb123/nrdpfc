@@ -11,7 +11,7 @@ class Compiler::CompilerBase
   end
 
   def data_exists?
-    res = ActiveRecord::Base.connection.select_values('select count(*) as c from mhcs where project_id = 11')
+    res = ActiveRecord::Base.connection.select_values("select count(*) as c from #{results_table_name} where project_id = #{@project_id}")
     res[0].to_i > 0
   end
   
@@ -41,6 +41,7 @@ class Compiler::CompilerBase
     end
   end
   
+  # This is the table that the compiler pulls results from
   def results_table_name
     raise "Implement me"
   end

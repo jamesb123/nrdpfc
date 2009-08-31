@@ -51,15 +51,3 @@ Spec::Runner.configure do |config|
     end
   end
 end
-
-module Factory
-  def self.create_security_setting(attributes = {})
-    default_attributes = {
-      :project_id => 1,
-      :user_id  => 1,
-      :level   => 1
-    }
-    SecuritySetting.create! default_attributes.merge(attributes)
-  end
-
-end
