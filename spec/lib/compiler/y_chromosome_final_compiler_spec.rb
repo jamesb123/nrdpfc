@@ -23,7 +23,7 @@ describe Compiler::YChromosomeFinalCompiler do
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.y_chromosomes.each{|m|
-      assert fields.include?("#{m.locus}")
+      fields.should include(m.locu.locus)
     }
   end
   
@@ -32,7 +32,7 @@ describe Compiler::YChromosomeFinalCompiler do
     @results = @model.find(:all)
     
     @results.each{|result|
-      ["Control Region", "Cyt-b"].each{|col_name|
+      ["Control_Region", "Cyt_b"].each{|col_name|
         assert_not_nil(result[col_name], "Expected data for #{col_name} - organism - #{result.organism.organism_code}")
       }
       assert_not_nil(result.project_id)

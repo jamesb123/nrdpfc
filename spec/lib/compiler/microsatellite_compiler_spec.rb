@@ -23,14 +23,20 @@ describe Compiler::MicrosatelliteCompiler do
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.microsatellites.each{|m|
-      assert fields.include?("#{m.locus}a")
-      assert fields.include?("#{m.locus}b")
+      locus = m.locu.locus
+      fields.should include("#{locus}a")
+      fields.should include("#{locus}b")
     }
   end
   
   it "should ignore locus for other projects" do
     Microsatellite.update_all("project_id = #{@project_id + 1}")
-    @compiler.locii(true).should == []
+  
+    # clear the cache
+    @compiler.instance_variable_set("@locii", nil)
+
+    @compiler.unique_locu_ids.should == []
+    @compiler.locii.should == []
   end
   
   it "should compile_data" do

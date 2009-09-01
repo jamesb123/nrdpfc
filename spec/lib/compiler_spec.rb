@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require "compiler.rb"
 
 describe "Compiler" do
-  fixtures :projects, :microsatellites, :samples
+  fixtures :projects, :microsatellites, :samples, :locus
   before(:each) do
     @project =  projects(:whale_project)
     @project_id = @project.id

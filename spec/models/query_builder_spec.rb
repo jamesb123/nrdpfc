@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe QueryBuilder do
-  fixtures :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples
+  fixtures :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples, :locus
   
   before(:each) do
     @project = projects(:whale_project)
@@ -221,7 +221,7 @@ describe QueryBuilder do
   it "should respect wildcards when adding fields" do
     @query_builder.add_tables("genders")
     @query_builder.add_fields(:genders => ["*"])
-    @query_builder.fields.map(&:name).should == Gender.exportable_fields.map(&:to_sym)
+    @query_builder.fields.map(&:name).map(&:to_s).sort.should == Gender.exportable_fields.sort
     @query_builder.to_sql
   end
   

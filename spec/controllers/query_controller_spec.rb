@@ -21,8 +21,8 @@ describe QueryController do
   end
   
   describe "when posting to download" do
-    before(:each) do
-      post :download_csv, :data => { 
+    it "should store the titles at the top" do
+      post :save_query, :data => { 
         :dna_results => {
           :barcode => { :select => "true" }
         },
@@ -30,21 +30,21 @@ describe QueryController do
           :comment =>       { :select => "true" },
           :organism_code => { :select => "true", :filters => {:operator => [">", "<"], :value => ["1", "1000"]} }
         }
-      }
-      
-      @query = assigns[:query]
+      } 
+
+      response.should be_success
+      assigns[:query].should_not be_nil
+      @key = assigns[:query].access_key
+
+      post :download_csv, :key => @key
+      response.should be_success
+
       @query_builder = assigns[:query_builder]
-      @results = assigns[:results]
-      @abs_filename = assigns[:abs_filename]
-      
-      @data = FasterCSV.parse(File.read(@abs_filename))
-    end
-      
-    after(:each) do
-      FileUtils.rm_f(@abs_filename)
-    end
+      csv = StringIO.new
+      @query_builder.to_csv(FasterCSV.new(csv))
+      csv.rewind
+      @data = FasterCSV.parse(csv.read)
     
-    it "should store the titles at the top" do
       @data[0].should == ["Dna Results Barcode", "Organisms Organism Code", "Organisms Comment"]
     end
   end

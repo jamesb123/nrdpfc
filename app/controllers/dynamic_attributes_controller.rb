@@ -23,7 +23,6 @@ class DynamicAttributesController < ApplicationController
     record.scoper = current_project
     record.owner_type = "organism"
     if record.name.nil? && record.dynamic_type_id.nil?
-      puts "null false"
       flash[:notice] = "You must fill in something !"
       false
     else

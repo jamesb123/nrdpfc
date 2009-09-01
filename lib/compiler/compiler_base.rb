@@ -54,7 +54,7 @@ class Compiler::CompilerBase
     @locii ||= begin
       ids = unique_locu_ids.select {|l| !l.blank? }
       list = if ids.size >   0
-        Locu.find(unique_locu_ids, :select => 'locus').map(&:locus) 
+        Locu.find(:all, :conditions => [ 'id in (?)', ids ], :select => 'locus').map(&:locus) 
        else
          []
        end

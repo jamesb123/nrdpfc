@@ -24,13 +24,8 @@ describe Compiler::GenderFinalCompiler do
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.genders.each{|m|
-      assert fields.include?("#{m.locus}")
+      fields.should include(m.locu.locus)
     }
-  end
-  
-  it "should ignore blank locii without raising a fuss" do
-    Gender.update_all("locus=''")
-    @compiler.compile_data
   end
   
   it "should compile_data" do
@@ -38,7 +33,7 @@ describe Compiler::GenderFinalCompiler do
     @results = @model.find(:all)
     
     @results.each{|result|
-      ["Control Region", "Cyt-b"].each{|col_name|
+      ["Control_Region", "Cyt_b"].each{|col_name|
         assert_not_nil(result[col_name], "Expected data for #{col_name} - organism - #{result.organism.organism_code}")
         assert_equal("f", result[col_name], "Expected gender to be f for #{col_name}")
       }

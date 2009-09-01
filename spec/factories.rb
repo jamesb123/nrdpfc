@@ -16,9 +16,3 @@ end
 Factory.define :project do |p|
   p.association :user
 end
-
-Factory.define :fixture_security_setting, :class => 'security_setting' do |ss|
-  ss.project_id 1
-  ss.user_id 1
-  ss.level 1
-end

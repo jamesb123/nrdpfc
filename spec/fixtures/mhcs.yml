@@ -16,7 +16,7 @@
 mhc_whale_measurement_1_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: EV0Pm
+  locu: ev0pm
   allele1: 127
   allele2: 127
   gelNum: TRF-07-199
@@ -25,7 +25,7 @@ mhc_whale_measurement_1_fin_sample:
 mhc_whale_measurement_2_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: EV31Mn
+  locu: ev31mn
   allele1: 191
   allele2: 193
   gelNum: TRF-07-199
@@ -34,7 +34,7 @@ mhc_whale_measurement_2_fin_sample:
 mhc_whale_measurement_1_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: EV0Pm
+  locu: ev0pm
   allele1: 138
   allele2: 137
   gelNum: TRF-07-199
@@ -43,7 +43,7 @@ mhc_whale_measurement_1_nose_sample:
 mhc_whale_measurement_2_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: EV31Mn
+  locu: ev31mn
   allele1: 192
   allele2: 104
   gelNum: TRF-07-199
