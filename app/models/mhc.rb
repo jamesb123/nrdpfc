@@ -25,5 +25,7 @@ class Mhc < ActiveRecord::Base
   def to_label 
     "Ex#: #{locus}" 
   end
-
+  def assign_locus_text
+    self.locus = self.locu.to_label unless self.locu.nil?
+  end
 end

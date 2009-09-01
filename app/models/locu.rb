@@ -7,16 +7,19 @@ class Locu < ActiveRecord::Base
   has_many :primers
   belongs_to :project
   
-  extend Exportables::ExportableModel
   include SecuritySets::AdminOnly
 
-  validates_format_of :locus, :with => /^[a-z0-9_]+$/i
+  before_create :assign_project_id
 
+  validates_format_of :locus, :with => /^[a-z0-9_]+$/i
+  
 # plugin file column
   file_column :pdf_name
   
   def to_label 
     "#{locus}" 
   end
- 
+  def assign_project_id
+    self.project_id = current_project_id
+  end 
 end
