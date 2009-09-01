@@ -36,7 +36,7 @@ class Compiler::MhcFinalCompiler < Compiler::CompilerBase
 
   def compile_organism(row)
     each(final_mhcs_query % row["organism_id"]) do |mhc|
-      locu = locu_col_name(mhc["mhcs_locus"])
+      locu = locu_col_name(mhc["mhcs_locu_id"])
       row["#{locu}b"] ||= mhc["mhcs_allele1"]
       row["#{locu}a"] ||= mhc["mhcs_allele2"]
     end

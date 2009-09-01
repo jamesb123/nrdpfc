@@ -1,0 +1,12 @@
+ev1pm:
+  locus: EV1Pm
+ev37mn:
+  locus: EV37Mn
+ev0pm:
+  locus: EV0Pm
+ev31mn:
+  locus: EV31Mn
+control_region:
+  locus: Control_Region
+cytb:
+  locus: Cyt_b

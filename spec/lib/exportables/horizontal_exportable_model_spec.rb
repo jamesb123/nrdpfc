@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 require "sample.rb"
 require "project.rb"
 describe Exportables::HorizontalExportableModel, "in MicrosatelliteHorizontal" do
-  fixtures :projects
+  fixtures :projects, :locus
   
   before(:each) do
     @project = projects(:whale_project)

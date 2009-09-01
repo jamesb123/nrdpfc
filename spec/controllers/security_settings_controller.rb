@@ -13,7 +13,6 @@ describe SecuritySettingsController do
     end
     
     it "should return all people for an admin user" do
-      Factory.create(:fixture_security_setting)
       login_as :admin
       get :index
       assigns[:records].size.should eql(2)

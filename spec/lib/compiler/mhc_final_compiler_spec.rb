@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Compiler::MhcFinalCompiler do
-  fixtures :projects, :mhcs, :samples, :organisms
+  fixtures :projects, :mhcs, :samples, :organisms, :locus
   def setup
     @project =  projects(:whale_project)
     @project_id = @project.id
@@ -18,13 +18,14 @@ describe Compiler::MhcFinalCompiler do
     @compiler.create_table
     
     tables = Project.connection.select_values("show tables")
-    assert tables.include?(@table_name)
+    tables.should include(@table_name)
     
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.mhcs.each{|m|
-      assert fields.include?("#{m.locus}a")
-      assert fields.include?("#{m.locus}b")
+      locus = m.locu.locus
+      fields.should include("#{locus}a")
+      fields.should include("#{locus}b")
     }
   end
   

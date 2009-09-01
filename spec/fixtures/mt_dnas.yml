@@ -15,7 +15,7 @@
 mt_dna_whale_measurement_1_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: Control Region
+  locu: control_region
   haplotype: A
   gelNum: MB07WFL0345
   wellNum: A01
@@ -23,7 +23,7 @@ mt_dna_whale_measurement_1_fin_sample:
 mt_dna_whale_measurement_2_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: Cyt-b
+  locu: cytb
   haplotype: 1
   gelNum: MB07WFL0345
   wellNum: A02
@@ -31,7 +31,7 @@ mt_dna_whale_measurement_2_fin_sample:
 mt_dna_whale_measurement_1_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: Control Region
+  locu: control_region
   haplotype: A
   gelNum: MB07WFL0345
   wellNum: A03
@@ -39,7 +39,7 @@ mt_dna_whale_measurement_1_nose_sample:
 mt_dna_whale_measurement_2_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: Cyt-b
+  locu: cytb
   haplotype: 1
   gelNum: MB07WFL0345
   wellNum: A04

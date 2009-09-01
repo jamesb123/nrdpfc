@@ -16,28 +16,28 @@
 whale_measurement_1_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: EV1Pm
+  locu: ev1pm
   allele1: 137
   allele2: 137
   finalResult: true
 whale_measurement_2_fin_sample:
   sample: fin_sample
   project: whale_project
-  locus: EV37Mn
+  locu: ev37mn
   allele1: 201
   allele2: 203
   finalResult: true
 whale_measurement_1_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: EV1Pm
+  locu: ev1pm
   allele1: 138
   allele2: 137
   finalResult: true
 whale_measurement_2_nose_sample:
   sample: nose_sample
   project: whale_project
-  locus: EV37Mn
+  locu: ev37mn
   allele1: 202
   allele2: 204
   finalResult: true

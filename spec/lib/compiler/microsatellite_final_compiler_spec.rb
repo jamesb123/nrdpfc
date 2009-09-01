@@ -23,8 +23,9 @@ describe Compiler::MicrosatelliteFinalCompiler do
     fields = Project.connection.select_all("show columns from #{@table_name}").map{|h| h["Field"]}
     
     @project.microsatellites.each{|m|
-      assert fields.include?("#{m.locus}a")
-      assert fields.include?("#{m.locus}b")
+      locus = m.locu.locus
+      fields.should include("#{locus}a")
+      fields.should include("#{locus}b")
     }
   end
   
