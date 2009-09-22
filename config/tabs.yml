@@ -17,8 +17,13 @@
   sub_tabs:
   - label: "Sample Non-Tissues(Dynamic)"
     controller: "sample_non_tissues"
+  - label: "Unapproved Samples )"
+    controller: "samples/unapproved"
 - label: "DNA"  
-  	controller: "dna_results"
+  controller: "dna_results"
+  sub_tabs:
+  - label: "Unapproved DNA Results"
+    controller: "dna_results/unapproved"
 - label: "mtDNA"  
   	controller: "mt_dnas"
   sub_tabs:

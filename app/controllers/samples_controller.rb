@@ -2,7 +2,6 @@ class SamplesController < ApplicationController
   layout "tabs"
   include GoToOrganismCode::Controller
 
-  
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
@@ -10,7 +9,8 @@ class SamplesController < ApplicationController
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
-    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box, :xy_position, :tissue_remaining,  :security_settings,:project ]
+    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
+    :xy_position, :tissue_remaining,  :security_settings,:project,:approved]
     
 
 #  include ActionView::Helpers::FormOptionsHelper
@@ -22,8 +22,19 @@ class SamplesController < ApplicationController
 
   def record_select_includes; :organism; end
 
-  def record_select_conditions_from_controller
-    [ 'samples.project_id = ?', current_project_id ]
+  def unapproved
+    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, current_user.data_entry_only ]        
+    index
+  end
+
+  def approved
+    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, ! current_user.data_entry_only ]        
+    index
+  end
+
+  protected
+  def conditions_for_collection
+    @condition
   end
 
 
@@ -59,7 +70,8 @@ class SamplesController < ApplicationController
     config.columns[:organism_id].label = "Organism ID"
     config.columns[:organism_index].label = "Organism Sample Index"
     config.columns[:security_settings].label = "Security"
-    
+    config.columns[:approved].label = "Approved"
+    config.columns[:approved].form_ui = :checkbox
     config.columns[:extraction_method].form_ui = :select
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:storage_medium].form_ui = :select
@@ -278,11 +290,4 @@ class SamplesController < ApplicationController
     END
 
   end
-
-  protected
-  
-  def conditions_for_collection
-    ['samples.project_id = (?)', current_project_id ]
-  end
-
 end

@@ -113,9 +113,9 @@ class Sample < ActiveRecord::Base
 #    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
   end
   
-#  def assign_project_id
-#    self.project_id = current_project_id
-#  end
+  def assign_project_id
+    self.project_id = current_project_id
+  end
   
   def to_label 
     if !organism.nil?  

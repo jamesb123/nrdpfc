@@ -7,7 +7,7 @@ class DnaResultsController < ApplicationController
     config.columns = [:project, :sample, :sample_id, :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
-     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments]
+     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments, :approved]
 
     # search associated sample colum
     config.columns[:sample].search_sql = 'organisms.organism_code'
@@ -83,8 +83,23 @@ class DnaResultsController < ApplicationController
 
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-
-  def conditions_for_collection
-    ['dna_results.project_id = (?)', current_project_id ]
+  
+  def unapproved
+    @condition = ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, current_user.data_entry_only ]        
+    index
   end
+
+  def approved
+    @condition = ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, ! current_user.data_entry_only ]        
+    index
+  end
+
+  protected
+  def conditions_for_collection
+    @condition
+  end
+
+#  def conditions_for_collection
+#    ['dna_results.project_id = (?)', current_project_id ]
+#  end
 end

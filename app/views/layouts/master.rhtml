@@ -36,9 +36,7 @@
 				<%if current_project%>
 					<p> Current Project: <%= current_project.to_label %>		  
 				<%end%>
-				<%if current_user.is_project_manager? %>
-					</br> (Project Manager)  
-				<%end%>
+				</br> Project Owner: <%=current_project.owner.to_label%>
 				<%if current_user.is_admin? %>
 					</br> (Administrator) 
 				<%end%>
@@ -46,8 +44,13 @@
     	<!--- Data needs to be recompiled for this project.  -->
 		<% if (current_project && current_project.recompile_required) or true %>
 		  <div id="recompile_required_alert" class="alert">
-    	<%= link_to_modal "Recompile", :controller => "projects", :action => "recompile_status", :id => current_project_id %>
-  
+
+    	<%= link_to_modal "Recompile", :controller => "projects", :action => "recompile_status", :id => current_project_id %> 
+<!---		
+		<%= link_to "Approve", :controller => "/samples", :action => "approve" %>
+		<%= link_to_modal "Change Password", :controller => "users", :action => "change_password", :id => current_user %>
+-->  
+
   </div>
   
 <% end %>
