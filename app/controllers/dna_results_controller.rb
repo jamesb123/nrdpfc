@@ -102,7 +102,7 @@ class DnaResultsController < ApplicationController
       ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, false ]        
     else
       data_entry_only = false
-      ['dna_results.project_id = (?)' , current_project_id ]        
+      ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, true ]        
     end
   end
 end

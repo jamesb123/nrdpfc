@@ -290,12 +290,14 @@ class SamplesController < ApplicationController
   end
 
   def unapproved
-    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]
+#    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]
+    data_entry_only = true
     index
   end
 
   def approved
-    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]
+#    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]
+    data_entry_only = false
     index
   end
 
@@ -306,7 +308,7 @@ class SamplesController < ApplicationController
       ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]        
     else
       data_entry_only = false
-      ['samples.project_id = (?)' , current_project_id ]        
+      ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]        
     end
   end
 
