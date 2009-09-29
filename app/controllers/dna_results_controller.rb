@@ -1,6 +1,6 @@
 class DnaResultsController < ApplicationController
   layout "tabs"
-  
+  data_entry_only = false
   include GoToOrganismCode::Controller
   
   active_scaffold :dna_results do |config|
@@ -95,11 +95,14 @@ class DnaResultsController < ApplicationController
   end
 
   protected
-  def conditions_for_collection
-    @condition
-  end
 
-#  def conditions_for_collection
-#    ['dna_results.project_id = (?)', current_project_id ]
-#  end
+  def conditions_for_collection
+    if current_user.data_entry_only
+      data_entry_only = true
+      ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, false ]        
+    else
+      data_entry_only = false
+      ['dna_results.project_id = (?)' , current_project_id ]        
+    end
+  end
 end

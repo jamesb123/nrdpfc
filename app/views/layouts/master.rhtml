@@ -33,7 +33,7 @@
       <div style="float:right; text-align:right;">
 	  	<% if current_user %>
     	    <%= render :partial => 'layouts/logged_in_info' %>
-				<%if current_project%>
+				<%if current_project %>
 					<p> Current Project: <%= current_project.to_label %>		  
 				<%end%>
 				</br> Project Owner: <%=current_project.owner.to_label%>
