@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <title><%= @title || ENV["RAILS_SITE"]  + " " + params[:controller].to_s.titleize%></title>
 
   <%# bundle do %>
@@ -11,8 +11,13 @@
 	<% if ENV['RAILS_SITE'] == 'TRACKER' %>
   		<%= stylesheet_link_tag "demo" %>
 	<%else%>
-  		<%= stylesheet_link_tag "basic" %>
+		<% if current_user.data_entry_only %>
+  			<%= stylesheet_link_tag "data" %>
+		<%else%>
+  			<%= stylesheet_link_tag "basic" %>
+		<%end%>	
 	<%end%>	
+	
 	<%= active_scaffold_includes %>
     <%= record_select_includes %>
 
@@ -39,6 +44,12 @@
 				</br> Project Owner: <%=current_project.owner.to_label%>
 				<%if current_user.is_admin? %>
 					</br> (Administrator) 
+				<%else%>
+					<% if current_user.data_entry_only %>
+					  	<div style="color:red; float:left">
+							</br> DATA ENTRY ONLY
+						</div>
+					<%end%>
 				<%end%>
 		<%end%>
     	<!--- Data needs to be recompiled for this project.  -->
