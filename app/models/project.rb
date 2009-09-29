@@ -60,7 +60,7 @@ class Project < ActiveRecord::Base
       current_user.save
     end
   end
-
+  
   # admin can creat projects
   def authorized_for_create?
     current_user.is_admin

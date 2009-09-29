@@ -15,9 +15,6 @@ class AccountController < ApplicationController
   def index
     redirect_to(:action => 'signup') unless logged_in? || User.count > 0
   end
-  
-  def unassigned_user
-  end
 
   def login
     return unless request.post?
