@@ -39,7 +39,8 @@ class Sample < ActiveRecord::Base
   before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
-
+  before_update :save_approved_status
+  
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
   
@@ -49,6 +50,10 @@ class Sample < ActiveRecord::Base
       errors.add(:coordinate_system, "must include the UTM Zone") if requires_coordinate_system? && geocoords.utm_zone.nil?
       errors.add(:coordinate_system, "must include the UTM Datum used") if requires_coordinate_system? && geocoords.coordinate_system_version.nil?
     end
+  end
+
+  def save_approved_status
+#    @approved_status = current_user.data_entry_only
   end
   
   def assign_locality_type
@@ -123,9 +128,22 @@ class Sample < ActiveRecord::Base
     else
       return "#{self.id} SID" 
     end
-  end    
+  end
   
+  def approved_authorized?
+    ! current_user.data_entry_only    
+  end
+  
+  def approved_authorized_for_update?
+    current_user.is_admin    
+  end
+
+  def approved_authorized_for_create?
+    current_user.is_admin    
+  end
+
 end
+
 # == Schema Information
 #
 # Table name: samples

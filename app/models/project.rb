@@ -51,6 +51,16 @@ class Project < ActiveRecord::Base
       raise "Must be logged in to create a project"
     end
   end
+  # This isn't working, I'm not quite sure why...
+  # something isn't scoped right...
+  def self.is_project_manager?
+    user = current_user
+    return false if ! user
+    return false if ! session[:project_id]
+    project = Project.find_by_id(session[:project_id])
+    return false if ! project
+    @project_manager = (current_project.user_id == current_user.id)
+  end
 
   # if this is the first project created for this user
   # then make it their current (default) project

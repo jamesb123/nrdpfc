@@ -1,8 +1,6 @@
 class SamplesController < ApplicationController
   layout "tabs"
   include GoToOrganismCode::Controller
-  data_entry_only = false
-
 
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
@@ -36,15 +34,9 @@ class SamplesController < ApplicationController
      
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
 
-    if data_entry_only
-      config.create.columns.exclude :approved, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      config.update.columns.exclude :approved, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      config.list.columns.exclude  :approved, :project, :type_lat_long, :locality_type
-    else
-      config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      config.list.columns.exclude  :project, :type_lat_long, :locality_type
-    end
+    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.list.columns.exclude  :project, :type_lat_long, :locality_type
     
     config.list.per_page = 25
     # The split tables can't update after an edit,
@@ -52,7 +44,6 @@ class SamplesController < ApplicationController
     config.update.link.page = true
     config.create.link.page = true
 
-#    in_place_edit_for :field_code
     config.nested.add_link("DNA", [:dna_results])
     config.nested.add_link("mtDNA", [:mt_dnas])
     config.nested.add_link("Genders", [:genders])
@@ -73,9 +64,6 @@ class SamplesController < ApplicationController
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
-#    if ! @data_entry_only
-#      config.columns[:approved].form_ui = :select
-#    end
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Collected Day "
@@ -290,25 +278,28 @@ class SamplesController < ApplicationController
   end
 
   def unapproved
-#    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]
-    data_entry_only = true
+    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]        
     index
   end
 
   def approved
-#    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]
-    data_entry_only = false
+    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]        
     index
   end
 
   protected
   def conditions_for_collection
+#    flash[:notice] = " condition " + @condition.to_s + " params " + params[:action] + " last action " + $last_action.to_s
+# $last_action = "test"
+
+    if @condition.blank?
+      @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]
+    end
+    
     if current_user.data_entry_only
-      data_entry_only = true
       ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]        
     else
-      data_entry_only = false
-      ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]        
+      @condition
     end
   end
 

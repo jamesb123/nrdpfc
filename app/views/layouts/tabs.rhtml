@@ -31,6 +31,7 @@
           controllers+= sub_tabs.collect{|s| s['controller']} if sub_tabs
           
           url_options = tab.merge("controller" => "/#{controller}")
+#          url_options = tab.merge("controller" => "#{controller}")
           if controllers.include?(params[:controller])
             is_selected = true
             @sub_tabs = sub_tabs
