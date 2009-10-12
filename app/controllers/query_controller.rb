@@ -49,27 +49,20 @@ class QueryController < ApplicationController
       end
     end
   end
-  
+ 
+  before_filter :find_stored_query, :only => :georss, :download_csv ]
   skip_filter :login_required, :only => [ :georss, :download_csv ]
   def download_csv
-    @stored_query = DataQuery.query_by_key(params[:key])
+    @query_builder = query_builder(@stored_query.data)
 
-    if params[:key].blank? || @stored_query.nil?
-      render :text => ""
-    else
-      self.current_project = @stored_query.project
-      @query = Query.new(:data => @stored_query.data)
-      @query_builder = @query.query_builder
-
-      tmpfile = Tempfile.new('qbcsv-' + params[:key])
-      begin
-        @query_builder.to_csv FasterCSV.new(tmpfile)
-      ensure
-        tmpfile.close
-      end
-
-      send_file tmpfile.path, :filename => 'query_results.csv'
+    tmpfile = Tempfile.new('qbcsv-' + params[:key])
+    begin
+      @query_builder.to_csv FasterCSV.new(tmpfile)
+    ensure
+      tmpfile.close
     end
+
+    send_file tmpfile.path, :filename => 'query_results.csv'
   end
 
   def save_query
@@ -83,30 +76,37 @@ class QueryController < ApplicationController
   end
 
   def georss
+    @query_builder = query_builder(@stored_query.located_query)
+    @query_builder.limit = 500
+    @results = Query.connection.select_all(@query_builder.to_sql)
+
+    unless params[:download].blank?
+      filename = "#{self.current_project.name.gsub(/ /, '')}_map_data.xml"
+      headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+    end
+
+    render :layout => false
+  end
+
+  def find_stored_query
     @stored_query = DataQuery.query_by_key(params[:key])
 
     if params[:key].blank? || @stored_query.nil?
-      render :text => ""
+      return false
     else
-      self.current_project = @stored_query.project
-
-      @query = Query.new(:data => @stored_query.located_query)
-      @query_builder = @query.query_builder
-      @query_builder.limit = 500
-      @results = Query.connection.select_all(@query_builder.to_sql)
-
-      unless params[:download].blank?
-        filename = "#{self.current_project.name.gsub(/ /, '')}_map_data.xml"
-        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
-      end
-
-      render :layout => false
+      self.current_project = @stored_query.project 
     end
+  end
+
+  def query_builder(data)
+    @query = Query.new(:data => data)
+    qb = @query.query_builder
+
+    qb
   end
   
   def show
-    @query = Query.new(:data => params[:data])
-    @query_builder = @query.query_builder
+    @query_builder = query_builder(params[:data])
     @limit = 100
     @query_builder.limit = @limit
     @sql = @query_builder.to_sql

@@ -13,7 +13,8 @@ class QueryBuilder
     end
   end
 
-  def filter_by_project(project_id)
+  def filter_by_project(*project_ids)
+    project_ids.flatten!
     path = includes.model.path_to_exportable_table('projects')
     raise "Sorry, couldn't find a link to the projects table" if path.nil?
 
@@ -24,7 +25,12 @@ class QueryBuilder
     add_include(*path)
 
     link = path.shift || includes.model.table_name
-    add_filter(link, "project_id", "=", project_id.to_i) unless project_id.blank?
+    project_ids.reject! {|p| p.blank? }
+    if project_ids.size == 1
+      add_filter(link, "project_id", "=", project_ids.first.to_i)
+    elsif project_ids.size > 0
+      add_filter(link, "project_id", "IN", project_ids.map(&:to_i))
+    end
   end
   
   def add_tables(*table_names)

@@ -54,7 +54,14 @@ class Query < ActiveRecord::Base
   def query_builder
     qb = QueryBuilder.new
 
+    projects = data.delete('projects')
     qb.calculate_common_join_table( data.collect {|table, fields| table } )
+
+    if projects.nil?
+      qb.filter_by_project(ActiveRecord::Base.current_project_id) if ActiveRecord::Base.current_project
+    else
+      qb.filter_by_project(projects)
+    end
     
     data.each_pair do |table, fields|
       qb.add_tables table
@@ -72,8 +79,6 @@ class Query < ActiveRecord::Base
         end
       end
     end
-    
-    qb.filter_by_project(ActiveRecord::Base.current_project_id) if ActiveRecord::Base.current_project
     
     qb
   end

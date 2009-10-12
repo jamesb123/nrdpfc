@@ -1,7 +1,24 @@
 <h1>Query</h1>
 
 <% content_tag :div, :id => "query_form" do %>
-<div style="width:250px; display:block; float:left;" />
+  <input type='hidden' name='bob' value='fred' />
+  <div id="multiple_projects">
+    <div id="project_selectors_toggle">
+      <span><%= link_to_function "Toggle Projects", "$('project_selectors').toggle();" %></span>
+    </div>
+    <div id="project_selectors" style="display:none">
+      <% Project.all.each do |proj| %>
+        <div class="project_checkbox"> 
+          <input type="checkbox" id="data_projects_<%=proj.id%>" name="data[projects][]" value="<%= proj.id %>" <% if proj == Project.current_project %>checked="checked"<%end%> />
+          <label for="data_projects_<%=proj.id%>"><%= proj.name %> Project</label>
+        </div>
+      <% end %>
+
+      <div style="clear:both"></div>
+    </div>
+  </div>
+
+<div style="width:250px; display:block; float:left;">
   <h2>Tables</h2>
   <div id='query_table_selector'>
     <% Exportables::ExportableModel.models.each do |model| %>

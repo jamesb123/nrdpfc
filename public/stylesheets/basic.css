@@ -161,3 +161,14 @@ div.header_tooltip {
 tr.record td.actions {
   border-right:none ! important;
 }
+
+div.project_checkbox {
+  width: 220px;
+  overflow: hidden;
+  height: 19px;
+  float: left;
+}
+
+#project_selectors_toggle {
+  height: 20px;
+}
