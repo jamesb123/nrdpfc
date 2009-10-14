@@ -36,10 +36,10 @@ class Sample < ActiveRecord::Base
   
   
   before_create :assign_project_id
+  before_create :assign_approval
   before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
-  before_update :save_approved_status
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
@@ -52,10 +52,15 @@ class Sample < ActiveRecord::Base
     end
   end
 
-  def save_approved_status
-#    @approved_status = current_user.data_entry_only
+  def assign_approval
+      self.approved = true
+#    if current_user.data_entry_only
+#      self.approved = false
+#    else
+#      self.approved = true
+#    end
   end
-  
+
   def assign_locality_type
     self.locality_type_text =  self.locality_type.to_label
   end
@@ -117,6 +122,7 @@ class Sample < ActiveRecord::Base
 # self.date_collected = now.date
 #    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
   end
+
   
   def assign_project_id
     self.project_id = current_project_id

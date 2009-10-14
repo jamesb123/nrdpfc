@@ -39,7 +39,12 @@ module ActiveScaffold::Actions
             end
           else # just a regular post
             if successful?
-              flash[:info] = as_('Updated %s', @record.to_label)
+              flash[:info] = "action " + params[:action].to_s
+              if params[:action].to_s == 'unapproved'
+                flash[:info] = as_('UNAPPROVED DATA Updated %s', @record.to_label)
+              else
+                flash[:info] = as_('APPROVED DATA Updated %s', @record.to_label)
+              end
               return_to_main
             else
               render(:action => 'update_form', :layout => true)
