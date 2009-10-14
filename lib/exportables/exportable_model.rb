@@ -96,8 +96,12 @@ module Exportables::ExportableModel
     elsif [ 'LIKE', 'NOT LIKE' ].include?(operator)
       [ "LOWER(#{field_name}) #{operator} ?", operand.downcase ]
     elsif [ 'IN' ].include?(operator)
-      matching_set = operand.split(',').map(&:downcase).map(&:strip)
-      [ "LOWER(#{field_name}) IN (?)", matching_set ]
+      if operand.is_a?(String)
+        matching_set = operand.split(',').map(&:downcase).map(&:strip)
+        [ "LOWER(#{field_name}) IN (?)", matching_set ]
+      else
+        [ "#{field_name} IN (?)", operand ]
+      end
     else
       [ "#{field_name} #{operator} ?", operand ]
     end
