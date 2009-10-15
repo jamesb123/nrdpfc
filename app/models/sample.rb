@@ -36,7 +36,7 @@ class Sample < ActiveRecord::Base
   
   
   before_create :assign_project_id
-  before_create :assign_approval
+  before_save :assign_approval
   before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
@@ -53,12 +53,9 @@ class Sample < ActiveRecord::Base
   end
 
   def assign_approval
+    if ! current_user.data_entry_only
       self.approved = true
-#    if current_user.data_entry_only
-#      self.approved = false
-#    else
-#      self.approved = true
-#    end
+    end
   end
 
   def assign_locality_type
