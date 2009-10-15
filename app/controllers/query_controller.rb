@@ -50,7 +50,7 @@ class QueryController < ApplicationController
     end
   end
  
-  before_filter :find_stored_query, :only => :georss, :download_csv ]
+  before_filter :find_stored_query, :only => [ :georss, :download_csv ]
   skip_filter :login_required, :only => [ :georss, :download_csv ]
   def download_csv
     @query_builder = query_builder(@stored_query.data)
