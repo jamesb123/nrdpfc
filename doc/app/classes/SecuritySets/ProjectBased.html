@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: SecuritySets::ProjectBased</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">SecuritySets::ProjectBased</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/security_sets/project_based_rb.html">
+                lib/security_sets/project_based.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000535">authorized_for_create?</a>&nbsp;&nbsp;
+      <a href="#M000538">authorized_for_destroy?</a>&nbsp;&nbsp;
+      <a href="#M000537">authorized_for_read?</a>&nbsp;&nbsp;
+      <a href="#M000536">authorized_for_update?</a>&nbsp;&nbsp;
+      <a href="#M000539">relevant_project</a>&nbsp;&nbsp;
+      <a href="#M000534">security_settings</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000535" class="method-detail">
+        <a name="M000535"></a>
+
+        <div class="method-heading">
+          <a href="#M000535" class="method-signature">
+          <span class="method-name">authorized_for_create?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000535-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000535-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 12</span>
+12:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorized_for_create?</span>
+13:       <span class="ruby-comment cmt"># create is always called on !existing_record_check? </span>
+14:       <span class="ruby-identifier">check_project</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:project</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">project</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">project</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">current_project</span>
+15: 
+16:       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authorized_security_for?</span>(<span class="ruby-identifier">check_project</span>, <span class="ruby-constant">SecuritySetting</span><span class="ruby-operator">::</span><span class="ruby-constant">READ_WRITE</span>)
+17:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000538" class="method-detail">
+        <a name="M000538"></a>
+
+        <div class="method-heading">
+          <a href="#M000538" class="method-signature">
+          <span class="method-name">authorized_for_destroy?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000538-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000538-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 27</span>
+27:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorized_for_destroy?</span>
+28:       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authorized_security_for?</span>(<span class="ruby-identifier">relevant_project</span>, <span class="ruby-constant">SecuritySetting</span><span class="ruby-operator">::</span><span class="ruby-constant">READ_WRITE_DELETE</span>)
+29:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000537" class="method-detail">
+        <a name="M000537"></a>
+
+        <div class="method-heading">
+          <a href="#M000537" class="method-signature">
+          <span class="method-name">authorized_for_read?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000537-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000537-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 23</span>
+23:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorized_for_read?</span>
+24:       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authorized_security_for?</span>(<span class="ruby-identifier">relevant_project</span>, <span class="ruby-constant">SecuritySetting</span><span class="ruby-operator">::</span><span class="ruby-constant">READ_ONLY</span>)
+25:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000536" class="method-detail">
+        <a name="M000536"></a>
+
+        <div class="method-heading">
+          <a href="#M000536" class="method-signature">
+          <span class="method-name">authorized_for_update?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000536-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000536-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorized_for_update?</span>
+20:       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authorized_security_for?</span>(<span class="ruby-identifier">relevant_project</span>, <span class="ruby-constant">SecuritySetting</span><span class="ruby-operator">::</span><span class="ruby-constant">READ_WRITE</span>)
+21:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000539" class="method-detail">
+        <a name="M000539"></a>
+
+        <div class="method-heading">
+          <a href="#M000539" class="method-signature">
+          <span class="method-name">relevant_project</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000539-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000539-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 31</span>
+31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">relevant_project</span>
+32:       (<span class="ruby-identifier">existing_record_check?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:project</span>)) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">project</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">current_project</span>
+33:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000534" class="method-detail">
+        <a name="M000534"></a>
+
+        <div class="method-heading">
+          <a href="#M000534" class="method-signature">
+          <span class="method-name">security_settings</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This is not an active_scaffold security method, so existing_record_check?
+doesn&#8216;t apply here
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000534-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000534-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/security_sets/project_based.rb, line 8</span>
+ 8:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">security_settings</span>
+ 9:       <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authorization_display_for</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">project</span>
+10:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

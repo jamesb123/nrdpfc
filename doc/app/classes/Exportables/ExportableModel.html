@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Exportables::ExportableModel</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Exportables::ExportableModel</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/exportables/exportable_model_rb.html">
+                lib/exportables/exportable_model.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000481">exportable?</a>&nbsp;&nbsp;
+      <a href="#M000494">exportable_column_types_hash</a>&nbsp;&nbsp;
+      <a href="#M000488">exportable_field_sql</a>&nbsp;&nbsp;
+      <a href="#M000482">exportable_fields</a>&nbsp;&nbsp;
+      <a href="#M000487">exportable_filter</a>&nbsp;&nbsp;
+      <a href="#M000491">exportable_from</a>&nbsp;&nbsp;
+      <a href="#M000492">exportable_join</a>&nbsp;&nbsp;
+      <a href="#M000493">exportable_join_criteria</a>&nbsp;&nbsp;
+      <a href="#M000486">exportable_name</a>&nbsp;&nbsp;
+      <a href="#M000484">exportable_non_id_fields</a>&nbsp;&nbsp;
+      <a href="#M000489">exportable_reflections</a>&nbsp;&nbsp;
+      <a href="#M000490">exportable_select</a>&nbsp;&nbsp;
+      <a href="#M000485">exportable_table_name</a>&nbsp;&nbsp;
+      <a href="#M000477">extended</a>&nbsp;&nbsp;
+      <a href="#M000479">load_all_models</a>&nbsp;&nbsp;
+      <a href="#M000478">models</a>&nbsp;&nbsp;
+      <a href="#M000480">path_to_exportable_table</a>&nbsp;&nbsp;
+      <a href="#M000483">related_controller</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000477" class="method-detail">
+        <a name="M000477"></a>
+
+        <div class="method-heading">
+          <a href="#M000477" class="method-signature">
+          <span class="method-name">extended</span><span class="method-args">(klass)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000477-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000477-source">
+<pre>
+   <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 4</span>
+4:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extended</span>(<span class="ruby-identifier">klass</span>)
+5:       <span class="ruby-ivar">@models</span> <span class="ruby-operator">||=</span> []
+6:       <span class="ruby-ivar">@models</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">klass</span>
+7:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000479" class="method-detail">
+        <a name="M000479"></a>
+
+        <div class="method-heading">
+          <a href="#M000479" class="method-signature">
+          <span class="method-name">load_all_models</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000479-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000479-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_all_models</span>
+19:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@all_models_loaded</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@all_models_loaded</span>
+20:       
+21:       <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{RAILS_ROOT}/app/models/**/*.rb&quot;</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">require_or_load</span> <span class="ruby-identifier">file</span> }
+22:       
+23:       <span class="ruby-ivar">@all_models_loaded</span> = <span class="ruby-keyword kw">true</span>
+24:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000478" class="method-detail">
+        <a name="M000478"></a>
+
+        <div class="method-heading">
+          <a href="#M000478" class="method-signature">
+          <span class="method-name">models</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000478-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000478-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 9</span>
+ 9:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">models</span>
+10:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@models</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@models_loaded</span>
+11:       
+12:       <span class="ruby-identifier">load_all_models</span>
+13:       <span class="ruby-ivar">@models</span>.<span class="ruby-identifier">sort!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">exportable_name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">exportable_name</span> }
+14:       <span class="ruby-ivar">@models_loaded</span> = <span class="ruby-keyword kw">true</span>
+15:       <span class="ruby-ivar">@models</span>
+16:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000481" class="method-detail">
+        <a name="M000481"></a>
+
+        <div class="method-heading">
+          <a href="#M000481" class="method-signature">
+          <span class="method-name">exportable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000481-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000481-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable?</span>
+45:     <span class="ruby-keyword kw">true</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000494" class="method-detail">
+        <a name="M000494"></a>
+
+        <div class="method-heading">
+          <a href="#M000494" class="method-signature">
+          <span class="method-name">exportable_column_types_hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000494-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000494-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 170</span>
+170:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_column_types_hash</span>
+171:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_sym</span>; <span class="ruby-identifier">h</span> }
+172:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000488" class="method-detail">
+        <a name="M000488"></a>
+
+        <div class="method-heading">
+          <a href="#M000488" class="method-signature">
+          <span class="method-name">exportable_field_sql</span><span class="method-args">(field_name, operator, operand)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000488-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000488-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 93</span>
+ 93:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_field_sql</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">operator</span>, <span class="ruby-identifier">operand</span>)
+ 94:     <span class="ruby-keyword kw">if</span> [ <span class="ruby-value str">'IS NULL'</span>, <span class="ruby-value str">'IS NOT NULL'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">operator</span>)
+ 95:       [ <span class="ruby-node">&quot;#{field_name} #{operator}&quot;</span> ]
+ 96:     <span class="ruby-keyword kw">elsif</span> [ <span class="ruby-value str">'LIKE'</span>, <span class="ruby-value str">'NOT LIKE'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">operator</span>)
+ 97:       [ <span class="ruby-node">&quot;LOWER(#{field_name}) #{operator} ?&quot;</span>, <span class="ruby-identifier">operand</span>.<span class="ruby-identifier">downcase</span> ]
+ 98:     <span class="ruby-keyword kw">elsif</span> [ <span class="ruby-value str">'IN'</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">operator</span>)
+ 99:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">operand</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+100:         <span class="ruby-identifier">matching_set</span> = <span class="ruby-identifier">operand</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:downcase</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:strip</span>)
+101:         [ <span class="ruby-node">&quot;LOWER(#{field_name}) IN (?)&quot;</span>, <span class="ruby-identifier">matching_set</span> ]
+102:       <span class="ruby-keyword kw">else</span>
+103:         [ <span class="ruby-node">&quot;#{field_name} IN (?)&quot;</span>, <span class="ruby-identifier">operand</span> ]
+104:       <span class="ruby-keyword kw">end</span>
+105:     <span class="ruby-keyword kw">else</span>
+106:       [ <span class="ruby-node">&quot;#{field_name} #{operator} ?&quot;</span>, <span class="ruby-identifier">operand</span> ]
+107:     <span class="ruby-keyword kw">end</span>
+108:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000482" class="method-detail">
+        <a name="M000482"></a>
+
+        <div class="method-heading">
+          <a href="#M000482" class="method-signature">
+          <span class="method-name">exportable_fields</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000482-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000482-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_fields</span>
+49:     <span class="ruby-identifier">column_strings</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:name</span>)
+50: 
+51:     <span class="ruby-comment cmt"># active_scaffold_config will fail if it can't find the current user</span>
+52:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">related_controller</span> <span class="ruby-operator">&amp;&amp;</span>
+53:       <span class="ruby-identifier">related_controller</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:active_scaffold_config</span>)
+54: 
+55:       <span class="ruby-identifier">as_columns</span> = <span class="ruby-identifier">related_controller</span>.<span class="ruby-identifier">active_scaffold_config</span>.<span class="ruby-identifier">list</span>.<span class="ruby-identifier">columns</span>
+56:       <span class="ruby-identifier">as_column_names</span> = <span class="ruby-identifier">as_columns</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:name</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_s</span>)
+57:       <span class="ruby-identifier">as_column_names</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">column_strings</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">c</span>) }
+58:     <span class="ruby-keyword kw">else</span>
+59:       <span class="ruby-identifier">column_strings</span>
+60:     <span class="ruby-keyword kw">end</span>
+61:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000487" class="method-detail">
+        <a name="M000487"></a>
+
+        <div class="method-heading">
+          <a href="#M000487" class="method-signature">
+          <span class="method-name">exportable_filter</span><span class="method-args">(field, operator, operand)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000487-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000487-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 82</span>
+82:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_filter</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">operator</span>, <span class="ruby-identifier">operand</span>)
+83:     <span class="ruby-identifier">qp</span> = <span class="ruby-constant">QueryPiece</span>.<span class="ruby-identifier">new</span>
+84:     <span class="ruby-keyword kw">return</span>(<span class="ruby-identifier">qp</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">operator</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">blank?</span>
+85: 
+86:     <span class="ruby-identifier">field_name</span> = <span class="ruby-node">&quot;`#{exportable_table_name}`.`#{field}`&quot;</span>
+87:     <span class="ruby-identifier">data</span> = <span class="ruby-identifier">exportable_field_sql</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">operator</span>, <span class="ruby-identifier">operand</span>)
+88: 
+89:     <span class="ruby-identifier">qp</span>.<span class="ruby-identifier">where</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Where</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">data</span>).<span class="ruby-identifier">to_s</span>
+90:     <span class="ruby-identifier">qp</span>
+91:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000491" class="method-detail">
+        <a name="M000491"></a>
+
+        <div class="method-heading">
+          <a href="#M000491" class="method-signature">
+          <span class="method-name">exportable_from</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Organism.exportable_from(:parent =&gt; <a
+href="../Project.html">Project</a>, :association =&gt;
+&#8216;organisms&#8217;).
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000491-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000491-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 128</span>
+128:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_from</span>(<span class="ruby-identifier">options</span> = {})
+129:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:parent</span>]
+130:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Expected - :association must be specified with parent&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:association</span>]
+131:       <span class="ruby-identifier">p_association</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:parent</span>].<span class="ruby-identifier">exportable_reflections</span>[<span class="ruby-identifier">p_association</span>]
+132:       <span class="ruby-identifier">p_table_name</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:parent</span>].<span class="ruby-identifier">table_name</span>
+133:       <span class="ruby-identifier">t_foreign_key</span> = <span class="ruby-identifier">p_association</span>.<span class="ruby-identifier">foreign_key</span>
+134:       
+135:       <span class="ruby-constant">QueryPiece</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">:join</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;LEFT JOIN #{exportable_table_name} ON (#{exportable_table_name}.project_id = #{p_table_name}.id)&quot;</span>
+136:     <span class="ruby-keyword kw">else</span>
+137:       <span class="ruby-constant">QueryPiece</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">:from</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;FROM #{exportable_table_name}&quot;</span>
+138:     <span class="ruby-keyword kw">end</span>
+139:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000492" class="method-detail">
+        <a name="M000492"></a>
+
+        <div class="method-heading">
+          <a href="#M000492" class="method-signature">
+          <span class="method-name">exportable_join</span><span class="method-args">(name, *other_tables)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000492-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000492-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 141</span>
+141:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_join</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">other_tables</span>)
+142:     <span class="ruby-identifier">other_tables</span> = <span class="ruby-identifier">other_tables</span>.<span class="ruby-identifier">flatten</span>
+143:     <span class="ruby-identifier">criteria</span> = []
+144:     <span class="ruby-identifier">r</span> = <span class="ruby-identifier">exportable_reflections</span>[<span class="ruby-identifier">name</span>]
+145:     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Association #{name} doesn't exist on #{self.to_s}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">nil?</span>
+146:     <span class="ruby-identifier">remote_class</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>
+147:     <span class="ruby-identifier">criteria</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">remote_class</span>.<span class="ruby-identifier">exportable_join_criteria</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">r</span>)
+148:     
+149:     <span class="ruby-comment cmt"># check for any other joins that this table can link to - we want to make our queries as tight as possible</span>
+150:     <span class="ruby-identifier">other_relections</span> = <span class="ruby-identifier">remote_class</span>.<span class="ruby-identifier">exportable_reflections</span>.<span class="ruby-identifier">values</span>
+151:     <span class="ruby-identifier">other_tables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">table</span><span class="ruby-operator">|</span>
+152:       <span class="ruby-identifier">table</span> = <span class="ruby-identifier">table</span>.<span class="ruby-identifier">to_s</span>
+153:       <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">other_relections</span>.<span class="ruby-identifier">find</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">table</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:conditions</span>].<span class="ruby-identifier">nil?</span> }
+154:       <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">nil?</span>
+155:       <span class="ruby-identifier">criteria</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">exportable_join_criteria</span>(<span class="ruby-identifier">remote_class</span>, <span class="ruby-identifier">reflection</span>)
+156:     <span class="ruby-keyword kw">end</span>
+157:     <span class="ruby-constant">QueryPiece</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">:join</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;LEFT JOIN #{remote_class.exportable_table_name} ON (#{criteria.uniq * ' AND '})&quot;</span>
+158:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000493" class="method-detail">
+        <a name="M000493"></a>
+
+        <div class="method-heading">
+          <a href="#M000493" class="method-signature">
+          <span class="method-name">exportable_join_criteria</span><span class="method-args">(parent_class, association)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000493-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000493-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 160</span>
+160:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_join_criteria</span>(<span class="ruby-identifier">parent_class</span>, <span class="ruby-identifier">association</span>)
+161:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">macro</span>
+162:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_many</span>, <span class="ruby-identifier">:has_one</span>
+163:       <span class="ruby-node">&quot;#{parent_class.exportable_table_name}.id = #{exportable_table_name}.#{association.primary_key_name}&quot;</span>
+164:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:belongs_to</span>
+165:       <span class="ruby-node">&quot;#{exportable_table_name}.id = #{parent_class.exportable_table_name}.#{association.primary_key_name}&quot;</span>
+166:     <span class="ruby-keyword kw">end</span>
+167:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000486" class="method-detail">
+        <a name="M000486"></a>
+
+        <div class="method-heading">
+          <a href="#M000486" class="method-signature">
+          <span class="method-name">exportable_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000486-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000486-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 78</span>
+78:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_name</span>
+79:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">table_name</span>
+80:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000484" class="method-detail">
+        <a name="M000484"></a>
+
+        <div class="method-heading">
+          <a href="#M000484" class="method-signature">
+          <span class="method-name">exportable_non_id_fields</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000484-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000484-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 70</span>
+70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_non_id_fields</span>
+71:     <span class="ruby-identifier">exportable_fields</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span> <span class="ruby-regexp re">/(^|_)id$/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">f</span>)}
+72:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000489" class="method-detail">
+        <a name="M000489"></a>
+
+        <div class="method-heading">
+          <a href="#M000489" class="method-signature">
+          <span class="method-name">exportable_reflections</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000489-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000489-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 110</span>
+110:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_reflections</span>
+111:     <span class="ruby-constant">Exportables</span><span class="ruby-operator">::</span><span class="ruby-constant">ExportableModel</span>.<span class="ruby-identifier">load_all_models</span>
+112:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">select_hash</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+113:       <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">through_reflection</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:conditions</span>]
+114:       <span class="ruby-keyword kw">begin</span>
+115:         <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>
+116:         <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:exportable?</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">exportable?</span>
+117:       <span class="ruby-keyword kw">rescue</span>
+118:         <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;nil reflection on #{self.to_s} for reflection #{k}&quot;</span>
+119:       <span class="ruby-keyword kw">end</span>
+120:     <span class="ruby-keyword kw">end</span>
+121:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000490" class="method-detail">
+        <a name="M000490"></a>
+
+        <div class="method-heading">
+          <a href="#M000490" class="method-signature">
+          <span class="method-name">exportable_select</span><span class="method-args">(column_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000490-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000490-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 123</span>
+123:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_select</span>(<span class="ruby-identifier">column_name</span>)
+124:     <span class="ruby-constant">QueryPiece</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">:select</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;`#{exportable_table_name}`.`#{column_name}` as `#{self.exportable_name}_#{column_name}`&quot;</span>
+125:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000485" class="method-detail">
+        <a name="M000485"></a>
+
+        <div class="method-heading">
+          <a href="#M000485" class="method-signature">
+          <span class="method-name">exportable_table_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000485-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000485-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 74</span>
+74:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exportable_table_name</span>
+75:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">table_name</span>
+76:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000480" class="method-detail">
+        <a name="M000480"></a>
+
+        <div class="method-heading">
+          <a href="#M000480" class="method-signature">
+          <span class="method-name">path_to_exportable_table</span><span class="method-args">(target_table_name, breadcrumbs = [])</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000480-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000480-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 27</span>
+27:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path_to_exportable_table</span>(<span class="ruby-identifier">target_table_name</span>, <span class="ruby-identifier">breadcrumbs</span> = [])
+28:     <span class="ruby-identifier">target_table_name</span> = <span class="ruby-identifier">target_table_name</span>.<span class="ruby-identifier">to_s</span>
+29:     <span class="ruby-keyword kw">return</span> [] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_table_name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">table_name</span>
+30:     
+31:     <span class="ruby-identifier">possibilities</span> = []
+32:     <span class="ruby-identifier">exportable_reflections</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">reflection</span><span class="ruby-operator">|</span>
+33:       <span class="ruby-identifier">table_name</span> = <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">table_name</span>
+34:       <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">breadcrumbs</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">table_name</span>)
+35:       <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">name</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">table_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">target_table_name</span>
+36:       
+37:       <span class="ruby-identifier">possibility</span> = <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">path_to_exportable_table</span>(<span class="ruby-identifier">target_table_name</span>, <span class="ruby-identifier">breadcrumbs</span> <span class="ruby-operator">+</span> [<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">exportable_table_name</span>])
+38:       <span class="ruby-identifier">possibilities</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">name</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">possibility</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">possibility</span>
+39:     <span class="ruby-keyword kw">end</span>
+40:     
+41:     <span class="ruby-identifier">possibilities</span>.<span class="ruby-identifier">sort</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">length</span> }.<span class="ruby-identifier">first</span>
+42:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000483" class="method-detail">
+        <a name="M000483"></a>
+
+        <div class="method-heading">
+          <a href="#M000483" class="method-signature">
+          <span class="method-name">related_controller</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000483-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000483-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/exportables/exportable_model.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">related_controller</span>
+64:     <span class="ruby-identifier">ctl_name</span> = <span class="ruby-node">&quot;#{table_name}_controller&quot;</span>.<span class="ruby-identifier">camelcase</span>
+65:     <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">ctl_name</span>)
+66:   <span class="ruby-keyword kw">rescue</span>
+67:     <span class="ruby-keyword kw">nil</span>
+68:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
