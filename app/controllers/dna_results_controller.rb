@@ -82,24 +82,5 @@ class DnaResultsController < ApplicationController
 
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-  
-  def unapproved
-    @condition = ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, current_user.data_entry_only ]        
-    index
-  end
-
-  def approved
-    @condition = ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, ! current_user.data_entry_only ]        
-    index
-  end
-
-  protected
-
-  def conditions_for_collection
-    if current_user.data_entry_only
-      ['dna_results.project_id = (?) and dna_results.approved = (?)', current_project_id, current_user.data_entry_only ]
-    else
-      @condition
-    end
-  end
+  include ApprovedDataOnly
 end

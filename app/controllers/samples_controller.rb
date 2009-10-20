@@ -2,7 +2,6 @@ class SamplesController < ApplicationController
   layout "tabs"
   include GoToOrganismCode::Controller
 
-
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
@@ -278,31 +277,5 @@ class SamplesController < ApplicationController
 
   end
 
-  def unapproved
-    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]        
-    index
-  end
-
-  def approved
-    @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]        
-    index
-  end
-
-  protected
-  def conditions_for_collection
-#    flash[:notice] = " condition " + @condition.to_s + " params " + params[:action].to_s + " last action " + $last_action.to_s
-# $last_action = params[:action]
-
-    # after update the condition is blank - not a fix ! - happens only in samples 
-    if @condition.blank?
-      @condition = ['samples.project_id = (?) and samples.approved = (?)', current_project_id, true ]
-    end
-    
-    if current_user.data_entry_only
-      ['samples.project_id = (?) and samples.approved = (?)', current_project_id, false ]        
-    else
-      @condition
-    end
-  end
-
+  include ApprovedDataOnly
 end

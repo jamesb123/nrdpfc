@@ -14,29 +14,25 @@
     controller: "dynamic_attributes"
 - label: "Samples"
   controller: "samples"
-  selected_if: 'params[:action] == "approved"'
-  action: 'approved'
   sub_tabs:
   - label: "Sample Non-Tissues(Dynamic)"
     controller: "sample_non_tissues"
   - label: "Approved Samples"	
-    selected_if: 'params[:action] == "approved"'
+    selected_if: 'viewing_approved?'
     action: 'approved'
-  - label: "Unapproved Samples )"
+  - label: "Unapproved Samples"
     controller: "samples"
-    selected_if: 'params[:action] == "unapproved"'
+    selected_if: 'viewing_unapproved?'
     action: 'unapproved'
 - label: "DNA"  
   controller: "dna_results"
-  selected_if: 'params[:action] == "approved"'
-  action: 'approved'
   sub_tabs:
   - label: "Approved DNA Results"	
-    selected_if: 'params[:action] == "approved"'
+    selected_if: 'viewing_approved?'
     action: 'approved'
   - label: "Unapproved DNA Results"
     controller: "dna_results"
-    selected_if: 'params[:action] == "unapproved"'
+    selected_if: 'viewing_unapproved?'
     action: 'unapproved'
 - label: "mtDNA"  
   controller: "mt_dnas"

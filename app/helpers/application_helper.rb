@@ -109,5 +109,13 @@ module ApplicationHelper
     str = request.headers['User-agent']
     str.match(/Firefox\/2/) || str.match(/MSIE 6/)
   end
+
+  def viewing_approved?
+    session[:view_approved_data] == true
+  end
+
+  def viewing_unapproved?
+    session[:view_approved_data] == false
+  end
     
 end
