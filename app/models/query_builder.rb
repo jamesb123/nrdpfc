@@ -34,12 +34,15 @@ class QueryBuilder
   end
 
   def approved_only(table_name)
+    puts "looking for #{table_name}"
     @approved_only ||= []
-    unless @approved_only.include?(table_name) &&
-      !tables[table_name].model.exportable_fields.include?('approved')
-
+    unless @approved_only.include?(table_name) 
+      # This caches the negative lookups too
       @approved_only << table_name
-      add_filter(table_name, 'approved', '=', true)
+
+      if tables[table_name.to_sym].model.column_names.include?('approved')
+        add_filter(table_name, 'approved', '=', true)
+      end
     end
   end
   
@@ -78,6 +81,7 @@ class QueryBuilder
   
   def add_fields(table_field_hash)
     table_field_hash.each_pair{|table_name, new_fields|
+      approved_only(table_name)
       table_name = table_name.to_sym
       table = tables[table_name]
       new_fields = [new_fields] unless new_fields.is_a?(Array)
