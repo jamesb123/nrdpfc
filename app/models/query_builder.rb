@@ -32,6 +32,16 @@ class QueryBuilder
       add_filter(link, "project_id", "IN", project_ids.map(&:to_i))
     end
   end
+
+  def approved_only(table_name)
+    @approved_only ||= []
+    unless @approved_only.include?(table_name) &&
+      !tables[table_name].model.exportable_fields.include?('approved')
+
+      @approved_only << table_name
+      add_filter(table_name, 'approved', '=', true)
+    end
+  end
   
   def add_tables(*table_names)
     table_names = table_names.flatten

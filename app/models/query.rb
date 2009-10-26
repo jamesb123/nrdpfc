@@ -65,6 +65,7 @@ class Query < ActiveRecord::Base
     
     data.each_pair do |table, fields|
       qb.add_tables table
+      qb.approved_only table
       
       fields.each_pair do |field, options|
         qb.add_fields table => field
