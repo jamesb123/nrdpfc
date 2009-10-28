@@ -32,6 +32,19 @@ class QueryBuilder
       add_filter(link, "project_id", "IN", project_ids.map(&:to_i))
     end
   end
+
+  def approved_only(table_name)
+    puts "looking for #{table_name}"
+    @approved_only ||= []
+    unless @approved_only.include?(table_name) 
+      # This caches the negative lookups too
+      @approved_only << table_name
+
+      if tables[table_name.to_sym].model.column_names.include?('approved')
+        add_filter(table_name, 'approved', '=', true)
+      end
+    end
+  end
   
   def add_tables(*table_names)
     table_names = table_names.flatten
@@ -68,6 +81,7 @@ class QueryBuilder
   
   def add_fields(table_field_hash)
     table_field_hash.each_pair{|table_name, new_fields|
+      approved_only(table_name)
       table_name = table_name.to_sym
       table = tables[table_name]
       new_fields = [new_fields] unless new_fields.is_a?(Array)
