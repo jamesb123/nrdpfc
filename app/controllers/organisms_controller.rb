@@ -1,14 +1,14 @@
 class OrganismsController < ApplicationController
   layout "tabs"
-  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:id, :organism_code, :comment, :samples]
+  
+  ORGANISM_BASE_ATTRIBUTE_BEGIN = [:id, :organism_code, :comment, :samples, :approved]
   # ORGANISM_BASE_ATTRIBUTE_END = [:samples]
-  include GoToOrganismCode::Controller
 
   before_filter :add_dynamic_columns
   cattr_accessor :action_links
   
   active_scaffold  :organisms do |config|
-    config.columns = [:id, :organism_code, :comment, :samples]
+    config.columns = [:id, :organism_code, :comment, :samples, :approved]
     config.create.columns.exclude :id, :project, :security_settings
     config.update.columns.exclude :id, :project, :security_settings
     config.columns[:organism_code].label = "Organism"
@@ -17,7 +17,10 @@ class OrganismsController < ApplicationController
     
     config.nested.add_link("Samples", [:samples])
   end
-  
+
+  include ApprovedDataOnly
+  include GoToOrganismCode::Controller
+
   def add_dynamic_columns
     organism = Organism.find(:first, :conditions => ["project_id = ?", current_project_id])
     c = active_scaffold_config
@@ -33,23 +36,5 @@ class OrganismsController < ApplicationController
     end
     
     true
-  end
-  
-  def before_create_save(record)
-    record.project_id = current_project_id
-  end
-  
-  #this method returns a where clause given to active_scaffold, plugged into the find :all method for returning Organisms
-  def conditions_for_collection
-    w = Where.new
-    w.and("organisms.project_id = ?", current_project_id)
-    # if params[:id]
-    #   ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND ' + 
-    #    'security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
-    # else
-      # ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND ' + 
-      #  'security_settings.user_id = ? AND security_settings.level > 0)) AND (projects.id = ?)', current_user.id, current_user.id, current_project_id]
-    # end
-    w.to_s
   end
 end

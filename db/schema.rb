@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090911175840) do
+ActiveRecord::Schema.define(:version => 20091027174056) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
   end
 
   add_index "dna_results", ["project_id"], :name => "index_dna_results_on_project_id"
+  add_index "dna_results", ["approved"], :name => "index_dna_results_on_approved"
 
   create_table "dynamic_attribute_values", :force => true do |t|
     t.integer  "dynamic_attribute_id"
@@ -222,6 +223,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
 
   add_index "genders", ["finalResult"], :name => "index_genders_on_finalResult"
   add_index "genders", ["project_id"], :name => "index_genders_on_project_id"
+  add_index "genders", ["approved"], :name => "index_genders_on_approved"
 
   create_table "locality_types", :force => true do |t|
     t.string "locality_type_name"
@@ -364,6 +366,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
 
   add_index "mhcs", ["finalResult"], :name => "index_mhcs_on_finalResult"
   add_index "mhcs", ["project_id"], :name => "index_mhcs_on_project_id"
+  add_index "mhcs", ["approved"], :name => "index_mhcs_on_approved"
 
   create_table "microsatellite_final_horizontals", :force => true do |t|
     t.integer "project_id"
@@ -915,6 +918,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
   add_index "microsatellites", ["gel"], :name => "index_microsatellites_on_gel"
   add_index "microsatellites", ["well"], :name => "index_microsatellites_on_well"
   add_index "microsatellites", ["locu_id"], :name => "index_microsatellites_on_locu_id"
+  add_index "microsatellites", ["approved"], :name => "index_microsatellites_on_approved"
 
   create_table "mt_dna_final_horizontals", :force => true do |t|
     t.integer "project_id"
@@ -1048,6 +1052,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
 
   add_index "mt_dnas", ["finalResult"], :name => "index_mt_dnas_on_finalResult"
   add_index "mt_dnas", ["project_id"], :name => "index_mt_dnas_on_project_id"
+  add_index "mt_dnas", ["approved"], :name => "index_mt_dnas_on_approved"
 
   create_table "nats", :force => true do |t|
     t.datetime "created_at"
@@ -1062,6 +1067,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
   end
 
   add_index "organisms", ["project_id"], :name => "index_organisms_on_project_id"
+  add_index "organisms", ["approved"], :name => "index_organisms_on_approved"
 
   create_table "primers", :force => true do |t|
     t.integer "locu_id"
@@ -1197,6 +1203,7 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
   add_index "samples", ["project_id"], :name => "index_samples_on_project_id"
+  add_index "samples", ["approved"], :name => "index_samples_on_approved"
 
   create_table "security_settings", :force => true do |t|
     t.integer "project_id"
@@ -1404,5 +1411,6 @@ ActiveRecord::Schema.define(:version => 20090911175840) do
 
   add_index "y_chromosomes", ["finalResult"], :name => "index_y_chromosomes_on_finalResult"
   add_index "y_chromosomes", ["project_id"], :name => "index_y_chromosomes_on_project_id"
+  add_index "y_chromosomes", ["approved"], :name => "index_y_chromosomes_on_approved"
 
 end

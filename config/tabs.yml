@@ -8,8 +8,14 @@
 - label: "Organisms"
   controller: "organisms"
   sub_tabs:
-  - label: "Organisms"
+  - label: "Approved Organisms"
     controller: "organisms"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-Approved Organisms"
+    controller: "organisms"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "Organism Field Definition"
     controller: "dynamic_attributes"
 - label: "Samples"
@@ -20,7 +26,7 @@
   - label: "Approved Samples"	
     selected_if: 'viewing_approved?'
     action: 'approved'
-  - label: "Unapproved Samples"
+  - label: "Un-approved Samples"
     controller: "samples"
     selected_if: 'viewing_unapproved?'
     action: 'unapproved'
@@ -30,7 +36,7 @@
   - label: "Approved DNA Results"	
     selected_if: 'viewing_approved?'
     action: 'approved'
-  - label: "Unapproved DNA Results"
+  - label: "Un-approved DNA Results"
     controller: "dna_results"
     selected_if: 'viewing_unapproved?'
     action: 'unapproved'

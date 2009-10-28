@@ -11,7 +11,6 @@
 class Organism < ActiveRecord::Base
 
   has_many_dynamic_attributes :scoped_by => 'Project'
-  # before_create :assign_project_id
   
   belongs_to :project
   has_many :microsatellite_final_horizontals
@@ -33,9 +32,30 @@ class Organism < ActiveRecord::Base
   end
   
   before_create :assign_project_id
-  
+  before_save :assign_approval
+
   def assign_project_id
     self.project_id = current_project_id
+  end
+  
+  # set approval flag according to user type
+  def assign_approval
+    if ! current_user.data_entry_only
+      self.approved = true
+    end
+  end
+
+  
+  def approved_authorized?
+    ! current_user.data_entry_only    
+  end
+  
+  def approved_authorized_for_update?
+    current_user.is_admin    
+  end
+
+  def approved_authorized_for_create?
+    current_user.is_admin    
   end
 
 #  def to_label

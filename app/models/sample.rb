@@ -37,13 +37,23 @@ class Sample < ActiveRecord::Base
   
   before_create :assign_project_id
   before_save :assign_approval
-  before_save :assign_date_collected
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
+#  before_save :assign_date_collected
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
-  
+
+  def assign_project_id
+    self.project_id = current_project_id
+  end
+
+  def assign_approval
+    if ! current_user.data_entry_only
+       self.approved = true
+    end
+  end 
+
   def validate
     if has_coordinates?
       errors.add(:base, "Latitude and Longitude must be written in the chosen format") unless geocoords.format_correct?
@@ -52,11 +62,7 @@ class Sample < ActiveRecord::Base
     end
   end
 
-  def assign_approval
-    if ! current_user.data_entry_only
-      self.approved = true
-    end
-  end
+
 
   def assign_locality_type
     self.locality_type_text =  self.locality_type.to_label
@@ -121,9 +127,6 @@ class Sample < ActiveRecord::Base
   end
 
   
-  def assign_project_id
-    self.project_id = current_project_id
-  end
   
   def to_label 
     if !organism.nil?  
