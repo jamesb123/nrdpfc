@@ -36,9 +36,15 @@ class DnaResult < ActiveRecord::Base
   include SecuritySets::ProjectBased
 
   before_create :assign_project_id
-  
+  before_save :assign_approval
+
+  def assign_approval
+    if ! current_user.data_entry_only
+       self.approved = true
+    end
+  end 
+
   def to_label 
-#    "#{sample_id}" 
      "#{self.id}" 
   end
 

@@ -79,8 +79,7 @@ class DnaResultsController < ApplicationController
     END
   
   end 
-
+  include ApprovedDataOnly
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-  include ApprovedDataOnly
 end

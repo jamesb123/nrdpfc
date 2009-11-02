@@ -13,6 +13,12 @@ module ProjectResults
     end
   end
 
+  def assign_project_id
+    # TODO, clean this up. it should be attached to the sample's project
+    value = current_project_id
+    self.project_id = value unless value.blank?
+  end
+
   def flag_project_for_update
     self.project.flag_for_update
   end

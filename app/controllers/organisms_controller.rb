@@ -14,12 +14,14 @@ class OrganismsController < ApplicationController
     config.columns[:organism_code].label = "Organism"
     config.columns[:comment].label = "Comments"
     config.columns[:organism_code].sort_by :sql => 'organisms.organism_code'
-    
     config.nested.add_link("Samples", [:samples])
   end
 
-  include ApprovedDataOnly
-  include GoToOrganismCode::Controller
+# def before_create_save(record)
+#    if ! current_user.data_entry_only
+#      record.approved = 0
+#    end
+# end
 
   def add_dynamic_columns
     organism = Organism.find(:first, :conditions => ["project_id = ?", current_project_id])
@@ -37,4 +39,6 @@ class OrganismsController < ApplicationController
     
     true
   end
+  include ApprovedDataOnly
+  include GoToOrganismCode::Controller
 end

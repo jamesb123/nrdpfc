@@ -38,7 +38,7 @@ class Organism < ActiveRecord::Base
     self.project_id = current_project_id
   end
   
-  # set approval flag according to user type
+# set approval flag according to user type
   def assign_approval
     if ! current_user.data_entry_only
       self.approved = true
@@ -57,10 +57,6 @@ class Organism < ActiveRecord::Base
   def approved_authorized_for_create?
     current_user.is_admin    
   end
-
-#  def to_label
-#   "#{id} #{organism_code}" 
-#  end
 
   def to_label
 #   "#{organism_code} #{self.id}" 

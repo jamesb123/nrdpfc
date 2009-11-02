@@ -1,10 +1,10 @@
 class MicrosatellitesController < ApplicationController
   layout "tabs"
   active_scaffold :microsatellites do |config|
-    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height]
+    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :approved]
     
     for uc in [config.update, config.create]
-      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height]
+      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :approved]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
@@ -62,6 +62,7 @@ class MicrosatellitesController < ApplicationController
     sb
   end
   
+  include ApprovedDataOnly
   include ResultTableSharedMethods
   include GoToOrganismCode::Controller
   

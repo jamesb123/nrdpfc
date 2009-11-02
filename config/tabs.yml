@@ -43,8 +43,14 @@
 - label: "mtDNA"  
   controller: "mt_dnas"
   sub_tabs:
-  - label: "mtDNA"
+  - label: "Approved mtDNA"
     controller: "mt_dnas"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved mtDNA"
+    controller: "mt_dnas"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "mtDNA Final Horizontals"
     controller: "mt_dna_final_horizontals"
   - label: "mtDNA SEQ"
@@ -52,15 +58,27 @@
 - label: "Genders"
   controller: "genders"
   sub_tabs:
-  - label: "Genders"
+  - label: "Approved Genders"
     controller: "genders"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Genders"
+    controller: "genders"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "Gender Final Horizontals"
     controller: "gender_final_horizontals"
 - label: "Microsatellites"
   controller: "microsatellites"
   sub_tabs:
-  - label: "Microsatellites"
+  - label: "Approved Microsatellites"
     controller: "microsatellites"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Microsatellites"
+    controller: "microsatellites"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "Horizontals"
     controller: "microsatellite_horizontals"
   - label: "Final Horizontals"
@@ -68,8 +86,14 @@
 - label: "MHC"
   controller: "mhcs"
   sub_tabs:
-  - label: "MHC"
+  - label: "Approved MHC"
     controller: "mhcs"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved MHC"
+    controller: "mhcs"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "MHC Horizontal"
     controller: "mhc_final_horizontals"
   - label: "MHC SEQ"
@@ -77,8 +101,14 @@
 - label: "Y Chromosomes"
   controller: "y_chromosomes"
   sub_tabs:
-  - label: "Y Chromosomes"
+  - label: "Approved Y Chromosomes"
     controller: "y_chromosomes"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Y-Chromosomes"
+    controller: "y_chromosomes"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
   - label: "Y Chromosomes Final"
     controller: "y_chromosome_final_horizontals"
   - label: "Y Chromsomes SEQ"

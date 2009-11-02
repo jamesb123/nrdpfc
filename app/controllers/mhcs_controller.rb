@@ -2,7 +2,7 @@ class MhcsController < ApplicationController
   layout "tabs"
   
   active_scaffold :mhcs do |config|
-    config.columns = [:project, :sample, :sample_id, :locu, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult]
+    config.columns = [:project, :sample, :sample_id, :locu, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult, :approved]
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project
@@ -29,6 +29,7 @@ class MhcsController < ApplicationController
 
   include ResultTableSharedMethods
   include GoToOrganismCode::Controller
+  include ApprovedDataOnly
 
   def conditions_for_collection
     ['mhcs.project_id = (?)', current_project_id ]
