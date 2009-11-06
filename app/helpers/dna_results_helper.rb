@@ -1,6 +1,6 @@
 module DnaResultsHelper
   def record_select_conditions_from_controller
-    ['project_id = ?', current_project]
+    ['project_id = ?', 1]
   end
   def options_for_association_conditions(association)
     if association.name == :sample

@@ -32,7 +32,7 @@ class Organism < ActiveRecord::Base
   end
   
   before_create :assign_project_id
-  before_save :assign_approval
+  after_validation_on_create :assign_approval
 
   def assign_project_id
     self.project_id = current_project_id

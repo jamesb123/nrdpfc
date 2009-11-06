@@ -50,7 +50,11 @@ class Sample < ActiveRecord::Base
 
   def assign_approval
     if ! current_user.data_entry_only
-       self.approved = true
+#      if :view_approved_data 
+        self.approved = true
+#      else
+#        self.approved = false
+#      end
     end
   end 
 
@@ -137,7 +141,8 @@ class Sample < ActiveRecord::Base
   end
   
   def approved_authorized?
-    ! current_user.data_entry_only    
+    current_user.is_admin    
+#    ! current_user.data_entry_only    
   end
   
   def approved_authorized_for_update?
