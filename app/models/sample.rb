@@ -1,7 +1,6 @@
 # see schema at end of model
 
 class Sample < ActiveRecord::Base
-  belongs_to :project
   belongs_to :organism
   belongs_to :locality_type
   belongs_to :shippingmaterial
@@ -22,9 +21,9 @@ class Sample < ActiveRecord::Base
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
+  include ProjectRelations
   include SecuritySets::ProjectBased
-  
-  RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
+  include ApprovalModelHelpers
   
   for table_name in RESULT_TABLES
     has_many table_name.to_sym
@@ -35,28 +34,12 @@ class Sample < ActiveRecord::Base
   end
   
   
-  before_create :assign_project_id
-  before_save :assign_approval
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
 #  before_save :assign_date_collected
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
-
-  def assign_project_id
-    self.project_id = current_project_id
-  end
-
-  def assign_approval
-    if ! current_user.data_entry_only
-#      if :view_approved_data 
-        self.approved = true
-#      else
-#        self.approved = false
-#      end
-    end
-  end 
 
   def validate
     if has_coordinates?
@@ -129,8 +112,6 @@ class Sample < ActiveRecord::Base
 # self.date_collected = now.date
 #    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
   end
-
-  
   
   def to_label 
     if !organism.nil?  
@@ -139,6 +120,7 @@ class Sample < ActiveRecord::Base
       return "#{self.id} SID" 
     end
   end
+<<<<<<< HEAD:app/models/sample.rb
   
   def approved_authorized?
     current_user.is_admin    
@@ -153,6 +135,8 @@ class Sample < ActiveRecord::Base
     current_user.is_admin    
   end
 
+=======
+>>>>>>> Fixed setting default approval value:app/models/sample.rb
 end
 
 # == Schema Information

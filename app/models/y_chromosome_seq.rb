@@ -11,12 +11,10 @@
 #
 
 class YChromosomeSeq < ActiveRecord::Base
-  belongs_to :sample
-  
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
-  include ProjectResults
+  include ProjectRelations
 
   def to_label 
     "Ex#: #{locus}" 

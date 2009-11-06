@@ -75,6 +75,8 @@ end
 require "fastercsv"
 load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb" # manually require this because we want to inject some more code into the model that comes with the dynamic_attribute plugin.
 # require 'paginator'
+  
+::RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
 
 # Fixes problems with ruby 1.8.7
 unless '1.9'.respond_to?(:force_encoding)

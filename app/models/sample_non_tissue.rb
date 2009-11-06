@@ -31,16 +31,10 @@ class SampleNonTissue < ActiveRecord::Base
   has_many_dynamic_attributes :scoped_by => 'Project'
 
   belongs_to :organism
-  belongs_to :project
-
-  before_create :assign_project_id
 
   extend Exportables::ExportableModel
+  include ProjectRelations
   include SecuritySets::ProjectBased
-
-  def assign_project_id
-    self.project_id = current_project_id
-  end
   
   def to_label 
     "#{id}" 

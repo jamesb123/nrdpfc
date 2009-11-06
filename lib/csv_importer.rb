@@ -1,7 +1,7 @@
 class CsvImporter < Struct.new(:data, :model)
   class ParseError < StandardError; end
 
-  IMPORT_TABLES = [ Sample::RESULT_TABLES, 'organisms' ].flatten
+  IMPORT_TABLES = [ RESULT_TABLES, 'organisms' ].flatten
 
   attr_writer :overwrite
   def overwrite?

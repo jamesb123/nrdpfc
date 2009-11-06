@@ -26,42 +26,15 @@
 #
 
 class DnaResult < ActiveRecord::Base
-  belongs_to :sample
-  belongs_to :project
-  
   # belongs_to :organism, :through => :samples
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
-
-  before_create :assign_project_id
-  before_save :assign_approval
-
-  def assign_approval
-    if ! current_user.data_entry_only
-       self.approved = true
-    end
-  end 
+  include ProjectRelations
+  include ApprovalModelHelpers
 
   def to_label 
      "#{self.id}" 
   end
-
-  def approved_authorized?
-    ! current_user.data_entry_only    
-  end
-  
-  def approved_authorized_for_update?
-    current_user.is_admin    
-  end
-
-  def approved_authorized_for_create?
-    current_user.is_admin    
-  end
-
-  def assign_project_id
-    self.project_id = (current_project_id rescue nil)
-  end
-  
 end

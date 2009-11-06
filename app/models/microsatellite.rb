@@ -14,7 +14,6 @@
 #
 
 class Microsatellite < ActiveRecord::Base
-  belongs_to :sample
   belongs_to :locu
   
   before_save :assign_locus_text
@@ -22,7 +21,7 @@ class Microsatellite < ActiveRecord::Base
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
-  include ProjectResults
+  include ProjectRelations
 
   def assign_locus_text
     self.locus = self.locu.to_label unless self.locu.nil?

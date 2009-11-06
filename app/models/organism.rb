@@ -9,10 +9,8 @@
 #
 
 class Organism < ActiveRecord::Base
-
   has_many_dynamic_attributes :scoped_by => 'Project'
   
-  belongs_to :project
   has_many :microsatellite_final_horizontals
   has_many :samples
   has_many :gender_final_horizontals
@@ -21,41 +19,16 @@ class Organism < ActiveRecord::Base
   has_many :y_chromosome_final_horizontals
   has_many :sample_non_tissues
   has_many :dna_results, :through => :samples
-  
+ 
+  include ProjectRelations
   extend Exportables::DynamicAttributesExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
+  include ApprovalModelHelpers
   
-  for table_name in Sample::RESULT_TABLES
+  for table_name in RESULT_TABLES
     has_many table_name, :through => :samples 
     has_many "final_#{table_name}", :through => :samples
-  end
-  
-  before_create :assign_project_id
-  after_validation_on_create :assign_approval
-
-  def assign_project_id
-    self.project_id = current_project_id
-  end
-  
-# set approval flag according to user type
-  def assign_approval
-    if ! current_user.data_entry_only
-      self.approved = true
-    end
-  end
-
-  
-  def approved_authorized?
-    ! current_user.data_entry_only    
-  end
-  
-  def approved_authorized_for_update?
-    current_user.is_admin    
-  end
-
-  def approved_authorized_for_create?
-    current_user.is_admin    
   end
 
   def to_label
