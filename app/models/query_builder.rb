@@ -34,7 +34,6 @@ class QueryBuilder
   end
 
   def approved_only(table_name)
-    puts "looking for #{table_name}"
     @approved_only ||= []
     unless @approved_only.include?(table_name) 
       # This caches the negative lookups too
