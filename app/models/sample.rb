@@ -120,23 +120,6 @@ class Sample < ActiveRecord::Base
       return "#{self.id} SID" 
     end
   end
-<<<<<<< HEAD:app/models/sample.rb
-  
-  def approved_authorized?
-    current_user.is_admin    
-#    ! current_user.data_entry_only    
-  end
-  
-  def approved_authorized_for_update?
-    current_user.is_admin    
-  end
-
-  def approved_authorized_for_create?
-    current_user.is_admin    
-  end
-
-=======
->>>>>>> Fixed setting default approval value:app/models/sample.rb
 end
 
 # == Schema Information
