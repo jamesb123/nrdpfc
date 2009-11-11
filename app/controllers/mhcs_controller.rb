@@ -24,14 +24,10 @@ class MhcsController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
-
+    config.columns[:approved].form_ui = :checkbox
   end
 
   include ResultTableSharedMethods
   include GoToOrganismCode::Controller
   include ApprovedDataOnly
-
-  def conditions_for_collection
-    ['mhcs.project_id = (?)', current_project_id ]
-  end
 end

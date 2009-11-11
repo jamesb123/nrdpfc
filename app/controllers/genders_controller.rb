@@ -22,6 +22,7 @@ class GendersController < ApplicationController
     config.columns[:locu].form_ui = :select
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
+    config.columns[:approved].form_ui = :checkbox
     
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>
@@ -67,7 +68,7 @@ class GendersController < ApplicationController
   include GoToOrganismCode::Controller
   include ApprovedDataOnly
     
-  def conditions_for_collection
-    ['genders.project_id = (?)', current_project_id ]
-  end  
+#  def conditions_for_collection
+#    ['genders.project_id = (?)', current_project_id ]
+#  end  
 end

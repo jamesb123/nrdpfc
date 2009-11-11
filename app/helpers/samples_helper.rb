@@ -12,7 +12,15 @@ module SamplesHelper
 #    select(record, input_name, state_select(record, input_name))   
 #     collection_select(:record, country_select("user", "country_name"))
 #  end
-  
+
+  def approved_form_column(record,input_name)
+    if session[:view_approved_data] == true
+      select_tag(input_name, options_for_select('False' => 0, 'True' => 1))
+    else
+      select_tag(input_name, options_for_select('True' => 1, 'False' => 0))
+    end
+  end
+
   def date_received_form_column(record, input_name)
     date_select( :record, :date_received, :name => input_name, :include_blank => true )
   end 

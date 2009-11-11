@@ -22,14 +22,11 @@ class YChromosomesController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
+    config.columns[:approved].form_ui = :checkbox
   end
   
   include ApprovedDataOnly
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
-
-  def conditions_for_collection
-    ['y_chromosomes.project_id = (?)', current_project_id ]
-  end
 
 end

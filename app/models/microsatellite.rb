@@ -22,6 +22,7 @@ class Microsatellite < ActiveRecord::Base
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
   include ProjectRelations
+  include ApprovalModelHelpers
 
   def assign_locus_text
     self.locus = self.locu.to_label unless self.locu.nil?

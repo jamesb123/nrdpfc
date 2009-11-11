@@ -67,6 +67,7 @@ config.columns[:organism].association.reverse = :organism
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
+    config.columns[:tissue_remaining].form_ui = :checkbox
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Collected Day "
