@@ -6,14 +6,10 @@ module ApprovalModelHelpers
   # set approval flag according to user type
   def assign_approval
     v = read_attribute(:approved)
-#    if v.nil? || (! current_user.data_entry_only)
-#      write_attribute(:approved, ! current_user.data_entry_only)
-    if v.nil? || (current_user.data_entry_only)
+    if current_user.data_entry_only
       write_attribute(:approved, false)
-    else
-      if v.nil? || (! current_user.is_admin)
-        write_attribute(:approved, true)
-      end
+    elsif v.nil? || (! current_user.is_admin)
+      write_attribute(:approved, true)
     end
   
     # If the method were to return false due to the statement above,

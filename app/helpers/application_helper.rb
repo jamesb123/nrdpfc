@@ -110,12 +110,13 @@ module ApplicationHelper
     str.match(/Firefox\/2/) || str.match(/MSIE 6/)
   end
 
-  def viewing_approved?
-    session[:view_approved_data] == true
+  def viewing_unapproved?
+    ! viewing_approved?
   end
 
-  def viewing_unapproved?
-    session[:view_approved_data] == false
+  def approved_form_column(record,input_name)
+    value = viewing_approved? ? 1 : 0
+    select_tag(input_name, options_for_select({'True' => 1, 'False' => 0}, value))
   end
     
 end

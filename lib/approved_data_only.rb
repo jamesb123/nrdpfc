@@ -30,6 +30,10 @@
 #  action: 'approved'
 #
 module ApprovedDataOnly
+  def self.included(base)
+    base.send :helper_method, :viewing_approved?
+  end
+
   def unapproved
     session[:view_approved_data] = false
     index
@@ -41,10 +45,19 @@ module ApprovedDataOnly
   end
 
   protected
-  def conditions_for_collection
-    approved = session[:view_approved_data].nil? ? true : session[:view_approved_data]
-    approved = false if current_user.data_entry_only
 
+  def viewing_approved?
+    if current_user.data_entry_only
+      false
+    elsif session[:view_approved_data].nil?
+      true
+    else
+      session[:view_approved_data] == true
+    end
+  end
+
+  def conditions_for_collection
+    approved = viewing_approved?
     table = active_scaffold_config.model.table_name
 
     ["#{table}.project_id = ? and #{table}.approved = ?", current_project_id, approved ]
