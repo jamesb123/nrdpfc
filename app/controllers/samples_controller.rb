@@ -34,7 +34,6 @@ class SamplesController < ApplicationController
     # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
-config.columns[:organism].association.reverse = :organism     
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
 
     config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id

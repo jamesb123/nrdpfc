@@ -71,7 +71,7 @@ module ActiveScaffold
         # unknown-to-activescaffold-but-real-database-column constraint
         elsif active_scaffold_config.model.column_names.include? k.to_s
           constraint_condition_for(k.to_s, v)
-        else
+        elsif ! column.nil?
           raise ActiveScaffold::MalformedConstraint, constraint_error(active_scaffold_config.model, k), caller
         end
 

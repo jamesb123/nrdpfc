@@ -5,6 +5,9 @@ module ApprovalModelHelpers
 
   # set approval flag according to user type
   def assign_approval
+    # There is no user from the console
+    return if current_user.nil?
+
     v = read_attribute(:approved)
     if current_user.data_entry_only
       write_attribute(:approved, false)
