@@ -133,7 +133,7 @@ module ActiveRecord # :nodoc:
         def read_attribute_with_dynamic_attributes(attr_name)
           attr_name = attr_name.to_s
           begin
-            if ret_val = read_attribute_without_dynamic_attributes(attr_name)
+            if ! (ret_val = read_attribute_without_dynamic_attributes(attr_name)).nil?
               return ret_val
             elsif the_attribute_value = has_dynamic_attribute?(attr_name)
               return the_attribute_value.send(the_attribute_value.storage_field)
