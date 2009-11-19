@@ -22,7 +22,6 @@ class YChromosomesController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
-    config.columns[:approved].form_ui = :checkbox
   end
   
   include ApprovedDataOnly

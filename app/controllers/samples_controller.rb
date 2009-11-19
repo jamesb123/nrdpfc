@@ -59,7 +59,6 @@ class SamplesController < ApplicationController
     config.columns[:organism_index].label = "Organism Sample Index"
     config.columns[:security_settings].label = "Security"
     config.columns[:approved].label = "Approved"
-    config.columns[:approved].form_ui = :checkbox
     config.columns[:extraction_method].form_ui = :select
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:storage_medium].form_ui = :select

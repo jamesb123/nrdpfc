@@ -31,7 +31,6 @@ class DnaResultsController < ApplicationController
     config.columns[:plate].label = "Plate"
     config.columns[:sample].form_ui = :record_select
     config.columns[:extraction_method].form_ui = :select
-    config.columns[:approved].form_ui = :checkbox
     config.columns[:dna_remaining].form_ui = :checkbox
 
     config.columns[:sample].tooltip = <<-END

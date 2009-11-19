@@ -29,7 +29,6 @@ class MicrosatellitesController < ApplicationController
     config.columns[:locu].label = "Locus"
     config.columns[:sample].form_ui = :record_select
     config.columns[:locu].form_ui = :select
-    config.columns[:approved].form_ui = :checkbox
    
     # [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
