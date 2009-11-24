@@ -2,80 +2,16 @@
 <% content_for :tabs do %>
 
       <ul id="tabs">
-        <%
-          $admin_tab_data = nil if RAILS_ENV=="development"
-          $admin_tab_data ||= YAML.load_file("#{RAILS_ROOT}/config/tabs.yml")
-          @sub_tabs = nil
-        %>
-
-<%= $admin_tab_data.collect{|tab| 
-          tab = tab.clone
-          controller, label, sub_tabs, role = tab["controller"], tab.delete("label"), tab.delete("sub_tabs"), tab.delete("role")
-          
-          # hide admin tab for non-administrators
-          if label == 'Admin'
-            # next unless current_user && current_user.is_project_manager?
-            next unless current_user && current_user.is_admin
-          end
-          if label == 'Lookup Tables'
-            # next unless current_user && current_user.is_project_manager?
-            next unless current_user && current_user.is_admin
-          end
-          # hide security tab for non-administrators
-          if label == 'Security Settings'
-            next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
-            # next unless current_user && current_user.is_admin
-          end
-          
-          controllers = [controller]
-          controllers+= sub_tabs.collect{|s| s['controller']} if sub_tabs
-          
-          url_options = tab.merge("controller" => "/#{controller}")
-#          url_options = tab.merge("controller" => "#{controller}")
-          if controllers.include?(params[:controller])
-            is_selected = true
-            @sub_tabs = sub_tabs
-          else
-            is_selected = false
-          end
-          content_tag :li, "&nbsp;" + link_to(label, url_options), :class => (is_selected ? "current" : nil)
-        }.compact * "\n" %>
+        <%= build_main_tabs %>
       </ul>
 <% end %>
 <% content_for :sub_tabs do %>
-    <% 
-		depth = 0
-    while @sub_tabs 
-			depth +=1
-      @next_sub_tabs = nil 
-    	%>
-      <div id="sub_tabs" class="level_<%=depth%>">
-      <%= @sub_tabs.collect{ |sub_tab|
-          sub_tab = sub_tab.clone
-          controller, action, label, selected_if, role, sub_tabs = sub_tab["controller"], sub_tab["action"], sub_tab.delete("label"), sub_tab.delete("selected_if"), sub_tab.delete("role"), sub_tab.delete("sub_tabs")
-          url_options = sub_tab
-          sub_tab["controller"] = "/#{controller}" if controller
-
-          # hide security tab for non-administrators
-          if label == 'Security Settings'
-            next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
-          end
-          
-          next unless current_user.has_role?(role) if role
-          
-          unless ( (selected_if ? (eval(selected_if)) : (params[:controller]==controller) ) )
-            link_to label, url_options
-          else
-            @next_sub_tabs = sub_tabs
-            label
-          end
-        }.compact * " | "
-      %>
+    <% depth = 0 %>
+    <% while @sub_tabs %>
+      <div id="sub_tabs" class="level_<%=depth += 1%>">
+      <%= build_sub_tabs(@sub_tabs) %>
       </div>
-      <% 
-  		@sub_tabs = @next_sub_tabs
-		end 
-		%>
+    <% end %>
   <br clear='both'/>
 <% end %>
 <%= render "layouts/master.rhtml"%>

@@ -15,6 +15,80 @@ module ApplicationHelper
 #    select_tag('record[user][id]', options_for_select(User.find_everybody_but_me.collect{|user| [user.login, user.id]}, record.user_id), {:id => 'record_user_id', :class => 'user-id-input'})
 #  end
 
+  # TODO this is pretty tightly tied to code in views/layouts/tabs.rhtml
+  def build_sub_tabs(sub_tabs)
+    list = sub_tabs.collect do |sub_tab|
+      sub_tab = sub_tab.clone
+      controller, action, label, selected_if, role, sub_tabs = sub_tab["controller"], sub_tab["action"], sub_tab.delete("label"), sub_tab.delete("selected_if"), sub_tab.delete("role"), sub_tab.delete("sub_tabs")
+      url_options = sub_tab
+      sub_tab["controller"] = "/#{controller}" if controller
+
+      # hide security tab for non-administrators
+      if label == 'Security Settings'
+        next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
+      end
+      
+      next unless current_user.has_role?(role) if role
+
+      selected = if selected_if
+        eval(selected_if) rescue false
+      else
+        params[:controller]==controller
+      end
+      
+      unless selected
+        link_to label, url_options
+      else
+        @sub_tabs = sub_tabs
+        label
+      end
+    end
+
+    list.compact * " | "
+  end
+
+  def build_main_tabs
+    @@admin_tab_data = nil if RAILS_ENV=="development"
+    @@admin_tab_data ||= YAML.load_file("#{RAILS_ROOT}/config/tabs.yml")
+
+    @sub_tabs = nil
+
+    list = @@admin_tab_data.collect do |tab| 
+      tab = tab.clone
+      controller, label, sub_tabs, role = tab["controller"], tab.delete("label"), tab.delete("sub_tabs"), tab.delete("role")
+      
+      # hide admin tab for non-administrators
+      if label == 'Admin'
+        # next unless current_user && current_user.is_project_manager?
+        next unless current_user && current_user.is_admin
+      end
+      if label == 'Lookup Tables'
+        # next unless current_user && current_user.is_project_manager?
+        next unless current_user && current_user.is_admin
+      end
+      # hide security tab for non-administrators
+      if label == 'Security Settings'
+        next unless current_user && (current_user.is_project_manager? || current_user.is_admin)
+        # next unless current_user && current_user.is_admin
+      end
+      
+      controllers = [controller]
+      controllers+= sub_tabs.collect{|s| s['controller']} if sub_tabs
+      
+      url_options = tab.merge("controller" => "/#{controller}")
+#          url_options = tab.merge("controller" => "#{controller}")
+      if controllers.include?(params[:controller])
+        is_selected = true
+        @sub_tabs = sub_tabs
+      else
+        is_selected = false
+      end
+      content_tag :li, "&nbsp;" + link_to(label, url_options), :class => (is_selected ? "current" : nil)
+    end
+
+    list.compact * "\n"
+  end
+
   def link_to_modal(label, url_options = {}, html_options ={ })
     url = Hash===url_options ? url_for(url_options) : url_options
     popup_options = {
