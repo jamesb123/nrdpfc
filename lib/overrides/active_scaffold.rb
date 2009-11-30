@@ -12,7 +12,9 @@ module ActiveScaffold
       alias initialize_without_defaults initialize
       def initialize(*args)
         initialize_without_defaults(*args)
-        self.action_links.add 'download_table', :label => 'Download', :popup => true
+        if self.model.respond_to?(:exportable_fields)
+          action_links.add 'download_table', :label => 'Download', :popup => true
+        end
       end
     end
   end
