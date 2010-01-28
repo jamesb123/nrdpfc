@@ -7,7 +7,8 @@ begin
   ENV['RAILS_SITE'] = File.read("config/RAILS_SITE").strip 
 rescue 
 end
-
+# Query Builder output limit
+QB_OUTPUT_LIMIT = 2000
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 
@@ -15,6 +16,7 @@ RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem 'hoptoad_notifier'
   # Settings in config/environments/* take precedence over those specified here
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)

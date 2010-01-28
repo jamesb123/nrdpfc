@@ -178,7 +178,7 @@ class QueryBuilder
   end
 
   def bulk_sql
-    count_by = 500
+    count_by = QB_OUTPUT_LIMIT
     offset = if @previous_bulk_offset == nil
        0
     else

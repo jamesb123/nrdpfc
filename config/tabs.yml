@@ -21,8 +21,6 @@
 - label: "Samples"
   controller: "samples"
   sub_tabs:
-  - label: "Sample Non-Tissues(Dynamic)"
-    controller: "sample_non_tissues"
   - label: "Approved Samples"	
     selected_if: 'viewing_approved?'
     action: 'approved'
@@ -30,6 +28,8 @@
     controller: "samples"
     selected_if: 'viewing_unapproved?'
     action: 'unapproved'
+  - label: "Sample Non-Tissues(Dynamic)"
+    controller: "sample_non_tissues"
 - label: "DNA"  
   controller: "dna_results"
   sub_tabs:

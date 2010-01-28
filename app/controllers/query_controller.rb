@@ -77,7 +77,7 @@ class QueryController < ApplicationController
 
   def georss
     @query_builder = query_builder(@stored_query.located_query)
-    @query_builder.limit = 500
+    @query_builder.limit = QB_OUTPUT_LIMIT
     @results = Query.connection.select_all(@query_builder.to_sql)
 
     unless params[:download].blank?

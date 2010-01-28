@@ -12,7 +12,7 @@
 
 class YChromosomeSeq < ActiveRecord::Base
   extend Exportables::ExportableModel
-  extend GoToOrganismCode::Model
+#  extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
   include ProjectRelations
 
