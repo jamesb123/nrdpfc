@@ -31,6 +31,8 @@ class Compiler
         c.create_row_for_organism(org)
       end
     end
+
+    Compiler::CompilerBase.clear_loci_cache
     
     project.recompile_required = false
     project.save(false)

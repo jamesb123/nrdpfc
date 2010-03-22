@@ -77,6 +77,10 @@ class Compiler::CompilerBase
     @connection.select_values("select DISTINCT locu_id from #{results_table_name} where project_id = #{@project.id}")
   end
 
+  def self.clear_loci_cache
+    @@locu_mappings = {}
+  end
+
   @@locu_mappings = {}
   def locu_col_name(id)
     @@locu_mappings[id] ||= begin
