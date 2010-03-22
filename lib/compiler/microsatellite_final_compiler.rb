@@ -32,7 +32,7 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::CompilerBase
   end
     
   def compile_organism(row)
-    each(microsatellites_query % row["organism_id"]) do |microsatellite|
+    each(microsatellites_query % row[:organism_id]) do |microsatellite|
       locu = locu_col_name(microsatellite["microsatellites_locu_id"])
       row["#{locu}a"] = microsatellite["microsatellites_allele1"]
       row["#{locu}b"] = microsatellite["microsatellites_allele2"]

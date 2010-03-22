@@ -38,7 +38,7 @@ class Compiler::YChromosomeFinalCompiler < Compiler::CompilerBase
   end
     
   def compile_organism(row)
-    each(final_y_chromosomes_query % row["organism_id"]) do |y_chromosome|
+    each(final_y_chromosomes_query % row[:organism_id]) do |y_chromosome|
       locu = locu_col_name(y_chromosome["y_chromosomes_locu_id"])
       row[locu] ||= y_chromosome["y_chromosomes_haplotype"]
     end

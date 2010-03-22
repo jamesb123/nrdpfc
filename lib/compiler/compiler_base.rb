@@ -77,9 +77,16 @@ class Compiler::CompilerBase
     @connection.select_values("select DISTINCT locu_id from #{results_table_name} where project_id = #{@project.id}")
   end
 
+  def self.clear_loci_cache
+    @@locu_mappings = {}
+  end
+
+  @@locu_mappings = {}
   def locu_col_name(id)
-    locu = id.nil? ? nil : Locu.find(id) rescue nil
-    locu.nil? ? 'Unknown' : locu.locus
+    @@locu_mappings[id] ||= begin
+      locu = id.nil? ? nil : Locu.find(id) rescue nil
+      locu.nil? ? 'Unknown' : locu.locus
+    end
   end
   
   def model_name
@@ -104,13 +111,17 @@ class Compiler::CompilerBase
     # insert in the first final mt_dna for each organism
     row = {}
     
-    row["organism_id"] = organism["organisms_id"]
-    row["project_id"] = organism["organisms_project_id"]
-    row["organism_code"] = organism["organisms_organism_code"]
+    row[:organism_id] = organism["organisms_id"]
+    row[:project_id] = organism["organisms_project_id"]
+    row[:organism_code] = organism["organisms_organism_code"]
 
     compile_organism(row)
 
-    model.insert(row)
+    insert_row(row)
+  end
+
+  def insert_row(row, count=3)
+    model.insert(row) unless row.reject {|k,v| [ :organism_index, :organism_id, :project_id, :sample_id, :organism_code ].include?(k) || v.blank? }.empty?
   end
 
   def each(sql)

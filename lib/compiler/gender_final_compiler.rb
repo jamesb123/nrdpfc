@@ -39,7 +39,7 @@ class Compiler::GenderFinalCompiler < Compiler::CompilerBase
   end
     
   def compile_organism(row)
-    each(final_genders_query % row["organism_id"]) do |gender|
+    each(final_genders_query % row[:organism_id]) do |gender|
       locu = locu_col_name(gender["genders_locu_id"])
       row[locu] ||= gender["genders_gender"]
     end

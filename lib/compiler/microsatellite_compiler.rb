@@ -46,7 +46,7 @@ class Compiler::MicrosatelliteCompiler < Compiler::CompilerBase
         row["#{locu}b"] = microsatellite["microsatellites_allele2"]
       end
       
-      model.insert(row)
+      insert_row(row)
     end
   end
   

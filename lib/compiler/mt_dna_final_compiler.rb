@@ -35,7 +35,7 @@ class Compiler::MtDnaFinalCompiler < Compiler::CompilerBase
     
 
   def compile_organism(row)
-    each(mt_dna_query % row["organism_id"]) do |mt_dna|
+    each(mt_dna_query % row[:organism_id]) do |mt_dna|
       locu = locu_col_name(mt_dna["mt_dnas_locu_id"])
       row[locu] ||= mt_dna["mt_dnas_haplotype"]
     end
