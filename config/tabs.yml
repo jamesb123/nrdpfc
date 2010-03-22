@@ -137,6 +137,8 @@
     controller: "locus"
   - label: "Primers"
     controller: "primers"
+  - label: "Surveys"
+    controller: "surveys"
 - label: "Queries"
   controller: "query"
   sub_tabs:

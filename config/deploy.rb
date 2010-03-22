@@ -10,7 +10,8 @@ set :use_sudo, false
 
 ssh_options[:paranoid] = false
 default_run_options[:pty] = true
-
+# require 'hoptoad_notifier/recipes/hoptoad'
+ 
 task :production do
   set :deploy_to, "/var/www/nrdpfc/"
   set :rails_env,      "production"
