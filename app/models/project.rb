@@ -11,8 +11,6 @@
 #
 
 class Project < ActiveRecord::Base
-  extend Exportables::ExportableModel
-
   for table_name in RESULT_TABLES
     has_many table_name.to_sym
   end
