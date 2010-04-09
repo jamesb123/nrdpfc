@@ -1,49 +1,31 @@
 class SightingsController < ApplicationController
   layout "tabs"
   active_scaffold :sightings do |config|
-    config.columns = [:date, :time, :vessel,
-
-    :Clear, :Hazy, :Clouds, :Overcast, :Glare, :Sunny, :Foggy, 
-    :Mainly_cloudy, :Rain, :Latitude, :Longitude, :Sighting_By,
-    :Speed_min, :Speed_max, :Bearing, :SS, :Depth, :SST, :Sal, :Angle,
-    :Dist, :High, :Low, :Best, :M_C, :"Closest", :"Dspeed", :"group comments",
-    :"Logging", :"Slow (no wake)", :"Fast (wake)", :"Porpoising", :"Chasing", 
-    :"Breaching", :"Surfing", :"Fluke_up", :"High back arch", :"Bow", :"Stern",
-    :"Synch", :"Mostly_synch", :"Asynch", :"Unidir", :"Mostly Unidir", :"Multidir",
-    :"Loose", :"Pairs_exc_MC)"
-    :    "Subgroups"
-    :    "Tight"
-    :   "structure comments"
-    :    "Resting"
-    :    "Travelling"
-    :    "Feeding"
-    :    "Play"
-    :    "Mating/Sexual"
-    :    "Aggression"
-    :    "Prey in mouth"
-    :    "Prey in water"
-    :    "Prey observed fleeing"
-    :    "Prey on sonar"
-    :    "Driftnet"
-    :    "Sink gillnets"
-    :    "Trawl"
-    :    "Pole-fishing"
-    :    "Commercial"
-    :   "Vessel comments"
-    :    "Fish"
-    :    "Seabirds"
-    :    "Upwelling"
-    :    "Weed"
-    :    "Debris streak"
-    :   "association comments"
-    :   "Sonar"
-    :   "SCY"
-    :   "Colour_Letter_Code"
-    :   "general comments"
-    :    "ID_number"
-    :   "ID_text"
-    :   "ID_comments"
-     
-    
+    config.columns = [:sighting_date, :sighting_time, :survey_vessel, 
+    :clear, :hazy, :clouds, :overcast, :glare, :sunny, :foggy, 
+    :mainly_cloudy, :rain, :latitude, :longitude, :sighting_by,
+    :speed_min, :speed_max, :bearing, :ss, :depth, :sst, :sal, :angle,
+    :dist, :group_max, :group_min, :group_best, :mother_calf_pairs, :dist_min, :dolphin_speed, 
+    :group_comments, :logging, :slow_swim, :fast_swim, :porpoising, :chasing, 
+    :breaching, :surfing, :fluke_up, :back_arch, :bow_ride, :stern_ride,
+    :synch, :mostly_synch, :asynch, :unidir, :mostly_unidir, :multidir,
+    :loose_group, :adult_pairs, :subgroups, :tight_group, :structure_comments, :resting,
+    :travelling, :feeding, :play, :mating_sexual, :aggression, :prey_mouth, :prey_water,
+    :prey_fleeing, :prey_sonar, :driftnet, :sink_gillnets, :trawl, :pole_fishing, :commercial,
+    :vessel_comments, :assoc_fish, :assoc_seabirds, :assoc_upwell, :assoc_weed, :assoc_debris,
+    :association_comments, :sonar, :scy_cam, :photo_comments, :general_comments, :id_number,
+    :id_text, :id_comments]
+    config.columns[:clear].form_ui = :checkbox
+    config.columns[:hazy].form_ui = :checkbox
+    config.columns[:clouds].form_ui = :checkbox
+    config.columns[:overcast].form_ui = :checkbox
+    config.columns[:glare].form_ui = :checkbox
+    config.columns[:sunny].form_ui = :checkbox
+    config.columns[:foggy].form_ui = :checkbox
+    config.columns[:mainly_cloudy].form_ui = :checkbox
+    config.columns[:rain].form_ui = :checkbox
+    config.columns[:logging].form_ui = :checkbox
+    config.columns[:slow_swim].form_ui = :checkbox
+    config.columns[:fast_swim].form_ui = :checkbox
   end
 end

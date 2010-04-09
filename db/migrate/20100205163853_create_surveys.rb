@@ -2,8 +2,8 @@ class CreateSurveys < ActiveRecord::Migration
   def self.up
    create_table "surveys", :force => true do |t|
     t.integer  "sighting_id"
-    t.datetime "date"
-    t.datetime "time"
+    t.datetime "survey_date"
+    t.datetime "survey_time"
     t.datetime "interval"
     t.string   "latitude"
     t.string   "longitude"
