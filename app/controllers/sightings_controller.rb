@@ -27,5 +27,18 @@ class SightingsController < ApplicationController
     config.columns[:logging].form_ui = :checkbox
     config.columns[:slow_swim].form_ui = :checkbox
     config.columns[:fast_swim].form_ui = :checkbox
+    config.columns[:porpoising].form_ui = :checkbox
+    config.columns[:chasing].form_ui = :checkbox
+    config.columns[:breaching].form_ui = :checkbox
+    config.columns[:surfing].form_ui = :checkbox
+    config.columns[:fluke_up].form_ui = :checkbox
+    config.columns[:back_arch].form_ui = :checkbox
+    config.columns[:bow_ride].form_ui = :checkbox
+    config.columns[:stern_ride].form_ui = :checkbox
+    config.columns[:synch].form_ui = :checkbox
+    config.columns[:mostly_synch].form_ui = :checkbox
+    config.columns[:asynch].form_ui = :checkbox
+    config.columns[:unidir].form_ui = :checkbox
+    config.columns[:mostly_unidir].form_ui = :checkbox
   end
 end
