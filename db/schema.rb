@@ -2865,9 +2865,10 @@ ActiveRecord::Schema.define(:version => 20100205165012) do
   end
 
   create_table "sightings", :force => true do |t|
+    t.integer  "project_id"
     t.integer  "survey_id"
-    t.datetime "sighting_date"
-    t.datetime "sighting_time"
+    t.date     "sighting_date"
+    t.time     "sighting_time"
     t.string   "survey_vessel"
     t.boolean  "clear"
     t.boolean  "hazy"
@@ -2961,10 +2962,11 @@ ActiveRecord::Schema.define(:version => 20100205165012) do
   end
 
   create_table "surveys", :force => true do |t|
+    t.integer  "project_id"
     t.integer  "sighting_id"
-    t.datetime "survey_date"
-    t.datetime "survey_time"
-    t.datetime "interval"
+    t.date     "survey_date"
+    t.time     "survey_time"
+    t.time     "interval"
     t.string   "latitude"
     t.string   "longitude"
     t.string   "event"

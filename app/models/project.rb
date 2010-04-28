@@ -37,7 +37,9 @@ class Project < ActiveRecord::Base
   has_many :locus
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   belongs_to :user
-
+  has_many :sightings
+  has_many :surveys
+  
   before_create :assign_project_owner
   after_save :assign_default_project
   

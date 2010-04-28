@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe QueryController do
   include AuthenticatedTestHelper
-  fixtures :users, :security_settings, :projects, :dna_results, :samples, :mhc_seqs, :organisms
+  fixtures :surveys, :sightings, :users, :security_settings, :projects, :dna_results, :samples, :mhc_seqs, :organisms
   
   before(:each) do
     login_as :quentin

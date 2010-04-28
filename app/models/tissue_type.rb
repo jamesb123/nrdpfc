@@ -8,7 +8,6 @@
 #
 
 class TissueType < ActiveRecord::Base
-  extend Exportables::ExportableModel
   include SecuritySets::AllowAll
   
   has_many :samples

@@ -1,9 +1,10 @@
 class CreateSightings < ActiveRecord::Migration
   def self.up
     create_table "sightings", :force => true do |t|
+    t.integer "project_id"
     t.integer  "survey_id"
-    t.datetime "sighting_date"
-    t.datetime "sighting_time"
+    t.date "sighting_date"
+    t.time "sighting_time"
     t.string   "survey_vessel"
     t.boolean    "clear"
     t.boolean    "hazy"

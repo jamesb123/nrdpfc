@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe QueryBuilder do
-  fixtures :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples, :locus
+  fixtures :surveys, :sightings, :users, :projects, :organisms, :microsatellites, :queries, :dna_results, :samples, :locus
   
   before(:each) do
     @project = projects(:whale_project)

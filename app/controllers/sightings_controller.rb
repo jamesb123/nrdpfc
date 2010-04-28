@@ -41,4 +41,5 @@ class SightingsController < ApplicationController
     config.columns[:unidir].form_ui = :checkbox
     config.columns[:mostly_unidir].form_ui = :checkbox
   end
+
 end

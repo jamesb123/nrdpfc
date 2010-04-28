@@ -10,7 +10,6 @@
 class ExtractionMethod < ActiveRecord::Base
   has_many :samples
   
-  extend Exportables::ExportableModel
   include SecuritySets::AllowAll
   
   def to_label 
