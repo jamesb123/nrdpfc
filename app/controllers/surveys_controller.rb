@@ -6,4 +6,6 @@ class SurveysController < ApplicationController
     :swell_min, :swell_max, :depth, :sst, :salinity, :boat, :boat_number, :net, :net_number,
     :obj_dir, :obj_dist, :comments, :weather, :observer_1, :observer_2, :observer_3]
   end
+  include ApprovedDataOnly
+  include ResultTableSharedMethods  
 end

@@ -30,6 +30,10 @@
     action: 'unapproved'
   - label: "Sample Non-Tissues(Dynamic)"
     controller: "sample_non_tissues"
+  - label: "Surveys"
+    controller: "surveys"
+  - label: "Sightings"
+    controller: "sightings"
 - label: "DNA"  
   controller: "dna_results"
   sub_tabs:
@@ -137,10 +141,6 @@
     controller: "locus"
   - label: "Primers"
     controller: "primers"
-  - label: "Surveys"
-    controller: "surveys"
-  - label: "Sightings"
-    controller: "sightings"
 - label: "Queries"
   controller: "query"
   sub_tabs:

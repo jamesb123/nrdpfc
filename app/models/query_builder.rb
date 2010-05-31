@@ -41,8 +41,7 @@ class QueryBuilder
     table_names = table_names.flatten
     # find the shortest path to each table, and add it
     table_names.each do |table_name|
-      next if tables.keys.map(&:to_s).include?(table_name.to_s)
-      # debug
+       next if tables.keys.map(&:to_s).include?(table_name.to_s)
       path = includes.model.path_to_exportable_table(table_name.to_s)
       raise "Sorry, couldn't find include path to table #{table_name}" if path.nil?
       add_include(*path)
@@ -51,7 +50,6 @@ class QueryBuilder
   
   def add_include(*paths)
     path = paths*"/"
-    
     root = cursor = includes
     
     added_node = nil
@@ -63,10 +61,12 @@ class QueryBuilder
         # try and add the node
         next nil if tables[e.pluralize] || tables[e.singularize]
         added_node = cursor.add_association(e)
+# puts added_node        
         next nil if added_node.nil?
         tables.clear
       end
       cursor = cursor[e]
+# puts cursor      
     }
     added_node
   end

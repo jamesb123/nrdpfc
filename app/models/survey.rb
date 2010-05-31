@@ -1,9 +1,9 @@
 class Survey < ActiveRecord::Base
-
   extend Exportables::ExportableModel
-  include SecuritySets::AdminOnly
+  include SecuritySets::ProjectBased
+  include ProjectRelations
+  include ApprovalModelHelpers
 
   belongs_to :project
-  belongs_to :sighting
-  
+  has_many :sightings  
 end

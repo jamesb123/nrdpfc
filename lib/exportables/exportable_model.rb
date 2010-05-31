@@ -16,6 +16,7 @@ module Exportables::ExportableModel
     end
     
     def load_all_models
+# puts "load all models "       
       return @all_models_loaded if @all_models_loaded
       
       Dir["#{RAILS_ROOT}/app/models/**/*.rb"].each {| file | require_or_load file }
@@ -27,13 +28,12 @@ module Exportables::ExportableModel
   def path_to_exportable_table(target_table_name, breadcrumbs = [])
     target_table_name = target_table_name.to_s
     return [] if target_table_name == self.table_name
-    
     possibilities = []
     exportable_reflections.each_pair do |name, reflection|
       table_name = reflection.class_name.constantize.table_name
       next if breadcrumbs.include?(table_name)
       return [name] if table_name == target_table_name
-      
+"puts not found "      
       possibility = reflection.class_name.constantize.path_to_exportable_table(target_table_name, breadcrumbs + [self.exportable_table_name])
       possibilities << [name] + possibility if possibility
     end
