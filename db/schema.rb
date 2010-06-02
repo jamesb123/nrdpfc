@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100205165012) do
+ActiveRecord::Schema.define(:version => 20100601021941) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -2951,6 +2951,7 @@ ActiveRecord::Schema.define(:version => 20100205165012) do
     t.string   "id_comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",             :default => true
   end
 
   add_index "sightings", ["id_number"], :name => "ID_number"
@@ -2995,6 +2996,7 @@ ActiveRecord::Schema.define(:version => 20100205165012) do
     t.string   "observer_3"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",    :default => true
   end
 
   create_table "tissue_types", :force => true do |t|
