@@ -4,7 +4,7 @@ class SightingsController < ApplicationController
     config.columns = [:sighting_date, :sighting_time, :survey_vessel, 
     :clear, :hazy, :clouds, :overcast, :glare, :sunny, :foggy, 
     :mainly_cloudy, :rain, :latitude, :longitude, :sighting_by,
-    :speed_min, :speed_max, :bearing, :ss, :depth, :sst, :sal, :angle,
+    :speed_min, :speed_max, :bearing, :sea_state, :depth, :sst, :salinity, :angle,
     :dist, :group_max, :group_min, :group_best, :mother_calf_pairs, :dist_min, :dolphin_speed, 
     :group_comments, :logging, :slow_swim, :fast_swim, :porpoising, :chasing, 
     :breaching, :surfing, :fluke_up, :back_arch, :bow_ride, :stern_ride,
