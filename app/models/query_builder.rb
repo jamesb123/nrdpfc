@@ -38,11 +38,14 @@ class QueryBuilder
   end
   
   def add_tables(*table_names)
+# puts "add tables"
     table_names = table_names.flatten
-    # find the shortest path to each table, and add it
+# puts table_names.flatten.to_s    
+# find the shortest path to each table, and add it
     table_names.each do |table_name|
        next if tables.keys.map(&:to_s).include?(table_name.to_s)
       path = includes.model.path_to_exportable_table(table_name.to_s)
+# puts "#{path}"
       raise "Sorry, couldn't find include path to table #{table_name}" if path.nil?
       add_include(*path)
     end

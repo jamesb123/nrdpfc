@@ -11,6 +11,7 @@ end
 QB_OUTPUT_LIMIT = 2000
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -75,11 +76,14 @@ if RAILS_ENV=='test'
   require "#{RAILS_ROOT}/test/rselenese_helpers.rb"
 end
 
+# SCRIPT_LINES__ = {} if ENV['RAILS_ENV'] == 'development'
+
+
 require "fastercsv"
 load "#{RAILS_ROOT}/app/models/dynamic_attribute.rb" # manually require this because we want to inject some more code into the model that comes with the dynamic_attribute plugin.
 # require 'paginator'
   
-::RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes]
+::RESULT_TABLES = %w[genders microsatellites mhcs mt_dnas y_chromosomes surveys sightings]
 
 # Fixes problems with ruby 1.8.7
 unless '1.9'.respond_to?(:force_encoding)
@@ -90,3 +94,8 @@ unless '1.9'.respond_to?(:force_encoding)
     end
   end
 end
+
+# define this in your environment.rb
+# Default date/time format
+# ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(:default => "%B %d, %Y")
+# ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(:default => "%H:%M,:%S")

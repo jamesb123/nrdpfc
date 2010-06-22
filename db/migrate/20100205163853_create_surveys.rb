@@ -5,7 +5,7 @@ class CreateSurveys < ActiveRecord::Migration
     t.integer  "sighting_id"
     t.date "survey_date"
     t.time "survey_time"
-    t.time "interval"
+    t.integer "interval"
     t.string   "latitude"
     t.string   "longitude"
     t.string   "event"

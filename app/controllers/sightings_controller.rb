@@ -15,6 +15,9 @@ class SightingsController < ApplicationController
     :vessel_comments, :assoc_fish, :assoc_seabirds, :assoc_upwell, :assoc_weed, :assoc_debris,
     :association_comments, :sonar, :scy_cam, :photo_comments, :general_comments, :id_number,
     :id_text, :id_comments]
+
+    config.columns[:sighting_date].options[:format] = "%d-%b-%Y"
+    config.columns[:sighting_time].options[:format] = "%H:%M:%S"
     config.columns[:clear].form_ui = :checkbox
     config.columns[:hazy].form_ui = :checkbox
     config.columns[:clouds].form_ui = :checkbox
@@ -40,6 +43,33 @@ class SightingsController < ApplicationController
     config.columns[:asynch].form_ui = :checkbox
     config.columns[:unidir].form_ui = :checkbox
     config.columns[:mostly_unidir].form_ui = :checkbox
+    config.columns[:multidir].form_ui = :checkbox
+    config.columns[:loose_group].form_ui = :checkbox
+    config.columns[:adult_pairs].form_ui = :checkbox
+    config.columns[:subgroups].form_ui = :checkbox
+    config.columns[:resting].form_ui = :checkbox
+    config.columns[:travelling].form_ui = :checkbox
+    config.columns[:feeding].form_ui = :checkbox
+    config.columns[:play].form_ui = :checkbox
+    config.columns[:mating_sexual].form_ui = :checkbox
+    config.columns[:aggression].form_ui = :checkbox
+    config.columns[:prey_mouth].form_ui = :checkbox
+    config.columns[:prey_water].form_ui = :checkbox
+    config.columns[:prey_fleeing].form_ui = :checkbox
+    config.columns[:prey_sonar].form_ui = :checkbox
+    config.columns[:driftnet].form_ui = :checkbox
+    config.columns[:sink_gillnets].form_ui = :checkbox
+    config.columns[:trawl].form_ui = :checkbox
+    config.columns[:pole_fishing].form_ui = :checkbox
+    config.columns[:commercial].form_ui = :checkbox
+    config.columns[:vessel_comments].form_ui = :checkbox
+    config.columns[:assoc_fish].form_ui = :checkbox
+    config.columns[:assoc_seabirds].form_ui = :checkbox
+    config.columns[:assoc_upwell].form_ui = :checkbox
+    config.columns[:assoc_debris].form_ui = :checkbox
+    config.columns[:assoc_weed].form_ui = :checkbox
+    config.columns[:sonar].form_ui = :checkbox
+    config.columns[:tight_group].form_ui = :checkbox
   end
   
   include ApprovedDataOnly

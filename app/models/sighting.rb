@@ -2,7 +2,7 @@ class Sighting < ActiveRecord::Base
 
   extend Exportables::ExportableModel
   include SecuritySets::ProjectBased
-  include ProjectRelations
+#  include ProjectRelations
   include ApprovalModelHelpers
 
   
