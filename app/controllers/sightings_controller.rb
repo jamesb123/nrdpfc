@@ -15,7 +15,8 @@ class SightingsController < ApplicationController
     :vessel_comments, :assoc_fish, :assoc_seabirds, :assoc_upwell, :assoc_weed, :assoc_debris,
     :association_comments, :sonar, :scy_cam, :photo_comments, :general_comments, :id_number,
     :id_text, :id_comments]
-
+    
+    config.columns[:structure_comments].options = { :cols => 100, :rows => 1 }
     config.columns[:sighting_date].options[:format] = "%d-%b-%Y"
     config.columns[:sighting_time].options[:format] = "%H:%M:%S"
     config.columns[:clear].form_ui = :checkbox
@@ -70,8 +71,13 @@ class SightingsController < ApplicationController
     config.columns[:assoc_weed].form_ui = :checkbox
     config.columns[:sonar].form_ui = :checkbox
     config.columns[:tight_group].form_ui = :checkbox
-  end
+
+    config.columns[:sighting_time].tooltip = <<-END
+    24 Hour Format (HH:MM:SS)
+    END
   
+  end
+    
   include ApprovedDataOnly
   include ResultTableSharedMethods  
 

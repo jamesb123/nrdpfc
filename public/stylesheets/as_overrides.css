@@ -1,0 +1,26 @@
+.inline-adapter-cell dt 
+{ 
+width: 12em; 
+float: left; 
+margin: 0 0 0 0; 
+padding: .5em; 
+font-weight: bold; 
+
+
+
+} 
+
+
+/* commented backslash hack for mac-ie5 \*/ 
+dt { clear: both; } 
+/* end hack */ 
+
+.inline-adapter-cell dd 
+{ 
+float: left; 
+margin: 0 0 0 0; 
+padding: .5em; 
+
+
+
+} 
