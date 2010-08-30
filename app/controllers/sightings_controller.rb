@@ -1,7 +1,7 @@
 class SightingsController < ApplicationController
   layout "tabs"
   active_scaffold :sightings do |config|
-    config.columns = [:sighting_date, :sighting_time, :survey_vessel, 
+    config.columns = [:id, :sighting_date, :sighting_time, :survey_vessel, 
     :clear, :hazy, :clouds, :overcast, :glare, :sunny, :foggy, 
     :mainly_cloudy, :rain, :latitude, :longitude, :sighting_by,
     :speed_min, :speed_max, :bearing, :sea_state, :depth, :sst, :salinity, :angle,
@@ -15,6 +15,8 @@ class SightingsController < ApplicationController
     :vessel_comments, :assoc_fish, :assoc_seabirds, :assoc_upwell, :assoc_weed, :assoc_debris,
     :association_comments, :sonar, :scy_cam, :photo_comments, :general_comments, :id_number,
     :id_text, :id_comments]
+    config.update.columns.exclude :id
+    config.create.columns.exclude :id
     
     config.columns[:structure_comments].options = { :cols => 100, :rows => 1 }
     config.columns[:sighting_date].options[:format] = "%d-%b-%Y"
@@ -75,7 +77,57 @@ class SightingsController < ApplicationController
     config.columns[:sighting_time].tooltip = <<-END
     24 Hour Format (HH:MM:SS)
     END
-  
+    config.columns[:bearing].tooltip = <<-END
+    cardinal direction dolphins are heading
+    END
+    config.columns[:angle].tooltip = <<-END
+    direction of dolphins relative to the survey vessel in degrees where the bow is 0 degrees
+    END
+    config.columns[:dist].tooltip = <<-END
+    estimated distance of dolphins from survey vessel in metres
+    END
+    config.columns[:group_max].tooltip = <<-END
+    maximum estimated number of observed dolphins
+    END
+    config.columns[:group_min].tooltip = <<-END
+    minimum estimated number of observed dolphins
+    END
+    config.columns[:group_best].tooltip = <<-END
+    best estimated number of observed dolphins
+    END
+    config.columns[:dist_min].tooltip = <<-END
+    closest estimated approach of dolphins to survey vessel in metres
+    END
+    config.columns[:dolphin_speed].tooltip = <<-END
+    estimated speed of dolphins in km/h
+    END
+    config.columns[:group_comments].tooltip = <<-END
+    comments regarding group composition (e.g. 2 very pink, 1 neonate)
+    END
+    config.columns[:slow_swim].tooltip = <<-END
+    indicated by wake absence
+    END
+    config.columns[:fast_swim].tooltip = <<-END
+    indicated by wake presence
+    END
+    config.columns[:adult_pairs].tooltip = <<-END
+    number of paired dolphins excluding mother-calf pairs
+    END
+    config.columns[:structure_comments].tooltip = <<-END
+    comments regarding the group structure of observed dolphins
+    END
+    config.columns[:vessel_comments].tooltip = <<-END
+    comments on vessels and/or nets observed during dolphin sighting
+    END
+    config.columns[:association_comments].tooltip = <<-END
+    comments regarding observed dolphin association with other animals/objects/features
+    END
+    config.columns[:sonar].tooltip = <<-END
+    relative amount of activity observed on sonar
+    END
+    config.columns[:scy_cam].tooltip = <<-END
+    help field - camera model used by Shih-Chu Yang
+    END
   end
     
   include ApprovedDataOnly

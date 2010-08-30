@@ -7,5 +7,8 @@ class Sighting < ActiveRecord::Base
 
   
   belongs_to :project
+  def to_label
+    return "ID: #{id}"
+  end
   
 end

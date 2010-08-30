@@ -19,15 +19,16 @@ module HoptoadNotifier
 
       def hoptoad_request_data
         { :parameters       => hoptoad_filter_if_filtering(params.to_hash),
-          :session_data     => hoptoad_session_data,
+          :session_data     => hoptoad_filter_if_filtering(hoptoad_session_data),
           :controller       => params[:controller],
           :action           => params[:action],
           :url              => hoptoad_request_url,
-          :cgi_data         => hoptoad_filter_if_filtering(request.env),
-          :environment_vars => hoptoad_filter_if_filtering(ENV) }
+          :cgi_data         => hoptoad_filter_if_filtering(request.env) }
       end
 
       def hoptoad_filter_if_filtering(hash)
+        return hash if ! hash.is_a?(Hash)
+
         if respond_to?(:filter_parameters)
           filter_parameters(hash) rescue hash
         else

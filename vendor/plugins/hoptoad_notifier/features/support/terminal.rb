@@ -1,15 +1,26 @@
+require 'fileutils'
+
 Before do
   @terminal = Terminal.new
 end
 
 class Terminal
   attr_reader :output, :status
+  attr_accessor :environment_variables, :invoke_heroku_rake_tasks_locally
 
   def initialize
     @cwd = FileUtils.pwd
     @output = ""
     @status = 0
     @logger = Logger.new(File.join(TEMP_DIR, 'terminal.log'))
+
+    @invoke_heroku_rake_tasks_locally = false
+
+    @environment_variables = {
+      "GEM_HOME" => LOCAL_GEM_ROOT,
+      "GEM_PATH" => "#{LOCAL_GEM_ROOT}:#{BUILT_GEM_ROOT}",
+      "PATH" => "#{gem_bin_path}:#{ENV['PATH']}"
+    }
   end
 
   def cd(directory)
@@ -17,14 +28,25 @@ class Terminal
   end
 
   def run(command)
+    command = optionally_invoke_heroku_rake_tasks_locally(command)
+
     output << "#{command}\n"
     FileUtils.cd(@cwd) do
-      logger.debug(command)
-      result = `#{environment_settings} #{command} 2>&1`
+      cmdline = "#{environment_settings} #{command} 2>&1"
+      logger.debug(cmdline)
+      result = `#{cmdline}`
       logger.debug(result)
       output << result
     end
     @status = $?
+  end
+
+  def optionally_invoke_heroku_rake_tasks_locally(command)
+    if invoke_heroku_rake_tasks_locally
+      command.sub(/^heroku /, '')
+    else
+      command
+    end
   end
 
   def echo(string)
@@ -59,7 +81,11 @@ class Terminal
   end
 
   def environment_settings
-    "GEM_HOME=#{LOCAL_GEM_ROOT} GEM_PATH=#{LOCAL_GEM_ROOT}:#{BUILT_GEM_ROOT}"
+    @environment_variables.map { |key, value| "#{key}=#{value}" }.join(' ')
+  end
+
+  def gem_bin_path
+    File.join(LOCAL_GEM_ROOT, "bin")
   end
 
   attr_reader :logger

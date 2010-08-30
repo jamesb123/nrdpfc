@@ -164,6 +164,10 @@ class NoticeTest < Test::Unit::TestCase
     assert_filters_hash(:cgi_data)
   end
 
+  should "filter session" do
+    assert_filters_hash(:session_data)
+  end
+
   context "a Notice turned into XML" do
     setup do
       HoptoadNotifier.configure do |config|
@@ -339,9 +343,6 @@ class NoticeTest < Test::Unit::TestCase
   end
 
   should "extract data from a rack environment hash" do
-    # TODO: extract session data
-    # TODO: extract controller
-    # TODO: extract action
     url = "https://subdomain.happylane.com:100/test/file.rb?var=value&var2=value2"
     parameters = { 'var' => 'value', 'var2' => 'value2' }
     env = Rack::MockRequest.env_for(url)
@@ -351,6 +352,35 @@ class NoticeTest < Test::Unit::TestCase
     assert_equal url, notice.url
     assert_equal parameters, notice.parameters
     assert_equal 'GET', notice.cgi_data['REQUEST_METHOD']
+  end
+
+  should "extract data from a rack environment hash with action_dispatch info" do
+    params = { 'controller' => 'users', 'action' => 'index', 'id' => '7' }
+    env = Rack::MockRequest.env_for('/', { 'action_dispatch.request.parameters' => params })
+
+    notice = build_notice(:rack_env => env)
+
+    assert_equal params, notice.parameters
+    assert_equal params['controller'], notice.component
+    assert_equal params['action'], notice.action
+  end
+
+  should "extract session data from a rack environment" do
+    session_data = { 'something' => 'some value' }
+    env = Rack::MockRequest.env_for('/', 'rack.session' => session_data)
+
+    notice = build_notice(:rack_env => env)
+
+    assert_equal session_data, notice.session_data
+  end
+
+  should "prefer passed session data to rack session data" do
+    session_data = { 'something' => 'some value' }
+    env = Rack::MockRequest.env_for('/')
+
+    notice = build_notice(:rack_env => env, :session_data => session_data)
+
+    assert_equal session_data, notice.session_data
   end
 
   def assert_accepts_exception_attribute(attribute, args = {}, &block)
@@ -397,7 +427,7 @@ class NoticeTest < Test::Unit::TestCase
   end
 
   def assert_filters_hash(attribute)
-    filters  = %w(abc def)
+    filters  = ["abc", :def]
     original = { 'abc' => "123", 'def' => "456", 'ghi' => "789", 'nested' => { 'abc' => '100' } }
     filtered = { 'abc'    => "[FILTERED]",
                  'def'    => "[FILTERED]",

@@ -6,4 +6,7 @@ class Survey < ActiveRecord::Base
 
   belongs_to :project
   has_many :sightings  
+  def to_label
+    return "ID: #{id}"
+  end
 end
