@@ -3,7 +3,7 @@ class SightingsController < ApplicationController
   active_scaffold :sightings do |config|
     config.columns = [:id, :sighting_date, :sighting_time, :survey_vessel, 
     :clear, :hazy, :clouds, :overcast, :glare, :sunny, :foggy, 
-    :mainly_cloudy, :rain, :latitude, :longitude, :sighting_by,
+    :mainly_cloudy, :rain, :latitude, :longitude, :distance, :sighting_by,
     :speed_min, :speed_max, :bearing, :sea_state, :depth, :sst, :salinity, :angle,
     :dist, :group_max, :group_min, :group_best, :mother_calf_pairs, :dist_min, :dolphin_speed, 
     :group_comments, :logging, :slow_swim, :fast_swim, :porpoising, :chasing, 
@@ -73,6 +73,24 @@ class SightingsController < ApplicationController
     config.columns[:assoc_weed].form_ui = :checkbox
     config.columns[:sonar].form_ui = :checkbox
     config.columns[:tight_group].form_ui = :checkbox
+
+    config.columns[:salinity].tooltip = <<-END
+    percent salinity of surface water
+    END
+    config.columns[:sea_state].tooltip = <<-END
+    beaufort scale
+    END
+    
+    config.columns[:sst].tooltip = <<-END
+    sea surface temperature in degrees Celsius
+    END
+
+    config.columns[:speed_min].tooltip = <<-END
+    minimum boat speed during event in km/h
+    END
+    config.columns[:speed_max].tooltip = <<-END
+    maximum boat speed during event in km/h
+    END
 
     config.columns[:sighting_time].tooltip = <<-END
     24 Hour Format (HH:MM:SS)

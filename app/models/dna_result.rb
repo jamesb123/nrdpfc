@@ -26,6 +26,7 @@
 #
 
 class DnaResult < ActiveRecord::Base
+  belongs_to :extraction_method
   # belongs_to :organism, :through => :samples
   
   extend Exportables::ExportableModel

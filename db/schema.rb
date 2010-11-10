@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100601021941) do
+ActiveRecord::Schema.define(:version => 20101025184507) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -2834,6 +2834,13 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.string   "shipping_material_txt_prv"
     t.string   "location_measurement_method"
     t.boolean  "approved",                                                   :default => false
+    t.integer  "sighting_id"
+    t.integer  "survey_id"
+    t.string   "location_1"
+    t.string   "location_2"
+    t.string   "location_3"
+    t.string   "location_4"
+    t.text     "collector_comments"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
@@ -2885,10 +2892,10 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.string   "speed_min"
     t.string   "speed_max"
     t.string   "bearing"
-    t.string   "ss"
+    t.string   "sea_state"
     t.float    "depth"
     t.string   "sst"
-    t.string   "sal"
+    t.string   "salinity"
     t.string   "angle"
     t.string   "dist"
     t.float    "group_max"
@@ -2952,6 +2959,7 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "approved",             :default => true
+    t.float    "distance"
   end
 
   add_index "sightings", ["id_number"], :name => "ID_number"
@@ -2967,7 +2975,7 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.integer  "sighting_id"
     t.date     "survey_date"
     t.time     "survey_time"
-    t.time     "interval"
+    t.integer  "interval"
     t.string   "latitude"
     t.string   "longitude"
     t.string   "event"
@@ -2984,9 +2992,9 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.float    "sst"
     t.float    "salinity"
     t.string   "boat"
-    t.float    "boat_number"
+    t.string   "boat_number"
     t.string   "net"
-    t.float    "net_number"
+    t.string   "net_number"
     t.string   "obj_dir"
     t.float    "obj_dist"
     t.string   "comments"
@@ -2997,6 +3005,7 @@ ActiveRecord::Schema.define(:version => 20100601021941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "approved",    :default => true
+    t.float    "distance"
   end
 
   create_table "tissue_types", :force => true do |t|

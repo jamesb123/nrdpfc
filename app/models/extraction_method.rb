@@ -9,7 +9,7 @@
 
 class ExtractionMethod < ActiveRecord::Base
   has_many :samples
-  
+  has_many :dna_results
   include SecuritySets::AllowAll
   
   def to_label 

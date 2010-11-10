@@ -4,7 +4,7 @@ class DnaResultsController < ApplicationController
   
   active_scaffold :dna_results do |config|
     config.columns = [:project, :sample, :sample_id, :prep_number, :extraction_number, 
-     :barcode, :plate, :position, :extraction_method, :extraction_date, :extractor, 
+     :barcode, :plate, :position, :extraction_method,  :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
      :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments, :approved]
 

@@ -2,9 +2,10 @@ class SamplesController < ApplicationController
   layout "tabs"
 
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
-    :locality, :locality_type, :locality_type_text, :locality_comments, :location_accuracy,  
+    :locality, :locality_type, :locality_type_text, :locality_comments, 
+    :location_1, :location_2, :location_3, :location_4, :location_accuracy,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
-    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, 
+    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
