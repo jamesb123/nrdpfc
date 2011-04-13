@@ -26,11 +26,15 @@
 <body>
   <div id="header">
     <div id="header_contents">
-	  	<div style="background-color:#fff; float:left;" ">
-<!---	  	<div style="background-color:#fff; float:left;" id="header_image_frame"> -->
-    	<!---    <%= image_tag "mooselogo.jpg"%>  --->
-	  	</div>
-      
+<!-- force this to update 
+---> 
+<!--	  	<div style="background-color:#fff; float:left;" ">
+    	<p><img src="images/header.jpg" width="975" height="137" /></p>
+--->
+<!---	  	<div style="background-color:#fff; float:left;" id="header_image_frame">  -->
+	    	    <%= image_tag "header.jpg"%>
+<!---		  	</div>
+--->      
       <div style="float:right; text-align:right;">
 	  	<% if current_user %>
     	    <%= render :partial => 'layouts/logged_in_info' %>
