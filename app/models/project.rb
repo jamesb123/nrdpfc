@@ -35,10 +35,11 @@ class Project < ActiveRecord::Base
   has_many :genders
   has_many :data_querys
   has_many :locus
-  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
-  belongs_to :user
   has_many :sightings
   has_many :surveys
+  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
+  belongs_to :user
+  belongs_to :meta_data
   
   before_create :assign_project_owner
   after_save :assign_default_project
@@ -121,4 +122,8 @@ class Project < ActiveRecord::Base
     q = Compiler::CompilerBase.organism_query(self)
     q.bulk_records {|org| yield org }
   end
+  def to_label
+   "#{self.name}" 
+  end
+  
 end

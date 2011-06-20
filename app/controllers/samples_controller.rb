@@ -13,13 +13,13 @@ class SamplesController < ApplicationController
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved]
     
 
-#  include ActionView::Helpers::FormOptionsHelper
+  include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
                 :search_on => ['organisms.organism_code'],
                 :order_by => 'samples.id'
-
+ 
   def record_select_includes; :organism; end
 
   def record_select_conditions_from_controller

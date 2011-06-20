@@ -7,6 +7,9 @@ class MhcSeqsController < ApplicationController
     config.update.columns.exclude :security_settings, :project
   end 
 
+  def conditions_for_collection
+    ['mhc_seqs.project_id = (?)', current_project_id ]
+  end
 
   
 end

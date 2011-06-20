@@ -5,6 +5,8 @@
     controller: "projects"
   - label: "Security Settings"
     controller: "security_settings"
+  - label: "Meta Data"
+    controller: "meta_datas"
 - label: "Organisms"
   controller: "organisms"
   sub_tabs:

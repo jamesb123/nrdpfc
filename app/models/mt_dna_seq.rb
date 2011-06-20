@@ -10,6 +10,7 @@
 #
 
 class MtDnaSeq < ActiveRecord::Base
+  extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include ProjectRelations
   include SecuritySets::ProjectBased

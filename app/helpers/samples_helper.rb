@@ -7,6 +7,38 @@ module SamplesHelper
       super
     end
   end
+# collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {})
+# Defined in ActionView::Helpers::FormOptionsHelper
+
+#  def tissue_type_form_column(record, input_name)
+#    select_tag(input_name, options_for_select([['Unknown','unknown'], ['Fin Clip','fin clip']]))
+#  end
+
+# this one
+#  def tissue_type_form_column(record, input_name)
+#    collection_select(:record, :tissue_type_id, TissueType.find(:all, :order => 'tissue_desc ASC') , :id, :tissue_desc, {}, {:name=> input_name})
+#    collection_select(:record, :tissue_type_id, TissueType.find(:all, :order => 'tissue_desc ASC') , :id, :tissue_desc, {}, {:name=> input_name})
+##    @tt = params[:record][:tissue_type]
+# RAILS_DEFAULT_LOGGER.debug @tt    
+#  end
+
+# ************* 
+# this works
+# ************
+#  def tissue_type_form_column(record, input_name)
+#    select_tag(input_name, options_for_select([ ['Unknown', 'Unknown'], ['Fin Clip', 'Fin Clip'], ['Hair', 'Hair'], ['Skin', 'Skin'], ['Blood','Blood'],['Bone','Bone'],['Heart','Heart'],['Kidney','Kidney'],['','']], record.tissue_type)) 
+#  end
+
+# alltissuetypes = Array.new
+# alltisuetypes = TissueType.find(:all )
+
+#  def tissue_type_form_column(record, input_name)
+# puts @alltissuetypes
+#    select_tag( input_name, options_from_collection_for_select(@alltissuetypes, 'id', 'to_label', record.tissue_type ))
+#  end
+    
+#    select_tag(input_name, options_from_collection_for_select( TissueType.find(:all), :id,:tissue_type),record.tissue_type) 
+
   
 #  def country_form_column(record,input_name)
 #    select(record, input_name, state_select(record, input_name))   

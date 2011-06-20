@@ -106,12 +106,12 @@ class Sample < ActiveRecord::Base
   end
   
 
-  def assign_date_collected
+#  def assign_date_collected
 #    self.date_collected = 
 #    self.date_collected = Date.civil(y=:collected_on_year, m=:collected_on_month, d=:collected_on_day,sg=ITALY)
 # self.date_collected = now.date
 #    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
-  end
+#  end
   
   def to_label 
     if !organism.nil?  

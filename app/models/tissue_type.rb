@@ -3,7 +3,7 @@
 # Table name: tissue_types
 #
 #  id          :integer(11)   not null, primary key
-#  tissue_type :string(255)   
+#  tissue_desc :string(255)   
 #  comment     :string(255)   
 #
 
@@ -13,7 +13,7 @@ class TissueType < ActiveRecord::Base
   has_many :samples
 
   def to_label
-    "#{tissue_type}"
+    "#{tissue_desc}"
   end
 
 end

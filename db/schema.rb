@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221153042) do
+ActiveRecord::Schema.define(:version => 20110616164923) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -414,6 +414,17 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
   end
 
   add_index "locus", ["project_id"], :name => "index_locus_on_project_id"
+
+  create_table "meta_datas", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "m_name"
+    t.string   "m_desc"
+    t.string   "m_author"
+    t.datetime "m_date_added"
+    t.string   "m_document_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mhc_final_horizontals", :force => true do |t|
     t.integer "project_id"
@@ -2123,6 +2134,8 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
     t.decimal "allele_2_peak_height",               :precision => 6, :scale => 2
     t.integer "locu_id"
     t.boolean "approved",                                                         :default => false
+    t.decimal "allele_1_size",                      :precision => 6, :scale => 2
+    t.decimal "allele_2_size",                      :precision => 6, :scale => 2
   end
 
   add_index "microsatellites", ["sample_id", "project_id", "locus"], :name => "Index_2"
@@ -2539,6 +2552,7 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
     t.string  "haplotype"
     t.text    "sequence"
     t.string  "accession",  :limit => 30
+    t.text    "comments"
   end
 
   add_index "mt_dna_seqs", ["project_id"], :name => "index_mt_dna_seqs_on_project_id"
@@ -2667,7 +2681,7 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
     t.string   "plateposition"
     t.string   "field_code"
     t.string   "batch_number"
-    t.string   "tissue_type"
+    t.string   "original_tissue_type"
     t.string   "storage_medium_text"
     t.string   "country"
     t.string   "province"
@@ -2709,6 +2723,14 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
     t.string   "shipping_material_txt_prv"
     t.string   "location_measurement_method"
     t.boolean  "approved",                                                   :default => false
+    t.integer  "sighting_id"
+    t.integer  "survey_id"
+    t.string   "location_1"
+    t.string   "location_2"
+    t.string   "location_3"
+    t.string   "location_4"
+    t.text     "collector_comments"
+    t.string   "tissue_type"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
@@ -2880,7 +2902,7 @@ ActiveRecord::Schema.define(:version => 20101221153042) do
   end
 
   create_table "tissue_types", :force => true do |t|
-    t.string "tissue_type"
+    t.string "tissue_desc"
     t.string "comment"
   end
 
