@@ -1,10 +1,10 @@
 class MicrosatellitesController < ApplicationController
   layout "tabs"
   active_scaffold :microsatellites do |config|
-    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :approved]
+    config.list.columns = [:project, :sample, :sample_id, :locus, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :allele_1_size, :allele_2_size, :approved]
     
     for uc in [config.update, config.create]
-      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :approved]
+      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :allele_1_size, :allele_2_size, :approved]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
@@ -25,6 +25,8 @@ class MicrosatellitesController < ApplicationController
     columns[:finalResult].form_ui = :checkbox
     columns[:allele_1_peak_height].label = "Allele 1 Peak"
     columns[:allele_2_peak_height].label = "Allele 2 Peak"
+    columns[:allele_1_size].label = "Allele 1 Size"
+    columns[:allele_2_size].label = "Allele 2 Size"
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:sample].form_ui = :record_select
