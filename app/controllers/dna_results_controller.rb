@@ -6,7 +6,8 @@ class DnaResultsController < ApplicationController
     config.columns = [:project, :sample, :sample_id, :prep_number, :extraction_number, 
      :barcode, :plate, :position, :extraction_method,  :extraction_method, :extraction_date, :extractor, 
      :extractor_comments, :fluoro_conc, :functional_conc, :pico_green_conc, :storage_building, 
-     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments, :approved]
+     :storage_room, :storage_freezer, :storage_box, :xy_position, :dna_remaining, :comments, :approved,
+     :pcr_quantity,:pcr_ct,:pcr_slope, :pcr_y_intercept, :pcr_rsquared]
 
     # search associated sample colum
     config.columns[:sample].search_sql = 'organisms.organism_code'

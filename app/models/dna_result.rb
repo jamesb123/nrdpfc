@@ -28,12 +28,23 @@
 class DnaResult < ActiveRecord::Base
   belongs_to :extraction_method
   # belongs_to :organism, :through => :samples
+ 
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
   include ProjectRelations
   include ApprovalModelHelpers
+
+  # after_create :assign_extraction_date
+#  after_initialize :init
+#  def init
+#    self.extraction_date = nil
+#  end
+  
+#  def assign_extraction_date
+#    self.extraction_date = nil
+#  end
 
   def to_label 
      "#{self.id}" 

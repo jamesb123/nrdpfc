@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616164923) do
+ActiveRecord::Schema.define(:version => 20110807160425) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -69,7 +69,12 @@ ActiveRecord::Schema.define(:version => 20110616164923) do
     t.boolean "dna_remaining"
     t.text    "comments"
     t.integer "extraction_method_id"
-    t.boolean "approved",             :default => false
+    t.boolean "approved",                                            :default => false
+    t.decimal "pcr_quantity",         :precision => 12, :scale => 4
+    t.string  "pcr_ct"
+    t.decimal "pcr_slope",            :precision => 10, :scale => 4
+    t.decimal "pcr_y_intercept",      :precision => 10, :scale => 4
+    t.decimal "pcr_rsquared",         :precision => 5,  :scale => 4
   end
 
   add_index "dna_results", ["sample_id"], :name => "dna_results_sample_id"
@@ -745,6 +750,8 @@ ActiveRecord::Schema.define(:version => 20110616164923) do
     t.integer "TR3H14b"
     t.integer "TR3H4a"
     t.integer "TR3H4b"
+    t.integer "Unknowna"
+    t.integer "Unknownb"
   end
 
   add_index "microsatellite_final_horizontals_1", ["organism_id"], :name => "index_microsatellite_final_horizontals_1_on_organism_id"
@@ -1474,6 +1481,8 @@ ActiveRecord::Schema.define(:version => 20110616164923) do
     t.integer "TR3H14b"
     t.integer "TR3H4a"
     t.integer "TR3H4b"
+    t.integer "Unknowna"
+    t.integer "Unknownb"
   end
 
   add_index "microsatellite_horizontals_1", ["sample_id"], :name => "index_microsatellite_horizontals_1_on_sample_id"
@@ -2936,6 +2945,7 @@ ActiveRecord::Schema.define(:version => 20110616164923) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "Unknown"
   end
 
   add_index "y_chromosome_final_horizontals_1", ["organism_id"], :name => "index_y_chromosome_final_horizontals_1_on_organism_id"
