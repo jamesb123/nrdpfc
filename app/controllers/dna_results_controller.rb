@@ -30,6 +30,11 @@ class DnaResultsController < ApplicationController
     config.columns[:pico_green_conc].label = "Pico Green"
     config.columns[:barcode].label = "Bar Code"
     config.columns[:plate].label = "Plate"
+    config.columns[:pcr_quantity].label = "Quantity"
+    config.columns[:pcr_ct].label = "CT"
+    config.columns[:pcr_slope].label = "SLOPE"
+    config.columns[:pcr_y_intercept].label = "Intercept"
+    config.columns[:pcr_rsquared].label = "R^2"
     config.columns[:sample].form_ui = :record_select
     config.columns[:extraction_method].form_ui = :select
     config.columns[:dna_remaining].form_ui = :checkbox
