@@ -14,7 +14,7 @@
 
 class Gender < ActiveRecord::Base
   belongs_to :locu
-  
+  belongs_to :sample
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased

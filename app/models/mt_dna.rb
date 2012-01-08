@@ -14,6 +14,7 @@
 
 class MtDna < ActiveRecord::Base
   belongs_to :locu
+  belongs_to :sample
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model

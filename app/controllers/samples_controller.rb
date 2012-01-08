@@ -10,7 +10,8 @@ class SamplesController < ApplicationController
     :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
-    :xy_position, :tissue_remaining,  :security_settings,:project,:approved]
+    :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
+    :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit, :profiling_completed, :profiling_date]
     
 
   include ActionView::Helpers::FormOptionsHelper
@@ -68,6 +69,8 @@ class SamplesController < ApplicationController
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
     config.columns[:tissue_remaining].form_ui = :checkbox
+    config.columns[:profiling_completed].form_ui = :checkbox
+    config.columns[:organization].form_ui = :select
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Collected Day "
@@ -79,6 +82,7 @@ class SamplesController < ApplicationController
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
     config.columns[:field_code].label = "Field Code"
+    config.columns[:field_ident].label = "Field Identification (NEA)"
     config.columns[:batch_number].label = "Batch Number"
     config.columns[:storage_medium].label = "Storage Medium"
     config.columns[:country].label = "Country"
