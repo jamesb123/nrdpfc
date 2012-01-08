@@ -12,7 +12,7 @@ QB_OUTPUT_LIMIT = 2000
 # Specifies gem version of Rails to use when vendor/rails is not present
  RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 # RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
-# RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -98,5 +98,5 @@ end
 
 # define this in your environment.rb
 # Default date/time format
-# ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(:default => "%B %d, %Y")
+ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(:default => "%Y-%m-%d")
 # ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(:default => "%H:%M,:%S")

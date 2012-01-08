@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   layout "tabs"
   
   active_scaffold :users do |config|
-    config.columns = [:login, :email, :is_admin, :data_entry_only, :projects]
-    config.create.columns = [:login, :email, :is_admin, :data_entry_only, :password, :password_confirmation, :default_project ]
-    config.update.columns = [:login, :email, :is_admin, :data_entry_only, :password, :password_confirmation, :default_project ]
+    config.columns = [:login, :email, :is_admin, :data_entry_only, :projects, :name]
+    config.create.columns = [:login, :email, :is_admin, :data_entry_only, :password, :password_confirmation, :default_project, :name ]
+    config.update.columns = [:login, :email, :is_admin, :data_entry_only, :password, :password_confirmation, :default_project, :name ]
     config.subform.columns = [:login]
-
+  config.columns[:name].label = "Real Name"
     config.columns[:is_admin].label = "Administrator"
     config.columns[:is_admin].form_ui = :checkbox
     config.columns[:data_entry_only].form_ui = :checkbox
