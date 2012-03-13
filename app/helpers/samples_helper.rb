@@ -53,6 +53,13 @@ module SamplesHelper
     date_select :record, :date_collected, :name => input_name, :include_blank => true
   end 
 
+  def shipping_date_form_column(record, input_name)
+    date_select :record, :shipping_date, :name => input_name, :include_blank => true
+  end 
+  def profiling_date_form_column(record, input_name)
+    date_select :record, :profiling_date, :name => input_name, :include_blank => true
+  end 
+
   def type_lat_long_form_column(record, input_name)
     select_tag(input_name, options_for_select([ ['', ''], ['DD (Decimal)', 'DD'], 
     ['DMS (Hours Min Sec)', 'DMS'], ['UTM (Zone Coordinates)', 'UTM'] ], record.type_lat_long))
