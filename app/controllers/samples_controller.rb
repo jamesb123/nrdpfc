@@ -28,9 +28,7 @@ class SamplesController < ApplicationController
     [ 'samples.project_id = ?', current_project_id ]
   end
 
-
   include GoToOrganismCode::Controller  
-  include ApprovedDataOnly
   
   active_scaffold :samples do |config|
     config.columns = SAMPLES_COLUMNS 
@@ -289,5 +287,6 @@ class SamplesController < ApplicationController
 
   end
 
+  include ApprovedDataOnly
 
 end

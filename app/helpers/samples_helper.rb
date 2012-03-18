@@ -1,4 +1,5 @@
 module SamplesHelper
+DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
 
   def options_for_association_conditions(association)
     if association.name == :organism
