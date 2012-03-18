@@ -11,7 +11,8 @@ class SamplesController < ApplicationController
     :platebc, :plateposition, :batch_number, 
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
-    :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit, :profiling_completed, :profiling_date]
+    :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
+    :profiling_completed, :profiling_date, :remote_data_entry, :photo_id, :discrepancy, :discrepancy_comments]
     
 
   include ActionView::Helpers::FormOptionsHelper
@@ -29,7 +30,8 @@ class SamplesController < ApplicationController
 
 
   include GoToOrganismCode::Controller  
-
+  include ApprovedDataOnly
+  
   active_scaffold :samples do |config|
     config.columns = SAMPLES_COLUMNS 
 
@@ -71,6 +73,7 @@ class SamplesController < ApplicationController
     config.columns[:tissue_remaining].form_ui = :checkbox
     config.columns[:profiling_completed].form_ui = :checkbox
     config.columns[:organization].form_ui = :select
+    config.columns[:remote_data_entry].form_ui = :checkbox
     
     config.columns[:date_collected].label = "Date Collected "
     config.columns[:collected_on_day].label = "Collected Day "
@@ -87,10 +90,7 @@ class SamplesController < ApplicationController
     config.columns[:storage_medium].label = "Storage Medium"
     config.columns[:country].label = "Country"
     config.columns[:province].label = "Province"
-    config.columns[:date_collected].label = "Date Collected"
-    config.columns[:collected_on_day].label = "Day"
-    config.columns[:collected_on_month].label = "Month"
-    config.columns[:collected_on_year].label = "Year"
+
     config.columns[:collected_by].label = "Collected By"
     config.columns[:date_received].label = "Date Received"
     config.columns[:received_by].label = "Received by"
@@ -112,8 +112,12 @@ class SamplesController < ApplicationController
     config.columns[:storage_fridge].label = "Fridge"
     config.columns[:storage_box].label = "Box"
     config.columns[:xy_position].label = "xy pos"
-    config.columns[:tissue_remaining].label = "tissue remaining"
-    
+    config.columns[:tissue_remaining].label = "Tissue Remaining"
+    config.columns[:remote_data_entry].label = "Remote Data Entry"
+    config.columns[:photo_id].label = "Photo ID"
+    config.columns[:import_permit].label = "Import Permit"
+    config.columns[:export_permit].label = "Export Permit"
+
     config.columns[:id].tooltip = <<-END
     This is the unique identifier <br>
     given to each sample by the database. <br>
@@ -285,5 +289,5 @@ class SamplesController < ApplicationController
 
   end
 
-  include ApprovedDataOnly
+
 end

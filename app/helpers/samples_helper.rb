@@ -45,6 +45,14 @@ module SamplesHelper
 #     collection_select(:record, country_select("user", "country_name"))
 #  end
 
+#def discrepancy_form_column(record, input_name)
+#  select :record, :date_received, ['', 'A', 'B', 'C'], :name => input_name
+#end
+
+  def discrepancy_form_column(record, input_name)
+    select_tag(input_name, options_for_select(Sample::DT, record.discrepancy))
+  end 
+
   def date_received_form_column(record, input_name)
     date_select( :record, :date_received, :name => input_name, :include_blank => true )
   end 

@@ -1,5 +1,6 @@
 class AddNewTrackerFields < ActiveRecord::Migration
   def self.up
+    add_column :samples, :shipping_date, :date
     add_column :samples, :organization_id, :string
     add_column :samples, :field_ident, :string
     add_column :samples, :current_location, :string
@@ -19,9 +20,8 @@ class AddNewTrackerFields < ActiveRecord::Migration
     add_column :samples, :profiling_date, :date
 
     add_column :microsatellites, :date_genotyped, :date
-    add_column :samples, :shipping_date, :date
-
   end
+  
 
   def self.down
     remove_column :samples, :organization_id
@@ -36,14 +36,14 @@ class AddNewTrackerFields < ActiveRecord::Migration
     remove_column :users, :name
     
     remove_column :samples, :received_by_trent
-    remove_column :samples, :dna_extracted, :boolean
+    remove_column :samples, :dna_extracted
     remove_column :samples, :profiling_completed
     remove_column :samples, :user_id
     remove_column :samples, :extraction_date
     remove_column :samples, :profiling_date    
 
-    remove_column :microsatellites, :date_genotyped, :date
-    remove_column :samples, :shipping_date, :date
+    remove_column :microsatellites, :date_genotyped
+    remove_column :samples, :shipping_date
 
   end
 end

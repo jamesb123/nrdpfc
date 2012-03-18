@@ -38,7 +38,7 @@ class Sample < ActiveRecord::Base
   
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
-#  before_save :assign_date_collected
+  before_save :assign_collected_YMD
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
@@ -50,7 +50,17 @@ class Sample < ActiveRecord::Base
       errors.add(:coordinate_system, "must include the UTM Datum used") if requires_coordinate_system? && geocoords.coordinate_system_version.nil?
     end
   end
-
+  
+  def assign_collected_YMD
+    if self.user_id.nil?
+      self.user_id = self.current_user
+    end
+    if !self.date_collected.nil? and self.collected_on_day.nil? and self.collected_on_month.nil? and self.collected_on_year.nil?
+      self.collected_on_day = self.date_collected.day.to_s
+      self.collected_on_month = self.date_collected.strftime('%B')
+      self.collected_on_year = self.date_collected.year.to_s
+    end
+  end
 
 
   def assign_locality_type
@@ -108,13 +118,6 @@ class Sample < ActiveRecord::Base
   end
   
 
-#  def assign_date_collected
-#    self.date_collected = 
-#    self.date_collected = Date.civil(y=:collected_on_year, m=:collected_on_month, d=:collected_on_day,sg=ITALY)
-# self.date_collected = now.date
-#    self.date_collected.strptime(self.collected_on_year + self.collected_on_month + self.collected_on_day, '%Y %m %d')
-#  end
-  
   def to_label 
     if !organism.nil?  
       return "#{organism.organism_code} - #{organism_index}"
