@@ -53,6 +53,8 @@ Rails::Initializer.run do |config|
   
   # See Rails::Configuration for more options
   config.action_controller.session = { :key => "_nrdpfc", :secret => ("_nrdpfc!!!!!!!" * 10) }
+#  config.DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
+
 end
 
 # Add new inflection rules using the following format 

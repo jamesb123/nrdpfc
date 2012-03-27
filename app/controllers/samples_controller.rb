@@ -284,6 +284,10 @@ class SamplesController < ApplicationController
     config.columns[:tissue_type].tooltip = <<-END
     What is the type of tissue of this sample?
     END
+    config.columns[:photo_id].tooltip = <<-END
+    Sighting ID is a unique number given to every record in the photo identification database.<br>
+    This is the ultimate link between the photo idenitification and genetic databases
+    END
 
   end
 

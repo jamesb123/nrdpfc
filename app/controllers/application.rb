@@ -6,6 +6,7 @@ require 'digest/sha1'
 require "state_select"
 require "country_select"
 # require "thread"
+DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
 
 
 class ApplicationController < ActionController::Base
