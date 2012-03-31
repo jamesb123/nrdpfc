@@ -40,7 +40,7 @@ class SamplesController < ApplicationController
 
     config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.show.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.list.columns.exclude  :project, :type_lat_long, :locality_type
     
     config.list.per_page = 25

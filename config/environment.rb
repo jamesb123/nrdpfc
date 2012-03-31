@@ -5,6 +5,7 @@ begin
   ENV['RAILS_SITE'] = "TRACKER"
   ENV['RAILS_ENV'] = File.read("config/RAILS_ENV").strip if ENV['RAILS_ENV'] == 'production'
   ENV['RAILS_SITE'] = File.read("config/RAILS_SITE").strip 
+
 rescue 
 end
 # Query Builder output limit
@@ -12,7 +13,6 @@ QB_OUTPUT_LIMIT = 2000
 # Specifies gem version of Rails to use when vendor/rails is not present
  RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 # RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
-
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')

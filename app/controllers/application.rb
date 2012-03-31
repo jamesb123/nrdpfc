@@ -8,13 +8,11 @@ require "country_select"
 # require "thread"
 DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
 
-
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_nrdpfc_session_id'
   include AuthenticatedSystem
   include CurrentProjectHelper
-  # include InPlaceEditing
 
   prepend_before_filter :login_required  
   
@@ -23,6 +21,7 @@ class ApplicationController < ActionController::Base
     config.security.default_permission = false
     config.actions.exclude :live_search
     config.actions.add :search
+    config.actions.add :advanced_search
   end
   
   # This isn't working, I'm not quite sure why...
