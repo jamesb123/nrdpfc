@@ -29,6 +29,7 @@ module ActiveScaffold::Config
 
     def columns
       unless @columns
+# don't remove id
 #        self.columns = @core.columns.collect { |c| c.name if c.searchable? && c.column && (c.column.text? || (c.column.type == :integer) || (c.column.type == :boolean)) }.compact - [:id]
         self.columns = @core.columns.collect { |c| c.name if c.searchable? && c.column && (c.column.text? || (c.column.type == :integer) || (c.column.type == :boolean)) }.compact
       end

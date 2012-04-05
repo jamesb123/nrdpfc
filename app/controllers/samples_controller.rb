@@ -1,5 +1,27 @@
 class SamplesController < ApplicationController
   layout "tabs"
+  before_filter :update_table_config
+
+  def update_table_config  
+    if current_project_id == 1
+      active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type
+      active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+      active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+      active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    else
+      if current_project_id == 7
+        active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type, :photo_id,:discrepancy, :discrepancy_comments
+        active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
+        active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
+        active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
+      else
+        active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type
+        active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+      end
+    end
+  end  
 
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, 
@@ -31,18 +53,13 @@ class SamplesController < ApplicationController
   include GoToOrganismCode::Controller  
   
   active_scaffold :samples do |config|
+    # config.actions.add :advanced_search
+    # config.actions.exclude :search
     config.columns = SAMPLES_COLUMNS 
-
-    # search associated organism colum
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
 
-    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.list.columns.exclude  :project, :type_lat_long, :locality_type
-    
     config.list.per_page = 25
     # The split tables can't update after an edit,
     # so we just have to do the edit in a new page
@@ -102,7 +119,7 @@ class SamplesController < ApplicationController
     config.columns[:locality_type_text].label = "Locality Type"
     config.columns[:locality].label = "Locality"
     config.columns[:locality_comments].label = "Locality Comments"
-    config.columns[:location_accuracy].label = "Loc. Accuaracy"
+    config.columns[:location_accuracy].label = "Loc. Accuracy"
     config.columns[:location_measurement_method].label = "Location Measurement Method"
     config.columns[:type_lat_long].label = "Type-Lat-Long"
     config.columns[:storage_building].label = "Building"

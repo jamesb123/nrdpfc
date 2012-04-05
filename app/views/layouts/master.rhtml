@@ -65,23 +65,13 @@
 	  </div>
       <h2>
 	  <%if ENV['RAILS_ENV']=='production' %>
-			<% if ENV['RAILS_SITE']=='TRACKER'%>
-				Wildlife Genomics Tracker (copyright 2009 nrdpfc)
-			<%else%>
-				NRDPFC (production)
-			<%end%>
+				NRDPFC
 	  <%else%>
 	  		<%if ENV['RAILS_ENV']=='staging' %>
 				<%=ENV['RAILS_SITE']%> STAGING
 			<%else%>
 	  			<%if ENV['RAILS_ENV']=='development'%>
-					<% if ENV['RAILS_SITE']=='TRACKER'%>
-						Wildlife Genomics Tracker (development)
-					<%else%>
-						NRDPFC DEVELOPMENT
-					<%end%>
-				<%else%>
-				    <%=ENV['RAILS_SITE']%> UNKNOWN
+						NRDPFC (development)
 				<%end%>
 			<%end%>
 	  <%end%>
