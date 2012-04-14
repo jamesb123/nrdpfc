@@ -19,9 +19,16 @@ class SamplesController < ApplicationController
         active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
         active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
         active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+
+        active_scaffold_config.list.columns.add  :photo_id,:discrepancy, :discrepancy_comments
+        active_scaffold_config.create.columns.add :photo_id,:discrepancy, :discrepancy_comments
+        active_scaffold_config.update.columns.add :photo_id,:discrepancy, :discrepancy_comments
+        active_scaffold_config.show.columns.add  :photo_id,:discrepancy, :discrepancy_comments
       end
-    end
-  end  
+    end  
+  end
+
+# active_scaffold_config.actions.add :advanced_search
 
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, 
@@ -51,14 +58,16 @@ class SamplesController < ApplicationController
   end
 
   include GoToOrganismCode::Controller  
-  
+
   active_scaffold :samples do |config|
-    # config.actions.add :advanced_search
-    # config.actions.exclude :search
     config.columns = SAMPLES_COLUMNS 
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
+#    config.list.columns.exclude  :project, :type_lat_long, :locality_type
+#    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+#    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+#    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
 
     config.list.per_page = 25
     # The split tables can't update after an edit,
