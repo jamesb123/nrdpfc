@@ -2,34 +2,16 @@ class SamplesController < ApplicationController
   layout "tabs"
   before_filter :update_table_config
 
-  def update_table_config  
-    if current_project_id == 1
-      active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type
-      active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    else
-      if current_project_id == 7
-        active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type, :photo_id,:discrepancy, :discrepancy_comments
-        active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
-        active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
-        active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id, :photo_id,:discrepancy, :discrepancy_comments, :remote_data_entry
-      else
-        active_scaffold_config.list.columns.exclude  :project, :type_lat_long, :locality_type
-        active_scaffold_config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-
-        active_scaffold_config.list.columns.add  :photo_id,:discrepancy, :discrepancy_comments
-        active_scaffold_config.create.columns.add :photo_id,:discrepancy, :discrepancy_comments
-        active_scaffold_config.update.columns.add :photo_id,:discrepancy, :discrepancy_comments
-        active_scaffold_config.show.columns.add  :photo_id,:discrepancy, :discrepancy_comments
-      end
-    end  
-  end
-
-# active_scaffold_config.actions.add :advanced_search
-
+  WOLF_EXCLUDE_LIST =   [:type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
+  WHALES_EXCLUDE_LIST = [:type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
+  :province, :location_measurement_method, :location_1, :location_2, :location_accuracy ]
+  
+  WHALES_EXCLUDE = [:type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
+  :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
+  :security_settings, :approved, :remote_data_Entry]
+# :sample_id, :organism_id, :project,   
+  WOLF_EXCLUDE1 =     [:type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
+  
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, 
     :location_1, :location_2, :location_3, :location_4, :location_accuracy,  
@@ -41,8 +23,37 @@ class SamplesController < ApplicationController
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed, :profiling_date, :remote_data_entry, :photo_id, :discrepancy, :discrepancy_comments]
+    :profiling_completed, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments]
     
+
+
+  def update_table_config  
+    # add them back for all other projects as production caches things
+#    active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
+    # whale
+    if current_project_id == 1
+      active_scaffold_config.list.columns.add :discrepancy, :discrepancy_comments, :remote_data_entry
+      active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
+      active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
+      active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
+      active_scaffold_config.show.columns.exclude WHALES_EXCLUDE
+    else
+      #wolf
+      if current_project_id == 7
+        active_scaffold_config.list.columns.add :platebc, :plateposition, :country
+        active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
+        active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
+        active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
+        active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
+      else
+        active_scaffold_config.list.columns.add :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+        active_scaffold_config.list.columns.exclude  :remote_data_entry, :project, :type_lat_long, :locality_type
+        active_scaffold_config.create.columns.exclude :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.update.columns.exclude :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.show.columns.exclude :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+      end
+    end  
+  end
 
   include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
@@ -64,7 +75,7 @@ class SamplesController < ApplicationController
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-#    config.list.columns.exclude  :project, :type_lat_long, :locality_type
+#   config.list.columns.exclude  :project, :type_lat_long, :locality_type
 #    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
 #    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
 #    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
