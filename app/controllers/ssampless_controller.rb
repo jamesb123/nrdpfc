@@ -1,16 +1,17 @@
+class SsamplessController < ApplicationController
 class SamplesController < ApplicationController
   layout "tabs"
   before_filter :update_table_config
 
-  WOLF_EXCLUDE_LIST =   [:project, :id, :sample_bc, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
-  WHALES_EXCLUDE_LIST = [:project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
+  WOLF_EXCLUDE_LIST =   [:type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
+  WHALES_EXCLUDE_LIST = [:type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_accuracy ]
   
-  WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
+  WHALES_EXCLUDE = [:type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
   :security_settings, :approved, :remote_data_Entry]
-
-  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
+# :sample_id, :organism_id, :project,   
+  WOLF_EXCLUDE1 =     [:type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, 
@@ -18,13 +19,14 @@ class SamplesController < ApplicationController
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
     :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :tissue_type, :text_tissue_type, :extraction_method, :shippingmaterial,
+    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
     :profiling_completed, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments]
     
+
 
   def update_table_config  
     # add them back for all other projects as production caches things
@@ -45,11 +47,11 @@ class SamplesController < ApplicationController
         active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
       else
-        active_scaffold_config.list.columns.add :text_tisse_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
-        active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
-        active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.show.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.list.columns.add :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+        active_scaffold_config.list.columns.exclude  :remote_data_entry, :project, :type_lat_long, :locality_type
+        active_scaffold_config.create.columns.exclude :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.update.columns.exclude :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+        active_scaffold_config.show.columns.exclude :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
       end
     end  
   end
@@ -328,5 +330,7 @@ class SamplesController < ApplicationController
   end
 
   include ApprovedDataOnly
+
+end
 
 end

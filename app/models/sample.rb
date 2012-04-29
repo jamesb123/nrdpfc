@@ -39,9 +39,22 @@ class Sample < ActiveRecord::Base
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
   before_save :assign_collected_YMD
+  before_save :update_original_tissue
+  before_save :tissue_update
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
+
+  def tissue_update
+    if !self.tissue_type_id.nil?
+      @tt = TissueType.find_by_id(self.tissue_type_id)
+      self.text_tissue_type = @tt.tissue_desc
+    end
+  end
+  
+  def update_original_tissue
+#    self.tissue_type = "#{TissueType.tissue_desc}"
+  end
 
   def validate
     if has_coordinates?
