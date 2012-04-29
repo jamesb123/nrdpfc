@@ -2,15 +2,15 @@ class SamplesController < ApplicationController
   layout "tabs"
   before_filter :update_table_config
 
-  WOLF_EXCLUDE_LIST =   [:project, :id, :sample_bc, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
-  WHALES_EXCLUDE_LIST = [:project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
+  WOLF_EXCLUDE_LIST =   [:text_tissue_type, :project, :id, :sample_bc, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
+  WHALES_EXCLUDE_LIST = [:text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_accuracy ]
   
-  WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
+  WHALES_EXCLUDE = [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
   :security_settings, :approved, :remote_data_Entry]
 
-  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
+  WOLF_EXCLUDE1 =     [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type, :locality_type_text, :locality_comments, 
@@ -45,7 +45,7 @@ class SamplesController < ApplicationController
         active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
       else
-        active_scaffold_config.list.columns.add :text_tisse_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+        active_scaffold_config.list.columns.add :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
         active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
         active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
         active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
