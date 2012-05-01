@@ -27,6 +27,7 @@ class SamplesController < ApplicationController
     
 
   def update_table_config  
+# active_scaffold_config.list.columns = active_scaffold_config.columns._inheritable
     # add them back for all other projects as production caches things
 #    active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
     # whale

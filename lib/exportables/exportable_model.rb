@@ -52,8 +52,8 @@ module Exportables::ExportableModel
     if current_user && related_controller &&
       related_controller.respond_to?(:active_scaffold_config)
 
-#      as_columns = related_controller.active_scaffold_config.list.columns
-      as_columns = related_controller.active_scaffold_config.update.columns
+      as_columns = related_controller.active_scaffold_config.list.columns
+#      as_columns = related_controller.active_scaffold_config.update.columns
       as_column_names = as_columns.map(&:name).map(&:to_s)
       as_column_names.select {|c| column_strings.include?(c) }
     else
