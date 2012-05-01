@@ -1,6 +1,6 @@
 class SamplesController < ApplicationController
   layout "tabs"
-  before_filter :update_table_config
+#  before_filter :update_table_config
 
   WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :id, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
   WHALES_EXCLUDE_LIST = [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
@@ -26,35 +26,35 @@ class SamplesController < ApplicationController
     :profiling_completed, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments]
     
 
-  def update_table_config  
+#  def update_table_config  
 # active_scaffold_config.list.columns = active_scaffold_config.columns._inheritable
     # add them back for all other projects as production caches things
 #    active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
+
     # whale
-    if current_project_id == 1
-        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
-#      active_scaffold_config.list.columns.add :discrepancy, :discrepancy_comments, :remote_data_entry
-      active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
-      active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
-      active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
-      active_scaffold_config.show.columns.exclude WHALES_EXCLUDE
-    else
-      #wolf
-      if current_project_id == 7
-        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
-        active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
-        active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
-        active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
-        active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
-      else
-        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
-        active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
-        active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.show.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      end
-    end  
-  end
+#    if current_project_id == 1
+#       active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#      active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
+#      active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
+#      active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
+#      active_scaffold_config.show.columns.exclude WHALES_EXCLUDE
+#    else
+#      #wolf
+#      if current_project_id == 7
+#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#        active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
+#        active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
+#        active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
+#        active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
+#      else
+#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#        active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
+#        active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+#        active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+#        active_scaffold_config.show.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+#      end
+#    end  
+#  end
 
   include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
@@ -76,10 +76,10 @@ class SamplesController < ApplicationController
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-#   config.list.columns.exclude  :project, :type_lat_long, :locality_type
-#    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-#    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-#    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+   config.list.columns.exclude  :project, :type_lat_long, :locality_type
+    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
 
     config.list.per_page = 25
     # The split tables can't update after an edit,
