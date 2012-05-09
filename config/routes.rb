@@ -27,5 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'
   map.connect '/', :controller => "projects"
+#  map.connect '/ssamples', :controller => "ssamples"
 map.resources :samples, :collection => {:browse => :get}, :member => {:select => :post}
+map.resources :ssamples, :collection => {:browse => :get}, :member => {:select => :post}
 end

@@ -20,4 +20,13 @@ class Ssample < ActiveRecord::Base
   has_many :genders
   has_many :dna_results
   
+  def to_label 
+    if !organism.nil?  
+      return "#{organism.organism_code} - #{organism_index}"
+    else
+      return "#{self.id} SID" 
+    end
+  end
+end
+  
 end

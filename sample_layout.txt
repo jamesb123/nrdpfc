@@ -1,0 +1,15 @@
+id
+organism
+organism_index
+sample_bc
+field_code
+Batch_number
+date_collected
+collected_on_year
+province
+locality
+tissue_type_id
+date_submitted
+submitted_by
+date_received
+received_by
