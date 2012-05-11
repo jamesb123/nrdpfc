@@ -26,8 +26,6 @@
   - label: "Approved Samples"	
     selected_if: 'viewing_approved?'
     action: 'approved'
-  - label: "Short Sample"
-    controller: "ssamples"
   - label: "Un-approved Samples"
     controller: "samples"
     selected_if: 'viewing_unapproved?'
