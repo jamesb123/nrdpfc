@@ -28,5 +28,3 @@ class Ssample < ActiveRecord::Base
     end
   end
 end
-  
-end

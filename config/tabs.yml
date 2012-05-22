@@ -36,6 +36,8 @@
     controller: "surveys"
   - label: "Sightings"
     controller: "sightings"
+- label: "Short Samples"
+  controller: "ssamples"
 - label: "DNA"  
   controller: "dna_results"
   sub_tabs:
