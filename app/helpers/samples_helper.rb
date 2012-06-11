@@ -52,12 +52,15 @@ module SamplesHelper
 
   # month
   def collected_on_month_form_column(record, input_name)
-    select_tag(input_name, options_for_select([  ['', ''], 
-    ['January', 'January'], ['February', 'February'], ['March', 
-    'March'], ['April','April'] , ['May','May'] , ['June','June'] , 
-    ['July','July'] , ['August','August'] , ['September','September'] , 
-    ['October','October'] , ['November','November'] , ['December',
-    'December'] ], record.collected_on_month))
+    select_tag(input_name, options_for_select(MM, record.collected_on_month))
+  end 
+  # year
+  def collected_on_year_form_column(record, input_name)
+    select_tag(input_name, options_for_select(YY, record.collected_on_year))
+  end 
+  # day
+  def collected_on_day_form_column(record, input_name)
+    select_tag(input_name, options_for_select(DD, record.collected_on_day))
   end 
 
   def location_accuracy_form_column(record, input_name)

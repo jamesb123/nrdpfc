@@ -1,0 +1,160 @@
+- label: "Projects"
+  controller: "projects"
+  sub_tabs:
+  - label: "Projects"
+    controller: "projects"
+  - label: "Security Settings"
+    controller: "security_settings"
+  - label: "Meta Data"
+    controller: "meta_datas"
+- label: "Organisms"
+  controller: "organisms"
+  sub_tabs:
+  - label: "Approved Organisms"
+    controller: "organisms"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-Approved Organisms"
+    controller: "organisms"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "Organism Field Definition"
+    controller: "dynamic_attributes"
+- label: "Samples"
+  controller: "samples"
+  sub_tabs:
+  - label: "Approved Samples"	
+    controller: "samples"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Samples"
+    controller: "samples"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "Short Samples"
+  	controller: "ssamples"
+  - label: "Sample Non-Tissues(Dynamic)"
+    controller: "sample_non_tissues"
+  - label: "Surveys"
+    controller: "surveys"
+  - label: "Sightings"
+    controller: "sightings"
+- label: "DNA"  
+  controller: "dna_results"
+  sub_tabs:
+  - label: "Approved DNA Results"	
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved DNA Results"
+    controller: "dna_results"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+- label: "mtDNA"  
+  controller: "mt_dnas"
+  sub_tabs:
+  - label: "Approved mtDNA"
+    controller: "mt_dnas"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved mtDNA"
+    controller: "mt_dnas"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "mtDNA Final Horizontals"
+    controller: "mt_dna_final_horizontals"
+  - label: "mtDNA SEQ"
+    controller: "mt_dna_seqs"
+- label: "Genders"
+  controller: "genders"
+  sub_tabs:
+  - label: "Approved Genders"
+    controller: "genders"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Genders"
+    controller: "genders"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "Gender Final Horizontals"
+    controller: "gender_final_horizontals"
+- label: "Microsatellites"
+  controller: "microsatellites"
+  sub_tabs:
+  - label: "Approved Microsatellites"
+    controller: "microsatellites"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Microsatellites"
+    controller: "microsatellites"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "Horizontals"
+    controller: "microsatellite_horizontals"
+  - label: "Final Horizontals"
+    controller: "microsatellite_final_horizontals"
+- label: "MHC"
+  controller: "mhcs"
+  sub_tabs:
+  - label: "Approved MHC"
+    controller: "mhcs"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved MHC"
+    controller: "mhcs"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "MHC Horizontal"
+    controller: "mhc_final_horizontals"
+  - label: "MHC SEQ"
+    controller: "mhc_seqs" 
+- label: "Y Chromosomes"
+  controller: "y_chromosomes"
+  sub_tabs:
+  - label: "Approved Y Chromosomes"
+    controller: "y_chromosomes"
+    selected_if: 'viewing_approved?'
+    action: 'approved'
+  - label: "Un-approved Y-Chromosomes"
+    controller: "y_chromosomes"
+    selected_if: 'viewing_unapproved?'
+    action: 'unapproved'
+  - label: "Y Chromosomes Final"
+    controller: "y_chromosome_final_horizontals"
+  - label: "Y Chromsomes SEQ"
+    controller: "y_chromosome_seqs"
+- label: "Lookup Tables"
+  controller: "shippingmaterials"
+  sub_tabs:
+  - label: "Shipping Materials"
+    controller: "shippingmaterials"
+  - label: "Locality Type"
+    controller: "locality_types"
+  - label: "Extraction Methods"
+    controller: "extraction_methods"
+  - label: "Tissue Types"
+    controller: "tissue_types"
+  - label: "Address Roles"
+    controller: "roles"
+- label: "Admin"
+  controller: "users"
+  sub_tabs:
+  - label: "Users"
+    controller: "users"
+  - label: "Addresses"
+    controller: "addresses"
+  - label: "Locus"
+    controller: "locus"
+  - label: "Primers"
+    controller: "primers"
+- label: "Queries"
+  controller: "query"
+  sub_tabs:
+  - label: 'Query builder'
+    controller: 'query'
+    selected_if: 'params[:action] == "index"'
+  - label: "Import"
+    controller: 'query'
+    selected_if: 'params[:action] == "import"'
+    action: 'import'
+- label: "Help"
+  controller: "videos"

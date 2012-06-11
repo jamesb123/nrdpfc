@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528162510) do
+ActiveRecord::Schema.define(:version => 20120607172233) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -3802,7 +3802,7 @@ ActiveRecord::Schema.define(:version => 20120528162510) do
   create_table "samples", :force => true do |t|
     t.integer  "project_id"
     t.integer  "organism_id"
-    t.integer  "organism_index"
+    t.string   "organism_index"
     t.string   "sample_bc"
     t.string   "platebc"
     t.string   "plateposition"
@@ -3871,11 +3871,15 @@ ActiveRecord::Schema.define(:version => 20120528162510) do
     t.boolean  "profiling_completed"
     t.date     "extraction_date"
     t.date     "profiling_date"
-    t.integer  "photo_id"
+    t.string   "photo_id"
     t.boolean  "remote_data_entry"
     t.string   "discrepancy"
     t.text     "discrepancy_comments"
     t.integer  "organization_id"
+    t.string   "age"
+    t.string   "condition"
+    t.boolean  "rehydrated"
+    t.boolean  "diet_analysis"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
