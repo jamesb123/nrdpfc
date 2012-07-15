@@ -15,6 +15,8 @@
 
 class Mhc < ActiveRecord::Base
   belongs_to :locu
+  belongs_to :project
+  belongs_to :sample
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model

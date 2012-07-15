@@ -15,7 +15,7 @@
 class MtDna < ActiveRecord::Base
   belongs_to :locu
   belongs_to :sample
-  
+  belongs_to :project  
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased

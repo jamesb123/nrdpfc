@@ -5,6 +5,7 @@ class Locu < ActiveRecord::Base
   has_many :mt_dnas
   has_many :mhcs
   has_many :primers
+  has_many :mt_dna_seqs
   
   include SecuritySets::AdminOnly
   include ProjectRelations

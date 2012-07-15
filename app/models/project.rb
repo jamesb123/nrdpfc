@@ -31,7 +31,7 @@ class Project < ActiveRecord::Base
   has_many :mhc_seqs
   has_many :gender_final_horizontals
   has_many :dna_results
-  has_many :mhc_seqs
+  has_many :mhcs
   has_many :genders
   has_many :data_querys
   has_many :locus

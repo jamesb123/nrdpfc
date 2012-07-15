@@ -14,6 +14,8 @@ class MtDnaSeq < ActiveRecord::Base
   extend GoToOrganismCode::Model
   include ProjectRelations
   include SecuritySets::ProjectBased
+  belongs_to :locu
+  belongs_to :project
   
   def to_label
     "#{locus}" 

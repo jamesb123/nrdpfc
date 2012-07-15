@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607172233) do
+ActiveRecord::Schema.define(:version => 20120715142732) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -3672,6 +3672,7 @@ ActiveRecord::Schema.define(:version => 20120607172233) do
     t.text    "sequence"
     t.string  "accession",  :limit => 30
     t.text    "comments"
+    t.integer "locu_id"
   end
 
   add_index "mt_dna_seqs", ["project_id"], :name => "index_mt_dna_seqs_on_project_id"
