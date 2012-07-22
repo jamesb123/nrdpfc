@@ -10,12 +10,14 @@
 #
 
 class MtDnaSeq < ActiveRecord::Base
+
   extend Exportables::ExportableModel
-  extend GoToOrganismCode::Model
   include ProjectRelations
   include SecuritySets::ProjectBased
+
   belongs_to :locu
   belongs_to :project
+  belongs_to :mt_dna
   
   def to_label
     "#{locus}" 

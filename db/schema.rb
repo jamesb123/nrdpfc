@@ -543,13 +543,12 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.string   "locus"
     t.text     "comments"
     t.integer  "locu_id"
-    t.boolean  "approved",       :default => false
     t.datetime "date_genotyped"
+    t.string   "approved"
   end
 
   add_index "genders", ["finalResult"], :name => "index_genders_on_finalResult"
   add_index "genders", ["project_id"], :name => "index_genders_on_project_id"
-  add_index "genders", ["approved"], :name => "index_genders_on_approved"
   add_index "genders", ["sample_id"], :name => "index_genders_on_sample_id"
 
   create_table "locality_types", :force => true do |t|
@@ -3673,6 +3672,7 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.string  "accession",  :limit => 30
     t.text    "comments"
     t.integer "locu_id"
+    t.integer "mt_dna_id"
   end
 
   add_index "mt_dna_seqs", ["project_id"], :name => "index_mt_dna_seqs_on_project_id"

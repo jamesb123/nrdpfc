@@ -11,13 +11,13 @@ class Sample < ActiveRecord::Base
   belongs_to :user
   
   has_many :y_chromosome_seqs
-  has_many :y_chromosomes
+  has_many :y_chromosomes, :dependent => :destroy
   has_many :microsatellite_horizontals
-  has_many :microsatellites
-  has_many :mt_dnas
-  has_many :mhcs
-  has_many :genders
-  has_many :dna_results
+  has_many :microsatellites, :dependent => :destroy
+  has_many :mt_dnas, :dependent => :destroy
+  has_many :mhcs, :dependent => :destroy
+  has_many :genders, :dependent => :destroy
+  has_many :dna_results, :dependent => :destroy
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model

@@ -1,3 +1,19 @@
+class MtDna < ActiveRecord::Base
+  has_many :mt_dna_seqs
+  belongs_to :locu
+  belongs_to :sample
+  belongs_to :project  
+  
+  extend Exportables::ExportableModel
+  extend GoToOrganismCode::Model
+  include SecuritySets::ProjectBased
+  include ProjectRelations
+  include ApprovalModelHelpers
+  
+  def to_label
+   "#{locus}" 
+  end
+end
 # == Schema Information
 #
 # Table name: mt_dnas
@@ -12,17 +28,3 @@
 #  finalResult :boolean(1)    
 #
 
-class MtDna < ActiveRecord::Base
-  belongs_to :locu
-  belongs_to :sample
-  belongs_to :project  
-  extend Exportables::ExportableModel
-  extend GoToOrganismCode::Model
-  include SecuritySets::ProjectBased
-  include ProjectRelations
-  include ApprovalModelHelpers
-  
-  def to_label
-   "#{locus}" 
-  end
-end

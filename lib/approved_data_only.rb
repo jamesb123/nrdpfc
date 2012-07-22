@@ -29,7 +29,9 @@
 #  selected_if: 'viewing_approved?'
 #  action: 'approved'
 #
+
 module ApprovedDataOnly
+
   def self.included(base)
     base.send :helper_method, :viewing_approved?
   end
@@ -59,7 +61,11 @@ module ApprovedDataOnly
   def conditions_for_collection
     approved = viewing_approved?
     table = active_scaffold_config.model.table_name
-
-    ["#{table}.project_id = ? and #{table}.approved = ?", current_project_id, approved ]
+    if RESULTS_TABLES.include?(table) 
+      ["#{table}.project_id = ? ", current_project_id ]
+    else
+      ["#{table}.project_id = ? and #{table}.approved = ?", current_project_id, approved ]
+    end
   end
+
 end

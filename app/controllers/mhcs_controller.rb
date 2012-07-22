@@ -2,7 +2,7 @@ class MhcsController < ApplicationController
   layout "tabs"
   
   active_scaffold :mhcs do |config|
-    config.columns = [:project, :sample, :sample_id, :locu, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult, :approved]
+    config.columns = [:project, :sample, :sample_id, :locu, :locus, :allele1, :allele2, :gelNum, :wellNum, :comments, :finalResult]
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
     config.list.columns.exclude :project

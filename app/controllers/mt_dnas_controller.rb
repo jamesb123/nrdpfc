@@ -2,18 +2,20 @@ class MtDnasController < ApplicationController
   layout "tabs"
   active_scaffold :mt_dnas do |config|
     config.label = "mtDNA"
-    config.columns = [:project, :sample,  :sample_id,  :locu, :locus, :haplotype, :gelNum, :wellNum, :finalResult, :comments, :approved, :date_sequenced]
+    config.columns = [:project, :sample,  :sample_id,  :locu, :locus, :haplotype, :gelNum, :wellNum, :finalResult, :comments, :date_sequenced]
+
     config.list.columns.exclude :project
+    config.create.columns.exclude :project, :sample_id
+    config.update.columns.exclude :project, :sample_id
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
     config.columns[:sample].includes << {:sample => :organism}
-
     # search associated sample colum
     config.columns[:sample].search_sql = 'organisms.organism_code'
     config.search.columns << :sample
 
-    config.create.columns.exclude :project, :sample_id
-    config.update.columns.exclude :project, :sample_id
+    
+    config.nested.add_link("mt DNA Seqs", [:mt_dna_seqs])
     config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox

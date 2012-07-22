@@ -2,7 +2,7 @@ class GendersController < ApplicationController
   layout "tabs"
 
   active_scaffold :genders do |config|
-    config.columns = [:project, :sample, :sample_id , :gender, :date_genotyped, :locu, :locus, :wellNum, :gelNum, :comments, :finalResult, :approved]
+    config.columns = [:project, :sample, :sample_id , :gender, :date_genotyped, :locu, :locus, :wellNum, :gelNum, :comments, :finalResult]
 
     config.columns[:sample].label = "Organism Code (SID)"
     config.columns[:sample_id].label = "Sample ID"
@@ -66,8 +66,4 @@ class GendersController < ApplicationController
   include ResultTableSharedMethods  
   include GoToOrganismCode::Controller
   include ApprovedDataOnly
-    
-#  def conditions_for_collection
-#    ['genders.project_id = (?)', current_project_id ]
-#  end  
 end
