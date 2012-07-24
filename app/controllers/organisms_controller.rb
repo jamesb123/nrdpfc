@@ -8,7 +8,7 @@ class OrganismsController < ApplicationController
   cattr_accessor :action_links
   
   active_scaffold  :organisms do |config|
-    config.columns = [:id, :organism_code, :comment, :samples, :approved]
+    config.columns = [:id, :organism_code, :comment, :samples]
     config.create.columns.exclude :id, :project, :security_settings
     config.update.columns.exclude :id, :project, :security_settings
     config.columns[:organism_code].label = "Organism"

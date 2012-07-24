@@ -25,6 +25,9 @@ class Sample < ActiveRecord::Base
   include SecuritySets::ProjectBased
   include ApprovalModelHelpers
   
+
+  validates_numericality_of :collected_on_year, :on => :save
+  
   for table_name in RESULT_TABLES
     has_many table_name.to_sym
     has_many "final_#{table_name}".to_sym,
@@ -68,7 +71,8 @@ class Sample < ActiveRecord::Base
     end
     if !self.date_collected.nil? and self.collected_on_day.nil? and self.collected_on_month.nil? and self.collected_on_year.nil?
       self.collected_on_day = self.date_collected.day.to_s
-      self.collected_on_month = self.date_collected.strftime('%B')
+#      self.collected_on_month = self.date_collected.strftime('%B')
+      self.collected_on_month = self.date_collected.month.to_s
       self.collected_on_year = self.date_collected.year.to_s
     end
   end

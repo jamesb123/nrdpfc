@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715142732) do
+ActiveRecord::Schema.define(:version => 20120607172233) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -544,7 +544,6 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.text     "comments"
     t.integer  "locu_id"
     t.datetime "date_genotyped"
-    t.string   "approved"
   end
 
   add_index "genders", ["finalResult"], :name => "index_genders_on_finalResult"
@@ -990,12 +989,10 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.boolean "finalResult"
     t.text    "comments"
     t.integer "locu_id"
-    t.boolean "approved",    :default => false
   end
 
   add_index "mhcs", ["finalResult"], :name => "index_mhcs_on_finalResult"
   add_index "mhcs", ["project_id"], :name => "index_mhcs_on_project_id"
-  add_index "mhcs", ["approved"], :name => "index_mhcs_on_approved"
   add_index "mhcs", ["sample_id"], :name => "index_mhcs_on_sample_id"
 
   create_table "microsatellite_final_horizontals", :force => true do |t|
@@ -3160,7 +3157,6 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.decimal "allele_1_peak_height",               :precision => 6, :scale => 2
     t.decimal "allele_2_peak_height",               :precision => 6, :scale => 2
     t.integer "locu_id"
-    t.boolean "approved",                                                         :default => false
     t.decimal "allele_1_size",                      :precision => 6, :scale => 2
     t.decimal "allele_2_size",                      :precision => 6, :scale => 2
     t.date    "date_genotyped"
@@ -3174,7 +3170,6 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
   add_index "microsatellites", ["gel"], :name => "index_microsatellites_on_gel"
   add_index "microsatellites", ["well"], :name => "index_microsatellites_on_well"
   add_index "microsatellites", ["locu_id"], :name => "index_microsatellites_on_locu_id"
-  add_index "microsatellites", ["approved"], :name => "index_microsatellites_on_approved"
 
   create_table "microsatellites_project_001_by_sample", :force => true do |t|
     t.string  "project_id",        :limit => 50
@@ -3687,13 +3682,11 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.boolean  "finalResult"
     t.text     "comments"
     t.integer  "locu_id"
-    t.boolean  "approved",                     :default => false
     t.datetime "date_sequenced"
   end
 
   add_index "mt_dnas", ["finalResult"], :name => "index_mt_dnas_on_finalResult"
   add_index "mt_dnas", ["project_id"], :name => "index_mt_dnas_on_project_id"
-  add_index "mt_dnas", ["approved"], :name => "index_mt_dnas_on_approved"
   add_index "mt_dnas", ["sample_id"], :name => "index_mt_dnas_on_sample_id"
 
   create_table "nats", :force => true do |t|
@@ -3705,12 +3698,10 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.integer "project_id"
     t.string  "organism_code"
     t.string  "comment"
-    t.boolean "approved",      :default => false
   end
 
   add_index "organisms", ["project_id", "id"], :name => "index_organisms_on_project_id_and_id"
   add_index "organisms", ["project_id"], :name => "index_organisms_on_project_id"
-  add_index "organisms", ["approved"], :name => "index_organisms_on_approved"
 
   create_table "organizations", :force => true do |t|
     t.string   "org_name"
@@ -4504,12 +4495,14 @@ ActiveRecord::Schema.define(:version => 20120715142732) do
     t.boolean "finalResult"
     t.text    "comments"
     t.integer "locu_id"
-    t.boolean "approved",    :default => false
   end
 
   add_index "y_chromosomes", ["finalResult"], :name => "index_y_chromosomes_on_finalResult"
   add_index "y_chromosomes", ["project_id"], :name => "index_y_chromosomes_on_project_id"
-  add_index "y_chromosomes", ["approved"], :name => "index_y_chromosomes_on_approved"
+  add_index "y_chromosomes", ["sample_id"], :name => "index_y_chromosomes_on_sample_id"
+
+end
+ex_y_chromosomes_on_project_id"
   add_index "y_chromosomes", ["sample_id"], :name => "index_y_chromosomes_on_sample_id"
 
 end

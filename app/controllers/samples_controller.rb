@@ -111,7 +111,7 @@ class SamplesController < ApplicationController
     config.columns[:organization].form_ui = :select
     config.columns[:remote_data_entry].form_ui = :checkbox
     
-    config.columns[:date_collected].label = "Date Collected (will fill in next 3 columns automatically)"
+    config.columns[:date_collected].label = "Date Collected YY MM DD (will fill in next 3 columns automatically)"
     config.columns[:collected_on_day].label = "Collected Day "
     config.columns[:collected_on_month].label = "Collected Month "
     config.columns[:collected_on_year].label = "Collected Year "

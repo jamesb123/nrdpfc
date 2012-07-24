@@ -26,18 +26,18 @@ module SamplesHelper
   end 
 
   def date_received_form_column(record, input_name)
-    date_select( :record, :date_received, :name => input_name, :include_blank => true )
+    date_select( :record, :date_received, :start_year => 2002, :end_year => 2020, :name => input_name, :include_blank => true )
   end 
 
   def date_collected_form_column(record, input_name)
-    date_select :record, :date_collected, :name => input_name, :include_blank => true
+    date_select :record, :date_collected, :use_month_numbers => true, :start_year => 1899, :end_year => 2020, :name => input_name, :include_blank => true
   end 
 
   def shipping_date_form_column(record, input_name)
-    date_select :record, :shipping_date, :name => input_name, :include_blank => true
+    date_select :record, :shipping_date,:start_year => 2002, :end_year => 2020, :name => input_name, :include_blank => true
   end 
   def profiling_date_form_column(record, input_name)
-    date_select :record, :profiling_date, :name => input_name, :include_blank => true
+    date_select :record, :profiling_date, :start_year => 2002, :end_year => 2020, :name => input_name, :include_blank => true
   end 
 
   def type_lat_long_form_column(record, input_name)
@@ -55,9 +55,9 @@ module SamplesHelper
     select_tag(input_name, options_for_select(MM, record.collected_on_month))
   end 
   # year
-  def collected_on_year_form_column(record, input_name)
-    select_tag(input_name, options_for_select(YY, record.collected_on_year))
-  end 
+#  def collected_on_year_form_column(record, input_name)
+#    select_tag(input_name, options_for_select(YY, record.collected_on_year))
+#  end 
   # day
   def collected_on_day_form_column(record, input_name)
     select_tag(input_name, options_for_select(DD, record.collected_on_day))
