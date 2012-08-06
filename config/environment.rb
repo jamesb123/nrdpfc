@@ -100,5 +100,5 @@ end
 
 # define this in your environment.rb
 # Default date/time format
- ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(:default => "%Y.%m.%d")
+# ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(:default => "%Y.%m.%d")
 # ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(:default => "%H:%M,:%S")

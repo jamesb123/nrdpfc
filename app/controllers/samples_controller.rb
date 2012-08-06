@@ -56,7 +56,6 @@ class SamplesController < ApplicationController
 #    end  
 #  end
 
-  include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
@@ -69,7 +68,6 @@ class SamplesController < ApplicationController
     [ 'samples.project_id = ?', current_project_id ]
   end
 
-  include GoToOrganismCode::Controller  
 
   active_scaffold :samples do |config|
     config.columns = SAMPLES_COLUMNS 
@@ -328,7 +326,8 @@ class SamplesController < ApplicationController
     END
 
   end
-
+  include ActionView::Helpers::FormOptionsHelper
+  include GoToOrganismCode::Controller  
   include ApprovedDataOnly
 
 end
