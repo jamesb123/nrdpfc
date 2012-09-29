@@ -6,4 +6,8 @@ module GendersHelper
       super
     end
   end
+  def date_genotyped_form_column(record, input_name)
+    date_select :record, :date_genotyped, :use_month_numbers => true, :start_year => 1899, :end_year => 2020, :name => input_name, :include_blank => true
+  end 
+
 end

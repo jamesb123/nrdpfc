@@ -28,7 +28,7 @@ class Sample < ActiveRecord::Base
 # tmp_string = :collected_on_year
 #  validates_numericality_of :collected_on_year, :on => :save
 #  validate_format_of :tmp_year, :with =>  :tmp_year.scan(/\D/).empty? and (1582..2500).include?(:tmp_year.to_i)
-  validates_format_of :collected_on_year, :with => /^[0-9_\/\s]+$/i
+   validates_format_of :collected_on_year, :with => /^[0-9_\/\s]+$/i , :allow_blank => true
 
   for table_name in RESULT_TABLES
     has_many table_name.to_sym

@@ -9,7 +9,7 @@ class MtDna < ActiveRecord::Base
   include SecuritySets::ProjectBased
   include ProjectRelations
   include ApprovalModelHelpers
-  
+
   def to_label
    "#{locus}" 
   end

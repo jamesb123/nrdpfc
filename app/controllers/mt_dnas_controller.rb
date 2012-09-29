@@ -23,7 +23,7 @@ class MtDnasController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
-  
+    
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>
     and "Organism Sample Index" from the "Sample" table.<br>

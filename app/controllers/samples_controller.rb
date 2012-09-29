@@ -78,6 +78,7 @@ class SamplesController < ApplicationController
     config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.columns[:collected_on_year].options = {:truncate => 2}
 
     config.list.per_page = 25
     # The split tables can't update after an edit,
@@ -112,8 +113,9 @@ class SamplesController < ApplicationController
     config.columns[:date_collected].label = "Date Collected YY MM DD (will fill in next 3 columns automatically)"
     config.columns[:collected_on_day].label = "Collected Day "
     config.columns[:collected_on_month].label = "Collected Month "
-    config.columns[:collected_on_year].label = "Collected Year "
-  
+    config.columns[:collected_on_year].label = "Collected Year"
+    config.columns[:collected_on_year].options = {:truncate => 4}
+    
     config.columns[:shippingmaterial].label = "Shipping Medium"
     config.columns[:sample_bc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
