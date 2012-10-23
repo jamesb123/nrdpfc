@@ -30,14 +30,14 @@
     controller: "samples"
     selected_if: 'viewing_unapproved?'
     action: 'unapproved'
+  - label: "Short Samples"
+    controller: "ssamples"
   - label: "Sample Non-Tissues(Dynamic)"
     controller: "sample_non_tissues"
   - label: "Surveys"
     controller: "surveys"
   - label: "Sightings"
     controller: "sightings"
-- label: "Short Samples"
-  controller: "ssamples"
 - label: "DNA"  
   controller: "dna_results"
   sub_tabs:

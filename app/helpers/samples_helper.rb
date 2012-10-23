@@ -39,7 +39,9 @@ module SamplesHelper
   def profiling_date_form_column(record, input_name)
     date_select :record, :profiling_date, :start_year => 2002, :end_year => 2020, :name => input_name, :include_blank => true
   end 
-
+  def profile_published_form_column(record,input_name)
+    select_tag(input_name,options_for_select(Sample::YNU,record.profile_published))
+  end
   def type_lat_long_form_column(record, input_name)
     select_tag(input_name, options_for_select([ ['', ''], ['DD (Decimal)', 'DD'], 
     ['DMS (Hours Min Sec)', 'DMS'], ['UTM (Zone Coordinates)', 'UTM'] ], record.type_lat_long))
