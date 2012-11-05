@@ -4,8 +4,8 @@ class AddWolfColumnsDiet < ActiveRecord::Migration
     change_column :samples, :photo_id, :string
     add_column :samples, :age, :string
     add_column :samples, :condition, :string
-    add_column :samples, :rehydrated, :boolean
-    add_column :samples, :diet_analysis, :boolean
+    add_column :samples, :rehydrated, :string
+    add_column :samples, :diet_analysis, :string
   end
 
   def self.down

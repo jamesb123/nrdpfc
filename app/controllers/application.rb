@@ -13,6 +13,15 @@ DD = [["",""],["UNKNOWN","UNKNOWN"],"1","2","3","4","5","6","7","8","9","10","11
 YY = [["",""],["UNKNOWN","UNKNOWN"],["2007","2007"],["2008","2008"],["2009","2009"],["2010","2010"],["2011","2011"],["2012","2012"],["2013","2013"],["2014","2014"],["2015","2015"]]
 RESULTS_TABLES = [ "genders", "mhcs", "mt_dnas", "microsatellites", "y_chromosomes","organisms", "dna_results"]
 YNU = [["Unknown","Unknown"],["Yes","Yes"],["No","No"]]
+SCAT = ["UNKNOWN","A+ = scat was wet, shiny, steaming", 
+        "A  = scat was wet, shiny but at ambient temperature",
+        "B  = scat was dry but shiny with almost no fur sticking out",
+        "C  = scat was dry with minimal fur sticking out",
+        "D  = scat was dry and looked mostly like a furry animal",
+        "E  = scat was dry and looked like clay"]
+AGE = ["UNKNOWN","<12 hours","<24 hours","<36 hours","<48 hours",">48 hours","Unknown"]
+YN = ["UNKNOWN","Yes","No"]  
+
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_nrdpfc_session_id'

@@ -1,14 +1,14 @@
 class SamplesController < ApplicationController
   layout "tabs"
-  before_filter :update_table_config
+#  before_filter :update_table_config
 
-  WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :id, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry ]
-  WHALES_EXCLUDE_LIST = [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country, 
-  :province, :location_measurement_method, :location_1, :location_2, :location_accuracy ]
+  WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
+  WHALES_EXCLUDE_LIST = [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
+  :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
   
   WHALES_EXCLUDE = [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
-  :security_settings, :approved, :remote_data_Entry]
+  :security_settings, :approved, :remote_data_Entry,:age, :condition, :rehydrated, :diet_analysis]
 
   WOLF_EXCLUDE1 =     [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
   
@@ -23,16 +23,15 @@ class SamplesController < ApplicationController
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments]
+    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis]
 
   def update_table_config
 #    active_scaffold_config.list.columns = active_scaffold_config.columns._inheritable
 #    add them back for all other projects as production caches things
     active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
-
     if current_project_id == 1
       # whale
-      active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#      active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
       active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
       active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
       active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
@@ -40,13 +39,13 @@ class SamplesController < ApplicationController
     else
       if current_project_id == 7
         #wolf
-        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
         active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
         active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
       else
-        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
+#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
         active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
         active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
         active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id

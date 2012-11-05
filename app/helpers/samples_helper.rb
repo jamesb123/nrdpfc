@@ -82,6 +82,22 @@ module SamplesHelper
     'Centroid'] ], record.location_measurement_method))
   end 
 
+  def condition_form_column(record, input_name)
+    select_tag(input_name, options_for_select(SCAT, record.condition))
+  end 
+
+  def age_form_column(record, input_name)
+    select_tag(input_name, options_for_select(AGE, record.age))
+  end 
+
+  def rehydrated_form_column(record, input_name)
+    select_tag(input_name, options_for_select(YN, record.rehydrated))
+  end 
+  def diet_analysis_form_column(record, input_name)
+    select_tag(input_name, options_for_select(YN, record.diet_analysis))
+  end 
+
+
 # day
 #  def collected_on_day_form_column(record, input_name)
 #    select_day(record[:collected_on_day], :prefix => input_name, :include_blank => true)
