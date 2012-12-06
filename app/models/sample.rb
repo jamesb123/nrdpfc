@@ -6,6 +6,7 @@ class Sample < ActiveRecord::Base
   belongs_to :shippingmaterial
   belongs_to :tissue_type
   belongs_to :extraction_method
+
   belongs_to :storage_medium
   belongs_to :organization
   belongs_to :user

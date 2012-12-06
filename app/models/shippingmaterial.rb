@@ -9,7 +9,6 @@
 
 class Shippingmaterial < ActiveRecord::Base
 
-
   include SecuritySets::AllowAll
   
   has_many :samples

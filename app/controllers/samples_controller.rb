@@ -1,5 +1,6 @@
 class SamplesController < ApplicationController
   layout "tabs"
+
 #  before_filter :update_table_config
 
   WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
@@ -98,6 +99,7 @@ class SamplesController < ApplicationController
     config.columns[:security_settings].label = "Security"
     config.columns[:approved].label = "Approved"
     config.columns[:extraction_method].form_ui = :select
+# done in helper now from shipping materials
     config.columns[:shippingmaterial].form_ui = :select
     config.columns[:storage_medium].form_ui = :select
     config.columns[:locality_type].form_ui = :select
