@@ -1,4 +1,5 @@
 .DS_Store
+/RAILS_ENV
 /db/development_structure.sql
 /public/download
 /public/images/active_scaffold/DO_NOT_EDIT
@@ -8,3 +9,4 @@
 /public/stylesheets/cache
 /scratchpad.rb
 tmp
+.gitignore
