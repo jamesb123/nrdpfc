@@ -15,6 +15,7 @@ class YChromosomesController < ApplicationController
     config.columns[:sample].search_sql = 'organisms.organism_code'
     config.search.columns << :sample
 
+    config.nested.add_link("Y Chromosome Seqs", [:y_chromosome_seqs])
     config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:finalResult].form_ui = :checkbox

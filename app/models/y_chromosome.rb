@@ -14,6 +14,9 @@
 
 class YChromosome < ActiveRecord::Base
   belongs_to :locu
+  belongs_to :sample
+  belongs_to :project
+  has_many :y_chromosome_seqs
   
   attr_accessor :y_chromosome
   

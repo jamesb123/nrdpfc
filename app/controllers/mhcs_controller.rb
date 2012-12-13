@@ -14,6 +14,7 @@ class MhcsController < ApplicationController
     config.columns[:sample].search_sql = 'organisms.organism_code'
     config.search.columns << :sample
 
+    config.nested.add_link("mhc Seqs", [:mhc_seqs])
     config.columns[:sample].label = "Organism Code or Sample ID"
     config.columns[:sample_id].label = "Sample ID"
     config.columns[:allele1].label = "Allele 1"
@@ -24,7 +25,7 @@ class MhcsController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
-  end
+end
 
   include ResultTableSharedMethods
   include GoToOrganismCode::Controller

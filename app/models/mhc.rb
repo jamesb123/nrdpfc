@@ -17,9 +17,9 @@ class Mhc < ActiveRecord::Base
   belongs_to :locu
   belongs_to :project
   belongs_to :sample
+  has_many :mhc_seqs
   
   extend Exportables::ExportableModel
-  extend GoToOrganismCode::Model
   include SecuritySets::ProjectBased
   include ProjectRelations
   include ApprovalModelHelpers

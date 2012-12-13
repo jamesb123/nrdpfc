@@ -20,6 +20,11 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
+  config.gem 'paperclip', :version => "2.7.0"
+  config.gem "fastercsv"
+  config.action_controller.session_store = :active_record_store
+  config.action_controller.session = { :key => "_nrdpfc", :secret => ("_nrdpfc!!!!!!!" * 10) }
+
   # Settings in config/environments/* take precedence over those specified here
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)
@@ -28,7 +33,6 @@ Rails::Initializer.run do |config|
   # Only load the plugins named here, by default all plugins in vendor/plugins are loaded
   # config.plugins = %W( exception_notification ssl_requirement )
 #  config.gem "factory_girl"
-  config.gem "fastercsv"
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -39,7 +43,6 @@ Rails::Initializer.run do |config|
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
-  config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper, 
@@ -53,7 +56,6 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
   # See Rails::Configuration for more options
-  config.action_controller.session = { :key => "_nrdpfc", :secret => ("_nrdpfc!!!!!!!" * 10) }
 #  config.DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
 
 end

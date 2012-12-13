@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204205103) do
+ActiveRecord::Schema.define(:version => 20121211161005) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -972,9 +972,9 @@ ActiveRecord::Schema.define(:version => 20121204205103) do
     t.string  "locus"
     t.string  "allele"
     t.text    "sequence"
-    t.string  "accession",  :limit => 30
+    t.string  "accession",       :limit => 30
     t.integer "locu_id"
-    t.integer "mt_dna_id"
+    t.integer "y_chromoeome_id"
   end
 
   create_table "mhcs", :force => true do |t|
@@ -3853,7 +3853,7 @@ ActiveRecord::Schema.define(:version => 20121204205103) do
     t.string  "user_id"
     t.string  "field_ident"
     t.string  "current_location"
-    t.string  "comments"
+    t.text    "comments"
     t.string  "import_permit"
     t.string  "export_permit"
     t.date    "shipping_date"
@@ -4485,9 +4485,9 @@ ActiveRecord::Schema.define(:version => 20121204205103) do
     t.string  "locus"
     t.string  "allele"
     t.text    "sequence"
-    t.string  "accession",  :limit => 30
+    t.string  "accession",       :limit => 30
     t.integer "locu_id"
-    t.integer "mt_dna_id"
+    t.integer "y_chromosome_id"
   end
 
   create_table "y_chromosomes", :force => true do |t|
