@@ -49,6 +49,8 @@ class Sample < ActiveRecord::Base
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
 
+  file_column :sample_image1
+
   def tissue_update
     if !self.tissue_type_id.nil?
       @tt = TissueType.find_by_id(self.tissue_type_id)

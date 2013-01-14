@@ -24,7 +24,7 @@ class SamplesController < ApplicationController
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis]
+    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis, :sample_image1]
 
   def update_table_config
 #    active_scaffold_config.list.columns = active_scaffold_config.columns._inheritable
@@ -153,7 +153,8 @@ class SamplesController < ApplicationController
     config.columns[:photo_id].label = "Photo ID"
     config.columns[:import_permit].label = "Import Permit"
     config.columns[:export_permit].label = "Export Permit"
-
+    config.columns[:sample_image1].label = "sample Image/File"
+    
     config.columns[:id].tooltip = <<-END
     This is the unique identifier <br>
     given to each sample by the database. <br>

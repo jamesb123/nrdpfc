@@ -1,8 +1,9 @@
-<h1>Query</h1>
+<!--- <h1>Query</h1>  --->
 
 <% content_tag :div, :id => "query_form" do %>
   <input type='hidden' name='bob' value='fred' />
-  <div id="multiple_projects">
+<!--  <div id="multiple_projects">
+
 <!--    <div id="project_selectors_toggle">
       <span><%= link_to_function "Toggle Projects", "$('project_selectors').toggle();" %></span>
     </div>
@@ -20,7 +21,7 @@
 -->
 
 <div style="width:250px; display:block; float:left;">
-  <h2>Tables</h2>
+  <h2>Query Tables</h2>
   <div id='query_table_selector'>
     <% Exportables::ExportableModel.models.each do |model| %>
       <div>
@@ -47,6 +48,8 @@
 
 <div style="width:600px; display:block; float:left">
   <h2>Selected Fields</h2>
+  <h4>For filter with LIKE use % symbol before and/or after the expression<br>
+  e.g.  LIKE %sin% will find all the words containing sin 	
   <table id='selected_fields_entries_table'>
     <thead>
       <tr>
