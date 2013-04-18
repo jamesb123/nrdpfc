@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   layout "tabs", :except => [:recompile_status, :recompile]
-
+  
   active_scaffold :projects do |config|
-    config.columns = [:id, :name, :owner, :code, :description, :security_setting]  
+    config.columns = [:id, :name, :owner, :code, :description, :security_setting, :photo_id_label, :organism_label, :field_ident_label]  
 
     config.columns[:name].set_link 'set_current_project_action', :label => "Set Current", :type => :record, :page => true
 
@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
   def conditions_for_collection
     ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
   end
+  
+  # @projects = Project.hashify
   
   # recompile_status will fire an ajax request to recompile
   def recompile_status

@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
 #  config.gem 'paperclip', :version => "2.7.0"
   config.gem "fastercsv"
+  config.gem "newrelic_rpm" 
   config.action_controller.session_store = :active_record_store
   config.action_controller.session = { :key => "_nrdpfc", :secret => ("_nrdpfc!!!!!!!" * 10) }
 

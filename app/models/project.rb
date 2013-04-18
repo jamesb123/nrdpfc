@@ -43,6 +43,15 @@ class Project < ActiveRecord::Base
   
   before_create :assign_project_owner
   after_save :assign_default_project
+
+
+
+#  proj_label_array = find(:all, :select => 'photo_id_label, organism_label, field_ident_label').group_by(&:id).to_a
+#  proj_label_hash = proj_label_array.inject({}) do |result, element|
+#    result[element[0]] = element[1].inject({}) { |r,e| r[e.attributes["photo_id_label"]] = e.attributes["field_ident_label"]; r }
+#    result
+#  end
+#end
   
   def assign_project_owner
     return true if self.name == "Default"  

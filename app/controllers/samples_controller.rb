@@ -1,8 +1,7 @@
 class SamplesController < ApplicationController
   layout "tabs"
-
-#  before_filter :update_table_config
-
+  before_filter :update_table_config
+  
   WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
   WHALES_EXCLUDE_LIST = [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
   :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
@@ -17,22 +16,26 @@ class SamplesController < ApplicationController
     :locality, :locality_type, :locality_type_text, :locality_comments, 
     :location_1, :location_2, :location_3, :location_4, :location_accuracy,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
-    :date_collected,  :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
+    :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
     :submitter_comments, :tissue_type, :text_tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
-    :xy_position, :tissue_remaining,  :security_settings,:project,:approved, 
+    :xy_position, :tissue_remaining,  :security_settings,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis, :sample_image1]
+    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis, :sample_image1 ]
 
   def update_table_config
-#    active_scaffold_config.list.columns = active_scaffold_config.columns._inheritable
-#    add them back for all other projects as production caches things
+    @proj = Project.find(current_project_id)
+    active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 
+    active_scaffold_config.columns[:field_ident].label = @proj.field_ident_label 
+    active_scaffold_config.columns[:organism].label = @proj.organism_label 
+  end
+
+  def org_update_table_config
     active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
     if current_project_id == 1
       # whale
-#      active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
       active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
       active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
       active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
@@ -40,13 +43,11 @@ class SamplesController < ApplicationController
     else
       if current_project_id == 7
         #wolf
-#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
         active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
         active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
         active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
       else
-#        active_scaffold_config.list.columns.add :sample_bc, :text_tissue_type, :type_lat_long,  :locality_type, :locality_type_text, :discrepancy, :discrepancy_comments, :location_1, :location_2, :location_3, :location_4, :platebc, :plateposition, :country, :province, :location_measurement_method
         active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
         active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
         active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
@@ -66,19 +67,18 @@ class SamplesController < ApplicationController
   def record_select_conditions_from_controller
     [ 'samples.project_id = ?', current_project_id ]
   end
-
-
+  
+  
   active_scaffold :samples do |config|
     config.columns = SAMPLES_COLUMNS 
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-   config.list.columns.exclude  :project, :type_lat_long, :locality_type
+   config.list.columns.exclude  :type_lat_long, :locality_type
     config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.columns[:collected_on_year].options = {:truncate => 2}
-
     config.list.per_page = 25
     # The split tables can't update after an edit,
     # so we just have to do the edit in a new page
@@ -93,7 +93,7 @@ class SamplesController < ApplicationController
     config.nested.add_link("Y", [:y_chromosomes])
     
     config.columns[:id].label = "Sample ID"
-    config.columns[:organism].label = "Organism Code"
+    config.columns[:project].label = "project Code"
     config.columns[:organism_id].label = "Organism ID"
     config.columns[:organism_index].label = "Organism Sample Index"
     config.columns[:security_settings].label = "Security"
@@ -114,14 +114,13 @@ class SamplesController < ApplicationController
     config.columns[:collected_on_day].label = "Collected Day "
     config.columns[:collected_on_month].label = "Collected Month "
     config.columns[:collected_on_year].label = "Collected Year"
-    config.columns[:collected_on_year].options = {:truncate => 4}
+#    config.columns[:collected_on_year].options = {:truncate => 4}
     
     config.columns[:shippingmaterial].label = "Shipping Medium"
     config.columns[:sample_bc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
     config.columns[:field_code].label = "Field Code"
-    config.columns[:field_ident].label = "Field Identification (NEA)"
     config.columns[:batch_number].label = "Batch Number"
     config.columns[:storage_medium].label = "Storage Medium"
     config.columns[:country].label = "Country"
@@ -150,7 +149,6 @@ class SamplesController < ApplicationController
     config.columns[:xy_position].label = "xy pos"
     config.columns[:tissue_remaining].label = "Tissue Remaining"
     config.columns[:remote_data_entry].label = "Remote Data Entry"
-    config.columns[:photo_id].label = "Photo ID"
     config.columns[:import_permit].label = "Import Permit"
     config.columns[:export_permit].label = "Export Permit"
     config.columns[:sample_image1].label = "sample Image/File"
@@ -323,8 +321,9 @@ class SamplesController < ApplicationController
     config.columns[:tissue_type].tooltip = <<-END
     What is the type of tissue of this sample?
     END
+    
     config.columns[:photo_id].tooltip = <<-END
-    Sighting ID is a unique number given to every record in the photo identification database.<br>
+    Sighting ID (photo id) is a unique number given to every record in the photo identification database.<br>
     This is the ultimate link between the photo idenitification and genetic databases
     END
 

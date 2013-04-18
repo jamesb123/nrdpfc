@@ -1,6 +1,7 @@
 # see schema at end of model
 
 class Sample < ActiveRecord::Base
+  belongs_to :project
   belongs_to :organism
   belongs_to :locality_type
   belongs_to :shippingmaterial
@@ -42,7 +43,7 @@ class Sample < ActiveRecord::Base
   
   before_save :assign_true_coords, :if => :has_coordinates?
   before_save :assign_locality_type, :if => :has_locality_type?
-  before_save :assign_collected_YMD
+  before_save :date_collected_fill
   before_save :update_original_tissue
   before_save :tissue_update
   
@@ -70,18 +71,29 @@ class Sample < ActiveRecord::Base
     end
   end
   
-  def assign_collected_YMD
+#  def assign_collected_YMD
+#    if self.user_id.nil?
+#      self.user_id = self.current_user
+#    end
+#    if !self.date_collected.nil? and self.collected_on_day.nil? and self.collected_on_month.nil? and self.collected_on_year.nil?
+#      self.collected_on_day = self.date_collected.day.to_s
+#      self.collected_on_month = self.date_collected.month.to_s
+#      self.collected_on_year = self.date_collected.year.to_s
+#    end
+#  end
+
+  def date_collected_fill
     if self.user_id.nil?
       self.user_id = self.current_user
     end
-    if !self.date_collected.nil? and self.collected_on_day.nil? and self.collected_on_month.nil? and self.collected_on_year.nil?
-      self.collected_on_day = self.date_collected.day.to_s
-#      self.collected_on_month = self.date_collected.strftime('%B')
-      self.collected_on_month = self.date_collected.month.to_s
-      self.collected_on_year = self.date_collected.year.to_s
-    end
-  end
 
+    if self.collected_on_day.blank? or self.collected_on_month.blank? or self.collected_on_year.blank?
+      self.date_collected = nil
+    else
+      self.date_collected = DateTime.strptime(self.collected_on_year + "/" + self.collected_on_month + "/" + self.collected_on_day, "%Y/%m/%d" )
+    end
+
+  end
 
   def assign_locality_type
     self.locality_type_text =  self.locality_type.to_label
