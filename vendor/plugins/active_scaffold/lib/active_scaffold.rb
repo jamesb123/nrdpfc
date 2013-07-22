@@ -8,6 +8,11 @@ module ActiveScaffold
       before_filter :handle_user_settings
     end
   end
+# JWB
+#def add_active_scaffold_path(path)
+#      @active_scaffold_paths = nil # Force active_scaffold_paths to rebuild
+#      @active_scaffold_custom_paths << path
+#end
 
   def self.set_defaults(&block)
     ActiveScaffold::Config::Core.configure &block
@@ -27,7 +32,6 @@ module ActiveScaffold
     session[session_index] ||= {}
     session[session_index]
   end
-
   # at some point we need to pass the session and params into config. we'll just take care of that before any particular action occurs by passing those hashes off to the UserSettings class of each action.
   def handle_user_settings
     if self.class.uses_active_scaffold?

@@ -30,6 +30,8 @@ class SamplesController < ApplicationController
     active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 
     active_scaffold_config.columns[:field_ident].label = @proj.field_ident_label 
     active_scaffold_config.columns[:organism].label = @proj.organism_label 
+#    config.config_list.default_columns = [:id, :Organism_id,:organism]
+#    config.config_list.enabled = true
   end
 
   def org_update_table_config

@@ -44,6 +44,9 @@ class ActionView::TemplateFinder
     end
     extension
   end
+
+
+  
   alias_method_chain :find_template_extension_from_handler, :generic_paths
 
 protected

@@ -51,14 +51,10 @@
 - label: "mtDNA"  
   controller: "mt_dnas"
   sub_tabs:
-  - label: "Approved mtDNA"
+  - label: "mtDNA"
     controller: "mt_dnas"
     selected_if: 'viewing_approved?'
     action: 'approved'
-  - label: "Un-approved mtDNA"
-    controller: "mt_dnas"
-    selected_if: 'viewing_unapproved?'
-    action: 'unapproved'
   - label: "mtDNA Final Horizontals"
     controller: "mt_dna_final_horizontals"
   - label: "mtDNA SEQ"

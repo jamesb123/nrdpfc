@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222212728) do
+ActiveRecord::Schema.define(:version => 20130625142713) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -3767,13 +3767,14 @@ ActiveRecord::Schema.define(:version => 20121222212728) do
     t.integer "sample_id"
     t.integer "project_id"
     t.string  "locus"
-    t.string  "haplotype",      :limit => 12
+    t.string  "haplotype",       :limit => 12
     t.string  "gelNum"
     t.string  "wellNum"
     t.boolean "finalResult"
     t.text    "comments"
     t.integer "locu_id"
     t.date    "date_sequenced"
+    t.string  "haplotype_short"
   end
 
   add_index "mt_dnas", ["finalResult"], :name => "index_mt_dnas_on_finalResult"
@@ -3830,6 +3831,9 @@ ActiveRecord::Schema.define(:version => 20121222212728) do
     t.string  "description"
     t.integer "user_id"
     t.boolean "recompile_required"
+    t.string  "organism_label"
+    t.string  "photo_id_label"
+    t.string  "field_ident_label"
   end
 
   add_index "projects", ["description"], :name => "index_projects_on_description"
@@ -3968,6 +3972,7 @@ ActiveRecord::Schema.define(:version => 20121222212728) do
     t.string  "profile_published"
     t.string  "publication_name"
     t.string  "sample_image1"
+    t.string  "state"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
@@ -4256,6 +4261,8 @@ ActiveRecord::Schema.define(:version => 20121222212728) do
     t.boolean  "is_admin",                                :default => false
     t.boolean  "data_entry_only",                         :default => false
     t.string   "name"
+    t.string   "country"
+    t.string   "state"
   end
 
   create_table "y_chromosome_final_horizontals", :force => true do |t|

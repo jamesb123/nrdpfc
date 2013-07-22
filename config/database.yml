@@ -19,8 +19,8 @@ development:
   adapter: mysql
   database: nrdpfc_development
   username: root
-  password: james
-  host: localhost
+  password: nrdpfc!@#$
+  host: 127.0.0.1
 
 staging:
   adapter: mysql

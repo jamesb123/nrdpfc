@@ -1,0 +1,13 @@
+# Logfile created on Tue Feb 05 16:23:04 -0800 2013 by logger.rb/1.2.6
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Starting the New Relic Agent.
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Environment: development
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] WARN : No dispatcher detected.
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Application: nrdpfc
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] WARN : Agent configured not to send data in this environment.
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing ActiveRecord instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing MemCache instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing Net instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing Rails 2.1 View instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing Rails 2 Controller instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Installing Rails 2 Error instrumentation
+[02/05/13 16:23:04 Pacific Standard Time James-PC (4880)] INFO : Finished instrumentation

@@ -6,8 +6,6 @@ require 'digest/sha1'
 require "state_select"
 require "country_select"
 
-# require "paperclip"
-
 # require "thread"
 DT = [["",""],["Resolved (genetic)","Resolved (genetic)"],["Resolved (Photo ID)","Resolved (Photo ID)"], ["Resolved (sample labelling/tracking)","Resolved (sample labelling/tracking)"], ["Resolved (unknown cause)","Resolved (unknown cause)"],["In Progress","In Progress"]]
 MM = [["",""],["UNKNOWN","UNKNOWN"],"1","2","3","4","5","6","7","8","9","10","11","12"]

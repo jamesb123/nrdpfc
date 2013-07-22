@@ -15,8 +15,10 @@ module ActiveScaffold
 
         elsif column.inplace_edit and record.authorized_for?(:action => :update, :column => column.name)
           active_scaffold_inplace_edit(record, column)
-        elsif override_column_ui?(column.column.type)
-          send(override_column_ui(column.column.type), column, record)
+#        elsif override_column_ui?(column.column.type)
+# fix deprecation warning: Object#type is deprecated; use Object#class 
+elsif column.column && override_column_ui?(column.column.type)
+  send(override_column_ui(column.column.type), column, record)
         else
           value = record.send(column.name)
 
