@@ -30,8 +30,6 @@
     controller: "samples"
     selected_if: 'viewing_unapproved?'
     action: 'unapproved'
-  - label: "Short Samples"
-    controller: "ssamples"
   - label: "Sample Non-Tissues(Dynamic)"
     controller: "sample_non_tissues"
   - label: "Surveys"
@@ -151,5 +149,7 @@
     controller: 'query'
     selected_if: 'params[:action] == "import"'
     action: 'import'
+- label: Short Sample
+  controller: "ssamples"
 - label: "Help"
   controller: "videos"
