@@ -28,7 +28,7 @@ class SamplesController < ApplicationController
 
   def update_table_config
     active_scaffold_config.columns.exclude SAMPLES_COLUMNS 
-    active_scaffold_config.columns = SAMPLES_COLUMNS 
+    active_scaffold_config.columns.add SAMPLES_COLUMNS 
 
     # variable labels
     @proj = Project.find(current_project_id)

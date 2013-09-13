@@ -141,8 +141,9 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "ZFX_SRY"
-    t.string  "ZFX_ZFY"
+    t.string  "ZFX/SRY"
+    t.string  "ZFX/ZFY"
+    t.string  "Unknown"
   end
 
   add_index "gender_final_horizontals_1", ["organism_id"], :name => "index_gender_final_horizontals_1_on_organism_id"
@@ -481,7 +482,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
     t.string  "ZFX/SRY"
-    t.string  "ZFX/ZFY"
     t.string  "Unknown"
   end
 
@@ -502,22 +502,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   end
 
   add_index "gender_final_horizontals_6", ["organism_id"], :name => "index_gender_final_horizontals_6_on_organism_id"
-
-  create_table "gender_final_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "gender_final_horizontals_64", ["organism_id"], :name => "index_gender_final_horizontals_64_on_organism_id"
-
-  create_table "gender_final_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "gender_final_horizontals_67", ["organism_id"], :name => "index_gender_final_horizontals_67_on_organism_id"
 
   create_table "gender_final_horizontals_7", :force => true do |t|
     t.integer "project_id"
@@ -543,7 +527,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "Unknown"
   end
 
   add_index "gender_final_horizontals_9", ["organism_id"], :name => "index_gender_final_horizontals_9_on_organism_id"
@@ -564,16 +547,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   add_index "genders", ["finalResult"], :name => "index_genders_on_finalResult"
   add_index "genders", ["project_id"], :name => "index_genders_on_project_id"
   add_index "genders", ["sample_id"], :name => "index_genders_on_sample_id"
-
-  create_table "imports", :force => true do |t|
-    t.string   "datatype"
-    t.integer  "processed",        :default => 0
-    t.string   "csv_file_name"
-    t.string   "csv_content_type"
-    t.integer  "csv_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "locality_types", :force => true do |t|
     t.string "locality_type_name"
@@ -616,13 +589,9 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   create_table "mhc_final_horizontals_1", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",        :limit => 128
-    t.string  "EuglDRB1a"
-    t.string  "EuglDRB1b"
-    t.string  "EuglDRB2infnulla"
-    t.string  "EuglDRB2infnullb"
-    t.string  "EuglDRB2withoutnulla"
-    t.string  "EuglDRB2withoutnullb"
+    t.string  "organism_code", :limit => 128
+    t.string  "Unknowna"
+    t.string  "Unknownb"
   end
 
   add_index "mhc_final_horizontals_1", ["organism_id"], :name => "index_mhc_final_horizontals_1_on_organism_id"
@@ -975,22 +944,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
 
   add_index "mhc_final_horizontals_6", ["organism_id"], :name => "index_mhc_final_horizontals_6_on_organism_id"
 
-  create_table "mhc_final_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "mhc_final_horizontals_64", ["organism_id"], :name => "index_mhc_final_horizontals_64_on_organism_id"
-
-  create_table "mhc_final_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "mhc_final_horizontals_67", ["organism_id"], :name => "index_mhc_final_horizontals_67_on_organism_id"
-
   create_table "mhc_final_horizontals_7", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
@@ -1020,9 +973,9 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.string  "locus"
     t.string  "allele"
     t.text    "sequence"
-    t.string  "accession",  :limit => 30
+    t.string  "accession",       :limit => 30
     t.integer "locu_id"
-    t.integer "mt_dna_id"
+    t.integer "y_chromoeome_id"
   end
 
   create_table "mhcs", :force => true do |t|
@@ -2058,22 +2011,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
 
   add_index "microsatellite_final_horizontals_6", ["organism_id"], :name => "index_microsatellite_final_horizontals_6_on_organism_id"
 
-  create_table "microsatellite_final_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "microsatellite_final_horizontals_64", ["organism_id"], :name => "index_microsatellite_final_horizontals_64_on_organism_id"
-
-  create_table "microsatellite_final_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "microsatellite_final_horizontals_67", ["organism_id"], :name => "index_microsatellite_final_horizontals_67_on_organism_id"
-
   create_table "microsatellite_final_horizontals_7", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
@@ -2128,8 +2065,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.string  "organism_code", :limit => 128
     t.integer "109a"
     t.integer "109b"
-    t.integer "Unknowna"
-    t.integer "Unknownb"
   end
 
   add_index "microsatellite_final_horizontals_9", ["organism_id"], :name => "index_microsatellite_final_horizontals_9_on_organism_id"
@@ -3151,22 +3086,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
 
   add_index "microsatellite_horizontals_6", ["sample_id"], :name => "index_microsatellite_horizontals_6_on_sample_id"
 
-  create_table "microsatellite_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "sample_id"
-    t.integer "organism_index"
-  end
-
-  add_index "microsatellite_horizontals_64", ["sample_id"], :name => "index_microsatellite_horizontals_64_on_sample_id"
-
-  create_table "microsatellite_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "sample_id"
-    t.integer "organism_index"
-  end
-
-  add_index "microsatellite_horizontals_67", ["sample_id"], :name => "index_microsatellite_horizontals_67_on_sample_id"
-
   create_table "microsatellite_horizontals_7", :force => true do |t|
     t.integer "project_id"
     t.integer "sample_id"
@@ -3221,8 +3140,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "organism_index"
     t.integer "109a"
     t.integer "109b"
-    t.integer "Unknowna"
-    t.integer "Unknownb"
   end
 
   add_index "microsatellite_horizontals_9", ["sample_id"], :name => "index_microsatellite_horizontals_9_on_sample_id"
@@ -3693,8 +3610,7 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   create_table "mt_dna_final_horizontals_51", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",  :limit => 128
-    t.string  "control region"
+    t.string  "organism_code", :limit => 128
     t.string  "Unknown"
   end
 
@@ -3715,22 +3631,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   end
 
   add_index "mt_dna_final_horizontals_6", ["organism_id"], :name => "index_mt_dna_final_horizontals_6_on_organism_id"
-
-  create_table "mt_dna_final_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "mt_dna_final_horizontals_64", ["organism_id"], :name => "index_mt_dna_final_horizontals_64_on_organism_id"
-
-  create_table "mt_dna_final_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "mt_dna_final_horizontals_67", ["organism_id"], :name => "index_mt_dna_final_horizontals_67_on_organism_id"
 
   create_table "mt_dna_final_horizontals_7", :force => true do |t|
     t.integer "project_id"
@@ -3754,7 +3654,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
-    t.string  "AdminLocus1"
     t.string  "Unknown"
   end
 
@@ -3979,14 +3878,13 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "organization_id"
     t.string  "age"
     t.string  "condition"
-    t.string  "rehydrated"
-    t.string  "diet_analysis"
+    t.boolean "rehydrated"
+    t.boolean "diet_analysis"
     t.string  "profiling_done_by"
     t.string  "profiling_funded_by"
     t.string  "profile_published"
     t.string  "publication_name"
     t.string  "sample_image1"
-    t.string  "state"
     t.string  "chicken_barcode"
     t.string  "chicken_sample_date"
     t.string  "chicken_contact"
@@ -4286,8 +4184,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.boolean  "is_admin",                                :default => false
     t.boolean  "data_entry_only",                         :default => false
     t.string   "name"
-    t.string   "country"
-    t.string   "state"
   end
 
   create_table "y_chromosome_final_horizontals", :force => true do |t|
@@ -4301,6 +4197,7 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.integer "project_id"
     t.integer "organism_id"
     t.string  "organism_code", :limit => 128
+    t.string  "Unknown"
   end
 
   add_index "y_chromosome_final_horizontals_1", ["organism_id"], :name => "index_y_chromosome_final_horizontals_1_on_organism_id"
@@ -4659,22 +4556,6 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
 
   add_index "y_chromosome_final_horizontals_6", ["organism_id"], :name => "index_y_chromosome_final_horizontals_6_on_organism_id"
 
-  create_table "y_chromosome_final_horizontals_64", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "y_chromosome_final_horizontals_64", ["organism_id"], :name => "index_y_chromosome_final_horizontals_64_on_organism_id"
-
-  create_table "y_chromosome_final_horizontals_67", :force => true do |t|
-    t.integer "project_id"
-    t.integer "organism_id"
-    t.string  "organism_code", :limit => 128
-  end
-
-  add_index "y_chromosome_final_horizontals_67", ["organism_id"], :name => "index_y_chromosome_final_horizontals_67_on_organism_id"
-
   create_table "y_chromosome_final_horizontals_7", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
@@ -4701,8 +4582,7 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
   create_table "y_chromosome_final_horizontals_9", :force => true do |t|
     t.integer "project_id"
     t.integer "organism_id"
-    t.string  "organism_code",    :limit => 128
-    t.string  "testDefaultLocus"
+    t.string  "organism_code", :limit => 128
   end
 
   add_index "y_chromosome_final_horizontals_9", ["organism_id"], :name => "index_y_chromosome_final_horizontals_9_on_organism_id"
@@ -4713,9 +4593,9 @@ ActiveRecord::Schema.define(:version => 20130912205730) do
     t.string  "locus"
     t.string  "allele"
     t.text    "sequence"
-    t.string  "accession",  :limit => 30
+    t.string  "accession",       :limit => 30
     t.integer "locu_id"
-    t.integer "mt_dna_id"
+    t.integer "y_chromosome_id"
   end
 
   create_table "y_chromosomes", :force => true do |t|
