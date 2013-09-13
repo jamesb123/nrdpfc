@@ -1,21 +1,21 @@
 class SamplesController < ApplicationController
   layout "tabs"
+  @@cnt=0
   before_filter :update_table_config
-  
   CHICKEN_INCLUDE = [:chicken_barcode, :chicken_sample_date, :chicken_contact, :chicken_company, :chicken_strain, :chicken_feathering, :chicken_package, :chicken_declared_gender, :chicken_meat_part, :chicken_ml_duplicate, :chicken_comments]
-  WOLF_EXCLUDE_LIST =   [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
-  WHALES_EXCLUDE_LIST = [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
+  WOLF_EXCLUDE_LIST =   [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy_comments,:remote_data_entry, :id]
+  WHALES_EXCLUDE_LIST = [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
   :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
   
   WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
-  :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
+  :province, :location_measurement_method, :location_1, :location_2,  :location_accuracy,
   :security_settings, :approved, :remote_data_Entry,:age, :condition, :rehydrated, :diet_analysis]
 
-  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
+  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type,  :security_settings, :approved, :discrepancy_comments, :remote_data_entry ]
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type_text, :locality_comments, 
-    :location_1, :location_2, :location_3, :location_4, :location_accuracy,  
+    :location_1, :location_2, :location_accuracy,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,    
     :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
@@ -24,9 +24,12 @@ class SamplesController < ApplicationController
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :sample_image1 ]
+    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy_comments, :sample_image1 ]
 
   def update_table_config
+    active_scaffold_config.columns.exclude SAMPLES_COLUMNS 
+    active_scaffold_config.columns = SAMPLES_COLUMNS 
+
     # variable labels
     @proj = Project.find(current_project_id)
     active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 

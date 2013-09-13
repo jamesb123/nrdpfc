@@ -33,5 +33,5 @@ production:
   adapter: mysql
   database: nrdpfc_production
   username: root
-  password: james
+  password: nrdpfc!@#$
   host: 127.0.0.1

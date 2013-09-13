@@ -2,8 +2,8 @@ class ProjectsController < ApplicationController
   layout "tabs", :except => [:recompile_status, :recompile]
   
   active_scaffold :projects do |config|
-    config.columns = [:id, :name, :owner, :code, :description, :security_setting, :photo_id_label, :organism_label, :field_ident_label]  
-
+    config.columns = [:id, :name, :owner, :code, :description, :security_setting,
+    :photo_id_label, :organism_label, :field_ident_label, :opt_col_1, :opt_col_2, :opt_col_3, :opt_col_4] 
     config.columns[:name].set_link 'set_current_project_action', :label => "Set Current", :type => :record, :page => true
 
     # Only project managers can edit projects
