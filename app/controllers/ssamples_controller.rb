@@ -1,7 +1,30 @@
 class SsamplesController < ApplicationController
   layout "tabs"
+  before_filter :update_table_config
 
   SAMPLES_COLUMNS = [:id, :project_id, :organism, :organism_index, :sample_bc, :field_code, :batch_number, :date_collected, :collected_on_year, :province, :locality, :text_tissue_type, :date_submitted, :submitted_by, :date_received, :received_by]
+
+  def update_table_config
+    @proj = Project.find(current_project_id)
+    active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 
+    active_scaffold_config.columns[:field_ident].label = @proj.field_ident_label 
+    active_scaffold_config.columns[:organism].label = @proj.organism_label 
+    # columns for road runner / chickens
+    if current_project_id = 66
+        active_scaffold_config.list.columns.add strain
+        active_scaffold_config.create.columns.add strain
+        active_scaffold_config.update.columns.add strain
+        active_scaffold_config.show.columns.add strain
+    else
+        active_scaffold_config.list.columns.exclude strain
+        active_scaffold_config.create.columns.exclude strain
+        active_scaffold_config.update.columns.exclude strain
+        active_scaffold_config.show.columns.exclude strain
+    end
+  end
+  end
+
+
 
   include ActionView::Helpers::FormOptionsHelper
 #  protect_from_forgery :except => [:samples_field_code] 

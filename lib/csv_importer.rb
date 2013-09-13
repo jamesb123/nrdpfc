@@ -1,7 +1,7 @@
 class CsvImporter < Struct.new(:data, :model)
   class ParseError < StandardError; end
 
-  IMPORT_TABLES = [ RESULT_TABLES, 'organisms' ].flatten
+  IMPORT_TABLES = [ RESULT_TABLES, 'organisms', 'samples' ].flatten
 
   attr_writer :overwrite
   def overwrite?
@@ -79,6 +79,7 @@ class CsvImporter < Struct.new(:data, :model)
       sample.save!
     end
   end
+  
 
   def import_results(row, save_record=false)
     sample = Sample.find(row[sample_id_header])
@@ -92,7 +93,7 @@ class CsvImporter < Struct.new(:data, :model)
     end
 
     record.attributes = result_values
-    record.attributes = lookup_values(row)
+    # record.attributes = lookup_values(row)
 
     unless record.valid?
       raise ParseError.new("#{model} is not valid for sample #{sample.id}: #{record.errors.full_messages.join(',')}")
@@ -117,6 +118,7 @@ class CsvImporter < Struct.new(:data, :model)
 
     record
   end
+
 
   def lookup_values(row)
     attrs = {}

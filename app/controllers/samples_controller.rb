@@ -2,36 +2,75 @@ class SamplesController < ApplicationController
   layout "tabs"
   before_filter :update_table_config
   
-  WOLF_EXCLUDE_LIST =   [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
-  WHALES_EXCLUDE_LIST = [:sample_bc, :text_tissue_type, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
+  CHICKEN_INCLUDE = [:chicken_barcode, :chicken_sample_date, :chicken_contact, :chicken_company, :chicken_strain, :chicken_feathering, :chicken_package, :chicken_declared_gender, :chicken_meat_part, :chicken_ml_duplicate, :chicken_comments]
+  WOLF_EXCLUDE_LIST =   [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy, :discrepancy_comments,:remote_data_entry, :id]
+  WHALES_EXCLUDE_LIST = [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text, :location_3, :location_4, :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
   :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
   
-  WHALES_EXCLUDE = [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
+  WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
   :province, :location_measurement_method, :location_1, :location_2, :location_3, :location_4, :location_accuracy,
   :security_settings, :approved, :remote_data_Entry,:age, :condition, :rehydrated, :diet_analysis]
 
-  WOLF_EXCLUDE1 =     [:text_tissue_type, :sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
+  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type, :location_3, :location_4, :security_settings, :approved, :discrepancy, :discrepancy_comments, :remote_data_entry ]
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
-    :locality, :locality_type, :locality_type_text, :locality_comments, 
+    :locality, :locality_type_text, :locality_comments, 
     :location_1, :location_2, :location_3, :location_4, :location_accuracy,  
-    :latitude, :longitude, :coordinate_system,  :location_measurement_method,  :type_lat_long,  
+    :latitude, :longitude, :coordinate_system,  :location_measurement_method,    
     :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :tissue_type, :text_tissue_type, :extraction_method, :shippingmaterial,
+    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
     :platebc, :plateposition, :batch_number, 
     :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
-    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :age, :condition, :rehydrated, :diet_analysis, :sample_image1 ]
+    :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :sample_image1 ]
 
   def update_table_config
+    # variable labels
     @proj = Project.find(current_project_id)
     active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 
     active_scaffold_config.columns[:field_ident].label = @proj.field_ident_label 
     active_scaffold_config.columns[:organism].label = @proj.organism_label 
-#    config.config_list.default_columns = [:id, :Organism_id,:organism]
-#    config.config_list.enabled = true
+    
+    # project based columns
+    if !@proj.opt_col_1.nil? && !@proj.opt_col_1.empty? 
+      active_scaffold_config.list.columns.add @proj.opt_col_1
+      active_scaffold_config.create.columns.add @proj.opt_col_1
+      active_scaffold_config.update.columns.add @proj.opt_col_1
+      active_scaffold_config.show.columns.add @proj.opt_col_1
+    end
+    if !@proj.opt_col_2.nil? && !@proj.opt_col_2.empty? 
+      active_scaffold_config.list.columns.add @proj.opt_col_2
+      active_scaffold_config.create.columns.add @proj.opt_col_2
+      active_scaffold_config.update.columns.add @proj.opt_col_2
+      active_scaffold_config.show.columns.add @proj.opt_col_2
+    end
+    if !@proj.opt_col_3.nil? && !@proj.opt_col_3.empty? 
+      active_scaffold_config.list.columns.add @proj.opt_col_3
+      active_scaffold_config.create.columns.add @proj.opt_col_3
+      active_scaffold_config.update.columns.add @proj.opt_col_3
+      active_scaffold_config.show.columns.add @proj.opt_col_3
+    end
+    if !@proj.opt_col_4.nil? && !@proj.opt_col_4.empty? 
+      active_scaffold_config.list.columns.add @proj.opt_col_4
+      active_scaffold_config.create.columns.add @proj.opt_col_4
+      active_scaffold_config.update.columns.add @proj.opt_col_4
+      active_scaffold_config.show.columns.add @proj.opt_col_4
+    end
+
+    # columns for road runner / chickens
+    if current_project_id == 66
+        active_scaffold_config.list.columns.add CHICKEN_INCLUDE
+        active_scaffold_config.create.columns.add CHICKEN_INCLUDE
+        active_scaffold_config.update.columns.add CHICKEN_INCLUDE
+        active_scaffold_config.show.columns.add CHICKEN_INCLUDE
+    else
+        active_scaffold_config.list.columns.exclude CHICKEN_INCLUDE
+        active_scaffold_config.create.columns.exclude CHICKEN_INCLUDE
+        active_scaffold_config.update.columns.exclude CHICKEN_INCLUDE
+        active_scaffold_config.show.columns.exclude CHICKEN_INCLUDE
+    end
   end
 
   def org_update_table_config

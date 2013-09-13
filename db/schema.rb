@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625142713) do
+ActiveRecord::Schema.define(:version => 20130912205730) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -564,6 +564,16 @@ ActiveRecord::Schema.define(:version => 20130625142713) do
   add_index "genders", ["finalResult"], :name => "index_genders_on_finalResult"
   add_index "genders", ["project_id"], :name => "index_genders_on_project_id"
   add_index "genders", ["sample_id"], :name => "index_genders_on_sample_id"
+
+  create_table "imports", :force => true do |t|
+    t.string   "datatype"
+    t.integer  "processed",        :default => 0
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locality_types", :force => true do |t|
     t.string "locality_type_name"
@@ -3834,6 +3844,10 @@ ActiveRecord::Schema.define(:version => 20130625142713) do
     t.string  "organism_label"
     t.string  "photo_id_label"
     t.string  "field_ident_label"
+    t.string  "opt_col_1"
+    t.string  "opt_col_2"
+    t.string  "opt_col_3"
+    t.string  "opt_col_4"
   end
 
   add_index "projects", ["description"], :name => "index_projects_on_description"
@@ -3973,6 +3987,17 @@ ActiveRecord::Schema.define(:version => 20130625142713) do
     t.string  "publication_name"
     t.string  "sample_image1"
     t.string  "state"
+    t.string  "chicken_barcode"
+    t.string  "chicken_sample_date"
+    t.string  "chicken_contact"
+    t.string  "chicken_company"
+    t.string  "chicken_strain"
+    t.string  "chicken_feathering"
+    t.string  "chicken_package"
+    t.string  "chicken_declared_gender"
+    t.string  "chicken_meat_part"
+    t.string  "chicken_ml_duplicate"
+    t.string  "chicken_comments"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
