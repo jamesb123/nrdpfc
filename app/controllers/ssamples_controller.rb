@@ -26,8 +26,8 @@ class SsamplesController < ApplicationController
     :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy_comments, :sample_image1 ]
 
   def update_table_config
-    active_scaffold_config.columns.exclude SAMPLES_COLUMNS 
-    active_scaffold_config.columns.add SAMPLES_COLUMNS 
+#    active_scaffold_config.columns.exclude SAMPLES_COLUMNS 
+#    active_scaffold_config.columns.add SAMPLES_COLUMNS 
 
     # variable labels
     @proj = Project.find(current_project_id)

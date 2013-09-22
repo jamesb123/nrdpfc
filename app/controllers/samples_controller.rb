@@ -30,6 +30,12 @@ class SamplesController < ApplicationController
     active_scaffold_config.columns.exclude SAMPLES_COLUMNS 
     active_scaffold_config.columns.add SAMPLES_COLUMNS 
 
+
+if viewing_approved?
+  puts "approved 1"
+else
+  puts "not approved 2"
+end
     # variable labels
     @proj = Project.find(current_project_id)
     active_scaffold_config.columns[:photo_id].label = @proj.photo_id_label 

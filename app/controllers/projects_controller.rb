@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   
   active_scaffold :projects do |config|
     config.columns = [:id, :name, :owner, :code, :description, :security_setting,
-    :photo_id_label, :organism_label, :field_ident_label, :opt_col_1, :opt_col_2, :opt_col_3, :opt_col_4] 
+    :photo_id_label, :organism_label, :field_ident_label, 
+    :opt_col_1, :opt_col_2, :opt_col_3, :opt_col_4, :opt_col_5, 
+    :opt_col_6, :opt_col_7, :opt_col_8, :opt_col_9, :opt_col_10, 
+    :opt_col_11, :opt_col_12, :opt_col_13, :opt_col_14, :opt_col_15, 
+    :opt_col_16, :opt_col_17, :opt_col_18, :opt_col_19, :opt_col_20, 
+    :opt_col_21, :opt_col_22, :opt_col_23, :opt_col_24, :opt_col_25] 
     config.columns[:name].set_link 'set_current_project_action', :label => "Set Current", :type => :record, :page => true
 
     # Only project managers can edit projects
