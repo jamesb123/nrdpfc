@@ -1,7 +1,1 @@
-	<% if viewing_approved? %>
-  		<%= stylesheet_link_tag "basic" %>
-	<%else%>
-		<%= stylesheet_link_tag "basic_unapproved" %>
-	<%end%>	
-
 <%= render :partial => 'layouts/split_list', :locals => { :fixed_width => 300, :columns => 4 } %>

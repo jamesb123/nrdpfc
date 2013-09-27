@@ -1,9 +1,3 @@
-	<% if viewing_approved? %>
-  		<%= stylesheet_link_tag "basic_approved" %>
-	<%else%>
-		<%= stylesheet_link_tag "basic_unapproved" %>
-	<%end%>	
-
 <% record = list_record if list_record # compat with render :partial :collection %>
 
 <% cb_content :ajax_link_columns do |column| %>
