@@ -296,11 +296,11 @@ end
     The person who entered the sample data into the database
     END
     
-    config.columns[:submitter_comments].tooltip = <<-END
-    Any comments that the submitter has<br>
-    regarding the sample<br>
-    (e.g. lid was half open and liquid was oozing out).
-    END
+#    config.columns[:submitter_comments].tooltip = <<-END
+#    Any comments that the submitter has<br>
+#    regarding the sample<br>
+#    (e.g. lid was half open and liquid was oozing out).
+#    END
     
     config.columns[:latitude].tooltip = <<-END
     The latitude at which the sample was collected<br>

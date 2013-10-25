@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918155054) do
+ActiveRecord::Schema.define(:version => 20131024224207) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
@@ -3785,6 +3785,7 @@ ActiveRecord::Schema.define(:version => 20130918155054) do
     t.integer "locu_id"
     t.date    "date_sequenced"
     t.string  "haplotype_short"
+    t.string  "haplotype_long"
   end
 
   add_index "mt_dnas", ["finalResult"], :name => "index_mt_dnas_on_finalResult"

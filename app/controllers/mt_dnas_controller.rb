@@ -2,7 +2,7 @@ class MtDnasController < ApplicationController
   layout "tabs"
   active_scaffold :mt_dnas do |config|
     config.label = "mtDNA"
-    config.columns = [:project, :sample,  :sample_id,  :locu, :locus, :haplotype, :haplotype_short, :gelNum, :wellNum, :finalResult, :comments, :date_sequenced]
+    config.columns = [:project, :sample,  :sample_id,  :locu, :locus, :haplotype, :haplotype_short, :haplotype_long, :gelNum, :wellNum, :finalResult, :comments, :date_sequenced]
 
     config.list.columns.exclude :project
     config.create.columns.exclude :project, :sample_id
@@ -23,7 +23,7 @@ class MtDnasController < ApplicationController
     config.columns[:locus].label = "Locus Text"
     config.columns[:locu].label = "Locus"
     config.columns[:locu].form_ui = :select
-    config.columns[:haplotype_short].label = "Hap Short"
+    config.columns[:haplotype_short].label = "Haplotype Short"
     
     config.columns[:sample].tooltip = <<-END
     This is a compliation of the "Organism Code" <br>
