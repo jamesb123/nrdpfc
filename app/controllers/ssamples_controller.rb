@@ -18,11 +18,11 @@ class SsamplesController < ApplicationController
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,    
     :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :collector_comments, 
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :submitter_comments, :tissue_type, :extraction_method, :shippingmaterial,
+    :submitter_comments, :tissue_type, :extraction_method, :shipping_material_txt_prv,
     :platebc, :plateposition, :batch_number, 
-    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
+    :storage_medium_text, :storage_building, :storage_room, :storage_fridge, :storage_box,
     :xy_position, :tissue_remaining,  :security_settings,:approved, 
-    :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
+    :shipping_date, :field_ident, :current_location, :comments, :import_permit, :export_permit,
     :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy_comments, :sample_image1 ]
 
   def update_table_config

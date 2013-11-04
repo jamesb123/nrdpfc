@@ -19,9 +19,9 @@ class SamplesController < ApplicationController
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,    
     :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :age, :condition, :rehydrated, :diet_analysis,
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :tissue_type, :text_tissue_type, :extraction_method, :shippingmaterial,
+    :tissue_type, :text_tissue_type, :extraction_method,
     :platebc, :plateposition, :batch_number, 
-    :storage_medium, :storage_building, :storage_room, :storage_fridge, :storage_box,
+    :storage_building, :storage_room, :storage_fridge, :storage_box,:shipping_material_txt_prv, :storage_medium_text, 
     :xy_position, :tissue_remaining,  :security_settings,:approved, 
     :shipping_date, :organization, :field_ident, :current_location, :comments, :import_permit, :export_permit,
     :profiling_completed,:profiling_done_by,:profiling_funded_by,:profile_published, :publication_name, :profiling_date, :photo_id, :discrepancy, :discrepancy_comments, :sample_image1, :submitter_comments, :collector_comments ]
@@ -164,8 +164,8 @@ end
     config.columns[:approved].label = "Approved"
     config.columns[:extraction_method].form_ui = :select
 # done in helper now from shipping materials
-    config.columns[:shippingmaterial].form_ui = :select
-    config.columns[:storage_medium].form_ui = :select
+#    config.columns[:shippingmaterial].form_ui = :select
+#    config.columns[:storage_medium].form_ui = :select
     config.columns[:locality_type].form_ui = :select
     config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
@@ -180,13 +180,13 @@ end
     config.columns[:collected_on_year].label = "Collected Year"
 #    config.columns[:collected_on_year].options = {:truncate => 4}
     
-    config.columns[:shippingmaterial].label = "Shipping Medium"
+    config.columns[:shipping_material_txt_prv].label = "Shipping Material"
     config.columns[:sample_bc].label = "Sample Bar Code"
     config.columns[:platebc].label = "Plate Bar Code"
     config.columns[:plateposition].label = "Plate Pos."
     config.columns[:field_code].label = "Field Code"
     config.columns[:batch_number].label = "Batch Number"
-    config.columns[:storage_medium].label = "Storage Medium"
+    config.columns[:storage_medium_text].label = "Storage Medium"
     config.columns[:country].label = "Country"
     config.columns[:province].label = "Province"
 
@@ -377,7 +377,7 @@ end
     What extraction method did you use to obtain DNA from this sample.
     END
 
-    config.columns[:storage_medium].tooltip = <<-END
+    config.columns[:storage_medium_text].tooltip = <<-END
     What is the medium that the sample is stored in
     END
     

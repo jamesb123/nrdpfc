@@ -11,8 +11,6 @@ class Shippingmaterial < ActiveRecord::Base
 
   include SecuritySets::AllowAll
   
-  has_many :samples
-
   def to_label
     "#{medium_short_desc}"
   end

@@ -4,10 +4,8 @@ class Ssample < ActiveRecord::Base
 
   belongs_to :organism
   belongs_to :locality_type
-  belongs_to :shippingmaterial
   belongs_to :tissue_type
   belongs_to :extraction_method
-  belongs_to :storage_medium
   
   has_many :y_chromosome_seqs
   has_many :y_chromosomes

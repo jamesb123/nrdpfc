@@ -98,11 +98,13 @@ module SamplesHelper
     select_tag(input_name, options_for_select(YN, record.diet_analysis))
   end 
 
-#  def shippingmaterial_form_column(record, input_name)
-#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'id', 'medium_short_desc', record.shippingmaterial.to_i))
-#  end
-#  def storage_medium_form_column(record, input_name)
-#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'id', 'medium_short_desc', record.storage_medium.to_i  ))
-#  end
+  def shipping_material_txt_prv_form_column(record, input_name)
+    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc', record.shipping_material_txt_prv))
+#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc'))
+  end
+  def storage_medium_text_form_column(record, input_name)
+    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc', record.storage_medium_text))
+#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'id', 'medium_short_desc'))
+  end
 end
 
