@@ -29,8 +29,7 @@ class MicrosatellitesController < ApplicationController
     columns[:allele_2_peak_height].label = "Allele 2 Peak"
     columns[:allele_1_size].label = "Allele 1 Size"
     columns[:allele_2_size].label = "Allele 2 Size"
-    config.columns[:locus].label = "Locus Text"
-    config.columns[:locu].label = "Locus"
+    config.columns[:locus].label = "Locus"
     config.columns[:sample].form_ui = :record_select
     config.columns[:locu].form_ui = :select
    

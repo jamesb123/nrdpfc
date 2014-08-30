@@ -12,7 +12,8 @@ module LocusHelper
     ['mtDNA', 'mtDNA'], 
     ['Microsatellite', 'Microsatellite'], 
     ['MHC','MHC'],
-    ['Y-Chromosome','Y-Chromosome'] ],  record.test_name))
+    ['Y-Chromosome','Y-Chromosome'],
+    ['SNP','SNP']],  record.test_name))
   end
   
 end

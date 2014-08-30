@@ -3,10 +3,6 @@
 class Sample < ActiveRecord::Base
   belongs_to :project
   belongs_to :organism
-  belongs_to :locality_type
-  belongs_to :tissue_type
-  belongs_to :extraction_method
-
   belongs_to :organization
   belongs_to :user
   
@@ -18,6 +14,7 @@ class Sample < ActiveRecord::Base
   has_many :mhcs, :dependent => :destroy
   has_many :genders, :dependent => :destroy
   has_many :dna_results, :dependent => :destroy
+  has_many :snps, :dependent => :destroy
   
   extend Exportables::ExportableModel
   extend GoToOrganismCode::Model
@@ -40,26 +37,12 @@ class Sample < ActiveRecord::Base
   
   
   before_save :assign_true_coords, :if => :has_coordinates?
-  before_save :assign_locality_type, :if => :has_locality_type?
   before_save :date_collected_fill
-  before_save :update_original_tissue
-  before_save :tissue_update
   
   validates_presence_of :type_lat_long, :if => :has_coordinates?
   validates_presence_of :coordinate_system, :if => :requires_coordinate_system?
 
   file_column :sample_image1
-
-  def tissue_update
-    if !self.tissue_type_id.nil?
-      @tt = TissueType.find_by_id(self.tissue_type_id)
-      self.text_tissue_type = @tt.tissue_desc
-    end
-  end
-  
-  def update_original_tissue
-#    self.tissue_type = "#{TissueType.tissue_desc}"
-  end
 
   def validate
     if has_coordinates?
@@ -85,20 +68,12 @@ class Sample < ActiveRecord::Base
       self.user_id = self.current_user
     end
 
-    if self.collected_on_day.blank? or self.collected_on_month.blank? or self.collected_on_year.blank?
+    if self.collected_on_day.blank? or self.collected_on_month.blank? or self.collected_on_year.blank? or self.collected_on_day == 'UNKNOWN' or self.collected_on_month == 'UNKNOWN' or self.collected_on_year == 'UNKNOWN'
       self.date_collected = nil
     else
       self.date_collected = DateTime.strptime(self.collected_on_year + "/" + self.collected_on_month + "/" + self.collected_on_day, "%Y/%m/%d" )
     end
 
-  end
-
-  def assign_locality_type
-    self.locality_type_text =  self.locality_type.to_label
-  end
-  
-  def has_locality_type?
-    !self.locality_type_id.blank? 
   end
 
   def assign_true_coords

@@ -99,12 +99,19 @@ module SamplesHelper
   end 
 
   def shipping_material_txt_prv_form_column(record, input_name)
-    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc', record.shipping_material_txt_prv))
-#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc'))
+    select_tag(input_name, options_from_collection_for_select(Packaging.find(:all, :order => 'medium_short_desc'), 'medium_short_desc', 'medium_short_desc', record.shipping_material_txt_prv))
   end
   def storage_medium_text_form_column(record, input_name)
-    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'medium_short_desc', 'medium_short_desc', record.storage_medium_text))
-#    select_tag(input_name, options_from_collection_for_select(Shippingmaterial.find(:all), 'id', 'medium_short_desc'))
+    select_tag(input_name, options_from_collection_for_select(Packaging.find(:all, :order => 'medium_short_desc'), 'medium_short_desc', 'medium_short_desc', record.storage_medium_text))
+  end
+  def text_tissue_type_form_column(record, input_name)
+    select_tag(input_name, options_from_collection_for_select(TissueType.find(:all), 'tissue_desc', 'tissue_desc', record.text_tissue_type))
+  end
+  def locality_type_text_form_column(record, input_name)
+    select_tag(input_name, options_from_collection_for_select(LocalityType.find(:all), 'locality_type_name', 'locality_type_name', record.locality_type_text))
+  end
+  def extraction_method_text_form_column(record, input_name)
+    select_tag(input_name, options_from_collection_for_select(ExtractionMethod.find(:all), 'extraction_method_name', 'extraction_method_name', record.extraction_method_text))
   end
 end
 

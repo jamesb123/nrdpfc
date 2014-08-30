@@ -10,7 +10,7 @@
 class TissueType < ActiveRecord::Base
   include SecuritySets::AllowAll
   
-  has_many :samples
+#  has_many :samples
 
   def to_label
     "#{tissue_desc}"

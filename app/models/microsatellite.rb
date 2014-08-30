@@ -15,7 +15,8 @@
 
 class Microsatellite < ActiveRecord::Base
   belongs_to :locu
-  
+  belongs_to :sample
+  belongs_to :project
   before_save :assign_locus_text
   
   extend Exportables::ExportableModel

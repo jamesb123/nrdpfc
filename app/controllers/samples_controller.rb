@@ -3,23 +3,23 @@ class SamplesController < ApplicationController
   @@cnt=0
   before_filter :update_table_config
   CHICKEN_INCLUDE = [ :chicken_company, :chicken_feathering, :chicken_declared_gender, :chicken_meat_part, :chicken_ml_duplicate]
-  WOLF_EXCLUDE_LIST =   [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy_comments,:remote_data_entry, :id]
-  WHALES_EXCLUDE_LIST = [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
-  :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
+#  WOLF_EXCLUDE_LIST =   [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :date_submitted, :sample_id, :organism_id, :discrepancy_comments,:remote_data_entry, :id]
+#  WHALES_EXCLUDE_LIST = [:sample_bc, :project, :type_lat_long, :locality_type, :locality_type_text,  :security_settings, :approved, :remote_data_Entry, :platebc, :plateposition, :country,
+#  :province, :location_measurement_method, :location_1, :location_2, :location_accuracy,:age, :condition, :rehydrated, :diet_analysis ]
   
-  WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
-  :province, :location_measurement_method, :location_1, :location_2,  :location_accuracy,
-  :security_settings, :approved, :remote_data_Entry,:age, :condition, :rehydrated, :diet_analysis]
+#  WHALES_EXCLUDE = [:sample_id, :project, :id, :organism_id, :type_lat_long,  :locality_type, :locality_type_text, :platebc, :plateposition, :country, 
+#  :province, :location_measurement_method, :location_1, :location_2,  :location_accuracy,
+#  :security_settings, :approved, :remote_data_Entry,:age, :condition, :rehydrated, :diet_analysis]
 
-  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type,  :security_settings, :approved, :discrepancy_comments, :remote_data_entry ]
+#  WOLF_EXCLUDE1 =     [:sample_id, :project, :id, :organism_id, :type_lat_long, :locality_type,  :security_settings, :approved, :discrepancy_comments, :remote_data_entry ]
   
   SAMPLES_COLUMNS = [:id, :organism_id, :organism, :organism_index, :sample_bc, :field_code, :country, :province, 
     :locality, :locality_type_text, :locality_comments, 
-    :location_1, :location_2, :location_3, :location_4, :location_accuracy, :type_lat_long, :locality_type,  
+    :location_1, :location_2, :location_3, :location_4, :location_accuracy, :type_lat_long,  
     :latitude, :longitude, :coordinate_system,  :location_measurement_method,    
     :collected_on_day,  :collected_on_month, :collected_on_year, :collected_by, :age, :condition, :rehydrated, :diet_analysis,
     :date_received, :received_by, :receiver_comments, :date_submitted, :submitted_by,  
-    :tissue_type, :text_tissue_type, :extraction_method,
+    :text_tissue_type, :extraction_method_text,
     :platebc, :plateposition, :batch_number, 
     :storage_building, :storage_room, :storage_fridge, :storage_box,:shipping_material_txt_prv, :storage_medium_text, 
     :xy_position, :tissue_remaining,  :security_settings,:approved, 
@@ -95,30 +95,6 @@ class SamplesController < ApplicationController
     end
 end
 
-  def org_update_table_config
-    active_scaffold_config.list.columns.add  SAMPLES_COLUMNS
-    if current_project_id == 1
-      # whale
-      active_scaffold_config.list.columns.exclude WHALES_EXCLUDE_LIST
-      active_scaffold_config.create.columns.exclude WHALES_EXCLUDE
-      active_scaffold_config.update.columns.exclude WHALES_EXCLUDE
-      active_scaffold_config.show.columns.exclude WHALES_EXCLUDE
-    else
-      if current_project_id == 7
-        #wolf
-        active_scaffold_config.list.columns.exclude  WOLF_EXCLUDE_LIST
-        active_scaffold_config.create.columns.exclude WOLF_EXCLUDE1
-        active_scaffold_config.update.columns.exclude WOLF_EXCLUDE1
-        active_scaffold_config.show.columns.exclude  WOLF_EXCLUDE1
-      else
-        active_scaffold_config.list.columns.exclude  :text_tisse_type, :remote_data_entry, :project, :type_lat_long, :locality_type
-        active_scaffold_config.create.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.update.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-        active_scaffold_config.show.columns.exclude :text_tisse_type, :remote_data_entry, :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-      end
-    end  
-  end
-
 #  protect_from_forgery :except => [:samples_field_code] 
   
   record_select :per_page => 20,
@@ -137,10 +113,10 @@ end
     config.columns[:organism].search_sql = 'organisms.organism_code'
     config.search.columns << :organism
     config.columns[:organism].sort_by :sql => "organisms.organism_code"
-   config.list.columns.exclude  :type_lat_long, :locality_type
-    config.create.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.update.columns.exclude :locality_type_text, :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
-    config.show.columns.exclude :locality_type_text, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.list.columns.exclude  :type_lat_long 
+    config.create.columns.exclude  :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.update.columns.exclude  :id, :security_settings, :project, :date_submitted, :sample_id, :organism_id
+    config.show.columns.exclude  :security_settings, :project, :date_submitted, :sample_id, :organism_id
     config.columns[:collected_on_year].options = {:truncate => 2}
     config.list.per_page = 25
     # The split tables can't update after an edit,
@@ -162,12 +138,15 @@ end
     config.columns[:organism_index].label = "Organism Sample Index"
     config.columns[:security_settings].label = "Security"
     config.columns[:approved].label = "Approved"
-    config.columns[:extraction_method].form_ui = :select
+    config.columns[:text_tissue_type].label = "Tissue Type"
+    config.columns[:extraction_method_text].label = "Extraction Method"
+    
+#    config.columns[:extraction_method].form_ui = :select
 # done in helper now from shipping materials
 #    config.columns[:shippingmaterial].form_ui = :select
 #    config.columns[:storage_medium].form_ui = :select
-    config.columns[:locality_type].form_ui = :select
-    config.columns[:tissue_type].form_ui = :select
+#    config.columns[:locality_type].form_ui = :select
+#    config.columns[:tissue_type].form_ui = :select
     config.columns[:organism].form_ui = :select
     config.columns[:tissue_remaining].form_ui = :checkbox
     config.columns[:profiling_completed].form_ui = :checkbox
@@ -328,7 +307,7 @@ end
     If not, indicate the Datum used.
     END
 
-    config.columns[:locality_type].tooltip = <<-END
+    config.columns[:locality_type_text].tooltip = <<-END
     This is a pull-down menu for different<br>
     locality types (e.g. National Park, Provincial Park, etc…).
     END
@@ -373,7 +352,7 @@ end
     Is there any tissue remaining?
     END
 
-    config.columns[:extraction_method].tooltip = <<-END
+    config.columns[:extraction_method_text].tooltip = <<-END
     What extraction method did you use to obtain DNA from this sample.
     END
 
@@ -381,7 +360,7 @@ end
     What is the medium that the sample is stored in
     END
     
-    config.columns[:tissue_type].tooltip = <<-END
+    config.columns[:text_tissue_type].tooltip = <<-END
     What is the type of tissue of this sample?
     END
     

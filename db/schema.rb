@@ -3813,6 +3813,11 @@ ActiveRecord::Schema.define(:version => 20131024224207) do
     t.datetime "updated_at"
   end
 
+  create_table "packagings", :force => true do |t|
+    t.string "medium_short_desc"
+    t.string "medium_long_desc"
+  end
+
   create_table "primers", :force => true do |t|
     t.integer "locu_id"
     t.string  "primer"
@@ -4014,6 +4019,7 @@ ActiveRecord::Schema.define(:version => 20131024224207) do
     t.string  "chicken_meat_part"
     t.string  "chicken_ml_duplicate"
     t.string  "chicken_country"
+    t.string  "extraction_method_text"
   end
 
   add_index "samples", ["organism_id"], :name => "index_samples_on_organism_id"
