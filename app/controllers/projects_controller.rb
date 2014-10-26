@@ -1,15 +1,15 @@
 class ProjectsController < ApplicationController
   layout "tabs", :except => [:recompile_status, :recompile]
+#  before_filter :check_current_project
 
-  
-ORG_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
+  ORG_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
     :photo_id_label, :organism_label, :field_ident_label, 
     :opt_col_1, :opt_col_2, :opt_col_3, :opt_col_4, :opt_col_5, 
     :opt_col_6, :opt_col_7, :opt_col_8, :opt_col_9, :opt_col_10, 
     :opt_col_11, :opt_col_12, :opt_col_13, :opt_col_14, :opt_col_15, 
     :opt_col_16, :opt_col_17, :opt_col_18, :opt_col_19, :opt_col_20, 
     :opt_col_21, :opt_col_22, :opt_col_23, :opt_col_24, :opt_col_25]
-PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
+  PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
     :photo_id_label, :organism_label, :field_ident_label]
     
   active_scaffold :projects do |config|
@@ -32,8 +32,13 @@ PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
     ['(projects.user_id = (?) OR EXISTS (SELECT 1 FROM security_settings where security_settings.project_id = projects.id AND security_settings.user_id = ? AND security_settings.level > 0))', current_user.id, current_user.id]
   end
   
-  # @projects = Project.hashify
-  
+def check_current_project
+    # they forget so force a compile of derived ms tables
+    if current_project.recompile_required  
+      recompile
+    end
+end    
+
   # recompile_status will fire an ajax request to recompile
   def recompile_status
     find_project
@@ -50,12 +55,16 @@ PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
     if @project.authorized_for_read?
       self.current_project = @project
     end
-
+    # they forget so force a compile of derived ms tables
+    # if @project.recompile_required  
+    #  recompile
+    # end
+ 
     url = url_for(:controller => 'projects')
 
     respond_to do |format|
       format.html { 
-        redirect_to(url)
+      redirect_to(url)
       }
       format.js {
         render :update do |page|
@@ -65,10 +74,15 @@ PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
     end
   end
 
+
   def update_current_project
     @project = Project.find(params[:current_project_id])
     if @project.authorized_for_read?
       self.current_project = @project
+    end
+    # they forget so force a compile of derived ms tables
+    if @project.recompile_required  
+      recompile
     end
     
     respond_to do |format|
@@ -85,6 +99,7 @@ PROJ_COLUMNS = [:id, :name, :owner, :code, :description, :security_setting,
   
 protected
   def find_project
-    @project = Project.find(params[:id])
+#    @project = Project.find(params[:id])
+    @project = Project.find(current_project.id)
   end
 end

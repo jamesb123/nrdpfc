@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   include CurrentProjectHelper
 
   prepend_before_filter :login_required  
-  
+
   ActiveScaffold.set_defaults do |config|
     config.security.current_user_method = :current_user
     config.security.default_permission = false
@@ -40,7 +40,11 @@ class ApplicationController < ActionController::Base
   end
   # This isn't working, I'm not quite sure why...
   # something isn't scoped right...
-
+def check_current_project
+    if current_project.recompile_required  
+        flash.now[:error]  = "Changes Made to Microsatellites - Recompile Required "
+    end
+end    
   def self.is_project_manager
     user = current_user
     return false if ! user

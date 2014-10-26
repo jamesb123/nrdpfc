@@ -1,3 +1,9 @@
+<% if current_project.recompile_required %>
+		<div style="color: red" id="recompile">
+		<p></p><b><h2>Microsatellite Recompile Required"</b></h2>
+  		</div>
+<%end%>
+
 <% if @results.blank? %>
 	<div style="color: red" id="no_results">
 		<p></p><b>There are no records that match your query.</b>

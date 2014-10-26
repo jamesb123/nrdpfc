@@ -1,10 +1,7 @@
-<!--- <h1>Query</h1>  --->
-
 <% content_tag :div, :id => "query_form" do %>
   <input type='hidden' name='bob' value='fred' />
 <!--  <div id="multiple_projects">
-
-<!--    <div id="project_selectors_toggle">
+    <div id="project_selectors_toggle">
       <span><%= link_to_function "Toggle Projects", "$('project_selectors').toggle();" %></span>
     </div>
     <div id="project_selectors" style="display:none">
@@ -19,9 +16,14 @@
     </div>
   </div>
 -->
+	<div style="width:250px; display:block; float:left;">
+  	<h2>Query Tables</h2>
+	<% if current_project.recompile_required %>
+		<div style="color: red" id="recompile">
+		<p></p><b><h2>Microsatellite Recompile Required"</b></h2>
+  		</div>
+	<%end%>
 
-<div style="width:250px; display:block; float:left;">
-  <h2>Query Tables</h2>
   <div id='query_table_selector'>
     <% Exportables::ExportableModel.models.each do |model| %>
       <div>

@@ -34,8 +34,6 @@
     controller: "ssamples"
 - label: "DNA"  
   controller: "dna_results"
-  sub_tabs:
-  - label: "DNA Results"	
 - label: "mtDNA"  
   controller: "mt_dnas"
   sub_tabs:
@@ -112,5 +110,9 @@
     controller: 'query'
     selected_if: 'params[:action] == "import"'
     action: 'import'
+  - label: "Find Duplicate MS Records"
+    controller: 'query'
+    selected_if: 'params[:action] == "find_duplicates"'
+    action: 'find_duplicates'
 - label: "Help"
   controller: "videos"

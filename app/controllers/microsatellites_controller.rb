@@ -1,5 +1,7 @@
 class MicrosatellitesController < ApplicationController
   layout "tabs"
+  before_filter :check_current_project
+
   active_scaffold :microsatellites do |config|
     config.list.columns = [:project, :sample, :sample_id, :locus, :allele1,
     :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, 
@@ -20,7 +22,7 @@ class MicrosatellitesController < ApplicationController
     config.search.columns << :sample
 
     columns = config.columns
-    columns[:sample].label = "Organism Code (Sample ID)"
+    columns[:sample].label = "Organism Code"
     columns[:sample_id].label = "Sample ID"
     columns[:allele1].label = "Allele 1"
     columns[:allele2].label = "Allele 2"
@@ -36,7 +38,14 @@ class MicrosatellitesController < ApplicationController
     # [:project, :gel, :well, :finalResult].each{|c| columns[c].sort = false }
     
   end
-  
+#  def custom_finder_options
+ #   { :group_by => "project_id, sample_id, locu_id, allele1, allele2", :HAVING => "(count(allele1) >1)" }
+#  end
+#  def conditions_for_collection
+#     [ 'samples.project_id = ?', current_project_id ]
+    # [ 'microsatellites.samples_id = ?', '23']
+#  end
+
   def list
     do_list
 
@@ -63,6 +72,8 @@ class MicrosatellitesController < ApplicationController
     
     sb
   end
+  
+
   
   include ApprovedDataOnly
   include ResultTableSharedMethods

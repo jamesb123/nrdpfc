@@ -1,7 +1,12 @@
 class QueryController < ApplicationController
   layout "tabs"
+before_filter :check_current_project
 
   def index
+    if current_project.recompile_required
+      flash.now[:error] = "Changes Made to Microsatellites - Recompile Required before query"
+puts"here at index"
+    end
     @query = Query.new
   end
   
@@ -31,6 +36,10 @@ class QueryController < ApplicationController
   
   def update
   end
+
+  def find_duplicates
+  end
+
 
   def import
     @messages = []

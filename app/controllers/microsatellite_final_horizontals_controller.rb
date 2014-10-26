@@ -1,6 +1,7 @@
 class MicrosatelliteFinalHorizontalsController < ApplicationController
   layout "tabs"
-  
+  before_filter :check_current_project
+
   def self.target_table_name
     :microsatellite_final_horizontals
   end

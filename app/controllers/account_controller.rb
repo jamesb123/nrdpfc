@@ -35,9 +35,9 @@ class AccountController < ApplicationController
       if !current_user.has_access_to_active_projects?
           if current_user.is_project_manager?
             self.current_project = self.current_user.project_id
-             redirect_back_or_default(:controller => '/projects')
+            redirect_back_or_default(:controller => '/projects')
           else
-             redirect_to(:action => 'unassigned_user')
+            redirect_to(:action => 'unassigned_user')
           end
       else
         self.current_project = self.current_user.project_id
