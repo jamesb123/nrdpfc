@@ -53,11 +53,11 @@
 - label: "Microsatellites"
   controller: "microsatellites"
   sub_tabs:
-  - label: "Microsatellites"
+  - label: "Results by Locus"
     controller: "microsatellites"
-  - label: "Horizontals"
+  - label: "Results by Sample"
     controller: "microsatellite_horizontals"
-  - label: "Final Horizontals"
+  - label: "Results by Organism"
     controller: "microsatellite_final_horizontals"
 - label: "SNPS"
   controller: "snps"
@@ -110,9 +110,5 @@
     controller: 'query'
     selected_if: 'params[:action] == "import"'
     action: 'import'
-  - label: "Find Duplicate MS Records"
-    controller: 'query'
-    selected_if: 'params[:action] == "find_duplicates"'
-    action: 'find_duplicates'
 - label: "Help"
   controller: "videos"

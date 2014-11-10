@@ -5,7 +5,6 @@ before_filter :check_current_project
   def index
     if current_project.recompile_required
       flash.now[:error] = "Changes Made to Microsatellites - Recompile Required before query"
-puts"here at index"
     end
     @query = Query.new
   end

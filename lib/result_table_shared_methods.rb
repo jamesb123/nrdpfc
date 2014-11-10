@@ -26,6 +26,12 @@ module ResultTableSharedMethods
     @record.update_attributes(:finalResult => params[:finalResult])
     render :text => ""
   end
+  def check_sample_final_result
+    # TODO - secure this method down
+    @record = model_for_controller.find(params[:id])
+    @record.update_attributes(:FinalSampleResult => params[:FinalSampleResult])
+    render :text => ""
+  end
   
   def tablename_for_controller
     model_for_controller.table_name
@@ -86,6 +92,16 @@ module ResultTableSharedMethods
           :id => record.id
         },
         :with => "'finalResult=' + $F(this)"
+      )
+    end
+
+    def FinalSampleResult_column(record)
+      check_box_tag "FinalSampleResult", "true", record.FinalSampleResult, :onchange => remote_function(
+        :url => {
+          :action => "check_sample_final_result", 
+          :id => record.id
+        },
+        :with => "'FinalSampleResult=' + $F(this)"
       )
     end
   end

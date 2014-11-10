@@ -16,13 +16,14 @@ class Compiler::MicrosatelliteCompiler < Compiler::CompilerBase
       ]
     )
   end
-  
+  # added final result flag JWB 14/10/29
   def microsatellites_query_builder
     QueryBuilder.new(
       :parent => :microsatellites, 
       :tables => %w[microsatellites samples], 
       :fields => {:microsatellites => %w[locu_id allele1 allele2]},
       :filterings => [
+        ["microsatellites", "FinalSampleResult", "=", true],
         ["samples", "project_id", "=", @project.id],
         ["samples", "id", "=", "%s"]
       ]

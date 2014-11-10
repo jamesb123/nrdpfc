@@ -25,6 +25,7 @@ class Compiler::MicrosatelliteFinalCompiler < Compiler::CompilerBase
       :fields => {:microsatellites => %w[locu_id allele1 allele2]},
       :filterings => [
         ["microsatellites", "finalResult", "=", true],
+        ["microsatellites", "FinalSampleResult", "=", true],
         ["organisms", "project_id", "=", @project.id],
         ["organisms", "id", "=", "%s"]
       ]

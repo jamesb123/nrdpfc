@@ -4,14 +4,15 @@ class MicrosatellitesController < ApplicationController
 
   active_scaffold :microsatellites do |config|
     config.list.columns = [:project, :sample, :sample_id, :locus, :allele1,
-    :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, 
+    :allele2, :gel, :well, :comments, :finalResult, :FinalSampleResult, :allele_1_peak_height, 
     :allele_2_peak_height, :allele_1_size, :allele_2_size, :date_genotyped]
     
     for uc in [config.update, config.create]
-      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :allele_1_peak_height, :allele_2_peak_height, :allele_1_size, :allele_2_size, :date_genotyped]
+      uc.columns = [:project, :sample_id, :sample, :locu, :allele1, :allele2, :gel, :well, :comments, :finalResult, :FinalSampleResult, :allele_1_peak_height, :allele_2_peak_height, :allele_1_size, :allele_2_size, :date_genotyped]
     end
 
     config.columns[:sample].sort_by :sql => "organisms.organism_code"
+#    config.columns[:sample].sort_by :sql => "microsatellites.sample_id, microsatellites.locu_id, microsatellites.allele1, microsatellites.allele2"
     config.columns[:sample].includes << {:sample => :organism}
     config.create.columns.exclude :project, :sample_id
     config.update.columns.exclude :project, :sample_id
@@ -26,7 +27,10 @@ class MicrosatellitesController < ApplicationController
     columns[:sample_id].label = "Sample ID"
     columns[:allele1].label = "Allele 1"
     columns[:allele2].label = "Allele 2"
+    columns[:finalResult].label = "Final Organism Result"
+    columns[:FinalSampleResult].label = "Final Sample Result"
     columns[:finalResult].form_ui = :checkbox
+    columns[:FinalSampleResult].form_ui = :checkbox
     columns[:allele_1_peak_height].label = "Allele 1 Peak"
     columns[:allele_2_peak_height].label = "Allele 2 Peak"
     columns[:allele_1_size].label = "Allele 1 Size"
